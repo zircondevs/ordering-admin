@@ -6,7 +6,7 @@ import AuthLayout from "../components/Layout/Auth-layout";
 
 
 
-const Home: NextPage = () => {
+const ResetPassword: NextPage = () => {
 
 	
 	return (
@@ -16,4 +16,4 @@ const Home: NextPage = () => {
 	);
 };
 
-export default Home;
+export default ResetPassword;
