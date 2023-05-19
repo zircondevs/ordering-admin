@@ -69,7 +69,7 @@ const Login = () => {
 							}
 						}}
 					>
-						{({handleChange,  values}) => (
+						{({handleChange,  values, dirty}) => (
 							<Form>
 								<Grid gap="32px">
 									<GeneralInputWrap margin="8px 0 0">
@@ -123,6 +123,7 @@ const Login = () => {
 										nonActiveBgColor="Black.20"
 										borderRadius="0"
 										text={ "Log In" }
+										disabled={dirty}
 										isLoading={loading}
 									/>
 								</Flex>

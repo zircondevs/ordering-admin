@@ -6,6 +6,10 @@ import {     HeaderSTyles, Main,    TableStyle, TabsStyles, } from "./styles";
 import { formatAMPM, formatNumber, formateDate,   } from "../../../lib";
 import {   GeneralTabStyle } from "../../../components/styles";
 import Search from "../../../components/Search";
+import AccountInfo from "./accountInfo";
+import UserManagemnt from "./userMangt";
+import Security from "./security";
+import Subscription from "./subscription";
 
 
 
@@ -41,12 +45,12 @@ const Settings = () => {
 	const tabData = [
 		{
 			head: "Account Information",
-			body: <Tab1   {...{tableBody, tableHead}}/>,
+			body: <AccountInfo />,
 			key: "Account Information"
 		},
 		{
 			head: "User Management",
-			body:  <Tab1   {...{tableBody, tableHead}}/>,
+			body:  <UserManagemnt   />,
 			key: "User Management"
 		},
 		{
@@ -56,12 +60,12 @@ const Settings = () => {
 		},
 		{
 			head: "Security",
-			body: <Tab1   {...{tableBody, tableHead}}/>,
+			body: <Security />,
 			key: "Security"
 		},
 		{
 			head: "Subscriptions",
-			body: <Tab1   {...{tableBody, tableHead}}/>,
+			body: <Subscription  />,
 			key: "Subscriptions"
 		},
 	];
