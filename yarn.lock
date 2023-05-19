@@ -865,10 +865,10 @@ delayed-stream@~1.0.0:
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==
 
-devs-react-component-library@^9.1.14:
-  version "9.1.14"
-  resolved "https://registry.yarnpkg.com/devs-react-component-library/-/devs-react-component-library-9.1.14.tgz#6b49d41a3c784b2ca932efc5ccd0f5fd94d43a87"
-  integrity sha512-BvR9XT/UkJUDutHrmdIab+7xR66xsusyjarh71zooTP9HPiaLNPe4ZJtFJdvoj581SAKYOF7FKI1wUIjjftsiw==
+devs-react-component-library@^9.1.15:
+  version "9.1.15"
+  resolved "https://registry.yarnpkg.com/devs-react-component-library/-/devs-react-component-library-9.1.15.tgz#0a6f5df4e9db2cd43ba296c167ae63c73d914b95"
+  integrity sha512-9gcA6H2+Xl9tIyUg3Khw7XWh5ErPDrB+t4bv4hPn8h+JLp2EC4nMZXVgmrerUZviXbLtj28hnQ3d/u/T3eHOBQ==
 
 dir-glob@^3.0.1:
   version "3.0.1"
