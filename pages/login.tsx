@@ -6,7 +6,7 @@ import AuthLayout from "../components/Layout/Auth-layout";
 
 
 
-const ForgotPassword: NextPage = () => {
+const Login: NextPage = () => {
 
 	
 	return (
@@ -16,4 +16,4 @@ const ForgotPassword: NextPage = () => {
 	);
 };
 
-export default ForgotPassword;
+export default Login;
