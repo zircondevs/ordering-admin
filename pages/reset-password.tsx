@@ -1,19 +1,19 @@
 import type { NextPage } from "next";
 import React  from "react";
-import Overview from "../screens/reset-password";
+import ForgotPasswordPage from "../screens/forgot-password";
 import AuthLayout from "../components/Layout/Auth-layout";
 
 
 
 
-const ResetPassword: NextPage = () => {
+const ForgotPassword: NextPage = () => {
 
 	
 	return (
-		<AuthLayout>
-			<Overview />
+		<AuthLayout >
+			<ForgotPasswordPage />
 		</AuthLayout>
 	);
 };
 
-export default ResetPassword;
+export default ForgotPassword;
