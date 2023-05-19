@@ -224,6 +224,22 @@ export const LogOutIcon = (
 	</svg>
 );
 
+export const Check2Icon = (
+	{ height, width, colour  }: { height?: string; width?: string; colour?: string}
+) => (
+	<svg
+		height={height || "52"}
+		width={width || "52"}
+		x="0"
+		y="0"
+		fill={colour || "currentColor"}
+		viewBox="0 0 256 256"
+	>
+		<rect width="256" height="256" fill="none"/><polyline points="40 144 96 200 224 72" fill="none" stroke={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor"} 
+			strokeLinecap="round" strokeLinejoin="round" strokeWidth="30"/> 
+	</svg>
+);
+ 
  
 export const NotificationIcon = (
 	{ height, width, colour  }: { height?: string; width?: string; colour?: string; }

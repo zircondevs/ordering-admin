@@ -74,3 +74,17 @@ export const useGetUser  = () => {
 	}, [ data ]);
 	return {  loading , error };
 };
+
+export const useGetUsers  = () => {
+	const {state: { user }} = UseContext();
+	const [pageInfo, setPageInfo] = useState({
+		page: 1,
+		limit: 10
+	});
+	const { data , loading, error} = useGetCachedAxiosHandler ({
+		url: `${AUTH_URL}/users/${user?.clientId}?page=${pageInfo.page}&limit=${pageInfo.limit}`,
+		notify: false
+	});
+ 
+	return {  loading , error , users: data?.data, pageInfo, setPageInfo };
+};

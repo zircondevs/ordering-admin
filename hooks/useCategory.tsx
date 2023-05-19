@@ -15,13 +15,17 @@ import { useAxiosHandler, useGetCachedAxiosHandler } from "./useAxiosHandler";
 
 export const useGetCategories  = () => {
 	const { state: { user}} = UseContext();
+	const [pageInfo, setPageInfo] = useState({
+		page: 1,
+		limit: 10
+	});
 	const { data , loading} = useGetCachedAxiosHandler ({
-		url: `${MENU_URL}/categories/${user?.clientId}`,
+		url: `${MENU_URL}/categories/${user?.clientId}?page=${pageInfo.page}&limit=${pageInfo.limit}`,
 		notify: false,
 		requiredVariable: user?.clientId?.length > 0
 	});
  
-	return {  loading, categories: data  };
+	return {  loading, categories: data?.data , pageInfo, setPageInfo };
 };
  
 

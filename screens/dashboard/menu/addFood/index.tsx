@@ -16,6 +16,7 @@ import { HandleScrollTypes } from "devs-react-component-library";
 import { LongArrowicon } from "../../../../public/assets/svg";
 import { useCreateCategory, useGetCategories } from "../../../../hooks/useCategory";
 
+
 interface  PropType {
 	setOpen: React.Dispatch<React.SetStateAction<GenericObjTypes & {type: string}>>;
 	open: GenericObjTypes;
@@ -100,6 +101,16 @@ const AddFood = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 							return (
 								<Form>
 									<Grid gap="32px">
+										{/* <Flex>
+											<Checkbox
+												name="deliveryType"
+												checked={checkoutForm.paymentType ===  type.value}
+												type="radio"
+												value={type.value}
+												onClick={(e: React.ChangeEvent<HTMLInputElement>) => setCheckoutForm({...checkoutForm, paymentType:  e.target.value})}
+											/>
+										</Flex> */}
+						
 										<GeneralInputWrap margin="8px 0 0">
 											<GeneralLabel>  Name</GeneralLabel>
 											<Input
@@ -128,11 +139,11 @@ const AddFood = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 													dropColor='Black.80'
 													direction='end'
 													searchField={true}
-													data={ categories?.map((state: string) => (
+													data={ categories?.data?.map((state: GenericObjTypes) => (
 														{
-															returnedValue: state,
-															displayedValue: state,
-															dropdownValue:  state,
+															returnedValue: state?._id,
+															displayedValue: state?.name,
+															dropdownValue:  state?.name,
 														}
 													)) || [{
 														returnedValue: "No data",

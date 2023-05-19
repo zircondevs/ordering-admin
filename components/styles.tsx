@@ -47,6 +47,9 @@ export const GeneralTabStyle =  styled("div")`
 			&.tab-list-active:before {
 				background-color: ${() =>  PRIMARY_COLOR[0]}
 			}
+			&.tab-list-active {
+				 color: ${({ theme}) => theme?.palette.Grey["2"] };
+			}
 		}
 	}
 `;

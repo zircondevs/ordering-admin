@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
 import React  from "react";
-import Overview from "../../screens/dashboard/users";
+import Overview from "../../screens/dashboard/settings";
 import DashboardLayout from "../../components/Layout/Dashboard-layout";
 import ProtectedRoute from "../../components/ProtectedRoute";
 
 
 
 
-const Users: NextPage = () => {
+const Settings: NextPage = () => {
 
 	
 	return (
@@ -19,4 +19,4 @@ const Users: NextPage = () => {
 	);
 };
 
-export default Users;
+export default Settings;

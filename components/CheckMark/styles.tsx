@@ -1,23 +1,50 @@
 
 import { Flex } from "../../components";
 import styled from "styled-components";
+import { PRIMARY_COLOR } from "../../hooks/colors";
 
 
-export interface RadiusType {
-    borderRadius: string;
-    handleOnChange: boolean;
+
+export const CheckboxStyles = styled(Flex)`
+width: 20px;
+height: 20px;
+position: relative;
+cursor: pointer;
+border-radius: 100%;
+&:before {
+	border-radius: 100%;
+	background-color:  ${({ theme, checked }) => checked ? PRIMARY_COLOR[0] : theme.palette.common["white"]};
+	border-color:  ${({ theme, checked }) => checked ? PRIMARY_COLOR[0] : theme.palette.Grey[3]};
+	border-style: solid;
+	border-width:  1px;
+	width:  18px;
+	height:  18px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 10px;
+	z-index: 10;
+	content: "" ;
 }
- 
- 
-export const ChrkMarkContainer =  styled(Flex)<RadiusType>`
-    border-radius: ${({ borderRadius }) => borderRadius || "100%" };
-	border: 1px solid  ${({ theme, colour }) => colour ||  theme.palette.Black.default};
-	background-color:   ${({   bgColor }) => bgColor ||  "red"};
-    min-width: ${({ size }) => size ? `${size + 2}px` : "22px" };
-    min-height: ${({ size }) => size ? `${size + 2}px` : "22px" };
-    cursor: ${({ handleOnChange }) => handleOnChange ? "pointer" : "default" };
-    position: relative;
+& > svg {
+	position: absolute;
+	z-index: 10;
+}
+input {
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: 10;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
 `;
- 
-
- 
