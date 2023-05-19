@@ -12,7 +12,7 @@ import { useLogout } from "../../hooks/handlers/useLogout";
 import { isDefined } from "../../lib";
 import { UseContext } from "../../state/provider";
 import { Main } from "./styles";
-import {  LoaderIcon, ThreeDotsLoaderIcon, WarningIcon } from "../../public/assets/svg";
+import {  LoaderIcon, WarningIcon } from "../../public/assets/svg";
 import { useGetUser } from "../../hooks/useAuth";
 
 
