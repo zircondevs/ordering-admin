@@ -123,7 +123,7 @@ const Login = () => {
 										nonActiveBgColor="Black.20"
 										borderRadius="0"
 										text={ "Log In" }
-										disabled={dirty}
+										disabled={!values.email || !values.password}
 										isLoading={loading}
 									/>
 								</Flex>
