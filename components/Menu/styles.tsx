@@ -1,0 +1,76 @@
+
+import styled from "styled-components";
+import {  Flex } from "..";
+import { PRIMARY_COLOR } from "../../hooks/colors";
+
+
+
+export const MenuStyles =  styled("header")`
+    width: auto;
+    height: 70px;
+    background-color: ${({ theme }) => theme?.palette?.common["white"] };
+    padding: 0 3%;
+    position: fixed;
+    z-index:  ${({ theme }) => theme?.zIndex["header"] };;
+    right: 0;
+    left: 0;
+    top: 0;
+	border: 1px solid #E0E0E0;
+    @media (${({theme}) => theme.mediaQuery.below["tab"]}){
+        padding: 0 4%;
+    }
+`;
+
+export const Line =  styled(Flex)`
+	margin-right: 24px;
+	padding-right: 24px;
+	border-right: 2px solid #E0E0E0;
+	width: auto;
+
+`; 
+
+
+
+export const DrawerMenu =  styled(Flex)`
+	position: relative;
+	max-width: 130px;
+	height: 47px;
+`; 
+ 
+export const ButnStyles =  styled(Flex)`
+	margin-right: 48px;
+	& > button:first-child {
+		margin-right: 24px;
+	}
+	&:after {
+		content: "";
+		height: auto;
+		width: 2px;
+		right: -24px;
+		position: relative;
+		background-color: #E0E0E0;;
+	}
+`; 
+
+ 
+
+export const AvatarIconStyles =  styled(Flex)`
+	background-color: ${() => PRIMARY_COLOR[5]};
+	border-radius: 100%;
+`;
+
+
+export const ProfileCard =  styled(Flex)`
+	width: auto;
+	flex-wrap: nowrap;
+	span {
+		margin-right: 16px;
+	}
+`;
+
+export const ProfileDropdownList =  styled(Flex)`
+	flex-wrap: nowrap;
+	span {
+		margin-left: 4px;
+	}
+`;

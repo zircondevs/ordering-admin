@@ -1,0 +1,227 @@
+/* eslint-disable max-len */
+/* eslint-disable max-lines */
+// import { ThemeTypes } from "devs-react-component-library";
+
+const white = "#fff";
+const transparent = "transparent";
+
+const palette = {
+	white,
+	common: {
+		white,
+		transparent,
+	},
+	Black: {
+		default: "#333333",
+		80: "#4F4F4F",
+		60: "#828282",
+		40: "##BDBDBD",
+		20: "#E0E0E0",
+		10: "#F2F2F2",
+		// 5: "#F8F9FB",
+		// transparent: {
+		// 	10: "#062A543D",
+		// 	20: "#ffffff6b",
+		// 	30: "#CDD4DD7D"
+		// },
+		// main: {
+		// 	default: "#00000017"
+		// }
+	},
+	Blue: {
+		dark: {
+			default: "#333333",
+			80: "#4F4F4F",
+			60: "#828282",
+			40: "#99B5D5",
+			20: "#CCDAEA",
+			10: "#E5EDF5",
+			5: "#F2F6FA"
+		},
+
+	},
+	Grey: {
+		1: "#333333",
+		2: "#4F4F4F",
+		3: "#828282",
+		4: "#BDBDBD",
+		5: "#d8d8d8",
+		6: "#F2F2F2",
+		7: "#F2F2F2"
+	},
+	Success: {
+		default: "#00A64C",
+		80: "#33B870",
+		60: "#66CA94",
+		40: "#99DBB7",
+		20: "#CCEDDB",
+		10: "#E5F6ED",
+		5: "#F2FBF6",
+		transparent: {
+			10: "#00a64c29"
+		}
+	},
+	Error: {
+		default: "#DD0F0F",
+		80: "#F37A4F",
+		60: "#F69B7B",
+		40: "#F9BDA7",
+		20: "#FCDED3",
+		10: "#FDEEE9",
+		5: "#FEEDED"
+	},
+	transparent: {
+		default: "transparent",
+		80: "rgba(255, 255, 255, 0.2)"
+	},
+	noName: {
+		purple: "#B800BB",
+		blue: {
+			10: "#0D3592",
+			40: "#1A62CA"
+		},
+		Success: {
+			10: "#9DFFCE",
+			20: "#50D18D",
+			40: "#135D36"
+		}
+	}
+};
+
+
+
+const shadows = {
+	small: "0px 8px 4px rgba(0, 0, 0, 0.02)",
+};
+
+const typography = {
+	fontFamily: {
+		quicksand: "Quicksand-regular, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
+		quicksandLight: "Quicksand-light, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
+		quicksandBold: "Quicksand-bold, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
+		quicksandMedium: "Quicksand-medium, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
+		quicksandSemiBold: "Quicksand-semibold, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
+	},
+	fontWeight: {
+		300: 300,
+		400: 400,
+		500: 500,
+		600: 600,
+		700: 700,
+		normal: "normal",
+	},
+	lineHeight: {
+		96: "96px",
+		69: "69px",
+		54: "54px",
+		50: "50px",
+		41: "41px",
+		40: "40px",
+		37: "37px",
+		32: "32px",
+		30: "30px",
+		28: "28px",
+		27: "27px",
+		24: "24px",
+		23: "23px",
+		22: "22px",
+		21: "21px",
+		20: "20px",
+		19.6: "19.6px",
+		19: "19px",
+		18: "18px",
+		16: "16px",
+		14: "14px",
+		15: "15px",
+		12: "12px",
+		10: "10px",
+	},
+};
+
+const zIndex = {
+	mobileStepper: 1000,
+	speedDial: 1050,
+	appBar: 1100,
+	drawer: 1200,
+	modal: 1300,
+	header: 1400,
+	tooltip: 1500,
+};
+
+
+
+export const fontSizes = {
+	8: "8px", //10px
+	10: "10px", //10px
+	11: "11px", //11px
+	12: "0.75rem", //12px
+	13: "0.813rem", //13px
+	14: "14px", //14px
+	16: "1rem", //16px
+	18: "1.125rem", //18px
+	20: "1.25rem", //20px
+	22: "1.375rem", //22px
+	24: "24px", //28
+	28: "28px", //28
+	36: "36px", //36
+	40: "40px", //36
+	46: "46px", //46
+	64: "64px", //46
+};
+
+const shape = {
+	borderRadius: {
+		4: "4px", //10px
+		8: "8px", //10px
+		10: "10px", //10px
+		11: "11px", //11px
+		12: "0.75rem", //12px
+		13: "0.813rem", //13px
+		14: "14px", //14px
+		16: "1rem", //16px
+		18: "1.125rem", //18px
+		20: "1.25rem", //20px
+		22: "1.375rem", //22px
+		24: "24px", //28
+		28: "28px", //28
+		32: "32px", //32
+		33: "33px", //33
+		36: "36px", //36
+		40: "40px", //36
+		46: "46px", //46
+		64: "64px", //46
+	},
+	padding: {
+		small: "14px 32px",
+		smaller: "8px 16px",
+		smallest: "5px 10px",
+	}
+};
+
+export const transition = {
+	drawer: "200ms ease-in",
+	notification: "300ms linear",
+};
+export const mediaQuery = {
+	below: {
+		mobile: "max-width: 360px",
+		tab: "max-width: 700px",
+		largeMobile: "max-width: 500px",
+		600: "max-width: 600px",
+		midDesktop: "max-width: 1000px",
+		1000: "max-width: 1000px",
+	},
+	above: {
+
+	}
+};
+export const theme: any = {
+	palette,
+	shadows,
+	typography,
+	zIndex,
+	shape,
+	fontSizes,
+	transition,
+	mediaQuery
+};
