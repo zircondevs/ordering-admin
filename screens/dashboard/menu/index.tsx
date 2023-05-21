@@ -1,21 +1,20 @@
 /* eslint-disable max-lines */
 
-import React, {  useRef, useState }   from "react";
+import React, {   useState }   from "react";
 import { Bold, Dropdown, Flex,  Span, Table,      } from "../../../components";
 import {     AddBtn, BtnsStyles, Container1, FoodStyles, HeaderSTyles, Main,    SearchStyles,   } from "./styles";
 import { formatAMPM, formatNumber, formateDate,   } from "../../../lib";
 import Search from "../../../components/Search";
 import { GeneralCountStyles, GeneralTableStyle } from "../../../components/styles";
 import CustomButton from "../../../components/Button";
-import { DownloadIcon, LoaderIcon } from "../../../public/assets/svg";
+import { DownloadIcon, EditIcon, LoaderIcon,  } from "../../../public/assets/svg";
 import Image from "next/image";
-import PopUpModal, { PopUpRefType } from "../../../components/PopUpModal";
-import { useGetMenu } from "../../../hooks/useMenu";
 import { useGetStores } from "../../../hooks/useStores";
 import { GenericObjTypes } from "../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library";
 import AddCategory from "./addCategory";
 import AddFood from "./addFood";
+import { useGetAllFood } from "../../../hooks/useFood";
 
 
 
@@ -23,9 +22,9 @@ import AddFood from "./addFood";
 
 const FoodMenu = () => {
 	const { stores, loading:loadingStores } = useGetStores();
-	const [store, setStore] = useState("");
+	const [storeId, setStoreId] = useState("" || stores?.data[0]?._id);
 
-	const { menu, loading: loadingmenu } = useGetMenu(store || stores?.data[0]?._id);
+	const { menu, loading: loadingmenu , mutate} = useGetAllFood(storeId || stores?.data[0]?._id);
 	const [modal, setModal] = useState({type: ""});
 	const modalRef = React.useRef<HandleScrollTypes>(null); 
 
@@ -35,52 +34,39 @@ const FoodMenu = () => {
 		setModal(obj);
 		modalRef.current && modalRef.current.preventBodyScroll();
 	};
-
-	const popUpRef = useRef<PopUpRefType>(null);
-	// const handleCloseModal = () => popUpRef.current && popUpRef.current.handleCloseModal();
-
  
-	
-
-	const status = {
-		pending:  ["Blue.dark.20", "Blue.dark" ],
-		failed:  ["Error.20", "Error.default" ],
-		success: ["Success.20", "Success.default" ],
-	};
-	const tableHead = [ "Food", "Date","Time", "Amount", "Status", "Action"];
-	const tableBody = menu?.data?.map((menuItem: GenericObjTypes) => (
+	const tableHead = [ "Food", "category", "Date","Time", "Amount", "Avaliability", "Action"];
+	const tableBody = menu?.data?.map((food: GenericObjTypes) => (
 		{
 			name: (
 				<Flex width="auto" justifyContent="flex-start">
 					<FoodStyles>
 						<Image
-							src={"https://logos-world.net/wp-content/uploads/2020/04/Huawei-Logo.png"}
+							src={food?.foodImage}
 							alt="Logo"
 							objectFit="contain"
 							layout="fill"
 						/>
 					</FoodStyles>
-					<Bold fontFamily='quicksand' weight="700" lineHeight="19" size="12" colour={status["pending"][1]}>
-						{menuItem?.name}
+					<Bold fontFamily='quicksand' weight="700" lineHeight="19" size="12" colour={"Grey.1"}>
+						{food?.name}
 					</Bold>
 				</Flex>
 			),
-			date: `${formateDate(new Date()).date} ${formateDate(new Date()).shortMonth}, ${formateDate(new Date()).year}` ,
-			time: `${formatAMPM(new Date())}`,
-			amount: "₦" + formatNumber(3212),
-			status: <Flex bgColor={status["failed"][0]} width="max-content" pad="3px 8px" margin="0">
-				<Span fontFamily='quicksand' weight="400" lineHeight="19" size="12" colour={status["pending"][1]}>
-					failed
-				</Span>
-			</Flex>,
+			category: food?.category?.name,
+			date: `${formateDate(new Date(food?.createdAt)).date} ${formateDate(new Date(food?.createdAt)).shortMonth}, ${formateDate(new Date(food?.createdAt)).year}` ,
+			time: `${formatAMPM(new Date(food?.createdAt))}`,
+			amount: "₦" + formatNumber(food?.amount),
+			isAvailable: food?.isAvailable?.toString(),
 			action: (
-				<PopUpModal 
-					innerRef={popUpRef}
-					icon={
-						<Span fontFamily='quicksand' weight="400" lineHeight="19" size="12" colour={"Error.default"}>View</Span>
-					}>
-					<div>Lorem ipsum, d !</div>
-				</PopUpModal>
+				<Flex justifyContent="flex-start">
+					{/* <Flex width="auto" height="auto" margin="0 8px 0 0" as="button">
+						<TrashIcon colour="Error.default" height="20" width="20"/>
+					</Flex> */}
+					<Flex width="auto" height="auto" as="button" onClick={() => openModal({type: "editFood", ...food})}>
+						<EditIcon colour="Grey.2" height="20" width="20"/>
+					</Flex>
+				</Flex>
 			)
 		}
 	));
@@ -106,8 +92,9 @@ const FoodMenu = () => {
 								dropHovColor="Black.default"
 								hovBgColor="Black.20"
 								searchField={false}
+								clearSelected
 								initial={stores?.data?.[0]?.name }
-								handleSelect={(selected: string) => setStore(selected)}
+								handleSelect={(selected: string) => setStoreId(selected)}
 								data={stores?.data?.map((store: any) => (
 									{
 										displayedValue: store?.name, 
@@ -203,7 +190,7 @@ const FoodMenu = () => {
  
 		
 			<AddCategory   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={() => []}  />
-			<AddFood   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={() => []}  />
+			<AddFood   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={mutate} storeId={storeId} />
 		</Main>
 	);
 };

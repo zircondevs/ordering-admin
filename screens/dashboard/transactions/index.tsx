@@ -6,7 +6,7 @@ import { formatAMPM, formatNumber, formateDate,   } from "../../../lib";
 import Search from "../../../components/Search";
 import { GeneralCountStyles, GeneralTableStyle } from "../../../components/styles";
 import CustomButton from "../../../components/Button";
-import { DownloadIcon, LoaderIcon } from "../../../public/assets/svg";
+import { DownloadIcon, EmptyIcon, LoaderIcon } from "../../../public/assets/svg";
 import { useGetTransactions } from "../../../hooks/useTransaction";
 import { GenericObjTypes } from "../../../constants/types";
 
@@ -99,9 +99,10 @@ const Transactions = () => {
 							</GeneralTableStyle>
 						</Container1>
 						: 
-						<Flex margin="40px 0">
+						<Flex margin="40px 0" height="auto" direction="column">
+							<EmptyIcon />
 							<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Black.80"}>
-								There are no transaction records here yet!.
+								There are no transaction record here yet!.
 							</Span>
 						</Flex>
 			}

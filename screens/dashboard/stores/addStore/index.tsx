@@ -191,6 +191,7 @@ const AddStore = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 													dropColor='Black.80'
 													direction='end'
 													searchField={true}
+													clearSelected
 													initial={values.state}
 													data={STATE_AND_LGA?.map((state: any) => (
 														{
@@ -206,9 +207,9 @@ const AddStore = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 												{errors.state?.toString()  }
 											</GeneralErrorContainer>
 										</GeneralInputWrap>
-										
+
 										{
-											values.state ?
+											values.state  || values.localGovernmentArea ?
 												<GeneralInputWrap margin="8px 0 0">
 													<GeneralLabel>LGA</GeneralLabel>
 													<GeneralSelectField>
@@ -220,6 +221,7 @@ const AddStore = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 															dropColor='Black.80'
 															direction='end'
 															searchField={true}
+															clearSelected
 															initial={values.localGovernmentArea}
 															data={ LGA?.lgas?.map((state: string) => (
 																{
@@ -261,6 +263,7 @@ const AddStore = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 														dropColor="Black.80"
 														dropHovColor="Black.default"
 														hovBgColor="Black.20"
+														clearSelected
 														initial="🇳🇬"
 														handleSelect={(selected: any) => setDialCode(selected)}
 														data={

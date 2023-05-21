@@ -1,90 +1,66 @@
 /* eslint-disable max-lines */
 
 import React, { useState }   from "react";
-import { Bold, Dropdown, Flex,  Span, Table,  Tabs   } from "../../../components";
-import {     HeaderSTyles, Main,    TableStyle, TabsStyles, } from "./styles";
-import { formatAMPM, formatNumber, formateDate,   } from "../../../lib";
+import { Bold, Dropdown, Flex,  Span,   Tabs   } from "../../../components";
+import {     HeaderSTyles, Main,   TabsStyles, } from "./styles";
 import { GeneralCountStyles, GeneralTabStyle } from "../../../components/styles";
-import Search from "../../../components/Search";
-import { useGetOrders } from "../../../hooks/useOrders";
 import { useGetStores,   } from "../../../hooks/useStores";
 import { LoaderIcon } from "../../../public/assets/svg";
+import  OrdersTable from "./delivered";
+import { useGetOrders } from "../../../hooks/useOrders";
 
 
 
 
 const Overview = () => {
 	const [store, setStore] = useState("");
+	const [ status, setStatus] = useState("OPENED");
 	
 	const { stores, loading: loadingStores } = useGetStores();
-	const { orders , loading: loadingOrders} = useGetOrders(store || stores?.data[0]?._id);
-	console.log(orders);
+	const { orders: processingOrders , loading: loadingProceOrders} = useGetOrders(store || stores?.data[0]?._id, status);
+	const { orders , loading: loadingOrders} = useGetOrders(store || stores?.data[0]?._id, status);
+	const { orders: beenPreparedOrders , loading: loadingBeenPreparedOrders} = useGetOrders(store || stores?.data[0]?._id,  status);
+	const { orders: canceledOrders , loading: loadingCanceled} = useGetOrders(store || stores?.data[0]?._id, status);
+	const { orders: onDeliveryOrders , loading: lodaingOnDelivery} = useGetOrders(store || stores?.data[0]?._id,  status);
+	const { orders: openedOrders , loading: lodaingOpenOrders} = useGetOrders(store || stores?.data[0]?._id,  status);
 
-
-	const status = {
-		pending:  ["Blue.dark.20", "Blue.dark" ],
-		failed:  ["Error.20", "Error.default" ],
-		success: ["Success.20", "Success.default" ],
-	};
-	const tableHead = ["Date","Time", "Amount", "Status", "Action"];
-	const tableBody = [
-		{
-			date: `${formateDate(new Date()).date} ${formateDate(new Date()).shortMonth}, ${formateDate(new Date()).year}` ,
-			time: `${formatAMPM(new Date())}`,
-			amount: "₦" + formatNumber(3212),
-			status: <Flex bgColor={status["failed"][0]} width="max-content" pad="3px 8px" margin="0">
-				<Span fontFamily='quicksand' weight="400" lineHeight="19" size="12" colour={status["pending"][1]}>
-					failed
-				</Span>
-			</Flex>,
-			action: <Flex width="max-content"  margin="0">
-				<Span fontFamily='quicksand' weight="400" lineHeight="19" size="12" colour={"Error.default"}>
-					View
-				</Span>
-			</Flex>,
-		},
-		{
-			date: `${formateDate(new Date()).date} ${formateDate(new Date()).shortMonth}, ${formateDate(new Date()).year}` ,
-			time: `${formatAMPM(new Date())}`,
-			amount: "₦" + formatNumber(3212),
-			status: <Flex bgColor={status["success"][0]} width="max-content" pad="3px 8px" margin="0">
-				<Span fontFamily='quicksand' weight="400" lineHeight="19" size="12" colour={status["success"][1]}>
-					Success
-				</Span>
-			</Flex>,
-			action: <Flex width="max-content"   margin="0">
-				<Span fontFamily='quicksand' weight="400" lineHeight="19" size="12" colour={"Error.default"}>
-					View
-				</Span>
-			</Flex>,
-		}
-	];
+	// orderStatus
  
 	const tabData = [
 		{
-			head:  <TabLabel title="New Orders" count={23} />,
-			body: <Tab1   {...{tableBody, tableHead}}/>,
-			key: "New orders"
+			head: <TabLabel title="Opened Orders" count={openedOrders?.count} />,
+			body:  <OrdersTable orders={processingOrders} loadingOrders={lodaingOpenOrders} title="Opened Orders " />,
+			key: "OPENED"
 		},
 		{
-			head: <TabLabel title="In Progress" count={23} />,
-			body:  <Tab1   {...{tableBody, tableHead}}/>,
-			key: "In progress"
+			head: <TabLabel title="In Progress" count={processingOrders?.count} />,
+			body:  <OrdersTable orders={processingOrders} loadingOrders={loadingProceOrders} title="Orders In Progress " />,
+			key: "PROCESSING"
 		},
 		{
-			head: <TabLabel title="Delivered" count={23} />,
-			body: <Tab1   {...{tableBody, tableHead}}/>,
-			key: "Delivered"
+			head:  <TabLabel title="Delivered Orders" count={orders?.count} />,
+			body: <OrdersTable   orders={orders} loadingOrders={loadingOrders} title="Delivered Orders" />,
+			key: "DELIVERED"
+		},
+		{
+			head:  <TabLabel title="Been Prepared Orders" count={beenPreparedOrders?.count} />,
+			body: <OrdersTable   orders={beenPreparedOrders} loadingOrders={loadingBeenPreparedOrders} title="Been Prepared Orders" />,
+			key: "BEEN PREPARED"
+		},
+		{
+			head:  <TabLabel title="Canceled Orders" count={canceledOrders?.count} />,
+			body: <OrdersTable   orders={canceledOrders} loadingOrders={loadingCanceled} title="Canceled Orders" />,
+			key: "CANCELLED"
+		},
+		{
+			head:  <TabLabel title="On Delivery Orders" count={onDeliveryOrders?.count} />,
+			body: <OrdersTable   orders={onDeliveryOrders} loadingOrders={lodaingOnDelivery} title="On Delivery Orders" />,
+			key: "ON DELIVERY"
 		},
 	];
 
-	
-
 	return (
-		<Main>
-
-
-		
+		<Main> 
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='64px 0 40px'>
 				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="28" size="24" colour={"Black.80"}>
 					Orders
@@ -100,6 +76,7 @@ const Overview = () => {
 							dropColor="Black.80"
 							dropHovColor="Black.default"
 							hovBgColor="Black.20"
+							clearSelected
 							searchField={false}
 							initial={stores?.data?.[0]?.name }
 							handleSelect={(selected: string) => setStore(selected)}
@@ -120,7 +97,7 @@ const Overview = () => {
 			</HeaderSTyles>
 
 			{
-				loadingOrders || loadingStores ?
+				loadingStores ?
 					<Flex><LoaderIcon	height="40" width="40"/></Flex>
 					:
 					<TabsStyles>
@@ -128,7 +105,7 @@ const Overview = () => {
 							<Tabs
 								nonActiveColor="Black.60"
 								activeColor="Blue.base.default"
-								click={() => []}
+								click={(e) => setStatus(e.key)}
 								data={tabData}
 							/>
 						</GeneralTabStyle>
@@ -143,40 +120,16 @@ export default Overview;
  
 
 
-
-const Tab1 = ({tableHead, tableBody}: any) => {
-
-	return (
-		<TableStyle height="auto" justifyContent="flex-start">
-			<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
-				<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Black.80"}>
-					All New Orders 
-				</Bold>
-
-				<Search />
-			</Flex>
-
-			<Table 
-				gap={"0"}
-				headBgColor="common.transparent"
-				bodyColor="Black.80"
-				headColor="Black.60"
-				tableHead={tableHead}
-				tableBodys={tableBody}
-			/>
-		</TableStyle>
-	);
-};
-
+ 
 
 
 const TabLabel =({title, count}: { title: string, count: number}) => {
 	return (
-		<Flex width="auto">
+		<Flex width="auto" wrap="nowrap">
 			{title}
 			<GeneralCountStyles>
 				<Span fontFamily='quicksand' weight="700" lineHeight="14" size="12" colour={"Black.80"}>
-					{count}
+					{  count || 0}
 				</Span>
 			</GeneralCountStyles>
 		</Flex>

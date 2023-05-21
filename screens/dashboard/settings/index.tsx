@@ -1,15 +1,14 @@
 /* eslint-disable max-lines */
 
 import React    from "react";
-import { Bold,  Flex,  Span, Table,  Tabs   } from "../../../components";
-import {     HeaderSTyles, Main,    TableStyle, TabsStyles, } from "./styles";
-import { formatAMPM, formatNumber, formateDate,   } from "../../../lib";
+import { Bold,  Tabs   } from "../../../components";
+import {     HeaderSTyles, Main,    TabsStyles, } from "./styles";
 import {   GeneralTabStyle } from "../../../components/styles";
-import Search from "../../../components/Search";
 import AccountInfo from "./accountInfo";
 import UserManagemnt from "./userMangt";
 import Security from "./security";
 import Subscription from "./subscription";
+import Positions from "./positions";
 
 
 
@@ -17,30 +16,6 @@ import Subscription from "./subscription";
 const Settings = () => {
  
 
-
-	const status = {
-		pending:  ["Blue.dark.20", "Blue.dark" ],
-		failed:  ["Error.20", "Error.default" ],
-		success: ["Success.20", "Success.default" ],
-	};
-	const tableHead = ["Date","Time", "Amount", "Status", "Action"];
-	const tableBody = [
-		{
-			date: `${formateDate(new Date()).date} ${formateDate(new Date()).shortMonth}, ${formateDate(new Date()).year}` ,
-			time: `${formatAMPM(new Date())}`,
-			amount: "₦" + formatNumber(3212),
-			status: <Flex bgColor={status["failed"][0]} width="max-content" pad="3px 8px" margin="0">
-				<Span fontFamily='quicksand' weight="400" lineHeight="19" size="12" colour={status["pending"][1]}>
-					failed
-				</Span>
-			</Flex>,
-			action: <Flex width="max-content"  margin="0">
-				<Span fontFamily='quicksand' weight="400" lineHeight="19" size="12" colour={"Error.default"}>
-					View
-				</Span>
-			</Flex>,
-		},
-	];
  
 	const tabData = [
 		{
@@ -55,7 +30,7 @@ const Settings = () => {
 		},
 		{
 			head: "Position",
-			body: <Tab1   {...{tableBody, tableHead}}/>,
+			body: <Positions  />,
 			key: "Position"
 		},
 		{
@@ -94,37 +69,11 @@ const Settings = () => {
 				</GeneralTabStyle>
 			</TabsStyles>
  
- 
+			
 		</Main>
 	);
 };
 export default Settings;
  
-
-
-
-const Tab1 = ({tableHead, tableBody}: any) => {
-
-	return (
-		<TableStyle height="auto" justifyContent="flex-start">
-			<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
-				<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Black.80"}>
-					All New Orders 
-				</Bold>
-
-				<Search />
-			</Flex>
-
-			<Table 
-				gap={"0"}
-				headBgColor="common.transparent"
-				bodyColor="Black.80"
-				headColor="Black.60"
-				tableHead={tableHead}
-				tableBodys={tableBody}
-			/>
-		</TableStyle>
-	);
-};
 
  

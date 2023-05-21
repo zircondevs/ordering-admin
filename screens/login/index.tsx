@@ -11,10 +11,14 @@ import { TERTIARY_COLOR, WHITE_COLOR } from "../../hooks/colors";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { useLogin } from "../../hooks/useAuth";
- 
+import * as Yup from "yup";
 
 
 
+export const LoginSchema = Yup.object().shape({
+	email: Yup.string().required("email is required"), 
+	password: Yup.string().required("password is required"), 
+});
 
 
 const Login = () => {
@@ -38,24 +42,11 @@ const Login = () => {
 					</Flex>
 
 
-					<Flex height="auto" justifyContent="flex-start" margin="24px 0 32px">
-						<Span fontFamily='quicksand' weight="700" lineHeight="19" size="12" colour={"Black.default"}>
-						DON’T HAVE AN ACCOUNT?
-						</Span>
-						<CustomButton
-							size="14"
-							txtColour={TERTIARY_COLOR[2]}
-							bodColour="transparent"
-							type="button"
-							pad="padding.smallest"
-							borderRadius="0"
-							text={  "SIGN UP"  }
-							onClick={() => []}
-						/>
-					</Flex>
+ 
  
  
 					<Formik
+						validationSchema={LoginSchema}
 						enableReinitialize
 						initialValues={{
 							email: "",
@@ -69,7 +60,7 @@ const Login = () => {
 							}
 						}}
 					>
-						{({handleChange,  values, dirty}) => (
+						{({handleChange,  values, }) => (
 							<Form>
 								<Grid gap="32px">
 									<GeneralInputWrap margin="8px 0 0">
@@ -109,7 +100,7 @@ const Login = () => {
 										borderRadius="0"
 										activeColor="Black.80"
 										text={  "FORGOT PASSWORD?"}
-										onClick={() =>  [] }
+										onClick={() =>  push("/forgot-password")}  
 									/>
 								</Flex>
 								<Flex>
@@ -121,7 +112,7 @@ const Login = () => {
 										fullwidth
 										type="submit"
 										nonActiveBgColor="Black.20"
-										borderRadius="0"
+										borderRadius="8"
 										text={ "Log In" }
 										disabled={!values.email || !values.password}
 										isLoading={loading}

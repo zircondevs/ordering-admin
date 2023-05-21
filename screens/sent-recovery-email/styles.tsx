@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Flex } from "../../components";
+import { Flex,   } from "../../components";
 
 
 
@@ -17,3 +17,11 @@ export const Main =  styled(Flex)`
  
 
  
+ 
+ 
+export const ImageStyles =  styled(Flex)`
+	height: 100px;
+	width: 160px;
+	position: relative;
+	margin: auto;
+`;

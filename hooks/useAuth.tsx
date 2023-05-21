@@ -45,10 +45,30 @@ export const useForgotPassword  = () => {
 	const { postAxiosHandler } = useAxiosHandler();
 	const [loading, setLoading] = useState(false);
 	
-	const handleForgotPassword = async (DATA: string) => {
+	const handleForgotPassword = async (DATA: object) => {
 		setLoading(true);
 		const { data } = await postAxiosHandler ({
 			url: `${AUTH_URL}/forgot-password`,
+			DATA: DATA,
+			notify: false
+		});
+		setLoading(false);
+		if(data)   { 
+			return { data};
+		}
+	};
+	return { handleForgotPassword, loading  };
+};
+
+
+export const useResetPassword  = () => {
+	const { postAxiosHandler } = useAxiosHandler();
+	const [loading, setLoading] = useState(false);
+	
+	const handleResetPassword = async (DATA: object) => {
+		setLoading(true);
+		const { data } = await postAxiosHandler ({
+			url: `${AUTH_URL}/reset-password`,
 			DATA: DATA,
 			successMessage: "Password reset successfully",
 		});
@@ -57,7 +77,7 @@ export const useForgotPassword  = () => {
 			return { data};
 		}
 	};
-	return { handleForgotPassword, loading  };
+	return { handleResetPassword, loading  };
 };
 
 

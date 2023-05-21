@@ -57,7 +57,6 @@ export const GeneralTabStyle =  styled("div")`
 
 export const GeneralErrorContainer =  styled("small")`
 	position: relative;
-	/* top: 100%; */
 	left: 0;
 	color: ${({ theme }) => theme?.palette?.Error.default };
 	font-family: ${({ theme }) => theme?.typography?.fontFamily["quicksand"] };
@@ -182,6 +181,7 @@ export const GeneralTableStyle =  styled(Flex)`
 		width: 100%;
 		& > div > table {
 			background-color: transparent;
+			min-width: 700px;
 			thead th {
 				padding: 10px 0.8rem;
 				font-family: ${({ theme}) => theme.typography.fontFamily.quicksandSemiBold};
@@ -194,6 +194,20 @@ export const GeneralTableStyle =  styled(Flex)`
 				padding: 1.2rem 0.8rem;
 				& > div {
 					border-radius: 8px;
+				}
+			}
+			/* avoid mobile splitting */
+			thead{
+				display: revert
+			}
+			tbody tr{
+				display: table-row;
+				td:before{
+					display: none;
+				}
+				td{
+					display: revert;
+					text-align: start;
 				}
 			}
 		}

@@ -17,6 +17,9 @@ export const Container =  styled("section")`
 	margin: 0 0 0 auto; 
 	min-height: calc(100vh - 0px);
 	width: calc(100vw - 280px);
+	@media (max-width: 700px){
+        width: 100%
+    }
 `;
  
  

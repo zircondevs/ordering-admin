@@ -1,7 +1,6 @@
 
 import styled from "styled-components";
 import {  Flex } from "..";
-import { PRIMARY_COLOR } from "../../hooks/colors";
 
 
 
@@ -22,9 +21,9 @@ export const MenuStyles =  styled("header")`
 `;
 
 export const Line =  styled(Flex)`
-	margin-right: 24px;
-	padding-right: 24px;
-	border-right: 2px solid #E0E0E0;
+	/* margin-right: 24px;
+	padding-right: 24px; */
+	/* border-right: 2px solid #E0E0E0; */
 	width: auto;
 
 `; 
@@ -35,6 +34,9 @@ export const DrawerMenu =  styled(Flex)`
 	position: relative;
 	max-width: 130px;
 	height: 47px;
+	@media (max-width: 700px){
+        margin-left: 40px;
+    }
 `; 
  
 export const ButnStyles =  styled(Flex)`
@@ -53,11 +55,7 @@ export const ButnStyles =  styled(Flex)`
 `; 
 
  
-
-export const AvatarIconStyles =  styled(Flex)`
-	background-color: ${() => PRIMARY_COLOR[5]};
-	border-radius: 100%;
-`;
+ 
 
 
 export const ProfileCard =  styled(Flex)`

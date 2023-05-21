@@ -1,8 +1,8 @@
 
-import { AvatarIconStyles,    DrawerMenu,Line,MenuStyles, ProfileCard, ProfileDropdownList,   } from "./styles";
+import {    DrawerMenu,Line,MenuStyles, ProfileCard, ProfileDropdownList,   } from "./styles";
 import {     Dropdown, Flex, Span  } from "..";
 import React  from "react";
-import Cart from "./cart";
+// import Cart from "./cart";
 import { UseContext } from "../../state/provider";
 import Image from "next/image";
 import { AvatarIcon, LogOutIcon } from "../../public/assets/svg";
@@ -10,7 +10,7 @@ import { MakeOnlyFirstLettersCapital } from "../../lib";
 import { useRouter } from "next/router";
 import { useLogout } from "../../hooks/handlers/useLogout";
 
-type ActionType = "logout" | "trackOrder"
+type ActionType = "logout" | "profile"
 
 
 
@@ -20,7 +20,7 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 	const { handleLogout } = useLogout();
 	
 	const actions = {
-		trackOrder: () => push("/track-order"),
+		profile: () => push("/dashboard/settings"),
 		logout: () => handleLogout()
 	};
 	
@@ -80,16 +80,13 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 											<Span  weight="600" fontFamily='quicksandSemiBold' lineHeight="24" size="16" colour={"Black.default"} center>
 												{MakeOnlyFirstLettersCapital(user?.clientName || "")}
 											</Span>
-											<AvatarIconStyles  width="47px" height="47px" >
-												<AvatarIcon  colour="Black.80" width="30" height="30" />
-											</AvatarIconStyles>
 										</ProfileCard>
 									}
 								/>
 
 								
 							</Line>
-							<Cart />
+							{/* <Cart /> */}
 						</Flex>
 				}
 				

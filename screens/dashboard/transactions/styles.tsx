@@ -19,6 +19,9 @@ export const HeaderSTyles =  styled(Flex)`
 
 export const Container1 =  styled(Flex)`
 	padding: 0  40px;
+	@media (max-width: 700px) {
+		padding: 0  4%;
+	}
 `;
 
  

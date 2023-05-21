@@ -14,6 +14,9 @@ export const Main =  styled(Flex)`
 export const OverviewStyles =  styled("div")`
 	flex: 1;
 	padding: 0  40px;
+	@media (max-width: 700px) {
+		padding: 0  4%;
+	}
 `;
  
 
@@ -30,7 +33,9 @@ export const Card =  styled("div")<{active: boolean}>`
 	 border-radius: 16px;
 	padding: 24px;
 	background-color:  ${({ active }) => active && PRIMARY_COLOR[0]};
-
+	@media (max-width: 600px) {
+		padding: 16px;
+	}
 `;
 export const Icon =  styled(Flex)`
 	height: 50px;

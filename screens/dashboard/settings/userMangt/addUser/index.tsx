@@ -11,32 +11,34 @@ import * as Yup from "yup";
 import { Form, Formik } from "formik";
 import { GenericObjTypes } from "../../../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library";
-import { LongArrowicon } from "../../../../../public/assets/svg";
-import { useCreateCategory, useGetCategories } from "../../../../../hooks/useCategory";
+import {   LongArrowicon } from "../../../../../public/assets/svg";
+import {   useAddSettingsUser, useUpdateSettingsUser } from "../../../../../hooks/useSettigs";
 
 
 interface  PropType {
 	setOpen: React.Dispatch<React.SetStateAction<GenericObjTypes & {type: string}>>;
 	open: GenericObjTypes;
 	modalRef: React.RefObject<HandleScrollTypes>;
-	onDOne: () => any
+	onDOne: () => any;
+	roles: GenericObjTypes[]
 }
 
-export const AddStoreSchema = Yup.object().shape({
-	name: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("Your full name is required"),
-	position: Yup.string().required("Position is required"),
-	email: Yup.string().email().required("Email is required"),
-	password: Yup.string().required("password is required"),
-});
 
 
 
-const AddUser = ({	open,modalRef, setOpen,onDOne } : PropType) => {
-
-	const { setModal, } = UseContext();
-	const { handleCreateCategory, loading } = useCreateCategory();
-	const { categories,   } = useGetCategories();
+const AddUser = ({	open,modalRef, setOpen,onDOne, roles } : PropType) => {
 	
+	const AddStoreSchema = Yup.object().shape({
+		fullname: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("Your full name is required"),
+		position: Yup.string().required("Position is required"),
+		...(open.type === "addNew" &&    {email: Yup.string().email().required("Email is required")}),
+		password: Yup.string().required("password is required"),
+	});
+	const { setModal, } = UseContext();
+	const { handleAddSettingsUser, loading } = useAddSettingsUser();
+	const { handleUpdateSettingsUser , loading: loadingUpdate } = useUpdateSettingsUser(open?._id);
+	
+
 	
 	const closeModal = () => {
 		setOpen({type: ""});
@@ -48,7 +50,7 @@ const AddUser = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 	return (
 		<GeneralModalStyle>
 			<Modal
-				show={open?.type === "addNew"}
+				show={open?.type === "addNew" || open.type === "editUser"}
 				handleClose={() => closeModal()}
 				innerRef={modalRef}
 				direction={"right"}
@@ -68,7 +70,7 @@ const AddUser = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 					</button>
 				</GeneralModalHeader>
 
-
+ 
 				<ModalSpacer direction="column" wrap="nowrap" alignItems='stretch'  margin="64px 0">
 
 					<Flex height="auto"   margin="0 0 70px" direction="column" alignItems="flex-start">
@@ -81,18 +83,24 @@ const AddUser = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 						</Span>
 					</Flex>
 
- 
+
 					<Formik
 						enableReinitialize
 						validationSchema={AddStoreSchema}
 						initialValues={{
-							name: open?.store?.name ||  "" ,
-							position: open?.store?.position ||  "" ,
-							email: open?.store?.email ||  "" ,
-							password:  "" ,
+							fullname: open?.fullname ||  "" ,
+							position: open?.position ||  "" ,
+							...(open.type === "editUser" && {email: open?.store?.email ||  ""}) ,
+							password:  "",
 						}} 
 						onSubmit={ async (values , actions) => { 
-							const res =  await handleCreateCategory({...values });
+							const res =  open.type === "addnew" ?
+								await handleAddSettingsUser({...values })
+								: await handleUpdateSettingsUser({
+									fullname: values.fullname,
+									password: values.password,
+									position: values.position
+								});
 							if(res?.data) {
 								actions.resetForm();
 								closeModal();
@@ -105,10 +113,10 @@ const AddUser = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 								<Form>
 									<Grid gap="32px">						
 										<GeneralInputWrap margin="8px 0 0">
-											<GeneralLabel>  Name</GeneralLabel>
+											<GeneralLabel> Full Name</GeneralLabel>
 											<Input
-												value={values.name}
-												name="name" 
+												value={values.fullname}
+												name="fullname" 
 												type={"text"} 
 												handleChange={handleChange}
 												borderCol={"Black.20"}
@@ -117,26 +125,29 @@ const AddUser = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 												borderRadius="8px"
 											/>
 											<GeneralErrorContainer>
-												{errors.name?.toString()}
+												{errors.fullname?.toString()}
 											</GeneralErrorContainer>
 										</GeneralInputWrap>
 
-										<GeneralInputWrap margin="8px 0 0">
-											<GeneralLabel>  Email</GeneralLabel>
-											<Input
-												value={values.email}
-												name="email" 
-												type={"text"} 
-												handleChange={handleChange}
-												borderCol={"Black.20"}
-												activeBorderCol={"Blue.base.default"}
-												placeholder="Enter your full name"
-												borderRadius="8px"
-											/>
-											<GeneralErrorContainer>
-												{errors.name?.toString()}
-											</GeneralErrorContainer>
-										</GeneralInputWrap>
+										{
+											open.type === "addnew" &&
+											<GeneralInputWrap margin="8px 0 0">
+												<GeneralLabel>  Email</GeneralLabel>
+												<Input
+													value={values.email}
+													name="email" 
+													type={"text"} 
+													handleChange={handleChange}
+													borderCol={"Black.20"}
+													activeBorderCol={"Blue.base.default"}
+													placeholder="Enter your full name"
+													borderRadius="8px"
+												/>
+												<GeneralErrorContainer>
+													{errors.email?.toString()}
+												</GeneralErrorContainer>
+											</GeneralInputWrap>
+										}
 						
 										<GeneralInputWrap margin="8px 0 0">
 											<GeneralLabel>Position</GeneralLabel>
@@ -149,18 +160,21 @@ const AddUser = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 													dropColor='Black.80'
 													direction='end'
 													searchField={true}
-													data={ categories?.data?.map((state: GenericObjTypes) => (
-														{
-															returnedValue: state?._id,
-															displayedValue: state?.name,
-															dropdownValue:  state?.name,
-														}
-													)) || [{
-														returnedValue: "No data",
-														displayedValue: "No data",
-														dropdownValue:  "No data",
-													}]}
-													handleSelect={(e: string) => setFieldValue("localGovernmentArea", e)}
+													clearSelected
+													initial={ roles?.find((role: any) => role?._id === values?.position)?.roleName}
+													data={  roles?.length > 0 ?
+														roles?.map((state: GenericObjTypes) => (
+															{
+																returnedValue: state?._id,
+																displayedValue: state?.roleName,
+																dropdownValue:  state?.roleName,
+															}
+														)) : [{
+															returnedValue: "No data",
+															displayedValue: "No data",
+															dropdownValue:  "No data",
+														}]}
+													handleSelect={(e: string) => setFieldValue("position", e)}
 												/>
 											</GeneralSelectField>
 											<GeneralErrorContainer>
@@ -173,7 +187,7 @@ const AddUser = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 											<Input
 												value={values.password}
 												name="password" 
-												type={"text"} 
+												type={"password"} 
 												handleChange={handleChange}
 												borderCol={"Black.20"}
 												activeBorderCol={"Blue.base.default"}
@@ -196,8 +210,8 @@ const AddUser = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 											type="submit"
 											nonActiveBgColor="Black.20"
 											borderRadius="0"
-											isLoading={loading}
-											text={   "Create Category" }
+											isLoading={loading || loadingUpdate }
+											text={ open.type === "addnew"  ?  "Add User" : "Update"}
 										/>
 									</Footer>
 								</Form>
@@ -208,6 +222,7 @@ const AddUser = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 					</Formik>
 
 				</ModalSpacer>
+ 
 			</Modal>
 		</GeneralModalStyle>
 	);

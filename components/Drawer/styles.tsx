@@ -5,7 +5,36 @@ import { PRIMARY_COLOR } from "../../hooks/colors";
 
 
 
-export const MenuStyles =  styled("aside")`
+export const Layout =  styled("div")`
+ 
+`; 
+export const MenuiconStyles =  styled("button")`
+	position: fixed;
+	top: 20px;
+	left: 4%;
+	display: none;
+	z-index: 2000;
+	@media (max-width: 700px){
+        display: block;
+    }
+`; 
+export const Overlay =  styled("div")`
+	position: fixed;
+	top: 0;
+	left: 0%;
+	bottom: 0;
+	right: 0;
+	display: none;
+	z-index: 1000;
+	background-color: #00000059;
+	cursor: pointer;
+	@media (max-width: 700px){
+        display: block;
+    }
+`; 
+
+
+export const MenuStyles =  styled("aside")<{openDrawer: boolean}>`
     width: auto;
     height: 100vh;
     background-color: ${({ theme }) => theme?.palette?.common["white"] };
@@ -20,9 +49,11 @@ export const MenuStyles =  styled("aside")`
 	border: 1px solid #E0E0E0;
     @media (${({theme}) => theme.mediaQuery.below["tab"]}){
         padding: 0 4%;
+		padding-top: 70px;
     }
     @media (max-width: 700px){
-        display: none;
+		transition: 200ms ease-in;
+		transform: ${({  openDrawer }) => !openDrawer  ? "translateX(-280px)" : "translateX(0)"}; 
     }
 `;
 

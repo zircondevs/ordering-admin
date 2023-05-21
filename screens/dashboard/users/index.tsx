@@ -3,7 +3,7 @@ import React   from "react";
 import { Bold, Flex,   Table,      } from "../../../components";
 import { Container1, HeaderSTyles, Main, TableStyle,  } from "./styles";
 import { formatAMPM,   formateDate,   } from "../../../lib";
-import { GeneralCountStyles } from "../../../components/styles";
+import { GeneralCountStyles, GeneralTableStyle } from "../../../components/styles";
 import { useGetUsers } from "../../../hooks/useAuth";
 import { GenericObjTypes } from "../../../constants/types";
 import { LoaderIcon } from "../../../public/assets/svg";
@@ -54,7 +54,7 @@ const Transactions = () => {
 					loading ?
 						<Flex><LoaderIcon height="40" width="40"/></Flex>
 						:
-						<TableStyle height="auto" justifyContent="flex-start">
+						<GeneralTableStyle height="auto" justifyContent="flex-start">
 							<Table 
 								gap={"0"}
 								headBgColor="common.transparent"
@@ -63,7 +63,7 @@ const Transactions = () => {
 								tableHead={tableHead}
 								tableBodys={tableBody}
 							/>
-						</TableStyle>
+						</GeneralTableStyle>
 				}
 			</Container1>
  

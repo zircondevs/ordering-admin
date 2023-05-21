@@ -25,9 +25,9 @@ export const useAxiosHandler = () => {
 		{url, token = Token, notify = true, DATA, successMessage, errorMessage, headers }: 
 		AxiosCallTypes & {headers?: any}
 	) => {
-		const { data, status, error, success , message , statusCode } = 
-			await handleAPICall({ url, token, method: "post", DATA, headers });
-		notify  && success && Notify().success(  successMessage || messageHandler(message) );
+		const { data, status, error, success , message , statusCode } = await handleAPICall({ url, token, method: "post", DATA, headers });
+ 
+		notify  && data && Notify().success(  successMessage || messageHandler(message) );
 		notify  && error && Notify().error( errorMessage || errorHandler( error )  );
 		return { data, status, error, success , message, statusCode };
 	};
@@ -37,9 +37,8 @@ export const useAxiosHandler = () => {
 		{url, token = Token, notify = true, DATA, successMessage, errorMessage, headers }: 
 		AxiosCallTypes & {headers?: any}
 	) => {
-		const { data, status, error, success , message , statusCode } = 
-			await handleAPICall({ url, token, method: "patch", DATA, headers });
-		notify  && success && Notify().success(  successMessage || messageHandler(message) );
+		const { data, status, error, success , message , statusCode } =  await handleAPICall({ url, token, method: "patch", DATA, headers });
+		notify  && data && Notify().success(  successMessage || messageHandler(message) );
 		notify  && error && Notify().error( errorMessage || errorHandler( error )  );
 		return { data, status, error, success , message, statusCode };
 	};
@@ -47,7 +46,7 @@ export const useAxiosHandler = () => {
 	// Axios put calls
 	const putAxiosHandler =  async ({url, token = Token, notify = true, DATA, successMessage }: AxiosCallTypes) => {
 		const { data, status, error, success , message} = await handleAPICall({ url, token, method: "put", DATA });
-		notify  && success && Notify().success(  successMessage || messageHandler(message) );
+		notify  && data && Notify().success(  successMessage || messageHandler(message) );
 		notify  && error && Notify().error( errorHandler( error ) );
 		return { data, status, error, success , message };
 	};

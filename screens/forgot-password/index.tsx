@@ -2,55 +2,40 @@
 
 
 import React, { useState }   from "react";
-import { Bold, Flex,   Span,  } from "../../components";
-import {  InputsFrame, Main, } from "./styles";
+import { Bold, Flex,  Input, Span,  } from "../../components";
+import {  Main, } from "./styles";
 import { Spacer } from "../../components/Spacer";
-import {  GeneralModalHeader, ModalSpacer } from "../../components/styles";
+import { GeneralInputWrap, GeneralLabel,  ModalSpacer } from "../../components/styles";
 import CustomButton from "../../components/Button";
 import { TERTIARY_COLOR, WHITE_COLOR } from "../../hooks/colors";
-import { LongArrowicon } from "../../public/assets/svg";
 import { useRouter } from "next/router";
-import Constant from "../../constants";
-import OTPInput from "../../components/OTP";
 import { useForgotPassword } from "../../hooks/useAuth";
- 
+
+
 
 
 
 
 
 const ForgotPassword = () => {
-
-	const { push , query, back} = useRouter();
-	const [OTP, setOTP] = useState("");
-	const { handleForgotPassword, loading} = useForgotPassword();
-	if(!query?.phoneNumber) back();
-
-	
+	const { handleForgotPassword, loading } = useForgotPassword();
+	const { push } = useRouter();
+	const [email, setEmail] = useState("");
+ 
 	return (
 		<Main >
 			<div>
 
-				<GeneralModalHeader>
-					<button onClick={() =>  push("/forgot-password")}>
-						<Flex height="auto" justifyContent="flex-start">
-							<LongArrowicon width="20" height="20"/>
-							<Span fontFamily='quicksand' weight="700" lineHeight="16" size="14" colour={"Black.default"}>
-								Go Back
-							</Span>
-						</Flex>
-					</button>
-				</GeneralModalHeader>
-				<ModalSpacer direction="column" wrap="nowrap" alignItems='stretch'  margin="0 0" height="auto">
+				<ModalSpacer direction="column" wrap="nowrap" alignItems='stretch'  margin="24px 0" height="auto">
 
 
 					<Flex height="auto"   margin="0 0 24px" direction="column" alignItems="flex-start">
 						<Bold fontFamily='quicksandMedium' weight="400" lineHeight="40" size="36" colour={"Black.default"}>
-							Reset Your Phone Number
+						Forgot Password
 						</Bold>
 						<Spacer height="16px"/>
 						<Span fontFamily='quicksand' weight="700" lineHeight="19" size="16" colour={"Black.60"}>
-							Enter the  code   sent to {query?.phoneNumber}
+							Can’t remember your password, we got you covered
 						</Span>
 					</Flex>
 
@@ -67,22 +52,25 @@ const ForgotPassword = () => {
 							pad="padding.smallest"
 							borderRadius="0"
 							text={  "LOGIN"  }
-							onClick={() => push(`/?${Constant.modal.modal}=${Constant.modal.login}`) }
+							onClick={() => push("/login") }
 						/>
 					</Flex>
 
  
-					<InputsFrame gap='12px' id='InputsFrame'>
-						<OTPInput
-							autoFocus
-							isNumberInput
-							length={5}
-							className="otpContainer"
-							inputClassName="otpInput"
-							onChangeOTP={(otp) => setOTP(otp)}
-						/>
-					</InputsFrame>
  
+					<GeneralInputWrap margin="8px 0 0">
+						<GeneralLabel>Enter your email</GeneralLabel>
+						<Input
+							value={email}
+							name="email" 
+							type={"text"} 
+							handleChange={(e) => setEmail((e.target as HTMLInputElement).value)}
+							borderCol={"Black.20"}
+							activeBorderCol={"Blue.base.default"}
+							placeholder="Enter your email"
+							borderRadius="8px"
+						/>
+					</GeneralInputWrap>
 
 
 
@@ -95,12 +83,17 @@ const ForgotPassword = () => {
 							fullwidth
 							type="button"
 							nonActiveBgColor="Black.20"
-							disabled={OTP.length !== 5}
-							text={ "Reset" }
+							text={  "Continue"  }
+							disabled={!email}
 							isLoading={loading}
-							onClick={ async () =>  {
-								const res = await  handleForgotPassword("" +OTP);
-								res?.data && push("/");
+							onClick={  async () => {
+								const res = await  handleForgotPassword({email});
+								if(res?.data) {
+									push(
+										{ pathname:  "/sent-recovery-email", query: {email },},
+										"sent-recovery-email",  
+									);
+								}
 							} }
 						/>
 					</Flex>
