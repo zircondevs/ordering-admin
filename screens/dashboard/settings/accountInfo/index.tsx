@@ -10,6 +10,7 @@ import {  GeneralInputWrap, GeneralLabel } from "../../../../components/styles";
 import {   useGetAdminGeneralSettings, useUpdateAccountSettings } from "../../../../hooks/useSettigs";
 import { useUploadImage } from "../../../../hooks/imgeUpload";
 import { LoaderIcon } from "../../../../public/assets/svg";
+import { PRIMARY_COLOR } from "../../../../hooks/colors";
 
 
 
@@ -25,7 +26,7 @@ import { LoaderIcon } from "../../../../public/assets/svg";
 const AccountInfo = () => {
 	const { handleUpdateAccSettings, loading } = useUpdateAccountSettings();
 	const { handleImageUpload,  loading: loadingImage } = useUploadImage();
-	const { settings } = useGetAdminGeneralSettings();
+	const { settings , mutate} = useGetAdminGeneralSettings();
 
 
 
@@ -43,9 +44,10 @@ const AccountInfo = () => {
 	}, [ settings]);
 
 
-	
-	const handleSubmit = () => {
-		handleUpdateAccSettings(formData);
+
+	const handleSubmit = async() => {
+		await handleUpdateAccSettings(formData);
+		mutate();
 	};
 
 	return (
@@ -57,15 +59,19 @@ const AccountInfo = () => {
 			</HeaderSTyles>
 
 
-			<Flex width="auto" margin="0 auto 0 0" justifyContent="flex-start">
-				<LogoStyles>
-					<Image
-						src={"https://logos-world.net/wp-content/uploads/2020/04/Huawei-Logo.png"}
-						alt=""
-						layout="fill"
-						objectFit="contain"
-					/>
-				</LogoStyles>
+			<Flex width="auto" margin="0 auto 32px 0" justifyContent="flex-start">
+				{
+					formData?.companyLogo ?
+						<LogoStyles>
+							<Image
+								src={formData?.companyLogo}
+								alt=""
+								layout="fill"
+								objectFit="contain"
+							/>
+						</LogoStyles>
+						: null
+				}
 			
 				<div>
 					<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
@@ -82,15 +88,14 @@ const AccountInfo = () => {
 								const target = e.target ;
 								if(target.files && target.files[0]) {
 									const form = new FormData();
-									form.append("file", target.files[0] );
+									form.append("image", target.files[0] );
 									const res = await handleImageUpload(form);
-									console.log(res);
 									setFormData({  ...formData,  companyLogo:  res?.data});
 								}
 							}} 
 						/>
 						<Span fontFamily='quicksand' weight="700" lineHeight="16" size="14" colour={"Grey.2"}>
-							Upload Image
+							{formData?.companyLogo ? "Change Image" : "Upload Image"}
 						</Span>
 						{loadingImage ? <div className="loader"><LoaderIcon height="30" width="30" /></div> : null}
 					</UploadBtnStyles>
@@ -113,19 +118,19 @@ const AccountInfo = () => {
 					/>
 				</GeneralInputWrap>
 
-				<GeneralInputWrap margin="8px 0 0">
+				<Flex margin="8px 0 0" justifyContent="flex-start"> 
 					<GeneralLabel>Choose a primary color</GeneralLabel>
 					<COlorFields>
 						<input type={"color"} value={formData.primaryColor}  onChange={(e) => setFormData({...formData, primaryColor: (e.target as HTMLInputElement).value})}/>
 					</COlorFields>
-				</GeneralInputWrap>
+				</Flex>
 
-				<GeneralInputWrap margin="8px 0 0">
+				<Flex margin="8px 0 0" justifyContent="flex-start">
 					<GeneralLabel>Choose a secondary color</GeneralLabel>
 					<COlorFields>
 						<input type={"color"}  value={formData.secondaryColor} onChange={(e) => setFormData({...formData, secondaryColor: (e.target as HTMLInputElement).value})} />
 					</COlorFields>
-				</GeneralInputWrap>
+				</Flex>
 
 				<GeneralInputWrap margin="8px 0 0">
 					<GeneralLabel>  Delivery Charge (₦)</GeneralLabel>
@@ -143,11 +148,12 @@ const AccountInfo = () => {
 
 				<CustomButton
 					size="14"
-					activeColor={"Grey.1"}
+					activeColor={"common.white"}
 					type="submit"
-					nonActiveBgColor="Black.20"
+					activeBorderColor={"common.white"}
 					fullwidth
 					borderRadius="8"
+					bgColour={PRIMARY_COLOR[0]}
 					isLoading={loading}
 					onClick={handleSubmit}
 					text={"Update changes" }

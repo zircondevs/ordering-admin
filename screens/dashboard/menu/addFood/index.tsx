@@ -1,8 +1,8 @@
 /* eslint-disable max-lines */
  
 import React, { useState }   from "react";
-import {   Footer,  } from "./styles";
-import { Bold,  Container,  Dropdown,  Flex, Grid, Input,     Modal,    Span, Switch,   } from "../../../../components";
+import {   Footer, ImageStyles, UploadBtnStyles,  } from "./styles";
+import { Bold,  Container,  Dropdown,  Flex, Grid, Input, Modal, Span, Switch,   } from "../../../../components";
 import { UseContext } from "../../../../state/provider";
 import { Spacer } from "../../../../components/Spacer";
 import CustomButton from "../../../../components/Button";
@@ -13,9 +13,10 @@ import * as Yup from "yup";
 import { Form, Formik } from "formik";
 import { GenericObjTypes } from "../../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library";
-import { LongArrowicon } from "../../../../public/assets/svg";
-import { useGetCategories } from "../../../../hooks/useCategory";
+import {  LoaderIcon, LongArrowicon } from "../../../../public/assets/svg";
 import { useCreateFood, useUpdateFood } from "../../../../hooks/useFood";
+import { useUploadImage } from "../../../../hooks/imgeUpload";
+import Image from "next/image";
 
 
 
@@ -25,24 +26,26 @@ interface  PropType {
 	modalRef: React.RefObject<HandleScrollTypes>;
 	onDOne: () => any;
 	storeId: string
+	categories: GenericObjTypes[]
 }
 
 export const AddStoreSchema = Yup.object().shape({
 	name: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("Your full name is required"),
 	category: Yup.string().required("Category is required"),
 	amount: Yup.number().required("Amount is required"),
-	foodImage: Yup.string().required("Amount is required"),
+	foodImage: Yup.mixed().required("Image is required"),
 });
 
 
 
-const AddFood = ({	open,modalRef, setOpen,onDOne, storeId } : PropType) => {
+const AddFood = ({	open,modalRef, setOpen,onDOne, storeId, categories } : PropType) => {
 	const [isAvailable, setIsAvaliable] = useState(true);
 	const { setModal, } = UseContext();
-	const { categories,   } = useGetCategories();
+
 	const { handleCreateFood, loading: creatingFOod} = useCreateFood(storeId);
 	const { handleUpdateFood, loading: loading} = useUpdateFood(open?._id);
-	
+	const { handleImageUpload,  loading: loadingImage } = useUploadImage();
+
 	const closeModal = () => {
 		setOpen({type: ""});
 		modalRef?.current?.addBodyScroll();
@@ -50,7 +53,8 @@ const AddFood = ({	open,modalRef, setOpen,onDOne, storeId } : PropType) => {
 		onDOne();
 	};
 
- 
+
+	
  
 	return (
 		<GeneralModalStyle>
@@ -63,7 +67,6 @@ const AddFood = ({	open,modalRef, setOpen,onDOne, storeId } : PropType) => {
 				noCancel
 				noHeader
 			>
-
 				<GeneralModalHeader>
 					<button onClick={() => setModal(Constant.modal.createAccount)}>
 						<Flex height="auto" justifyContent="flex-start">
@@ -124,12 +127,11 @@ const AddFood = ({	open,modalRef, setOpen,onDOne, storeId } : PropType) => {
 														activeColor="Success.default"
 														nonActiveColor="Grey.5"
 														click={(e) => setIsAvaliable(e)}
-														initialState={isAvailable}
+														initialState={open.isAvailable}
 													/>
 												</Container>
 											</Flex>
 										}	
-
 
 										<GeneralInputWrap margin="8px 0 0">
 											<GeneralLabel> Add food Name</GeneralLabel>
@@ -148,6 +150,46 @@ const AddFood = ({	open,modalRef, setOpen,onDOne, storeId } : PropType) => {
 											</GeneralErrorContainer>
 										</GeneralInputWrap>
 
+										{
+											values?.foodImage ?
+												<ImageStyles>
+													<Image
+														src={values?.foodImage}
+														alt=""
+														layout="fill"
+														objectFit="contain"
+													/>
+												</ImageStyles>
+												: null
+										}
+
+
+										<Container height="auto" justifyContent="flex-start" margin="8px 0 0">
+											<Flex height="auto" justifyContent="flex-start" margin="8px 0 0">
+												<GeneralLabel> Add food Image</GeneralLabel>
+												<UploadBtnStyles isLoading={false}>
+													<input type="file"  
+														onChange={ async (e) => {
+															const target = e.target ;
+															if(target.files && target.files[0]) {
+																const form = new FormData();
+																form.append("image", target.files[0] );
+																const res = await handleImageUpload(form);
+																setFieldValue("foodImage", res?.data);
+															}
+														}} 
+													/>
+													<Span fontFamily='quicksand' weight="700" lineHeight="16" size="14" colour={"Grey.2"}>
+														Upload Image
+													</Span>
+													{loadingImage ?  <div className="loader"><LoaderIcon height="30" width="30" /></div> : null}
+												</UploadBtnStyles>
+											</Flex>
+											<GeneralErrorContainer>
+												{errors.foodImage?.toString()}
+											</GeneralErrorContainer>
+										</Container>
+
 										<GeneralInputWrap margin="8px 0 0">
 											<GeneralLabel> Amount</GeneralLabel>
 											<Input
@@ -165,22 +207,7 @@ const AddFood = ({	open,modalRef, setOpen,onDOne, storeId } : PropType) => {
 											</GeneralErrorContainer>
 										</GeneralInputWrap>
 
-										<GeneralInputWrap margin="8px 0 0">
-											<GeneralLabel> Add food image</GeneralLabel>
-											<Input
-												value={values.foodImage}
-												name="foodImage" 
-												type={"text"} 
-												handleChange={handleChange}
-												borderCol={"Black.20"}
-												activeBorderCol={"Blue.base.default"}
-												placeholder="Enter your full name"
-												borderRadius="8px"
-											/>
-											<GeneralErrorContainer>
-												{errors.foodImage?.toString()}
-											</GeneralErrorContainer>
-										</GeneralInputWrap>
+									
 						
 									
 										<GeneralInputWrap margin="8px 0 0">
@@ -196,8 +223,8 @@ const AddFood = ({	open,modalRef, setOpen,onDOne, storeId } : PropType) => {
 													clearSelected={true}
 													initial={open?.category?.name}
 													searchField={true}
-													data={categories?.data?.length > 0 ?
-														categories?.data?.map((state: GenericObjTypes) => (
+													data={categories?.length > 0 ?
+														categories?.map((state: GenericObjTypes) => (
 															{
 																returnedValue: state?._id,
 																displayedValue: state?.name,

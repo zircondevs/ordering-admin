@@ -1,7 +1,6 @@
 
 import { Flex } from "../../components";
 import styled from "styled-components";
-import { PRIMARY_COLOR } from "../../hooks/colors";
 
 
 
@@ -13,8 +12,8 @@ cursor: pointer;
 border-radius: 100%;
 &:before {
 	border-radius: 100%;
-	background-color:  ${({ theme, checked }) => checked ? PRIMARY_COLOR[0] : theme.palette.common["white"]};
-	border-color:  ${({ theme, checked }) => checked ? PRIMARY_COLOR[0] : theme.palette.Grey[3]};
+	background-color:  ${({ theme, checked }) => checked ?  theme.palette.Success["default"] : theme.palette.common["white"]};
+	border-color:  ${({ theme, checked }) => checked ?  theme.palette.Success["default"]: theme.palette.Grey[3]};
 	border-style: solid;
 	border-width:  1px;
 	width:  18px;

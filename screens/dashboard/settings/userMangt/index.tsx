@@ -55,7 +55,7 @@ const UserManagemnt = () => {
 		<Main>
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='40px 0 40px'>
 				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="24" size="18" colour={"Black.80"}>
-					Update Information
+					User Information
 				</Bold>
  
 				<CustomButton

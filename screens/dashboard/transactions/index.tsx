@@ -55,7 +55,7 @@ const Transactions = () => {
 				loading ?
 					<Flex margin="40px 0"> <LoaderIcon height="40" width="40"/></Flex>
 					:
-					tableBody?.lenght > 0 ?
+					tableBody?.length > 0 ?
 
 
 						<Container1>

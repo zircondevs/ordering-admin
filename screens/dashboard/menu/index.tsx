@@ -6,8 +6,7 @@ import {     AddBtn, BtnsStyles, Container1, FoodStyles, HeaderSTyles, Main,    
 import { formatAMPM, formatNumber, formateDate,   } from "../../../lib";
 import Search from "../../../components/Search";
 import { GeneralCountStyles, GeneralTableStyle } from "../../../components/styles";
-import CustomButton from "../../../components/Button";
-import { DownloadIcon, EditIcon, LoaderIcon,  } from "../../../public/assets/svg";
+import {   EditIcon, LoaderIcon,  } from "../../../public/assets/svg";
 import Image from "next/image";
 import { useGetStores } from "../../../hooks/useStores";
 import { GenericObjTypes } from "../../../constants/types";
@@ -15,6 +14,8 @@ import { HandleScrollTypes } from "devs-react-component-library";
 import AddCategory from "./addCategory";
 import AddFood from "./addFood";
 import { useGetAllFood } from "../../../hooks/useFood";
+import { Checkbox } from "../../../components/CheckMark";
+import { useGetCategories } from "../../../hooks/useCategory";
 
 
 
@@ -25,6 +26,9 @@ const FoodMenu = () => {
 	const [storeId, setStoreId] = useState("" || stores?.data[0]?._id);
 
 	const { menu, loading: loadingmenu , mutate} = useGetAllFood(storeId || stores?.data[0]?._id);
+	const { categories,  mutate:mutateCategory } = useGetCategories();
+
+
 	const [modal, setModal] = useState({type: ""});
 	const modalRef = React.useRef<HandleScrollTypes>(null); 
 
@@ -57,7 +61,7 @@ const FoodMenu = () => {
 			date: `${formateDate(new Date(food?.createdAt)).date} ${formateDate(new Date(food?.createdAt)).shortMonth}, ${formateDate(new Date(food?.createdAt)).year}` ,
 			time: `${formatAMPM(new Date(food?.createdAt))}`,
 			amount: "₦" + formatNumber(food?.amount),
-			isAvailable: food?.isAvailable?.toString(),
+			isAvailable: <Checkbox checked={food?.isAvailable} type="radio" />,
 			action: (
 				<Flex justifyContent="flex-start">
 					{/* <Flex width="auto" height="auto" margin="0 8px 0 0" as="button">
@@ -118,8 +122,13 @@ const FoodMenu = () => {
 							dropHovColor="Black.default"
 							hovBgColor="Black.20"
 							searchField={false}
-							initial={ "Add New"}
+							type="showmore"
 							handleSelect={(selected: string) => openModal({type: selected})}
+							icon={(
+								<Span fontFamily='quicksand' weight="400" lineHeight="24" size="18" colour={ "common.white"}>
+									Add New
+								</Span>
+							)}
 							data={ [
 								{
 									displayedValue: "Add New Food", 
@@ -149,21 +158,11 @@ const FoodMenu = () => {
 									</Bold>
 									<GeneralCountStyles>
 										<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Black.80"}>
-											23
+											{menu?.count}
 										</Bold>
 									</GeneralCountStyles>
 								</div>
 								<SearchStyles wrap="nowrap" alignItems="stretch" width="auto">
-									<CustomButton
-										size="14"
-										type="button"
-										pad="padding.smaller"
-										text={  "Download"}
-										activeBorderColor="Grey.3"
-										activeColor="Grey.3"
-										onClick={() =>  [] }
-										icon={<DownloadIcon colour="Grey.3" height="15px" width="15px"/>}
-									/>
 									<Search placeholder="Search by ticket ID" />
 								</SearchStyles>
 							</Flex>
@@ -189,8 +188,8 @@ const FoodMenu = () => {
 			}
  
 		
-			<AddCategory   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={() => []}  />
-			<AddFood   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={mutate} storeId={storeId} />
+			<AddCategory   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={ mutateCategory}  />
+			<AddFood   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={mutate} storeId={storeId} categories={categories}/>
 		</Main>
 	);
 };

@@ -1,27 +1,27 @@
 
 @font-face {
     font-family: "Quicksand-bold";
-    src: url("../public//font-Quicksand/static/Quicksand-Bold.ttf")
+    src: url("../public/Ubuntu_Mono/UbuntuMono-Bold.ttf")
       format("truetype");
   }
 @font-face {
     font-family: "Quicksand-light";
-    src: url("../public//font-Quicksand/static/Quicksand-Light.ttf")
+    src: url("../public//Ubuntu_Mono/UbuntuMono-Regular.ttf")
       format("truetype");
   }
 @font-face {
     font-family: "Quicksand-medium";
-    src: url("../public//font-Quicksand/static/Quicksand-Medium.ttf")
+    src: url("../public//Ubuntu_Mono/UbuntuMono-Regular.ttf")
       format("truetype");
   }
 @font-face {
     font-family: "Quicksand-regular";
-    src: url("../public//font-Quicksand/static/Quicksand-Regular.ttf")
+    src: url("../public/Ubuntu_Mono/UbuntuMono-Regular.ttf")
       format("truetype");
   }
 @font-face {
     font-family: "Quicksand-semibold";
-    src: url("../public//font-Quicksand/static/Quicksand-SemiBold.ttf")
+    src: url("../public//Ubuntu_Mono/UbuntuMono-Bold.ttf")
     format("truetype");
 }
  

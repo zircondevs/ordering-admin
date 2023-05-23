@@ -2,7 +2,7 @@
 const nextConfig = {
 	reactStrictMode: true,
 	images: {
-		domains:  ["chefsavvy.com", "logos-world.net"],
+		domains:  ["chefsavvy.com", "logos-world.net", "res.cloudinary.com"],
 	},
 	env: {
 		AUTH_URL: process.env.NEXT_PUBLIC_AUTH_URL,

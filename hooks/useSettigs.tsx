@@ -90,7 +90,7 @@ export const useAddSettingsUser  = () => {
 	const { state: { user }} = UseContext();
 	const { postAxiosHandler } = useAxiosHandler();
 	const [loading, setLoading] = useState(false);
-	
+
 	const handleAddSettingsUser = async (DATA: object) => {
 		setLoading(true);
 		const { data } = await  postAxiosHandler ({

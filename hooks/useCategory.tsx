@@ -19,13 +19,13 @@ export const useGetCategories  = () => {
 		page: 1,
 		limit: 10
 	});
-	const { data , loading} = useGetCachedAxiosHandler ({
+	const { data , loading, mutate} = useGetCachedAxiosHandler ({
 		url: `${MENU_URL}/categories/${user?.clientId}?page=${pageInfo.page}&limit=${pageInfo.limit}`,
 		notify: false,
 		requiredVariable: user?.clientId?.length > 0
 	});
  
-	return {  loading, categories: data?.data , pageInfo, setPageInfo };
+	return {  loading, categories: data?.data?.data , pageInfo, setPageInfo , mutate};
 };
  
 

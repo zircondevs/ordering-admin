@@ -90,11 +90,11 @@ const AddUser = ({	open,modalRef, setOpen,onDOne, roles } : PropType) => {
 						initialValues={{
 							fullname: open?.fullname ||  "" ,
 							position: open?.position ||  "" ,
-							...(open.type === "editUser" && {email: open?.store?.email ||  ""}) ,
+							...(open.type === "addNew" && {email: open?.store?.email ||  ""}) ,
 							password:  "",
 						}} 
 						onSubmit={ async (values , actions) => { 
-							const res =  open.type === "addnew" ?
+							const res =  open.type === "addNew" ?
 								await handleAddSettingsUser({...values })
 								: await handleUpdateSettingsUser({
 									fullname: values.fullname,
@@ -130,7 +130,7 @@ const AddUser = ({	open,modalRef, setOpen,onDOne, roles } : PropType) => {
 										</GeneralInputWrap>
 
 										{
-											open.type === "addnew" &&
+											open.type === "addNew" &&
 											<GeneralInputWrap margin="8px 0 0">
 												<GeneralLabel>  Email</GeneralLabel>
 												<Input
@@ -211,7 +211,7 @@ const AddUser = ({	open,modalRef, setOpen,onDOne, roles } : PropType) => {
 											nonActiveBgColor="Black.20"
 											borderRadius="0"
 											isLoading={loading || loadingUpdate }
-											text={ open.type === "addnew"  ?  "Add User" : "Update"}
+											text={ open.type === "addNew"  ?  "Add User" : "Update User"}
 										/>
 									</Footer>
 								</Form>

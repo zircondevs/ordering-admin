@@ -26,7 +26,7 @@ export const useUploadImage  = () => {
 		});
 		setLoading(false);
 		if(data) {
-			return { data };
+			return { data: data?.data };
 		}
 	};
  

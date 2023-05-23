@@ -25,12 +25,14 @@ export const LogoStyles =  styled("div")`
 `;
 
  
+
  
 export const FormStyles =  styled(Grid)`
 	max-width: 400px;
 `;
  
 export const COlorFields =  styled("div")`
+	margin-left: 30px;
 	input {
 		cursor: pointer;
 	}
