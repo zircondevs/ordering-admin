@@ -33,4 +33,4 @@ export interface AxiosCallTypes {
 }
 
 
- 
+export type TransactionStatusType  = "pending" | "failed" |  "success";

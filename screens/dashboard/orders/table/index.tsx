@@ -1,6 +1,6 @@
 
 
-import React    from "react";
+import React     from "react";
 import {  Bold, Flex,  Span, Table,   } from "../../../../components";
 import {     Main, SearchSection, TableHeadStyle,   } from "./styles";
 import { formatAMPM, formatNumber, formateDate,   } from "../../../../lib";
@@ -8,22 +8,40 @@ import { GenericObjTypes } from "../../../../constants/types";
 import { EmptyIcon, LoaderIcon } from "../../../../public/assets/svg";
 import { GeneralTableStyle } from "../../../../components/styles";
 import Search from "../../../../components/Search";
+import { HandleScrollTypes } from "devs-react-component-library";
 
 
+interface PropTypes {
+	orders:{data:  GenericObjTypes[]}, 
+	loadingOrders: boolean, 
+	title: string
+	modalRef: React.RefObject<HandleScrollTypes>;
+	setSingleOrder: React.Dispatch<React.SetStateAction<GenericObjTypes>>
+}
 
 
-const OrdersTable = ({orders, loadingOrders, title} : {orders:{data:  GenericObjTypes[]}, loadingOrders: boolean, title: string}) => {
-	const tableHead = ["Date","Time", "Amount",   "Action"];
+const OrdersTable = ({orders, loadingOrders, title, setSingleOrder, modalRef}: PropTypes ) => {
+	
+ 
+	const openModal = (obj: object) => {
+		setSingleOrder(obj);
+		modalRef.current && modalRef.current.preventBodyScroll();
+	};
+
+
+	const tableHead = [  "Amount",  "User", "Phone", "Date", "Action"];
 	const tableBody = orders?.data?.map((order: GenericObjTypes) => (
 		{
-			date: `${formateDate(new Date(order?.createdAt)).date} ${formateDate(new Date(order?.createdAt)).shortMonth}, ${formateDate(new Date(order?.createdAt)).year}` ,
-			time: `${formatAMPM(new Date(order?.createdAt))}`,
-			amount: "₦" + formatNumber(order?.amount),
-			action: <Flex width="max-content"  margin="0">
+			amount: "₦" + formatNumber(order?.foodPrice),
+			user:  order?.clientName || (order?.user),
+			phone:  order?.clientPhoneNumber,
+			date: `${formateDate(new Date(order?.createdAt)).date} ${formateDate(new Date(order?.createdAt)).shortMonth}, 
+				${formateDate(new Date(order?.createdAt)).year}, ${formatAMPM(new Date(order?.createdAt))}` ,
+			action: <button onClick={() => openModal(order)}>
 				<Span fontFamily='quicksand' weight="400" lineHeight="19" size="12" colour={"Error.default"}>
 					View
 				</Span>
-			</Flex>,
+			</button>,
 		}
 	));
 	return (

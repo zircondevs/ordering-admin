@@ -21,3 +21,16 @@ export const useGetOrders  = (storeId: string, status: string) => {
  
 	return {  loading, orders: data?.data , setPageInfo, pageInfo };
 };
+ 
+
+
+export const useGetOrder  = ( orderId:  string) => {
+ 
+	const { data , loading} = useGetCachedAxiosHandler ({
+		url: `${ORDERS_URL}/one/${orderId}`,
+		notify: false,
+		requiredVariable: orderId?.length > 0  
+	});
+ 
+	return {  loading, order: data?.data?.data   };
+};

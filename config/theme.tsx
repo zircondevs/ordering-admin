@@ -18,15 +18,10 @@ const palette = {
 		40: "##BDBDBD",
 		20: "#E0E0E0",
 		10: "#F2F2F2",
-		// 5: "#F8F9FB",
-		// transparent: {
-		// 	10: "#062A543D",
-		// 	20: "#ffffff6b",
-		// 	30: "#CDD4DD7D"
-		// },
-		// main: {
-		// 	default: "#00000017"
-		// }
+	},
+	Orange: {
+		default: "#FE724D",
+		80: "#FEDED4",
 	},
 	Blue: {
 		dark: {

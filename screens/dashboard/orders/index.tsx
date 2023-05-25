@@ -6,8 +6,11 @@ import {     HeaderSTyles, Main,   TabsStyles, } from "./styles";
 import { GeneralCountStyles, GeneralTabStyle } from "../../../components/styles";
 import { useGetStores,   } from "../../../hooks/useStores";
 import { LoaderIcon } from "../../../public/assets/svg";
-import  OrdersTable from "./delivered";
+import  OrdersTable from "./table";
 import { useGetOrders } from "../../../hooks/useOrders";
+import { GenericObjTypes } from "../../../constants/types";
+import { HandleScrollTypes } from "devs-react-component-library";
+import ViewOrderDetails from "./view-order-details";
 
 
 
@@ -15,6 +18,9 @@ import { useGetOrders } from "../../../hooks/useOrders";
 const Overview = () => {
 	const [store, setStore] = useState("");
 	const [ status, setStatus] = useState("OPENED");
+	const [singleOrder, setSingleOrder] = useState<GenericObjTypes>({});
+	const modalRef = React.useRef<HandleScrollTypes>(null); 
+
 	
 	const { stores, loading: loadingStores } = useGetStores();
 	const { orders: processingOrders , loading: loadingProceOrders} = useGetOrders(store || stores?.data[0]?._id, status);
@@ -24,37 +30,37 @@ const Overview = () => {
 	const { orders: onDeliveryOrders , loading: lodaingOnDelivery} = useGetOrders(store || stores?.data[0]?._id,  status);
 	const { orders: openedOrders , loading: lodaingOpenOrders} = useGetOrders(store || stores?.data[0]?._id,  status);
 
-	// orderStatus
- 
+	
+	const tableProps = {singleOrder, setSingleOrder, modalRef };
 	const tabData = [
 		{
 			head: <TabLabel title="Opened Orders" count={openedOrders?.count} />,
-			body:  <OrdersTable orders={processingOrders} loadingOrders={lodaingOpenOrders} title="Opened Orders " />,
+			body:  <OrdersTable  {...tableProps}orders={processingOrders} loadingOrders={lodaingOpenOrders} title="Opened Orders" />,
 			key: "OPENED"
 		},
 		{
 			head: <TabLabel title="In Progress" count={processingOrders?.count} />,
-			body:  <OrdersTable orders={processingOrders} loadingOrders={loadingProceOrders} title="Orders In Progress " />,
+			body:  <OrdersTable  {...tableProps}orders={processingOrders} loadingOrders={loadingProceOrders} title="Orders In Progress " />,
 			key: "PROCESSING"
 		},
 		{
 			head:  <TabLabel title="Delivered Orders" count={orders?.count} />,
-			body: <OrdersTable   orders={orders} loadingOrders={loadingOrders} title="Delivered Orders" />,
+			body: <OrdersTable  {...tableProps}  orders={orders} loadingOrders={loadingOrders} title="Delivered Orders" />,
 			key: "DELIVERED"
 		},
 		{
 			head:  <TabLabel title="Been Prepared Orders" count={beenPreparedOrders?.count} />,
-			body: <OrdersTable   orders={beenPreparedOrders} loadingOrders={loadingBeenPreparedOrders} title="Been Prepared Orders" />,
+			body: <OrdersTable  {...tableProps}  orders={beenPreparedOrders} loadingOrders={loadingBeenPreparedOrders} title="Been Prepared Orders" />,
 			key: "BEEN PREPARED"
 		},
 		{
 			head:  <TabLabel title="Canceled Orders" count={canceledOrders?.count} />,
-			body: <OrdersTable   orders={canceledOrders} loadingOrders={loadingCanceled} title="Canceled Orders" />,
+			body: <OrdersTable  {...tableProps}  orders={canceledOrders} loadingOrders={loadingCanceled} title="Canceled Orders" />,
 			key: "CANCELLED"
 		},
 		{
 			head:  <TabLabel title="On Delivery Orders" count={onDeliveryOrders?.count} />,
-			body: <OrdersTable   orders={onDeliveryOrders} loadingOrders={lodaingOnDelivery} title="On Delivery Orders" />,
+			body: <OrdersTable  {...tableProps}  orders={onDeliveryOrders} loadingOrders={lodaingOnDelivery} title="On Delivery Orders" />,
 			key: "ON DELIVERY"
 		},
 	];
@@ -112,7 +118,8 @@ const Overview = () => {
 					</TabsStyles>
 			}
 		
- 
+			<ViewOrderDetails  {...{singleOrder, setSingleOrder, modalRef }} />
+	
 		</Main>
 	);
 };

@@ -9,7 +9,6 @@ import ProtectedRoute from "../../components/ProtectedRoute";
 
 const Home: NextPage = () => {
 
-	
 	return (
 		<ProtectedRoute>
 			<DashboardLayout>
