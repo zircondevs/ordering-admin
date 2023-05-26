@@ -8,11 +8,12 @@ import { GeneralCountStyles, GeneralTableStyle } from "../../../components/style
 import {   EmptyIcon, LoaderIcon } from "../../../public/assets/svg";
 import { useGetTransactions } from "../../../hooks/useTransaction";
 import { GenericObjTypes, TransactionStatusType } from "../../../constants/types";
+import Paginator from "../../../components/Paginator";
 
 
 
 const Transactions = () => {
-	const { transactions, loading  } = useGetTransactions();
+	const { transactions, loading , pageInfo, setPageInfo } = useGetTransactions();
 
 	const status = {
 		pending:  ["Blue.dark.20", "Blue.dark" ],
@@ -79,6 +80,14 @@ const Transactions = () => {
 									tableBodys={tableBody}
 								/>
 							</GeneralTableStyle>
+
+							<Paginator 
+								onPageChange={(p) => setPageInfo((prev: any) => ({...prev, page: p  }))}  
+								firstLast={true} 
+								prevNext
+								pages = {pageInfo?.pages }
+								currentPage = {(+pageInfo?.page)}
+							/>
 						</Container1>
 						: 
 						<Flex margin="40px 0" height="auto" direction="column">

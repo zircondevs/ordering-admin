@@ -24,7 +24,7 @@ import { useGetStores } from "../../../../hooks/useStores";
 const WalletSection = ({   setStoreId, } : any) => {
 	const router = useRouter();
 	const { dashboard ,   } = useGetDashboardDetails();
-	const { transactions, loading  } = useGetTransactions();
+	const { transactions, loading  } = useGetTransactions({limit: 5});
 	const { stores, loading: loadingStores } = useGetStores();
 
 
@@ -37,7 +37,7 @@ const WalletSection = ({   setStoreId, } : any) => {
 	const data = [
 		{
 			name: "Total Amount",
-			amount: naira + formatNumber(dashboard?.wallet?.wallet),
+			amount: naira + formatNumber(dashboard?.wallet?.balance),
 			icon: <DataIcon height="20" width="20"/>
 		},
 		{
@@ -143,7 +143,7 @@ const WalletSection = ({   setStoreId, } : any) => {
 						<GeneralTableStyle height="auto" justifyContent="flex-start">
 							<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 								<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={ "Black.80"}>
-									Transactions
+									Recent {tableBody?.length} Transactions
 								</Bold>
 
 								<CustomButton

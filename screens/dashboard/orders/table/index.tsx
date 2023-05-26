@@ -9,6 +9,7 @@ import { EmptyIcon, LoaderIcon } from "../../../../public/assets/svg";
 import { GeneralTableStyle } from "../../../../components/styles";
 import Search from "../../../../components/Search";
 import { HandleScrollTypes } from "devs-react-component-library";
+import Paginator from "../../../../components/Paginator";
 
 
 interface PropTypes {
@@ -62,16 +63,25 @@ const OrdersTable = ({orders, loadingOrders, title, setSingleOrder, modalRef}: P
 
 							{
 								tableBody?.length > 0 ?
-									<GeneralTableStyle>
-										<Table
-											gap={"0"}
-											headBgColor="common.transparent"
-											bodyColor="Black.80"
-											headColor="Black.60"
-											tableHead={tableHead}
-											tableBodys={tableBody}
-										/>
-									</GeneralTableStyle>
+									<>
+										<GeneralTableStyle>
+											<Table
+												gap={"0"}
+												headBgColor="common.transparent"
+												bodyColor="Black.80"
+												headColor="Black.60"
+												tableHead={tableHead}
+												tableBodys={tableBody}
+											/>
+										</GeneralTableStyle>
+										{/* <Paginator
+											onPageChange={(p) => setPageInfo((prev: any) => ({...prev, page: p  }))}  
+											firstLast={true} 
+											prevNext
+											pages = {pageInfo?.pages }
+											currentPage = {(+pageInfo?.page)}
+										/> */}
+									</>
 									: 
 									<Flex margin="50px 0" direction="column">
 										<EmptyIcon />

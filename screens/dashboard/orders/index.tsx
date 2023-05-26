@@ -17,7 +17,7 @@ import ViewOrderDetails from "./view-order-details";
 
 const Overview = () => {
 	const [store, setStore] = useState("");
-	const [ status, setStatus] = useState("OPENED");
+	const [ status, setStatus] = useState("PROCESSING");
 	const [singleOrder, setSingleOrder] = useState<GenericObjTypes>({});
 	const modalRef = React.useRef<HandleScrollTypes>(null); 
 
@@ -28,16 +28,11 @@ const Overview = () => {
 	const { orders: beenPreparedOrders , loading: loadingBeenPreparedOrders} = useGetOrders(store || stores?.data[0]?._id,  status);
 	const { orders: canceledOrders , loading: loadingCanceled} = useGetOrders(store || stores?.data[0]?._id, status);
 	const { orders: onDeliveryOrders , loading: lodaingOnDelivery} = useGetOrders(store || stores?.data[0]?._id,  status);
-	const { orders: openedOrders , loading: lodaingOpenOrders} = useGetOrders(store || stores?.data[0]?._id,  status);
 
+	
 	
 	const tableProps = {singleOrder, setSingleOrder, modalRef };
 	const tabData = [
-		{
-			head: <TabLabel title="Opened Orders" count={openedOrders?.count} />,
-			body:  <OrdersTable  {...tableProps}orders={processingOrders} loadingOrders={lodaingOpenOrders} title="Opened Orders" />,
-			key: "OPENED"
-		},
 		{
 			head: <TabLabel title="In Progress" count={processingOrders?.count} />,
 			body:  <OrdersTable  {...tableProps}orders={processingOrders} loadingOrders={loadingProceOrders} title="Orders In Progress " />,
