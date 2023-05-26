@@ -9,7 +9,7 @@ import { EmptyIcon, LoaderIcon } from "../../../../public/assets/svg";
 import { GeneralTableStyle } from "../../../../components/styles";
 import Search from "../../../../components/Search";
 import { HandleScrollTypes } from "devs-react-component-library";
-import Paginator from "../../../../components/Paginator";
+// import Paginator from "../../../../components/Paginator";
 
 
 interface PropTypes {
