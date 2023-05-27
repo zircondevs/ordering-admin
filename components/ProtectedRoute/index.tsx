@@ -14,6 +14,7 @@ import { UseContext } from "../../state/provider";
 import { Main } from "./styles";
 import {  LoaderIcon, WarningIcon } from "../../public/assets/svg";
 import { useGetUser } from "../../hooks/useAuth";
+import { useGetAdminGeneralSettings } from "../../hooks/useSettigs";
 
 
 
@@ -31,7 +32,7 @@ export function ProtectedRoute({ children }: any ) {
 	const {tokenIsValid } = useValidateToken();
 	const { handleLogout } = useLogout();
 	const { error } = useGetUser();
-
+	useGetAdminGeneralSettings();
 	
 	useEffect(() => {
 		const _token = query["auth-token"] as string || STORAGE.GET(Constant.keys.token);

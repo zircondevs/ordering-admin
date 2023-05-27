@@ -3,7 +3,7 @@ import { GenericObjTypes } from "../constants/types";
 import { 
 	SET_ADD_TO_CARTS,
 	SET_MODAL,
-	SET_IS_AUTHENTICATED, SET_LOADING,  SET_REFRESH_TOKEN, SET_REMOVE_FROM_CARTS, SET_TOKEN, SET_USER, SET_PACK,   
+	SET_IS_AUTHENTICATED, SET_LOADING,  SET_REFRESH_TOKEN, SET_REMOVE_FROM_CARTS, SET_TOKEN, SET_USER, SET_PACK, SET_CLIENT,   
 } from "./actions";
 
 
@@ -17,6 +17,8 @@ export type StateType = {
 	carts:   GenericObjTypes[][],
 	modal: string,
 	pack: number
+	client: GenericObjTypes;
+
 }
 
 export type ActionTypes =
@@ -65,7 +67,11 @@ export type ActionTypes =
 	type:  typeof SET_PACK
 	payload:  number
 }
- 
+|
+{
+	type:  typeof SET_CLIENT
+	payload:  GenericObjTypes
+}
  
 
 export type ContestTypes =  {
@@ -77,6 +83,7 @@ export type ContestTypes =  {
 	setAddToCarts: (e: {pack: number, cart: GenericObjTypes} ) => void;
 	setRemoveFromCarts: (e: {pack: number, cart: GenericObjTypes} ) => void;
 	setModal: (e:  string ) => void;
+	setClient: (e:  GenericObjTypes ) => void;
 	setPack: (e:  number ) => void;
 	state: StateType
 }

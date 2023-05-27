@@ -17,45 +17,46 @@ import ViewOrderDetails from "./view-order-details";
 
 const Overview = () => {
 	const [store, setStore] = useState("");
-	const [ status, setStatus] = useState("PROCESSING");
+
 	const [singleOrder, setSingleOrder] = useState<GenericObjTypes>({});
 	const modalRef = React.useRef<HandleScrollTypes>(null); 
 
 	
-	const { stores, loading: loadingStores } = useGetStores();
-	const { orders: processingOrders , loading: loadingProceOrders} = useGetOrders(store || stores?.data[0]?._id, status);
-	const { orders , loading: loadingOrders} = useGetOrders(store || stores?.data[0]?._id, status);
-	const { orders: beenPreparedOrders , loading: loadingBeenPreparedOrders} = useGetOrders(store || stores?.data[0]?._id,  status);
-	const { orders: canceledOrders , loading: loadingCanceled} = useGetOrders(store || stores?.data[0]?._id, status);
-	const { orders: onDeliveryOrders , loading: lodaingOnDelivery} = useGetOrders(store || stores?.data[0]?._id,  status);
+	const { stores, loading: loadingStores, } = useGetStores();
+	const { orders: processingOrders ,   ...more1 } = useGetOrders(store || stores?.data[0]?._id, "PROCESSING");
+	const { orders ,  ...more2 } = useGetOrders(store || stores?.data[0]?._id, "DELIVERED");
+	const { orders: beenPreparedOrders ,  ...more3 } = useGetOrders(store || stores?.data[0]?._id,   "BEEN PREPARED");
+	const { orders: canceledOrders ,    ...more4 } = useGetOrders(store || stores?.data[0]?._id, "CANCELLED");
+	const { orders: onDeliveryOrders ,   ...more5 } = useGetOrders(store || stores?.data[0]?._id,  "ON DELIVERY");
 
 	
+
 	
 	const tableProps = {singleOrder, setSingleOrder, modalRef };
 	const tabData = [
 		{
 			head: <TabLabel title="In Progress" count={processingOrders?.count} />,
-			body:  <OrdersTable  {...tableProps}orders={processingOrders} loadingOrders={loadingProceOrders} title="Orders In Progress " />,
+			body:  <OrdersTable  {...{...more1}} {...tableProps}orders={processingOrders}  title="Orders In Progress " />,
 			key: "PROCESSING"
 		},
 		{
 			head:  <TabLabel title="Delivered Orders" count={orders?.count} />,
-			body: <OrdersTable  {...tableProps}  orders={orders} loadingOrders={loadingOrders} title="Delivered Orders" />,
+			body: <OrdersTable   {...{...more2}}  {...tableProps}  orders={orders}   title="Delivered Orders" />,
 			key: "DELIVERED"
 		},
 		{
 			head:  <TabLabel title="Been Prepared Orders" count={beenPreparedOrders?.count} />,
-			body: <OrdersTable  {...tableProps}  orders={beenPreparedOrders} loadingOrders={loadingBeenPreparedOrders} title="Been Prepared Orders" />,
+			body: <OrdersTable  {...{...more3}}   {...tableProps}  orders={beenPreparedOrders}  title="Been Prepared Orders" />,
 			key: "BEEN PREPARED"
 		},
 		{
 			head:  <TabLabel title="Canceled Orders" count={canceledOrders?.count} />,
-			body: <OrdersTable  {...tableProps}  orders={canceledOrders} loadingOrders={loadingCanceled} title="Canceled Orders" />,
+			body: <OrdersTable  {...{...more4}}   {...tableProps}  orders={canceledOrders}  title="Canceled Orders" />,
 			key: "CANCELLED"
 		},
 		{
 			head:  <TabLabel title="On Delivery Orders" count={onDeliveryOrders?.count} />,
-			body: <OrdersTable  {...tableProps}  orders={onDeliveryOrders} loadingOrders={lodaingOnDelivery} title="On Delivery Orders" />,
+			body: <OrdersTable  {...{...more5}}   {...tableProps}  orders={onDeliveryOrders} title="On Delivery Orders" />,
 			key: "ON DELIVERY"
 		},
 	];
@@ -106,7 +107,7 @@ const Overview = () => {
 							<Tabs
 								nonActiveColor="Black.60"
 								activeColor="Blue.base.default"
-								click={(e) => setStatus(e.key)}
+								click={(e) => console.log(e.key)}
 								data={tabData}
 							/>
 						</GeneralTabStyle>

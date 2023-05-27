@@ -140,7 +140,7 @@ const AddUser = ({	open,modalRef, setOpen,onDOne, roles } : PropType) => {
 													handleChange={handleChange}
 													borderCol={"Black.20"}
 													activeBorderCol={"Blue.base.default"}
-													placeholder="Enter your full name"
+													placeholder="Enter email"
 													borderRadius="8px"
 												/>
 												<GeneralErrorContainer>
@@ -191,7 +191,7 @@ const AddUser = ({	open,modalRef, setOpen,onDOne, roles } : PropType) => {
 												handleChange={handleChange}
 												borderCol={"Black.20"}
 												activeBorderCol={"Blue.base.default"}
-												placeholder="Enter your full name"
+												placeholder="Enter password"
 												borderRadius="8px"
 											/>
 											<GeneralErrorContainer>

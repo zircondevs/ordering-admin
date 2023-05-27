@@ -22,6 +22,19 @@ export const useGetStores  = () => {
  
 	return {  loading, stores: data?.data , setPageInfo, pageInfo, mutate };
 };
+
+
+
+
+export const useGetStore  = (storeId: string, state: string) => {
+	const { data , loading, mutate} = useGetCachedAxiosHandler ({
+		url: `${STORE_URL}/one/${storeId}?state=${state}`,
+		notify: false,
+		requiredVariable: storeId?.length > 0 && state?.length > 0
+	});
+ 
+	return {  loading, store: data?.data?.data ,   mutate };
+};
  
 
 

@@ -4,7 +4,7 @@
  
 
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UseContext } from "../state/provider";
 import {   useAxiosHandler, useGetCachedAxiosHandler } from "./useAxiosHandler";
 import { SETTINGS_URL } from "../constants/urls";
@@ -33,7 +33,7 @@ export const useGetAdminUsers  = () => {
 
 
 export const useGetAdminGeneralSettings  = () => {
-	const { state: { user }} = UseContext();
+	const { state: { user ,}, setClient} = UseContext();
 	const [pageInfo, setPageInfo] = useState({
 		page: 1,
 		limit: 10
@@ -43,6 +43,10 @@ export const useGetAdminGeneralSettings  = () => {
 		notify: false,
 		requiredVariable: user?.clientId?.length > 0
 	});
+
+	useEffect(() => {
+		data && setClient(data?.data?.data);
+	}, [ data ]);
  
 	return {  loading, settings: data?.data?.data , setPageInfo, pageInfo, mutate };
 };

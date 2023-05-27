@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 
 import React, { useState }   from "react";
 import { Bold, Dropdown, Flex, Grid, Span,  } from "../../../components";
@@ -128,7 +129,16 @@ const Stores = () => {
 													),
 												},
 											]}
-											handleSelect={(e) => e === "view" ? push("/dashboard/stores/storeId") : openModal({type: e, store})}
+											handleSelect={(e) => {
+												e === "view" ? 
+													push({
+														pathname: `/dashboard/stores/${store?._id}`,
+														query: {state : store?.state},
+													},
+													`/dashboard/stores/${store?._id}` 
+													)
+													: openModal({type: e, store});
+											}}
 										/>
 									</StoreStyles>
 								))

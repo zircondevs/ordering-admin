@@ -7,21 +7,24 @@ import { formatAMPM, formatNumber, formateDate,   } from "../../../../lib";
 import { GenericObjTypes } from "../../../../constants/types";
 import { EmptyIcon, LoaderIcon } from "../../../../public/assets/svg";
 import { GeneralTableStyle } from "../../../../components/styles";
-import Search from "../../../../components/Search";
+// import Search from "../../../../components/Search";
 import { HandleScrollTypes } from "devs-react-component-library";
-// import Paginator from "../../../../components/Paginator";
+import Paginator from "../../../../components/Paginator";
+
 
 
 interface PropTypes {
 	orders:{data:  GenericObjTypes[]}, 
-	loadingOrders: boolean, 
+	loading: boolean, 
 	title: string
 	modalRef: React.RefObject<HandleScrollTypes>;
 	setSingleOrder: React.Dispatch<React.SetStateAction<GenericObjTypes>>
+	setPageInfo: any;
+	pageInfo: any
 }
 
 
-const OrdersTable = ({orders, loadingOrders, title, setSingleOrder, modalRef}: PropTypes ) => {
+const OrdersTable = ({orders, loading, title, setSingleOrder, modalRef, pageInfo, setPageInfo }: PropTypes ) => {
 	
  
 	const openModal = (obj: object) => {
@@ -30,6 +33,7 @@ const OrdersTable = ({orders, loadingOrders, title, setSingleOrder, modalRef}: P
 	};
 
 
+	
 	const tableHead = [  "Amount",  "User", "Phone", "Date", "Action"];
 	const tableBody = orders?.data?.map((order: GenericObjTypes) => (
 		{
@@ -49,7 +53,7 @@ const OrdersTable = ({orders, loadingOrders, title, setSingleOrder, modalRef}: P
 		<Main>
 			<TableHeadStyle height="auto" justifyContent="flex-start">
 				{
-					loadingOrders ?
+					loading ?
 						<Flex><LoaderIcon height="40" width="40"/></Flex>
 						:
 						<>
@@ -58,7 +62,7 @@ const OrdersTable = ({orders, loadingOrders, title, setSingleOrder, modalRef}: P
 									{title}
 								</Bold>
 
-								<Search placeholder="Search by ticket Id"/>
+								{/* <Search placeholder="Search by ticket Id"/> */}
 							</SearchSection>
 
 							{
@@ -74,13 +78,13 @@ const OrdersTable = ({orders, loadingOrders, title, setSingleOrder, modalRef}: P
 												tableBodys={tableBody}
 											/>
 										</GeneralTableStyle>
-										{/* <Paginator
+										<Paginator
 											onPageChange={(p) => setPageInfo((prev: any) => ({...prev, page: p  }))}  
 											firstLast={true} 
 											prevNext
 											pages = {pageInfo?.pages }
 											currentPage = {(+pageInfo?.page)}
-										/> */}
+										/>
 									</>
 									: 
 									<Flex margin="50px 0" direction="column">

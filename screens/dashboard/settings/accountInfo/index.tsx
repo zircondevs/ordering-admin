@@ -20,6 +20,7 @@ import { PRIMARY_COLOR } from "../../../../hooks/colors";
 	primaryColor: string,
 	secondaryColor: string,
 	deliveryCharge: number
+	fontFamily: string
  }
 
 
@@ -30,7 +31,7 @@ const AccountInfo = () => {
 
 
 
-	const [formData, setFormData] = useState<FormTypes>({ companyName: "", companyLogo: "", primaryColor: "", secondaryColor: "", deliveryCharge: 0 });
+	const [formData, setFormData] = useState<FormTypes>({ companyName: "", companyLogo: "", primaryColor: "", secondaryColor: "", deliveryCharge: 0 , fontFamily: ""});
 
 
 	useEffect(() => {
@@ -39,7 +40,8 @@ const AccountInfo = () => {
 			companyLogo:  settings?.companyLogo ||  "",
 			primaryColor:  settings?.primaryColor || "",
 			secondaryColor:  settings?.secondaryColor || "",
-			deliveryCharge:  settings?.deliveryCharge || 0
+			deliveryCharge:  settings?.deliveryCharge || 0,
+			fontFamily:  settings?.fontFamily || 0
 		});
 	}, [ settings]);
 
@@ -90,7 +92,7 @@ const AccountInfo = () => {
 									const form = new FormData();
 									form.append("image", target.files[0] );
 									const res = await handleImageUpload(form);
-									setFormData({  ...formData,  companyLogo:  res?.data});
+									res?.data && setFormData({  ...formData,  companyLogo:  res?.data});
 								}
 							}} 
 						/>
@@ -113,7 +115,7 @@ const AccountInfo = () => {
 						handleChange={(e) => setFormData({...formData, companyName: (e.target as HTMLInputElement).value})}
 						borderCol={"Black.20"}
 						activeBorderCol={"Blue.base.default"}
-						placeholder="Enter your full name"
+						placeholder="Enter company name"
 						borderRadius="8px"
 					/>
 				</GeneralInputWrap>
@@ -133,6 +135,20 @@ const AccountInfo = () => {
 				</Flex>
 
 				<GeneralInputWrap margin="8px 0 0">
+					<GeneralLabel> Add font family</GeneralLabel>
+					<Input
+						value={formData?.fontFamily}
+						name="fontFamily" 
+						type={"text"} 
+						handleChange={(e) => setFormData({...formData, fontFamily: (e.target as HTMLInputElement).value})}
+						borderCol={"Black.20"}
+						activeBorderCol={"Blue.base.default"}
+						placeholder="Enter a font family"
+						borderRadius="8px"
+					/>
+				</GeneralInputWrap>
+
+				<GeneralInputWrap margin="8px 0 0">
 					<GeneralLabel>  Delivery Charge (₦)</GeneralLabel>
 					<Input
 						value={formData?.deliveryCharge?.toString()}
@@ -141,7 +157,7 @@ const AccountInfo = () => {
 						handleChange={(e) => setFormData({...formData, deliveryCharge: +(e.target as HTMLInputElement).value})}
 						borderCol={"Black.20"}
 						activeBorderCol={"Blue.base.default"}
-						placeholder="Enter your full name"
+						placeholder="Enter delivary charge"
 						borderRadius="8px"
 					/>
 				</GeneralInputWrap>

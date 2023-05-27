@@ -2,9 +2,9 @@
 
 import React, {   useState }   from "react";
 import { Bold, Dropdown, Flex,  Span, Table,      } from "../../../components";
-import {     AddBtn, BtnsStyles, Container1, FoodStyles, HeaderSTyles, Main,    SearchStyles,   } from "./styles";
+import {     AddBtn, BtnsStyles, Container1, FoodStyles, HeaderSTyles, Main,   } from "./styles";
 import { formatAMPM, formatNumber, formateDate,   } from "../../../lib";
-import Search from "../../../components/Search";
+// import Search from "../../../components/Search";
 import { GeneralCountStyles, GeneralTableStyle } from "../../../components/styles";
 import {   EditIcon, LoaderIcon,  } from "../../../public/assets/svg";
 import Image from "next/image";
@@ -162,9 +162,9 @@ const FoodMenu = () => {
 										</Bold>
 									</GeneralCountStyles>
 								</div>
-								<SearchStyles wrap="nowrap" alignItems="stretch" width="auto">
+								{/* <SearchStyles wrap="nowrap" alignItems="stretch" width="auto">
 									<Search placeholder="Search by ticket ID" />
-								</SearchStyles>
+								</SearchStyles> */}
 							</Flex>
 			
 							<GeneralTableStyle height="auto" justifyContent="flex-start">

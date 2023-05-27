@@ -8,6 +8,7 @@ export const SET_ADD_TO_CARTS = "SET_ADD_TO_CARTS";
 export const SET_REMOVE_FROM_CARTS = "SET_REMOVE_FROM_CARTS";
 export const SET_MODAL = "SET_MODAL";
 export const SET_PACK = "SET_PACK";
+export const SET_CLIENT = "SET_CLIENT";
 
 
 

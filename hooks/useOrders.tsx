@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ORDERS_URL } from "../constants/urls";
 import { useGetCachedAxiosHandler } from "./useAxiosHandler";
 
@@ -10,7 +10,7 @@ import { useGetCachedAxiosHandler } from "./useAxiosHandler";
 export const useGetOrders  = (storeId: string, status: string) => {
 	const [pageInfo, setPageInfo] = useState({
 		page: 1,
-		limit: 10
+		limit: 5
 	});
 	
 	const { data , loading} = useGetCachedAxiosHandler ({
@@ -18,6 +18,10 @@ export const useGetOrders  = (storeId: string, status: string) => {
 		notify: false,
 		requiredVariable: storeId?.length > 0 && status?.length > 0
 	});
+
+	useEffect(() => {
+		data && setPageInfo({...pageInfo, ...data?.data});
+	}, [data ]);
  
 	return {  loading, orders: data?.data , setPageInfo, pageInfo };
 };

@@ -105,7 +105,7 @@ const AddCategory = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 												handleChange={handleChange}
 												borderCol={"Black.20"}
 												activeBorderCol={"Blue.base.default"}
-												placeholder="Enter your full name"
+												placeholder="Enter  name"
 												borderRadius="8px"
 											/>
 											<GeneralErrorContainer>

@@ -130,7 +130,7 @@ const AddStore = ({	open,modalRef, setOpen, } : PropType) => {
 											handleChange={handleChange}
 											borderCol={"Black.20"}
 											activeBorderCol={"Blue.base.default"}
-											placeholder="Enter code"
+											placeholder="Enter address"
 											borderRadius="8px"
 										/>
 										<GeneralErrorContainer>

@@ -85,7 +85,7 @@ const Login = () => {
 											handleChange={handleChange}
 											borderCol={"Black.20"}
 											activeBorderCol={"Blue.base.default"}
-											placeholder="Enter code"
+											placeholder="Enter password"
 											borderRadius="8px"
 										/>
 									</GeneralInputWrap>

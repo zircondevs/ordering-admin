@@ -83,9 +83,9 @@ export const PageContainer =  styled("div")`
 	   .paginator-ListItem-active {
 		 box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 
 		 0 1px 10px 0 rgba(156, 39, 176, 0.12),  0 2px 4px -1px rgba(156, 39, 176, 0.2);
-		 background-color: rgb(114, 109, 172);
+		 background-color: ${({ theme }) => theme.palette.Grey[2]};
 		 &:hover {
-			 background-color: rgb(114, 109, 172);
+			 background-color: ${({ theme }) => theme.palette.Grey[2]};
 		   }
 	   }
 	   .paginator-ListItem-disabled{

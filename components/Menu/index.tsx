@@ -15,7 +15,7 @@ type ActionType = "logout" | "profile"
 
 
 const Menu = ({ authScreen}: { authScreen?: boolean}) => {
-	const {  state: { user }} = UseContext();
+	const {  state: { user, client}} = UseContext();
 	const { push } = useRouter();
 	const { handleLogout } = useLogout();
 	
@@ -23,16 +23,18 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 		profile: () => push("/dashboard/settings"),
 		logout: () => handleLogout()
 	};
-	
+
+
 	return (
 		<MenuStyles >
 			<Flex wrap='nowrap' justifyContent="space-between">
 				<DrawerMenu   justifyContent='flex-start' wrap='nowrap'>
 					<Image 
-						src={"https://logos-world.net/wp-content/uploads/2020/04/Huawei-Logo.png"}
+						src={client?.companyLogo ||  "https://logos-world.net/wp-content/uploads/2020/04/Huawei-Logo.png"}
 						alt="Logo"
 						objectFit="contain"
 						layout="fill"
+						objectPosition={"left"}
 					/>
 				</DrawerMenu>
  

@@ -142,7 +142,7 @@ const AddFood = ({	open,modalRef, setOpen,onDOne, storeId, categories } : PropTy
 												handleChange={handleChange}
 												borderCol={"Black.20"}
 												activeBorderCol={"Blue.base.default"}
-												placeholder="Enter your full name"
+												placeholder="Enter food name"
 												borderRadius="8px"
 											/>
 											<GeneralErrorContainer>
@@ -199,7 +199,7 @@ const AddFood = ({	open,modalRef, setOpen,onDOne, storeId, categories } : PropTy
 												handleChange={handleChange}
 												borderCol={"Black.20"}
 												activeBorderCol={"Blue.base.default"}
-												placeholder="Enter your full name"
+												placeholder="Enter an amount"
 												borderRadius="8px"
 											/>
 											<GeneralErrorContainer>

@@ -1,90 +1,102 @@
 /* eslint-disable max-lines */
 
-import React    from "react";
+import React, { useEffect }    from "react";
 import { Bold,  Container,  Flex, Grid, Span, Table,  } from "../../../components";
-import {     Container1,    HeaderSTyles, IconStyles, Main, SearchStyles, StoreStyles,      } from "./styles";
+import {     Container1,    HeaderSTyles,  Main,    } from "./styles";
 import { GeneralCountStyles, GeneralDivider } from "../../../components/styles";
-import {  DownloadIcon , StoreIcon,   } from "../../../public/assets/svg";
-import CustomButton from "../../../components/Button";
+import {    EmptyIcon, LoaderIcon, ThreeDotsLoaderIcon ,  } from "../../../public/assets/svg";
 import BreadCrumb from "../../../components/Breadcrumb";
 import { formatAMPM, formatNumber, formateDate } from "../../../lib";
 import { Spacer } from "../../../components/Spacer";
 import { GeneralTableStyle } from "../../../components/styles";
-import Search from "../../../components/Search";
+import { useRouter } from "next/router";
+import { useGetStore } from "../../../hooks/useStores";
+import { useGetStoreTransactions,   } from "../../../hooks/useTransaction";
+import { GenericObjTypes, TransactionStatusType } from "../../../constants/types";
+import Paginator from "../../../components/Paginator";
 
 
 
 
 
 const Stores = () => {
+	const  { query, back } = useRouter();
 
+	const { store } = useGetStore(query?.storeId as string, query?.state as string);
+	const { transactions, loading , pageInfo, setPageInfo } = useGetStoreTransactions(query?.storeId as string);
+	useEffect(() => {
+		if(!query?.storeId || !query?.state){
+			back();
+		}
+	}, [ query ]);
 
+ 
 	const status = {
 		pending:  ["Blue.dark.20", "Blue.dark" ],
 		failed:  ["Error.20", "Error.default" ],
 		success: ["Success.20", "Success.default" ],
 	};
-	const tableHead = ["Date","Time", "Amount", "Status", "Action"];
-	const tableBody = [
+	const tableHead = ["Date","Time", "Amount", "Status" ];
+	const tableBody = transactions?.data?.map((transaction: GenericObjTypes) => (
 		{
-			date: `${formateDate(new Date()).date} ${formateDate(new Date()).shortMonth}, ${formateDate(new Date()).year}` ,
-			time: `${formatAMPM(new Date())}`,
-			amount: "₦" + formatNumber(3212),
-			status: <Flex bgColor={status["failed"][0]} width="max-content" pad="3px 8px" margin="0">
-				<Span fontFamily='quicksand' weight="400" lineHeight="19" size="12" colour={status["pending"][1]}>
-					failed
+			date: `${formateDate(new Date(transaction?.createdAt)).date} ${formateDate(new Date(transaction?.createdAt)).shortMonth}, ${formateDate(new Date(transaction?.createdAt)).year}` ,
+			time: `${formatAMPM(new Date(transaction?.createdAt))}`,
+			amount: "₦" + formatNumber(transaction?.foodCharge),
+			status: <Flex bgColor={status[transaction?.status as TransactionStatusType][0]} width="max-content" pad="3px 8px" margin="0">
+				<Span fontFamily='quicksand' weight="400" lineHeight="19" size="12" colour={status[transaction?.status as TransactionStatusType][1]}>
+					{transaction?.status}
 				</Span>
 			</Flex>,
-			action: <Flex width="max-content"  margin="0">
-				<Span fontFamily='quicksand' weight="400" lineHeight="19" size="12" colour={"Error.default"}>
-					View
-				</Span>
-			</Flex>,
-		},
-	];
+		}
+	));
+
+
  
 
-	const stores = [
-		{ title: "Completed  Orders",},
-		{ title: "Total Amount",},
-		{ title: "Pending Orders",},
-		{ title: "New Orders",},
-	];
+ 
 	const details = [
 		{
 			title: "Location",
-			value: "hdh h sdf hdf",
+			value: store?.address || "N/A",
 		},
 		{
-			title: "manager name",
-			value:" Chiome Kee"
+			title: "State",
+			value: store?.state || "N/A"
 		}, 
 		{
 			title: "Date Created",
-			value: "23 June"
+			value:  new Date(store?.createdAt).toLocaleString() 
 		}, 
 		{
-			title: "Manager Email",
-			value: " efhjjj eefhewhu"
+			title: "Customer care line",
+			value: store?.customerCareLine || "N/A"
 		}
 	];
 
 	return (
 		<Main>
-			
+
 			<HeaderSTyles height="auto" justifyContent="space-between">
-				<BreadCrumb list={[{name: "Stores", link: "/dashboard/stores"}, {name: "Store: Abayi Store"}]}/>
+				<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={ "Black.80"}>
+					Store Name: {store?.name || <ThreeDotsLoaderIcon height="15" width="20"/>}
+				</Bold>
+
+				<Spacer height="40px"/>
+	
+				<BreadCrumb list={[{name: "Stores", link: "/dashboard/stores"}, {name: store?.name || "Loading..."}]}/>
 
 				<Spacer height="32px"/>
+
+
 				<Grid gap="24px" columns="repeat(auto-fit, minmax(200px, 250px))" >
 					{
 						details.map((detail, idx) => (
 							<Container key={idx} justifyContent="space-between" wrap="nowrap">
-								<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="12" colour={ "Grey.1"}>
+								<Span fontFamily='quicksand' weight="400" lineHeight="16" size="12" colour={ "Grey.3"}>
 									{detail.title}
-								</Bold>
+								</Span>
 								<Spacer height="4px" />
-								<Bold fontFamily='quicksand' weight="&00" lineHeight="24" size="18" colour={ "Black.80"}>
+								<Bold fontFamily='quicksand' weight="&00" lineHeight="24" size="18" colour={ "Grey.2"}>
 									{detail.value}
 								</Bold>
 							</Container>
@@ -95,71 +107,57 @@ const Stores = () => {
 
 		
 
-			<Container1>
-				<Grid gap="24px" columns="repeat(auto-fit, minmax(200px, 250px))" >
-					{
-						stores.map((store, idx) => (
-							<StoreStyles key={idx} justifyContent="space-between" wrap="nowrap">
-								<Flex width="auto" wrap="nowrap">
-									<IconStyles height="50px" width="50px" margin="0 16px 0 0">
-										<StoreIcon colour="Grey.2" height="20" width="20"/>
-									</IconStyles>
-									<div>
-										<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="12" colour={ "Grey.1"}>
-											{store.title}
-										</Bold>
-										<Spacer height="4px" />
-										<Bold fontFamily='quicksand' weight="&00" lineHeight="24" size="18" colour={ "Black.80"}>
-											{formatNumber(2894832)}
-										</Bold>
-									</div>
-								</Flex>
-
-							</StoreStyles>
-						))
-					}
-				</Grid>
-			</Container1>
+ 
  
 			<GeneralDivider />
 
 			<Container1 margin="40px 0 0">
 				<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 					<div>
-						<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Black.80"}>
+						<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 							All Transactions
 						</Bold>
 						<GeneralCountStyles>
 							<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Black.80"}>
-								23
+								{transactions?.count || 0}
 							</Bold>
 						</GeneralCountStyles>
 					</div>
-					<SearchStyles wrap="nowrap" alignItems="stretch" width="auto">
-						<CustomButton
-							size="14"
-							type="button"
-							pad="padding.smaller"
-							text={  "Download"}
-							activeBorderColor="Grey.3"
-							activeColor="Grey.3"
-							onClick={() =>  [] }
-							icon={<DownloadIcon colour="Grey.3" height="15px" width="15px"/>}
-						/>
+					{/* <SearchStyles wrap="nowrap" alignItems="stretch" width="auto">
 						<Search placeholder="Search by ticket ID" />
-					</SearchStyles>
+					</SearchStyles> */}
 				</Flex>
 
-				<GeneralTableStyle>
-					<Table
-						gap={"0"}
-						headBgColor="common.transparent"
-						bodyColor="Black.80"
-						headColor="Black.60"
-						tableHead={tableHead}
-						tableBodys={tableBody}
-					/>
-				</GeneralTableStyle>
+				{
+					loading ?
+						<Flex margin="40px 0"> <LoaderIcon height="40" width="40"/></Flex>
+						:
+						tableBody?.length > 0 ?
+							<GeneralTableStyle>
+								<Table
+									gap={"0"}
+									headBgColor="common.transparent"
+									bodyColor="Black.80"
+									headColor="Black.60"
+									tableHead={tableHead}
+									tableBodys={tableBody}
+								/>
+								<Paginator
+									onPageChange={(p) => setPageInfo((prev: any) => ({...prev, page: p  }))}  
+									firstLast={true} 
+									prevNext
+									pages = {pageInfo?.pages }
+									currentPage = {(+pageInfo?.page)}
+								/>
+							</GeneralTableStyle>
+							: <Flex margin="40px 0" height="auto" direction="column">
+								<EmptyIcon />
+								<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Black.80"}>
+									There are no transaction record here yet!.
+								</Span>
+							</Flex>
+	
+				}
 			</Container1>
 
 		</Main>

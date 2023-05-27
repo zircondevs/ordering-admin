@@ -1,9 +1,8 @@
 
 import React   from "react";
 import { Bold, Flex,  Span, Table,      } from "../../../components";
-import {     Container1, HeaderSTyles, Main,    SearchStyles,      } from "./styles";
+import {     Container1, HeaderSTyles, Main,    } from "./styles";
 import { formatAMPM, formatNumber, formateDate,   } from "../../../lib";
-import Search from "../../../components/Search";
 import { GeneralCountStyles, GeneralTableStyle } from "../../../components/styles";
 import {   EmptyIcon, LoaderIcon } from "../../../public/assets/svg";
 import { useGetTransactions } from "../../../hooks/useTransaction";
@@ -63,9 +62,9 @@ const Transactions = () => {
 										</Bold>
 									</GeneralCountStyles>
 								</div>
-								<SearchStyles wrap="nowrap" alignItems="stretch" width="auto">
+								{/* <SearchStyles wrap="nowrap" alignItems="stretch" width="auto">
 									<Search placeholder="Search by ticket ID" />
-								</SearchStyles>
+								</SearchStyles> */}
 							</Flex>
 
 

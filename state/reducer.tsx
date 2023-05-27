@@ -2,7 +2,7 @@ import {
 	SET_ADD_TO_CARTS,
 	SET_MODAL,
 	SET_IS_AUTHENTICATED,
-	SET_LOADING,  SET_REFRESH_TOKEN, SET_REMOVE_FROM_CARTS, SET_TOKEN, SET_USER, SET_PACK,  
+	SET_LOADING,  SET_REFRESH_TOKEN, SET_REMOVE_FROM_CARTS, SET_TOKEN, SET_USER, SET_PACK, SET_CLIENT,  
 } from "./actions";
 import { ActionTypes, StateType } from "./types";
   
@@ -27,6 +27,11 @@ export const reducer = (state: StateType, action: ActionTypes) => {
 		return {
 			...state,
 			isAuthenticated: action.payload,
+		};
+	case SET_CLIENT:
+		return {
+			...state,
+			client: action.payload,
 		};
 	case SET_USER:
 		return {

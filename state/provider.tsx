@@ -4,7 +4,7 @@ import {
 	SET_ADD_TO_CARTS,
 	SET_MODAL,
 	SET_IS_AUTHENTICATED, SET_LOADING, 
-	SET_REFRESH_TOKEN, SET_REMOVE_FROM_CARTS, SET_TOKEN, SET_USER, SET_PACK 
+	SET_REFRESH_TOKEN, SET_REMOVE_FROM_CARTS, SET_TOKEN, SET_USER, SET_PACK, SET_CLIENT 
 } from "./actions";
 import { reducer } from "./reducer";
 import { ContestTypes, StateType } from "./types";
@@ -23,7 +23,9 @@ const initialState: StateType = {
 	loading: true,
 	carts: [],
 	pack: 0,
-	modal: ""
+	modal: "",
+	client: {},
+
 };
 
 
@@ -41,6 +43,7 @@ export function ProviderContext({ children }: any ) {
 	const setRemoveFromCarts = (payload:  {pack: number, cart: GenericObjTypes}) => dispatch({ type: SET_REMOVE_FROM_CARTS, payload }); 
 	const setModal = (payload:  string) => dispatch({ type: SET_MODAL, payload }); 
 	const setPack = (payload:  number) => dispatch({ type: SET_PACK, payload }); 
+	const setClient = (payload:  GenericObjTypes) => dispatch({ type: SET_CLIENT, payload }); 
 
 
 	return (
@@ -55,7 +58,8 @@ export function ProviderContext({ children }: any ) {
 				setAddToCarts,
 				setRemoveFromCarts,
 				setModal,
-				setPack
+				setPack,
+				setClient
 			}}
 		>
 			{children}

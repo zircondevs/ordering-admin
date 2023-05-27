@@ -14,6 +14,9 @@ export const Main =  styled("div")`
 export const HeaderSTyles =  styled(Flex)`
 	padding: 64px  40px 0;
 	margin-bottom: 40px;
+	flex-direction: column;
+	justify-content: stretch;
+	align-items: stretch;
 `;
 
 export const Container1 =  styled(Flex)`
@@ -36,13 +39,6 @@ export const SearchStyles =  styled(Flex)`
 
 
  
-export const StoreStyles =  styled(Flex)`
-	border-radius: 16px;
-	padding: 24px;
-	border: 1px solid ${({ theme }) => theme.palette.Black[20]};
-	background-color:  #fff;
-`;
-
  
 export const IconStyles =  styled(Flex)`
 	border-radius: 100%;
