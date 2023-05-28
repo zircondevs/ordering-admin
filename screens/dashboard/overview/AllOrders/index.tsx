@@ -1,29 +1,32 @@
  
 import React, { useEffect }   from "react";
 import { Bold, Grid, Span,  } from "../../../../components";
-import {   Aside, AsideStyle,    Orders, RecentOrders,   TotalOrders, } from "./styles";
+import {   Aside, AsideStyle,    OrderIdStyles,    Orders, RecentOrders,   TotalOrders, } from "./styles";
 import { Spacer } from "../../../../components/Spacer";
 import CustomButton from "../../../../components/Button";
 import { PRIMARY_COLOR } from "../../../../hooks/colors";
 import { useSocket } from "../../../../hooks/handlers/useSocket";
 import { formatAMPM, formateDate } from "../../../../lib";
+import { UseContext } from "../../../../state/provider";
+import { useRouter } from "next/router";
 
 
 
 
 const AllOrders = ({storeId}: {storeId: string}) => {
-	const { handleJoinRoom, newOrders  } = useSocket();
-	console.log("remounting", newOrders);
-
+	const { handleJoinRoom,    } = useSocket();
+	const { state: { realTimeOrders } } = UseContext();
+	const router = useRouter();
+	
 	useEffect(() => {
 		storeId && handleJoinRoom(storeId);
 	}, [storeId]);
 
 	
 	return (
-		< >
+		<>
 			{
-				newOrders?.length > 0 ?
+				realTimeOrders?.length > 0 ?
 					<Aside >
 						<AsideStyle height="auto" justifyContent="space-between">
 							<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="20" colour={"Black.80"}>
@@ -37,7 +40,7 @@ const AllOrders = ({storeId}: {storeId: string}) => {
 								pad="padding.smallest"
 								txtColour={PRIMARY_COLOR[0]}
 								text={  "See All"}
-								onClick={() =>  [] }
+								onClick={() =>  router.push("/dashboard/orders")}
 							/>
 						</AsideStyle>
 						
@@ -48,23 +51,23 @@ const AllOrders = ({storeId}: {storeId: string}) => {
 								</Bold>
 								<div>
 									<Bold fontFamily='quicksand' weight="400" lineHeight="19" size="16" colour={"Black.60"}>
-										10
+										{realTimeOrders?.length}
 									</Bold>
 								</div>
 							</TotalOrders>
 
 							<Grid gap='24px' className="all-orders">
 								{
-									newOrders?.map((order, id) => (
+									realTimeOrders?.map((order, id) => (
 										<RecentOrders key={id} justifyContent="space-between">
 											<div>
 												<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
 													Order ID
 												</Span>
 												<Spacer height="8px" />
-												<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="20" colour={"Black.default"}>
-													{order._id}
-												</Bold>
+												<OrderIdStyles fontFamily='quicksand' weight="700" lineHeight="24" size="20" colour={"Black.default"}>
+													{order.orderId}
+												</OrderIdStyles>
 											</div>
 											<div>
 												<Bold fontFamily='quicksand' weight="400" lineHeight="14" size="12" colour={"Black.default"}>

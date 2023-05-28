@@ -4,6 +4,7 @@ import { useAxiosHandler, useGetCachedAxiosHandler } from "./useAxiosHandler";
 import { UseContext } from "../state/provider";
 import { STORAGE } from "../applications/storage";
 import Constant from "../constants";
+import { useLogout } from "./handlers/useLogout";
 
 
 
@@ -84,6 +85,7 @@ export const useResetPassword  = () => {
 
 export const useGetUser  = () => {
 	const {setUser} = UseContext();
+	const { handleLogout } = useLogout();
  
 	const { data , loading, error} = useGetCachedAxiosHandler ({
 		url: `${AUTH_URL}/me`,
@@ -92,8 +94,19 @@ export const useGetUser  = () => {
 	useEffect(() => {
 		setUser(data?.data?.data);
 	}, [ data ]);
+ 
+	useEffect(() => {
+		if(error?.response?.data?.statusCode === 401){
+			handleLogout();
+		}
+	}, [error]);
+
 	return {  loading , error };
 };
+
+
+
+
 
 export const useGetUsers  = () => {
 	const {state: { user }} = UseContext();

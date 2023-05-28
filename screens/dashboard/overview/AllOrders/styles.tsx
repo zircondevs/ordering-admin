@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Flex,   } from "../../../../components";
+import { Bold, Flex,   } from "../../../../components";
 import { OverFlowScrollBar } from "../../../../components/OverflowContainer/styles";
 
 
@@ -59,4 +59,13 @@ export const RecentOrders =  styled(Flex)`
 	padding: 16px;
 	border: 1px solid ${({ theme }) => theme.palette.Black[20]};
 
+`;
+ 
+ 
+export const OrderIdStyles =  styled(Bold)`
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 100%;
 `;

@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect,  } from "react";
 
 
 import { io } from "socket.io-client";
 import { AUTH_BASE_URL } from "../../constants/urls";
-import { GenericObjTypes } from "../../constants/types";
+import { UseContext } from "../../state/provider";
 
 
  
@@ -12,8 +12,7 @@ import { GenericObjTypes } from "../../constants/types";
 
 export const useSocket = () => {
 
-	const [newOrders, setNewOrders] = useState<GenericObjTypes[]>([]);
-
+	const { setRealTimeOrders} = UseContext();
 
 	const socket = io(`${AUTH_BASE_URL}`);
 
@@ -27,21 +26,21 @@ export const useSocket = () => {
 	};
 
  
-	
+	socket.on("data", (res: {[e: string]: object}) => {
+		console.log("new orders",  res );
+		setRealTimeOrders(res);
+	});
+
+
 
 	useEffect(() => {
 		console.log("mount");
 		socket.on("connect", () => {
 			console.log("Connected with id ", socket.id );
 		});
-		socket.on("data", (res: {[e: string]: object}) => {
-			console.log("new orders",  res );
-			setNewOrders([res, ...newOrders]);
-		});
-
-	}, [  ]);
+	}, []);
 
 	
   
-	return {    handleJoinRoom , newOrders };
+	return {    handleJoinRoom  };
 };

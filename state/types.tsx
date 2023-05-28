@@ -3,7 +3,7 @@ import { GenericObjTypes } from "../constants/types";
 import { 
 	SET_ADD_TO_CARTS,
 	SET_MODAL,
-	SET_IS_AUTHENTICATED, SET_LOADING,  SET_REFRESH_TOKEN, SET_REMOVE_FROM_CARTS, SET_TOKEN, SET_USER, SET_PACK, SET_CLIENT,   
+	SET_IS_AUTHENTICATED, SET_LOADING,  SET_REFRESH_TOKEN, SET_REMOVE_FROM_CARTS, SET_TOKEN, SET_USER, SET_PACK, SET_CLIENT, SET_REAL_TIME_ORDERS,   
 } from "./actions";
 
 
@@ -15,6 +15,7 @@ export type StateType = {
 	user:  {  [key: string]: any },
 	loading: boolean,
 	carts:   GenericObjTypes[][],
+	realTimeOrders:   GenericObjTypes[],
 	modal: string,
 	pack: number
 	client: GenericObjTypes;
@@ -73,6 +74,12 @@ export type ActionTypes =
 	payload:  GenericObjTypes
 }
  
+|
+{
+	type:  typeof SET_REAL_TIME_ORDERS
+	payload:  GenericObjTypes
+}
+ 
 
 export type ContestTypes =  {
 	setToken: (e: string) => void;
@@ -84,6 +91,7 @@ export type ContestTypes =  {
 	setRemoveFromCarts: (e: {pack: number, cart: GenericObjTypes} ) => void;
 	setModal: (e:  string ) => void;
 	setClient: (e:  GenericObjTypes ) => void;
+	setRealTimeOrders: (e:  GenericObjTypes ) => void;
 	setPack: (e:  number ) => void;
 	state: StateType
 }

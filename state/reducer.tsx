@@ -2,7 +2,7 @@ import {
 	SET_ADD_TO_CARTS,
 	SET_MODAL,
 	SET_IS_AUTHENTICATED,
-	SET_LOADING,  SET_REFRESH_TOKEN, SET_REMOVE_FROM_CARTS, SET_TOKEN, SET_USER, SET_PACK, SET_CLIENT,  
+	SET_LOADING,  SET_REFRESH_TOKEN, SET_REMOVE_FROM_CARTS, SET_TOKEN, SET_USER, SET_PACK, SET_CLIENT, SET_REAL_TIME_ORDERS,  
 } from "./actions";
 import { ActionTypes, StateType } from "./types";
   
@@ -14,53 +14,37 @@ import { ActionTypes, StateType } from "./types";
 export const reducer = (state: StateType, action: ActionTypes) => {
 	switch (action.type) {
 	case SET_TOKEN:
-		return {
-			...state,
-			token: action.payload,
-		};
+		return { ...state, token: action.payload,};
+
 	case SET_REFRESH_TOKEN:
-		return {
-			...state,
-			refreshToken: action.payload,
-		};
+		return { ...state, refreshToken: action.payload,};
+
 	case SET_IS_AUTHENTICATED:
-		return {
-			...state,
-			isAuthenticated: action.payload,
-		};
+		return { ...state, isAuthenticated: action.payload,};
+
 	case SET_CLIENT:
-		return {
-			...state,
-			client: action.payload,
-		};
+		return { ...state, client: action.payload, };
+
 	case SET_USER:
-		return {
-			...state,
-			user: action.payload,
-		};
+		return { ...state, user: action.payload, };
+
+	case SET_REAL_TIME_ORDERS:
+		return { ...state, realTimeOrders: [ ...state.realTimeOrders ,action.payload], };
+
 	case SET_LOADING:
-		return {
-			...state,
-			loading: action.payload,
-		};
+		return { ...state, loading: action.payload, };
+
 	case SET_ADD_TO_CARTS: {
 		const cartCopy = [...state.carts];
 		cartCopy[action.payload.pack] = state.carts[action.payload.pack] ? [...state.carts[action.payload.pack],  action.payload.cart]: [ action.payload.cart];
-		return {
-			...state,
-			carts: [...cartCopy],
-		};
+		return { ...state, carts: [...cartCopy], };
 	}
 	case SET_MODAL:
-		return {
-			...state,
-			modal:  action.payload,
-		};
+		return { ...state, modal:  action.payload, };
+
 	case SET_PACK:
-		return {
-			...state,
-			pack:  action.payload,
-		};
+		return { ...state, pack:  action.payload, };
+
 	case SET_REMOVE_FROM_CARTS:{
 		const cartCopy = [...state.carts];
 
@@ -68,9 +52,7 @@ export const reducer = (state: StateType, action: ActionTypes) => {
 		if(cartCopy?.[action.payload.pack]?.length === 0 ){
 			cartCopy.splice(action.payload.pack , 1);
 		}
-		return {
-			...state,
-			carts: [...cartCopy,]
+		return { ...state, carts: [...cartCopy,]
 			
 		};
 
