@@ -84,3 +84,16 @@ export const DrawerItem =  styled(Flex)`
 `; 
 
  
+export const SelectStores =  styled(Flex)`
+	background-color: ${({theme }) =>   theme?.palette?.Grey["6"]  };
+	 height: auto;
+	 padding: 18px 16px;
+	 border-radius: 8px;
+	 margin-bottom: 24px;
+	 & > div {
+		width: 100%;
+		& > div  {
+			justify-content: space-between;
+		}
+	 }
+`; 

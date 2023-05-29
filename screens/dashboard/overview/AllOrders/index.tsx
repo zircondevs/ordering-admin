@@ -13,9 +13,9 @@ import { useRouter } from "next/router";
 
 
 
-const AllOrders = ({storeId}: {storeId: string}) => {
+const AllOrders = () => {
 	const { handleJoinRoom,    } = useSocket();
-	const { state: { realTimeOrders } } = UseContext();
+	const { state: { realTimeOrders, storeId } } = UseContext();
 	const router = useRouter();
 	
 	useEffect(() => {

@@ -4,7 +4,7 @@ import {
 	SET_ADD_TO_CARTS,
 	SET_MODAL,
 	SET_IS_AUTHENTICATED, SET_LOADING, 
-	SET_REFRESH_TOKEN, SET_REMOVE_FROM_CARTS, SET_TOKEN, SET_USER, SET_PACK, SET_CLIENT, SET_REAL_TIME_ORDERS 
+	SET_REFRESH_TOKEN, SET_REMOVE_FROM_CARTS, SET_TOKEN, SET_USER, SET_PACK, SET_CLIENT, SET_REAL_TIME_ORDERS, SET_STORE_ID 
 } from "./actions";
 import { reducer } from "./reducer";
 import { ContestTypes, StateType } from "./types";
@@ -25,7 +25,8 @@ const initialState: StateType = {
 	pack: 0,
 	modal: "",
 	client: {},
-	realTimeOrders: []
+	realTimeOrders: [],
+	storeId: ""
 };
 
 
@@ -45,6 +46,7 @@ export function ProviderContext({ children }: any ) {
 	const setPack = (payload:  number) => dispatch({ type: SET_PACK, payload }); 
 	const setClient = (payload:  GenericObjTypes) => dispatch({ type: SET_CLIENT, payload }); 
 	const setRealTimeOrders = (payload:  GenericObjTypes) => dispatch({ type: SET_REAL_TIME_ORDERS, payload }); 
+	const setStoreId = (payload:  string) => dispatch({ type: SET_STORE_ID, payload }); 
 
 
 	return (
@@ -61,7 +63,8 @@ export function ProviderContext({ children }: any ) {
 				setModal,
 				setPack,
 				setClient,
-				setRealTimeOrders
+				setRealTimeOrders,
+				setStoreId
 			}}
 		>
 			{children}

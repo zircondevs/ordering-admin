@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { ORDERS_URL } from "../constants/urls";
 import { useGetCachedAxiosHandler } from "./useAxiosHandler";
+import { UseContext } from "../state/provider";
 
 
 
  
 
 
-export const useGetOrders  = (storeId: string, status: string) => {
+export const useGetOrders  = ( status: string) => {
+	const {state : { storeId}} = UseContext();
 	const [pageInfo, setPageInfo] = useState({
 		page: 1,
 		limit: 5

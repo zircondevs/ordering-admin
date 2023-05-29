@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 
-import React, { useEffect,   }   from "react";
-import { Bold, Dropdown, Flex,   Span, Table,  } from "../../../../components";
+import React  from "react";
+import { Bold,   Flex,   Span, Table,  } from "../../../../components";
 import {     Card,  Cards,  Icon,        OverviewStyles,    } from "./styles";
 import { Spacer } from "../../../../components/Spacer";
 import { DataIcon, EmptyIcon, LoaderIcon, RiderIcon, StoreIcon } from "../../../../public/assets/svg";
@@ -13,7 +13,6 @@ import { useGetDashboardDetails,   } from "../../../../hooks/usedashboard";
 import { useGetTransactions } from "../../../../hooks/useTransaction";
 import { useRouter } from "next/router";
 import { GenericObjTypes, TransactionStatusType } from "../../../../constants/types";
-import { useGetStores } from "../../../../hooks/useStores";
 
 
 
@@ -21,17 +20,15 @@ import { useGetStores } from "../../../../hooks/useStores";
 
 
 
-const WalletSection = ({   setStoreId, } : any) => {
+
+const WalletSection = ( ) => {
 	const router = useRouter();
+
 	const { dashboard ,   } = useGetDashboardDetails();
 	const { transactions, loading  } = useGetTransactions({limit: 5});
-	const { stores, loading: loadingStores } = useGetStores();
 
-
-
-	useEffect(() => {
-		stores?.data?.[0]?._id && setStoreId(stores?.data?.[0]?._id );
-	}, [stores?.data?.[0]?._id ]);
+	
+ 
 
 
 	const data = [
@@ -83,33 +80,6 @@ const WalletSection = ({   setStoreId, } : any) => {
 					Overview
 				</Bold>
 
-				{
-					stores?.data?.length > 0 ?
-						<Dropdown
-							weight="300"
-							direction="end"
-							colour="Black.default"
-							dropColor="Black.80"
-							dropHovColor="Black.default"
-							hovBgColor="Black.20"
-							searchField={false}
-							clearSelected
-							initial={stores?.data?.[0]?.name }
-							handleSelect={(selected: string) => setStoreId(selected)}
-							data={stores?.data?.map((store: any) => (
-								{
-									displayedValue: store?.name, 
-									returnedValue: store?._id,
-									dropdownValue: store?.name
-								}
-							))|| ({
-								displayedValue: "No data", 
-								returnedValue: "No data",
-								dropdownValue: "No data",
-							}) }
-						/>
-						: null
-				}
 			</Flex>
 			<Spacer height="64px"/>
 			<Cards columns="250px repeat(auto-fit, minmax(180px, 1fr))" gap="24px" justifyContent="flex-start">
@@ -135,7 +105,7 @@ const WalletSection = ({   setStoreId, } : any) => {
 
 
 			{
-				loading || loadingStores ?
+				loading  ?
 					<Flex margin="40px 0"> <LoaderIcon height="40" width="40"/></Flex>
 					:
 					tableBody?.length > 0 ?

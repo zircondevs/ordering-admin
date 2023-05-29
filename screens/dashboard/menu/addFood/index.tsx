@@ -25,7 +25,6 @@ interface  PropType {
 	open: {type: string, [e: string]: any };
 	modalRef: React.RefObject<HandleScrollTypes>;
 	onDOne: () => any;
-	storeId: string
 	categories: GenericObjTypes[]
 }
 
@@ -38,11 +37,11 @@ export const AddStoreSchema = Yup.object().shape({
 
 
 
-const AddFood = ({	open,modalRef, setOpen,onDOne, storeId, categories } : PropType) => {
+const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => {
 	const [isAvailable, setIsAvaliable] = useState(true);
 	const { setModal, } = UseContext();
 
-	const { handleCreateFood, loading: creatingFOod} = useCreateFood(storeId);
+	const { handleCreateFood, loading: creatingFOod} = useCreateFood();
 	const { handleUpdateFood, loading: loading} = useUpdateFood(open?._id);
 	const { handleImageUpload,  loading: loadingImage } = useUploadImage();
 

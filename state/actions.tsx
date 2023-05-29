@@ -10,6 +10,7 @@ export const SET_MODAL = "SET_MODAL";
 export const SET_PACK = "SET_PACK";
 export const SET_CLIENT = "SET_CLIENT";
 export const SET_REAL_TIME_ORDERS = "SET_REAL_TIME_ORDERS";
+export const SET_STORE_ID = "SET_STORE_ID";
 
 
 

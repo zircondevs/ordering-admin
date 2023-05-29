@@ -7,7 +7,6 @@ import {   GeneralTabStyle } from "../../../components/styles";
 import AccountInfo from "./accountInfo";
 import UserManagemnt from "./userMangt";
 import Security from "./security";
-import Subscription from "./subscription";
 import Positions from "./positions";
 
 
@@ -37,11 +36,6 @@ const Settings = () => {
 			head: "Security",
 			body: <Security />,
 			key: "Security"
-		},
-		{
-			head: "Subscriptions",
-			body: <Subscription  />,
-			key: "Subscriptions"
 		},
 	];
 

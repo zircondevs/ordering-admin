@@ -6,6 +6,7 @@
 import { useState } from "react";
 import {  FOOD_URL,   } from "../constants/urls";
 import {   useAxiosHandler, useGetCachedAxiosHandler,   } from "./useAxiosHandler";
+import { UseContext } from "../state/provider";
 
 
 
@@ -14,9 +15,10 @@ import {   useAxiosHandler, useGetCachedAxiosHandler,   } from "./useAxiosHandle
  
 
 
-export const useCreateFood  = (storeId: string) => {
+export const useCreateFood  = () => {
 	const { postAxiosHandler } = useAxiosHandler();
 	const [loading, setLoading] = useState(false);
+	const { state: { storeId }} = UseContext();
 	
 	const handleCreateFood = async (DATA: object) => {
 		setLoading(true);
@@ -57,7 +59,8 @@ export const useUpdateFood  = (foodId: string) => {
 };
 
 
-export const useGetAllFood  = (storeId: string) => {
+export const useGetAllFood  = () => {
+	const { state: { storeId }} = UseContext();
 	const [pageInfo, setPageInfo] = useState({
 		page: 1,
 		limit: 10

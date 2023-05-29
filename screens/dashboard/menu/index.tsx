@@ -6,9 +6,8 @@ import {     AddBtn, BtnsStyles, Container1, FoodStyles, HeaderSTyles, Main,   }
 import { formatAMPM, formatNumber, formateDate,   } from "../../../lib";
 // import Search from "../../../components/Search";
 import { GeneralCountStyles, GeneralTableStyle } from "../../../components/styles";
-import {   EditIcon, LoaderIcon,  } from "../../../public/assets/svg";
+import {   EditIcon, LoaderIcon, PlateIcon,  } from "../../../public/assets/svg";
 import Image from "next/image";
-import { useGetStores } from "../../../hooks/useStores";
 import { GenericObjTypes } from "../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library";
 import AddCategory from "./addCategory";
@@ -22,10 +21,8 @@ import { useGetCategories } from "../../../hooks/useCategory";
 
 
 const FoodMenu = () => {
-	const { stores, loading:loadingStores } = useGetStores();
-	const [storeId, setStoreId] = useState("" || stores?.data[0]?._id);
 
-	const { menu, loading: loadingmenu , mutate} = useGetAllFood(storeId || stores?.data[0]?._id);
+	const { menu, loading: loadingmenu , mutate} = useGetAllFood();
 	const { categories,  mutate:mutateCategory } = useGetCategories();
 
 
@@ -44,13 +41,18 @@ const FoodMenu = () => {
 		{
 			name: (
 				<Flex width="auto" justifyContent="flex-start">
-					<FoodStyles>
-						<Image
-							src={food?.foodImage}
-							alt="Logo"
-							objectFit="contain"
-							layout="fill"
-						/>
+					<FoodStyles >
+						{
+							food?.foodImage ?
+								<Image
+									src={food?.foodImage}
+									alt="Logo"
+									objectFit="contain"
+									layout="fill"
+								/> 
+								:
+								<PlateIcon height="40" width="40"/>
+						}
 					</FoodStyles>
 					<Bold fontFamily='quicksand' weight="700" lineHeight="19" size="12" colour={"Grey.1"}>
 						{food?.name}
@@ -86,33 +88,6 @@ const FoodMenu = () => {
 				</Bold>
 
 				<BtnsStyles width="auto">
-					{
-						stores?.data?.length > 0 ?
-							<Dropdown
-								weight="300"
-								direction="end"
-								colour="Black.default"
-								dropColor="Black.80"
-								dropHovColor="Black.default"
-								hovBgColor="Black.20"
-								searchField={false}
-								clearSelected
-								initial={stores?.data?.[0]?.name }
-								handleSelect={(selected: string) => setStoreId(selected)}
-								data={stores?.data?.map((store: any) => (
-									{
-										displayedValue: store?.name, 
-										returnedValue: store?._id,
-										dropdownValue: store?.name
-									}
-								))|| ({
-									displayedValue: "No data", 
-									returnedValue: "No data",
-									dropdownValue: "No data",
-								}) }
-							/>
-							: null
-					}
 					<AddBtn>
 						<Dropdown
 							weight="300"
@@ -147,7 +122,7 @@ const FoodMenu = () => {
 			</HeaderSTyles>
 
 			{
-				loadingmenu || loadingStores ?
+				loadingmenu  ?
 					<Flex margin="40px 0"><LoaderIcon height="40" width="40"/> </Flex>
 					: tableBody?.length > 0 ?
 						<Container1>
@@ -189,7 +164,7 @@ const FoodMenu = () => {
  
 		
 			<AddCategory   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={ mutateCategory}  />
-			<AddFood   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={mutate} storeId={storeId} categories={categories}/>
+			<AddFood   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={mutate}  categories={categories}/>
 		</Main>
 	);
 };

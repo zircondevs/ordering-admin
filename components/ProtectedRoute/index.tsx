@@ -70,7 +70,7 @@ export function ProtectedRoute({ children }: any ) {
 					Something went wrong
 				</Span>
 				<Span fontFamily='quicksand' weight="700" lineHeight="19" size="14" colour={"Grey.3"}>
-					Please check your network and try agaian
+					Please check your network and try again
 				</Span>
 			</Flex>
 		</Main>
