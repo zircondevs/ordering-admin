@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { DrawerIcon,   } from "../../public/assets/svg";
 import { useGetStores } from "../../hooks/useStores";
 import { UseContext } from "../../state/provider";
+import { STORAGE } from "../../applications/storage";
 
 
 
@@ -15,15 +16,23 @@ const Drawer = () => {
 	const { pathname, push } = useRouter();
 	const [openDrawer, setOpenDrawer] = useState(false);
 	const activePage = (href: string) => pathname.split("/")[2] === href.split("/")[2];
-	const { setStoreId, } = UseContext();
+	const { state: {storeId}, setStoreId, } = UseContext();
 
 
 	const { stores, } = useGetStores();
 
+ 
 
 	useEffect(() => {
 		stores?.data?.[0]?._id && setStoreId(stores?.data?.[0]?._id );
 	}, [stores?.data?.[0]?._id ]);
+
+
+	useEffect(() => {
+		STORAGE.SAVE(Constant.keys.storeId, storeId);
+		const storeIdInStorage = STORAGE.GET(Constant.keys.storeId);
+		storeIdInStorage && setStoreId(storeIdInStorage);
+	}, [ storeId ]);
 	
 	return (
 		<Layout>
@@ -50,7 +59,7 @@ const Drawer = () => {
 								hovBgColor="Black.20"
 								searchField={false}
 								clearSelected
-								initial={stores?.data?.[0]?.name }
+								initial={stores?.data?.find((store: any) => store?._id === storeId)?.name }
 								handleSelect={(selected: string) => setStoreId(selected)}
 								data={stores?.data?.map((store: any) => (
 									{

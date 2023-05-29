@@ -18,7 +18,8 @@ const Constant  = {
 		token: "authorization",
 		refreshToken: "refresh",
 		difficultyLevel: "difficultyLevel",
-		subject: "subject"
+		subject: "subject",
+		storeId: "portal_ST"
 	},
 	modal: {
 		checkout: "CHECKOUT",

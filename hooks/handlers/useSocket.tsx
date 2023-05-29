@@ -4,6 +4,7 @@ import { useEffect,  } from "react";
 import { io } from "socket.io-client";
 import { AUTH_BASE_URL } from "../../constants/urls";
 import { UseContext } from "../../state/provider";
+import { useGetOrders } from "../useOrders";
 
 
  
@@ -12,7 +13,8 @@ import { UseContext } from "../../state/provider";
 
 export const useSocket = () => {
 
-	const { setRealTimeOrders} = UseContext();
+	const { setRealTimeOrder, setRealTimeOrders, state: { storeId}} = UseContext();
+	const { orders  } = useGetOrders( "PROCESSING");
 
 	const socket = io(`${AUTH_BASE_URL}`);
 
@@ -28,10 +30,15 @@ export const useSocket = () => {
  
 	socket.on("data", (res: {[e: string]: object}) => {
 		console.log("new orders",  res );
-		setRealTimeOrders(res);
+		setRealTimeOrder(res);
 	});
 
 
+
+	useEffect(() => {
+		orders && setRealTimeOrders(orders?.data);
+		console.log(orders?.data, "orders");
+	}, [orders, storeId]);
 
 	useEffect(() => {
 		console.log("mount");

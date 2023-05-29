@@ -199,6 +199,7 @@ export const objIsEmpty = (obj: object) =>{
 
 
 export function MakeOnlyFirstLettersCapital(text: string): string {
+	if(typeof(text) !== "string") return text;
 	const eachWords = text
 		.toLocaleLowerCase()
 		.split(" ")

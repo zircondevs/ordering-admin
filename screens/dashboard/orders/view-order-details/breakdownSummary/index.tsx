@@ -96,7 +96,7 @@ const BreakdownSummary = ({  order}:any) => {
 							</div>
 							<Bold  fontFamily='quicksand' weight="700" lineHeight="16" size="12" colour={"Grey.2"}>
 								{naira} 
-								{formatNumber(item.reduce((prev: any, current: any) => (current?.food.amount * current?.quantity)+ prev,0))}
+								{formatNumber(item.reduce((prev: any, current: any) => (current?.food?.amount * current?.quantity)+ prev,0))}
 							</Bold>
 						</Flex>
 					))}

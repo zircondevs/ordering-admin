@@ -34,6 +34,7 @@ export function ProtectedRoute({ children }: any ) {
 	const { error } = useGetUser();
 	useGetAdminGeneralSettings();
 	
+	
 	useEffect(() => {
 		const _token = query["auth-token"] as string || STORAGE.GET(Constant.keys.token);
 		const _refreshToken = query["refresh-token"]as string  || STORAGE.GET(Constant.keys.refreshToken);

@@ -2,7 +2,7 @@ import {
 	SET_ADD_TO_CARTS,
 	SET_MODAL,
 	SET_IS_AUTHENTICATED,
-	SET_LOADING,  SET_REFRESH_TOKEN, SET_REMOVE_FROM_CARTS, SET_TOKEN, SET_USER, SET_PACK, SET_CLIENT, SET_REAL_TIME_ORDERS, SET_STORE_ID,  
+	SET_LOADING,  SET_REFRESH_TOKEN, SET_REMOVE_FROM_CARTS, SET_TOKEN, SET_USER, SET_PACK, SET_CLIENT, SET_REAL_TIME_ORDERS, SET_STORE_ID, SET_REAL_TIME_ORDER,  
 } from "./actions";
 import { ActionTypes, StateType } from "./types";
   
@@ -29,7 +29,10 @@ export const reducer = (state: StateType, action: ActionTypes) => {
 		return { ...state, user: action.payload, };
 
 	case SET_REAL_TIME_ORDERS:
-		return { ...state, realTimeOrders: [ ...state.realTimeOrders ,action.payload], };
+		return { ...state, realTimeOrders:   [...action.payload ], };
+
+	case SET_REAL_TIME_ORDER:
+		return { ...state, realTimeOrder: [ action.payload, ...state.realTimeOrders ], };
 
 	case SET_LOADING:
 		return { ...state, loading: action.payload, };
