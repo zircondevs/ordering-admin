@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Bold, Flex,   } from "../../../../components";
 import { OverFlowScrollBar } from "../../../../components/OverflowContainer/styles";
 
@@ -54,10 +54,23 @@ export const AsideStyle =  styled(Flex)`
  
  
  
+
+
+const SlideIn = ()  => keyframes`
+	0% {
+		opacity: .5;
+		transform: translateX(100%)
+	}
+	100% {
+		transform: translateX(0%);
+		opacity: 1;
+	}
+`;
 export const RecentOrders =  styled(Flex)`
 	border-radius: 8px;
 	padding: 16px;
 	border: 1px solid ${({ theme }) => theme.palette.Black[20]};
+	animation: ${ SlideIn()} 300ms linear ;
 
 `;
  
