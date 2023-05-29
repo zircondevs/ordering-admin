@@ -114,7 +114,6 @@ const Login = () => {
 										nonActiveBgColor="Black.20"
 										borderRadius="8"
 										text={ "Log In" }
-										disabled={!values.email || !values.password}
 										isLoading={loading}
 									/>
 								</Flex>
