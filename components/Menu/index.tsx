@@ -5,7 +5,7 @@ import React  from "react";
 // import Cart from "./cart";
 import { UseContext } from "../../state/provider";
 import Image from "next/image";
-import { AvatarIcon, LogOutIcon } from "../../public/assets/svg";
+import { AvatarIcon, LeftArrowIcon, LogOutIcon } from "../../public/assets/svg";
 import { MakeOnlyFirstLettersCapital } from "../../lib";
 import { useRouter } from "next/router";
 import { useLogout } from "../../hooks/handlers/useLogout";
@@ -46,7 +46,7 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 								<Dropdown
 									type='showmore'
 									weight="300"
-									direction="start"
+									direction="end"
 									colour="Black.default"
 									dropColor="Black.80"
 									dropHovColor="Black.default"
@@ -82,6 +82,7 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 											<Span  weight="600" fontFamily='quicksandSemiBold' lineHeight="24" size="16" colour={"Black.default"} center>
 												{MakeOnlyFirstLettersCapital(user?.clientName || "")}
 											</Span>
+											<LeftArrowIcon  height="15" width="15"/>
 										</ProfileCard>
 									}
 								/>

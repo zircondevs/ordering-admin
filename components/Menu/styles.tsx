@@ -64,6 +64,9 @@ export const ProfileCard =  styled(Flex)`
 	span {
 		margin-right: 16px;
 	}
+	& > svg {
+		transform: rotate(-90deg)
+	}
 `;
 
 export const ProfileDropdownList =  styled(Flex)`
