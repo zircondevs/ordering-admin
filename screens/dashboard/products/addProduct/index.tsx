@@ -14,7 +14,7 @@ import { Form, Formik } from "formik";
 import { GenericObjTypes } from "../../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library";
 import {  LoaderIcon, LongArrowicon } from "../../../../public/assets/svg";
-import { useCreateFood, useUpdateFood } from "../../../../hooks/useFood";
+import { useCreateProduct, useUpdateProduct } from "../../../../hooks/useProduct";
 import { useUploadImage } from "../../../../hooks/imgeUpload";
 import Image from "next/image";
 
@@ -32,7 +32,7 @@ export const AddStoreSchema = Yup.object().shape({
 	name: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("Your full name is required"),
 	category: Yup.string().required("Category is required"),
 	amount: Yup.number().required("Amount is required"),
-	foodImage: Yup.mixed().required("Image is required"),
+	productImage: Yup.mixed().required("Image is required"),
 });
 
 
@@ -41,8 +41,8 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 	const [isAvailable, setIsAvaliable] = useState(true);
 	const { setModal, } = UseContext();
 
-	const { handleCreateFood, loading: creatingFOod} = useCreateFood();
-	const { handleUpdateFood, loading: loading} = useUpdateFood(open?._id);
+	const { handleCreateFood, loading: creatingFOod} = useCreateProduct();
+	const { handleUpdateFood, loading: loading} = useUpdateProduct(open?._id);
 	const { handleImageUpload,  loading: loadingImage } = useUploadImage();
 
 	const closeModal = () => {
@@ -58,7 +58,7 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 	return (
 		<GeneralModalStyle>
 			<Modal
-				show={open?.type === "addFood" || open.type === "editFood"}
+				show={open?.type === "addProduct" || open.type === "editProduct"}
 				handleClose={() => closeModal()}
 				innerRef={modalRef}
 				direction={"right"}
@@ -82,11 +82,11 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 
 					<Flex height="auto"   margin="0 0 70px" direction="column" alignItems="flex-start">
 						<Bold fontFamily='quicksandMedium' weight="400" lineHeight="40" size="36" colour={"Black.default"}>
-							{ open?.type === "addFood"  ? "Add ": "Update "}  Food
+							{ open?.type === "addProduct"  ? "Add ": "Update "}  Product
 						</Bold>
 						<Spacer height="16px"/>
 						<Span fontFamily='quicksand' weight="700" lineHeight="19" size="16" colour={"Black.60"}>
-							{ open?.type === "addFood"  ? " Add a new  ": "Update "} food on the menu
+							{ open?.type === "addProduct"  ? " Add a new  ": "Update "} product on the menu
 						</Span>
 					</Flex>
 
@@ -98,10 +98,10 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 							name: open?.name ||  "" ,
 							category:  open?.category?._id ||  "" ,
 							amount: open?.amount ||  "" ,
-							foodImage: open?.foodImage ||  "" ,
+							productImage: open?.productImage ||  "" ,
 						}} 
 						onSubmit={ async (values , actions) => { 
-							const res = open.type === "addFood" ?
+							const res = open.type === "addProduct" ?
 								await handleCreateFood({...values })
 								: await handleUpdateFood({...values, isAvailable } );
 							if(res?.data) {
@@ -116,10 +116,10 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 								<Form>
 									<Grid gap="32px">	
 										{
-											open.type === "editFood" && 
+											open.type === "editProduct" && 
 											<Flex height="auto" justifyContent="flex-start">
 												<Span fontFamily='quicksand' weight="700" lineHeight="19" size="16" colour={"Black.60"}>
-													Is this food still avaliable?
+													Is this product still avaliable?
 												</Span>
 												<Container width="auto" height="auto" margin="0 0 0 8px ">
 													<Switch 
@@ -133,7 +133,7 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 										}	
 
 										<GeneralInputWrap margin="8px 0 0">
-											<GeneralLabel> Add food Name</GeneralLabel>
+											<GeneralLabel> Add product Name</GeneralLabel>
 											<Input
 												value={values.name}
 												name="name" 
@@ -141,7 +141,7 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 												handleChange={handleChange}
 												borderCol={"Black.20"}
 												activeBorderCol={"Blue.base.default"}
-												placeholder="Enter food name"
+												placeholder="Enter product name"
 												borderRadius="8px"
 											/>
 											<GeneralErrorContainer>
@@ -150,10 +150,10 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 										</GeneralInputWrap>
 
 										{
-											values?.foodImage ?
+											values?.productImage ?
 												<ImageStyles>
 													<Image
-														src={values?.foodImage}
+														src={values?.productImage}
 														alt=""
 														layout="fill"
 														objectFit="contain"
@@ -165,7 +165,7 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 
 										<Container height="auto" justifyContent="flex-start" margin="8px 0 0">
 											<Flex height="auto" justifyContent="flex-start" margin="8px 0 0">
-												<GeneralLabel> Add food Image</GeneralLabel>
+												<GeneralLabel> Add product Image</GeneralLabel>
 												<UploadBtnStyles isLoading={false}>
 													<input type="file"  
 														onChange={ async (e) => {
@@ -174,7 +174,7 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 																const form = new FormData();
 																form.append("image", target.files[0] );
 																const res = await handleImageUpload(form);
-																setFieldValue("foodImage", res?.data);
+																setFieldValue("productImage", res?.data);
 															}
 														}} 
 													/>
@@ -185,7 +185,7 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 												</UploadBtnStyles>
 											</Flex>
 											<GeneralErrorContainer>
-												{errors.foodImage?.toString()}
+												{errors.productImage?.toString()}
 											</GeneralErrorContainer>
 										</Container>
 
@@ -254,7 +254,7 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 											nonActiveBgColor="Black.20"
 											borderRadius="0"
 											isLoading={creatingFOod || loading}
-											text={  open.type === "addFood" ?   "Create Food" : "Update food"}
+											text={  open.type === "addProduct" ?   "Create Food" : "Update product"}
 										/>
 									</Footer>
 								</Form>

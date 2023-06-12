@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 /* eslint-disable max-len */
 
-import { AvatarIcon, DataIcon, HomeIcon, MenuIcon, RiderIcon, SettingsIcon, StoreIcon } from "../public/assets/svg";
+import { AvatarIcon, DataIcon, HomeIcon,   OrderIcon, RiderIcon, SettingsIcon, StoreIcon } from "../public/assets/svg";
 import React from "react";
 
  
@@ -98,9 +98,9 @@ const Constant  = {
 			href: "/dashboard/stores"
 		},
 		{
-			name: "Food Menu",
-			icon: <MenuIcon height="20" width="20"/>,
-			href: "/dashboard/menu"
+			name: "Products",
+			icon: <OrderIcon height="20" width="20"/>,
+			href: "/dashboard/products"
 		},
 		{
 			name: "Settings",

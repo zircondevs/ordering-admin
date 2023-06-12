@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<ErrorBoundary>
 				<ThemeProvider theme={theme}>
 					<Head>
-						<title>Findeet home</title>
+						<title>OTHA</title>
 						<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 						<meta name="description" 
 							content={`A school management system that provides 100% 

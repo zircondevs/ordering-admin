@@ -6,13 +6,13 @@ import {     AddBtn, BtnsStyles, Container1, FoodStyles, HeaderSTyles, Main,   }
 import { formatAMPM, formatNumber, formateDate,   } from "../../../lib";
 // import Search from "../../../components/Search";
 import { GeneralCountStyles, GeneralTableStyle } from "../../../components/styles";
-import {   EditIcon, LoaderIcon, PlateIcon,  } from "../../../public/assets/svg";
+import {   EditIcon, LoaderIcon, OrderIcon,    } from "../../../public/assets/svg";
 import Image from "next/image";
 import { GenericObjTypes } from "../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library";
 import AddCategory from "./addCategory";
-import AddFood from "./addFood";
-import { useGetAllFood } from "../../../hooks/useFood";
+import AddProduct from "./addProduct";
+import { useGetAllProducts } from "../../../hooks/useProduct";
 import { Checkbox } from "../../../components/CheckMark";
 import { useGetCategories } from "../../../hooks/useCategory";
 
@@ -22,7 +22,7 @@ import { useGetCategories } from "../../../hooks/useCategory";
 
 const FoodMenu = () => {
 
-	const { menu, loading: loadingmenu , mutate} = useGetAllFood();
+	const { menu, loading: loadingmenu , mutate} = useGetAllProducts();
 	const { categories,  mutate:mutateCategory } = useGetCategories();
 
 
@@ -37,39 +37,34 @@ const FoodMenu = () => {
 	};
  
 	const tableHead = [ "Food", "category", "Date","Time", "Amount", "Avaliability", "Action"];
-	const tableBody = menu?.data?.map((food: GenericObjTypes) => (
+	const tableBody = menu?.data?.map((product: GenericObjTypes) => (
 		{
 			name: (
 				<Flex width="auto" justifyContent="flex-start">
 					<FoodStyles >
 						{
-							food?.foodImage ?
-								<Image
-									src={food?.foodImage}
-									alt="Logo"
-									objectFit="contain"
-									layout="fill"
-								/> 
+							product?.productImage ?
+								<Image src={product?.productImage} alt="Logo" objectFit="contain" layout="fill" /> 
 								:
-								<PlateIcon height="40" width="40"/>
+								<OrderIcon height="40" width="40"/>
 						}
 					</FoodStyles>
 					<Bold fontFamily='quicksand' weight="700" lineHeight="19" size="12" colour={"Grey.1"}>
-						{food?.name}
+						{product?.name}
 					</Bold>
 				</Flex>
 			),
-			category: food?.category?.name,
-			date: `${formateDate(new Date(food?.createdAt)).date} ${formateDate(new Date(food?.createdAt)).shortMonth}, ${formateDate(new Date(food?.createdAt)).year}` ,
-			time: `${formatAMPM(new Date(food?.createdAt))}`,
-			amount: "₦" + formatNumber(food?.amount),
-			isAvailable: <Checkbox checked={food?.isAvailable} type="radio" />,
+			category: product?.category?.name,
+			date: `${formateDate(new Date(product?.createdAt)).date} ${formateDate(new Date(product?.createdAt)).shortMonth}, ${formateDate(new Date(product?.createdAt)).year}` ,
+			time: `${formatAMPM(new Date(product?.createdAt))}`,
+			amount: "₦" + formatNumber(product?.amount),
+			isAvailable: <Checkbox checked={product?.isAvailable} type="radio" />,
 			action: (
 				<Flex justifyContent="flex-start">
 					{/* <Flex width="auto" height="auto" margin="0 8px 0 0" as="button">
 						<TrashIcon colour="Error.default" height="20" width="20"/>
 					</Flex> */}
-					<Flex width="auto" height="auto" as="button" onClick={() => openModal({type: "editFood", ...food})}>
+					<Flex width="auto" height="auto" as="button" onClick={() => openModal({type: "editProduct", ...product})}>
 						<EditIcon colour="Grey.2" height="20" width="20"/>
 					</Flex>
 				</Flex>
@@ -84,7 +79,7 @@ const FoodMenu = () => {
 
 			<HeaderSTyles height="auto" justifyContent="space-between">
 				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="28" size="24" colour={"Black.80"}>
-					Menu
+					Product
 				</Bold>
 
 				<BtnsStyles width="auto">
@@ -106,9 +101,9 @@ const FoodMenu = () => {
 							)}
 							data={ [
 								{
-									displayedValue: "Add New Food", 
-									returnedValue: "addFood",
-									dropdownValue: "Add New Food",
+									displayedValue: "Add New Product", 
+									returnedValue: "addProduct",
+									dropdownValue: "Add New Product",
 								},
 								{
 									displayedValue: "Add Category", 
@@ -129,7 +124,7 @@ const FoodMenu = () => {
 							<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 								<div>
 									<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Black.80"}>
-										All Food
+										All Products
 									</Bold>
 									<GeneralCountStyles>
 										<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Black.80"}>
@@ -156,7 +151,7 @@ const FoodMenu = () => {
 						:
 						<Flex margin="40px 0">
 							<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Black.80"}>
-								There is no food records here yet!.
+								There is no product records here yet!.
 							</Span>
 						</Flex>
 
@@ -164,7 +159,7 @@ const FoodMenu = () => {
  
 		
 			<AddCategory   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={ mutateCategory}  />
-			<AddFood   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={mutate}  categories={categories}/>
+			<AddProduct   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={mutate}  categories={categories}/>
 		</Main>
 	);
 };
