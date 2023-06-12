@@ -61,7 +61,7 @@ const AllOrders = () => {
 						<Grid gap='24px' className="all-orders">
 							{
 								realTimeOrders?.map((order, id) => (
-									<RecentOrders key={id} justifyContent="space-between">
+									<RecentOrders key={id} justifyContent="space-between" index={id}>
 										<div>
 											<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
 												Order ID

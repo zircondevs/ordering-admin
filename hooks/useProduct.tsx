@@ -4,7 +4,7 @@
  
 
 import { useState } from "react";
-import {  FOOD_URL,   } from "../constants/urls";
+import {   PRODUCT_URL,   } from "../constants/urls";
 import {   useAxiosHandler, useGetCachedAxiosHandler,   } from "./useAxiosHandler";
 import { UseContext } from "../state/provider";
 
@@ -15,7 +15,7 @@ import { UseContext } from "../state/provider";
  
 
 
-export const useCreateFood  = () => {
+export const useCreateProduct  = () => {
 	const { postAxiosHandler } = useAxiosHandler();
 	const [loading, setLoading] = useState(false);
 	const { state: { storeId }} = UseContext();
@@ -23,7 +23,7 @@ export const useCreateFood  = () => {
 	const handleCreateFood = async (DATA: object) => {
 		setLoading(true);
 		const { data } = await  postAxiosHandler ({
-			url: `${FOOD_URL}/${storeId}`,
+			url: `${PRODUCT_URL}/${storeId}`,
 			DATA,
 			successMessage: "Food created successfully"
 		});
@@ -38,14 +38,14 @@ export const useCreateFood  = () => {
  
 
 
-export const useUpdateFood  = (foodId: string) => {
+export const useUpdateProduct  = (productId: string) => {
 	const { patchAxiosHandler } = useAxiosHandler();
 	const [loading, setLoading] = useState(false);
 	
 	const handleUpdateFood = async (DATA: object) => {
 		setLoading(true);
 		const { data } = await  patchAxiosHandler ({
-			url: `${FOOD_URL}/${foodId}`,
+			url: `${PRODUCT_URL}/${productId}`,
 			DATA,
 			successMessage: "Food updated successfully"
 		});
@@ -59,14 +59,14 @@ export const useUpdateFood  = (foodId: string) => {
 };
 
 
-export const useGetAllFood  = () => {
+export const useGetAllProducts  = () => {
 	const { state: { storeId }} = UseContext();
 	const [pageInfo, setPageInfo] = useState({
 		page: 1,
 		limit: 10
 	});
 	const { data , loading, mutate} = useGetCachedAxiosHandler ({
-		url: `${FOOD_URL}/all/${storeId}?page=${pageInfo.page}&limit=${pageInfo.limit}`,
+		url: `${PRODUCT_URL}/all/${storeId}?page=${pageInfo.page}&limit=${pageInfo.limit}`,
 		notify: false,
 		requiredVariable:storeId?.length > 0
 	});
