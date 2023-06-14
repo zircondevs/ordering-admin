@@ -57,7 +57,7 @@ const AccountInfo = () => {
 	return (
 		<Main>
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='40px 0 40px'>
-				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="24" size="18" colour={"Black.80"}>
+				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
 					Update Information
 				</Bold>
 			</HeaderSTyles>

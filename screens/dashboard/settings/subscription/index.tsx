@@ -33,7 +33,7 @@ const Subscription = () => {
 	return (
 		<Main>
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='40px 0 40px'>
-				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="24" size="18" colour={"Black.80"}>
+				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
 					Update Security Information
 				</Bold>
 			</HeaderSTyles>
@@ -71,7 +71,7 @@ const Subscription = () => {
 									plan.benefits.map((benefit, idx) => (
 										<List key={idx} justifyContent="flex-start">
 											<Checkbox  type="radio" checked={true}/>
-											<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={"Black.80"}>
+											<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={"Grey.2"}>
 												{benefit}
 											</Span>
 										</List>

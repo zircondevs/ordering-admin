@@ -29,7 +29,7 @@ const Positions = () => {
 	return (
 		<Main>
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='40px 0 40px'>
-				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="24" size="18" colour={"Black.80"}>
+				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
 					Available Roles
 				</Bold>
 			</HeaderSTyles>
@@ -42,7 +42,7 @@ const Positions = () => {
 						<Table
 							gap={"0"}
 							headBgColor="common.transparent"
-							bodyColor="Black.80"
+							bodyColor="Grey.2"
 							headColor="Black.60"
 							tableHead={tableHead}
 							tableBodys={tableBody}

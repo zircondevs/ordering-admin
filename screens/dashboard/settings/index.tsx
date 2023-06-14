@@ -46,7 +46,7 @@ const Settings = () => {
 
 		
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='64px 0 40px'>
-				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="28" size="24" colour={"Black.80"}>
+				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Settings
 				</Bold>
 			</HeaderSTyles>

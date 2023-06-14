@@ -69,9 +69,9 @@ const SlideIn = ()  => keyframes`
 export const RecentOrders =  styled(Flex)<{index: number}>`
 	border-radius: 8px;
 	padding: 16px;
+	opacity: 0;
 	border: 1px solid ${({ theme }) => theme.palette.Black[20]};
-	animation: ${ SlideIn()} 300ms ${({index}) => index* 110}ms linear ;
-
+	animation: ${ SlideIn()} 300ms ${({index}) => index* 110}ms linear forwards;
 `;
  
  

@@ -5,11 +5,9 @@
 import React, {   useState }  from "react";
 import {   Footer,  } from "./styles";
 import { Bold, Dropdown, Flex, Grid, Input,     Modal,    Span,   } from "../../../../components";
-import { UseContext } from "../../../../state/provider";
 import { Spacer } from "../../../../components/Spacer";
 import CustomButton from "../../../../components/Button";
 import  { TERTIARY_COLOR, WHITE_COLOR } from "../../../../hooks/colors";
-import Constant from "../../../../constants";
 import { GeneralErrorContainer, GeneralInputWrap, GeneralLabel, GeneralModalHeader, GeneralModalStyle, GeneralSelectField, ModalSpacer } from "../../../../components/styles";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
@@ -53,15 +51,13 @@ export const AddStoreSchema = Yup.object().shape({
 const AddStore = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 	const [dialCode, setDialCode] = useState("+234");
 
-	const { setModal, } = UseContext();
+
 	const { handleCreateStore, loading } = useCreateStore();
 	const { handleEditStore, loading: loadingEdit } = useEditStore(open?.store?._id);
-	
 	
 	const closeModal = () => {
 		setOpen({type: ""});
 		modalRef?.current?.addBodyScroll();
-		setModal("");
 		onDOne();
 	};
  
@@ -93,7 +89,7 @@ const AddStore = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 			>
 
 				<GeneralModalHeader>
-					<button onClick={() => setModal(Constant.modal.createAccount)}>
+					<button onClick={() => closeModal()}>
 						<Flex height="auto" justifyContent="flex-start">
 							<LongArrowicon width="20" height="20"/>
 							<Span fontFamily='quicksand' weight="700" lineHeight="16" size="14" colour={"Black.default"}>
@@ -185,10 +181,10 @@ const AddStore = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 											<GeneralSelectField>
 												<Dropdown
 													weight='600'
-													colour='Black.80'
+													colour='Grey.2'
 													hovBgColor='Black.10'
-													dropHovColor='Black.80'
-													dropColor='Black.80'
+													dropHovColor='Grey.2'
+													dropColor='Grey.2'
 													direction='end'
 													searchField={true}
 													clearSelected
@@ -215,10 +211,10 @@ const AddStore = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 													<GeneralSelectField>
 														<Dropdown
 															weight='600'
-															colour='Black.80'
+															colour='Grey.2'
 															hovBgColor='Black.10'
-															dropHovColor='Black.80'
-															dropColor='Black.80'
+															dropHovColor='Grey.2'
+															dropColor='Grey.2'
 															direction='end'
 															searchField={true}
 															clearSelected
@@ -260,7 +256,7 @@ const AddStore = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 														weight="300"
 														direction="start"
 														colour="Black.default"
-														dropColor="Black.80"
+														dropColor="Grey.2"
 														dropHovColor="Black.default"
 														hovBgColor="Black.20"
 														clearSelected

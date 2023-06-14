@@ -3,11 +3,9 @@
 import React, { useState }   from "react";
 import {   Footer, ImageStyles, UploadBtnStyles,  } from "./styles";
 import { Bold,  Container,  Dropdown,  Flex, Grid, Input, Modal, Span, Switch,   } from "../../../../components";
-import { UseContext } from "../../../../state/provider";
 import { Spacer } from "../../../../components/Spacer";
 import CustomButton from "../../../../components/Button";
 import  { TERTIARY_COLOR, WHITE_COLOR } from "../../../../hooks/colors";
-import Constant from "../../../../constants";
 import { GeneralErrorContainer, GeneralInputWrap, GeneralLabel, GeneralModalHeader, GeneralModalStyle, GeneralSelectField, ModalSpacer } from "../../../../components/styles";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
@@ -39,7 +37,7 @@ export const AddStoreSchema = Yup.object().shape({
 
 const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => {
 	const [isAvailable, setIsAvaliable] = useState(true);
-	const { setModal, } = UseContext();
+ 
 
 	const { handleCreateFood, loading: creatingFOod} = useCreateProduct();
 	const { handleUpdateFood, loading: loading} = useUpdateProduct(open?._id);
@@ -48,7 +46,6 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 	const closeModal = () => {
 		setOpen({type: ""});
 		modalRef?.current?.addBodyScroll();
-		setModal("");
 		onDOne();
 	};
 
@@ -67,7 +64,7 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 				noHeader
 			>
 				<GeneralModalHeader>
-					<button onClick={() => setModal(Constant.modal.createAccount)}>
+					<button onClick={() =>closeModal()}>
 						<Flex height="auto" justifyContent="flex-start">
 							<LongArrowicon width="20" height="20"/>
 							<Span fontFamily='quicksand' weight="700" lineHeight="16" size="14" colour={"Black.default"}>
@@ -214,10 +211,10 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 											<GeneralSelectField>
 												<Dropdown
 													weight='600'
-													colour='Black.80'
+													colour='Grey.2'
 													hovBgColor='Black.10'
-													dropHovColor='Black.80'
-													dropColor='Black.80'
+													dropHovColor='Grey.2'
+													dropColor='Grey.2'
 													direction='end'
 													clearSelected={true}
 													initial={open?.category?.name}

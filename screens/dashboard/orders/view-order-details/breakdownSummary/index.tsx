@@ -59,15 +59,15 @@ const BreakdownSummary = ({  order}:any) => {
 							</Flex>
 							<Spacer height="10px"/>
 							<Grid gap="10px">
-								{item?.map((food: any, idx: number) => (
+								{item?.map((product: any, idx: number) => (
 									<Flex key={idx} justifyContent="space-between" height="auto"  width="auto">
 										<div>
 											<Span  fontFamily='quicksand' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
-												{MakeOnlyFirstLettersCapital(food?.food?.name)}  
+												{MakeOnlyFirstLettersCapital(product?.food?.name)}  
 											</Span>
 										</div>
 										<Span  fontFamily='quicksand' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
-											{food?.quantity}   
+											{product?.quantity}   
 										</Span>
 									</Flex>
 								))}

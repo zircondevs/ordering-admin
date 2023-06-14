@@ -2,11 +2,9 @@
 import React   from "react";
 import {   Footer,  } from "./styles";
 import { Bold,  Flex, Grid, Input,     Modal,    Span,   } from "../../../../components";
-import { UseContext } from "../../../../state/provider";
 import { Spacer } from "../../../../components/Spacer";
 import CustomButton from "../../../../components/Button";
 import  { TERTIARY_COLOR, WHITE_COLOR } from "../../../../hooks/colors";
-import Constant from "../../../../constants";
 import { GeneralErrorContainer, GeneralInputWrap, GeneralLabel, GeneralModalHeader, GeneralModalStyle, ModalSpacer } from "../../../../components/styles";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
@@ -30,14 +28,12 @@ export const AddStoreSchema = Yup.object().shape({
 
 const AddCategory = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 
-	const { setModal, } = UseContext();
 	const { handleCreateCategory, loading } = useCreateCategory();
 	
 	
 	const closeModal = () => {
 		setOpen({type: ""});
 		modalRef?.current?.addBodyScroll();
-		setModal("");
 		onDOne();
 	};
    
@@ -53,7 +49,7 @@ const AddCategory = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 			>
 
 				<GeneralModalHeader>
-					<button onClick={() => setModal(Constant.modal.createAccount)}>
+					<button onClick={() => closeModal()}>
 						<Flex height="auto" justifyContent="flex-start">
 							<LongArrowicon width="20" height="20"/>
 							<Span fontFamily='quicksand' weight="700" lineHeight="16" size="14" colour={"Black.default"}>

@@ -30,12 +30,11 @@ const Overview = () => {
 
 	
 
-	
-	const tableProps = {singleOrder, setSingleOrder, modalRef };
+	const tableProps = {singleOrder, setSingleOrder, modalRef,  };
 	const tabData = [
 		{
 			head: <TabLabel title="In Progress" count={processingOrders?.count} />,
-			body:  <OrdersTable  {...{...more1}} {...tableProps}orders={processingOrders}  title="Orders In Progress " />,
+			body:  <OrdersTable  {...{...more1 }} {...tableProps} orders={processingOrders}  title="Orders In Progress " />,
 			key: "PROCESSING"
 		},
 		{
@@ -63,7 +62,7 @@ const Overview = () => {
 	return (
 		<Main> 
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='64px 0 40px'>
-				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="28" size="24" colour={"Black.80"}>
+				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Orders
 				</Bold>
 			</HeaderSTyles>
@@ -98,7 +97,7 @@ const TabLabel =({title, count}: { title: string, count: number}) => {
 		<Flex width="auto" wrap="nowrap">
 			{title}
 			<GeneralCountStyles>
-				<Span fontFamily='quicksand' weight="700" lineHeight="14" size="12" colour={"Black.80"}>
+				<Span fontFamily='quicksand' weight="700" lineHeight="14" size="12" colour={"Grey.2"}>
 					{  count || 0}
 				</Span>
 			</GeneralCountStyles>
