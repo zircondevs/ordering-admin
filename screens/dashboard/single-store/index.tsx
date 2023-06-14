@@ -83,7 +83,7 @@ const Stores = () => {
 
 			<HeaderSTyles height="auto" justifyContent="space-between">
 				<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
-					Store Name: {store?.name || <ThreeDotsLoaderIcon height="15" width="20"/>}
+					{store?.name || <ThreeDotsLoaderIcon height="15" width="20"/>}
 				</Bold>
 
 				<Spacer height="40px"/>

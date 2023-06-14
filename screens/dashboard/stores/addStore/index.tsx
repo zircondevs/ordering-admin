@@ -104,7 +104,7 @@ const AddStore = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 
 					<Flex height="auto"   margin="0 0 70px" direction="column" alignItems="flex-start">
 						<Bold fontFamily='quicksandMedium' weight="400" lineHeight="40" size="36" colour={"Black.default"}>
-							Add Store
+							{open?.type === "add" ? "Add" : "Edit"} Store
 						</Bold>
 						<Spacer height="16px"/>
 						<Span fontFamily='quicksand' weight="700" lineHeight="19" size="16" colour={"Black.60"}>
@@ -291,7 +291,7 @@ const AddStore = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 											nonActiveBgColor="Black.20"
 											borderRadius="0"
 											isLoading={loading || loadingEdit}
-											text={ open?.type === "edit" ? "Edit Store" : "Create Store" }
+											text={ open?.type === "edit" ? "Update Store" : "Create Store" }
 										/>
 									</Footer>
 								</Form>

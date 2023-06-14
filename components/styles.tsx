@@ -41,6 +41,7 @@ export const GeneralModalStyle = styled("div")`
 export const GeneralTabStyle =  styled("div")`
     & > div > ol {
 		/* border: none; */
+		margin: 0;
 		& > li {
 			font-size: ${({ theme }) => theme?.fontSizes["12"] };
 			line-height: ${({ theme }) => theme?.typography.lineHeight["18"] };

@@ -9,7 +9,7 @@ import {   Flex,   } from "../../../../components";
  
 export const ProgressCardStyles =  styled(Flex)`
 	height: auto;
-	background-color:  ${({ theme }) => theme.palette.Orange[0]};
+	background-color:  ${({ theme }) => theme.palette.Yellow[0]};
 	padding: 22px 35px;
 	border-radius: 16px;
 `;
@@ -39,4 +39,4 @@ export const AccordionBodyStyles =  styled(Flex)<{visible: boolean}>`
 		}
 	}
 `;
- 
+  

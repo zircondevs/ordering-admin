@@ -7,7 +7,6 @@ import { PRIMARY_COLOR } from "../../../hooks/colors";
  
 export const Main =  styled("div")`
 	width: 100%;
-	min-height: calc(100vh - 70px);
 `;
  
  
