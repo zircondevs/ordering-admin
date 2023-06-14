@@ -38,7 +38,7 @@ const Transactions = () => {
 		<Main>
 
 			<HeaderSTyles height="auto" justifyContent="space-between">
-				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="28" size="24" colour={"Black.80"}>
+				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Transactions
 				</Bold>
 			</HeaderSTyles>
@@ -53,11 +53,11 @@ const Transactions = () => {
 						<Container1>
 							<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 								<div>
-									<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Black.80"}>
+									<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 										All Transactions
 									</Bold>
 									<GeneralCountStyles>
-										<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Black.80"}>
+										<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 											{transactions?.count}
 										</Bold>
 									</GeneralCountStyles>
@@ -73,7 +73,7 @@ const Transactions = () => {
 								<Table 
 									gap={"0"}
 									headBgColor="common.transparent"
-									bodyColor="Black.80"
+									bodyColor="Grey.2"
 									headColor="Black.60"
 									tableHead={tableHead}
 									tableBodys={tableBody}
@@ -91,7 +91,7 @@ const Transactions = () => {
 						: 
 						<Flex margin="40px 0" height="auto" direction="column">
 							<EmptyIcon />
-							<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Black.80"}>
+							<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								There are no transaction record here yet!.
 							</Span>
 						</Flex>

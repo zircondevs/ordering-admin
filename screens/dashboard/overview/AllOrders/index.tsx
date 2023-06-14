@@ -29,7 +29,7 @@ const AllOrders = () => {
 		
 		<Aside >
 			<AsideStyle height="auto" justifyContent="space-between">
-				<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="20" colour={"Black.80"}>
+				<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="20" colour={"Grey.2"}>
 					New Order Requests
 				</Bold>
 

@@ -43,7 +43,7 @@ const ViewOrderDetails = ({	setSingleOrder, singleOrder ,modalRef,  } : PropType
  
 
 	return (
-		<ModalStyle>
+		<ModalStyle >
 			<Modal
 				show={singleOrder?._id?.length > 0}
 				handleClose={() => closeModal()}

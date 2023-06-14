@@ -2,7 +2,7 @@
 
 import React  from "react";
 import { Bold,   Flex,   Span, Table,  } from "../../../../components";
-import {     Card,  Cards,  Icon,        OverviewStyles,    } from "./styles";
+import {     Card,  Cards,  Icon,          } from "./styles";
 import { Spacer } from "../../../../components/Spacer";
 import { DataIcon, EmptyIcon, LoaderIcon, RiderIcon, StoreIcon } from "../../../../public/assets/svg";
 import { formatAMPM, formatNumber, formateDate, naira } from "../../../../lib";
@@ -35,17 +35,17 @@ const WalletSection = ( ) => {
 		{
 			name: "Total Amount",
 			amount: naira + formatNumber(dashboard?.wallet?.balance),
-			icon: <DataIcon height="20" width="20"/>
+			icon: <DataIcon height="20" width="20" colour="Orange.default"/>
 		},
 		{
 			name: "Total Orders",
 			amount: formatNumber(dashboard?.totalOrders),
-			icon: <RiderIcon height="20" width="20"/>
+			icon: <RiderIcon height="20" width="20" colour="Yellow.default"/>
 		},
 		{
 			name: "Total Stores",
 			amount:  formatNumber(dashboard?.store),
-			icon: <StoreIcon height="20" width="20"/>
+			icon: <StoreIcon height="20" width="20" colour="Blue.default"/>
 		},
 	];
 
@@ -54,7 +54,6 @@ const WalletSection = ( ) => {
 		failed:  ["Error.20", "Error.default" ],
 		success: ["Success.20", "Success.default" ],
 	};
-
 
 	const tableHead = ["Date","Time", "Amount", "Status"];
 	const tableBody = transactions?.data?.map((transaction: GenericObjTypes) => (
@@ -73,26 +72,26 @@ const WalletSection = ( ) => {
 
 	return (
 
-		<OverviewStyles>
+		<>
 			<Spacer height="64px"/>
 			<Flex height="auto" justifyContent="space-between">
-				<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={"Black.80"}>
+				<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Overview
 				</Bold>
 
 			</Flex>
-			<Spacer height="64px"/>
+			<Spacer height="24px"/>
 			<Cards columns="250px repeat(auto-fit, minmax(180px, 1fr))" gap="24px" justifyContent="flex-start">
 				{
 					data.map((item, idx) => (
 						<Card key={item.name} active={idx === 0}>
-							<Icon active={idx === 0}>{item.icon}</Icon>
+							<Icon className="icon">{item.icon}</Icon>
 							<div>
-								<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={idx === 0 ? "common.white" : "Black.80"}>
+								<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
 									{(item.amount)}
 								</Bold>
 								<Spacer height="16px"/>
-								<Span fontFamily='quicksand' weight="400" lineHeight="19" size="16" colour={ idx === 0 ? "common.white" : "Black.80"}>
+								<Span fontFamily='quicksand' weight="400" lineHeight="19" size="16" colour={  "Grey.2"}>
 									{item.name}
 								</Span>
 							</div>
@@ -101,7 +100,7 @@ const WalletSection = ( ) => {
 				}
 			</Cards>
 
-			<Spacer height="24px"/>
+			<Spacer height="40px"/>
 
 
 			{
@@ -112,7 +111,7 @@ const WalletSection = ( ) => {
 
 						<GeneralTableStyle height="auto" justifyContent="flex-start">
 							<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
-								<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={ "Black.80"}>
+								<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
 									Recent {tableBody?.length} Transactions
 								</Bold>
 
@@ -130,7 +129,7 @@ const WalletSection = ( ) => {
 							<Table 
 								gap={"0"}
 								headBgColor="common.transparent"
-								bodyColor="Black.80"
+								bodyColor="Grey.2"
 								headColor="Black.60"
 								tableHead={tableHead}
 								tableBodys={tableBody}
@@ -139,12 +138,12 @@ const WalletSection = ( ) => {
 						:	
 						<Flex margin="40px 0" height="auto" direction="column">
 							<EmptyIcon />
-							<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Black.80"}>
+							<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								There are no transaction record here yet!.
 							</Span>
 						</Flex>
 			}
-		</OverviewStyles>
+		</>
 
 
 	);

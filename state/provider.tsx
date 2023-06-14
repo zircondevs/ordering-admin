@@ -1,10 +1,9 @@
 
 import React, { createContext, useReducer} from "react";
 import { 
-	SET_ADD_TO_CARTS,
-	SET_MODAL,
+ 
 	SET_IS_AUTHENTICATED, SET_LOADING, 
-	SET_REFRESH_TOKEN, SET_REMOVE_FROM_CARTS, SET_TOKEN, SET_USER, SET_PACK, SET_CLIENT, SET_REAL_TIME_ORDERS, SET_STORE_ID, SET_REAL_TIME_ORDER 
+	SET_REFRESH_TOKEN,   SET_TOKEN, SET_USER, SET_CLIENT, SET_REAL_TIME_ORDERS, SET_STORE_ID, SET_REAL_TIME_ORDER 
 } from "./actions";
 import { reducer } from "./reducer";
 import { ContestTypes, StateType } from "./types";
@@ -21,9 +20,6 @@ const initialState: StateType = {
 	isAuthenticated: false,
 	user: {},
 	loading: true,
-	carts: [],
-	pack: 0,
-	modal: "",
 	client: {},
 	realTimeOrders: [],
 	storeId: ""
@@ -40,10 +36,6 @@ export function ProviderContext({ children }: any ) {
 	const setIsAuthenticated = (payload: boolean) => dispatch({ type: SET_IS_AUTHENTICATED, payload }); 
 	const setUser = (payload:  {  [key: string]: any }) => dispatch({ type: SET_USER, payload }); 
 	const setLoading = (payload:  boolean ) => dispatch({ type: SET_LOADING, payload }); 
-	const setAddToCarts = (payload:  {pack: number, cart: GenericObjTypes} ) => dispatch({ type: SET_ADD_TO_CARTS, payload }); 
-	const setRemoveFromCarts = (payload:  {pack: number, cart: GenericObjTypes}) => dispatch({ type: SET_REMOVE_FROM_CARTS, payload }); 
-	const setModal = (payload:  string) => dispatch({ type: SET_MODAL, payload }); 
-	const setPack = (payload:  number) => dispatch({ type: SET_PACK, payload }); 
 	const setClient = (payload:  GenericObjTypes) => dispatch({ type: SET_CLIENT, payload }); 
 	const setRealTimeOrder = (payload:  GenericObjTypes) => dispatch({ type: SET_REAL_TIME_ORDER, payload }); 
 	const setRealTimeOrders = (payload:  GenericObjTypes[]) => dispatch({ type: SET_REAL_TIME_ORDERS, payload }); 
@@ -59,10 +51,6 @@ export function ProviderContext({ children }: any ) {
 				setIsAuthenticated,
 				setUser,
 				setLoading,
-				setAddToCarts,
-				setRemoveFromCarts,
-				setModal,
-				setPack,
 				setClient,
 				setRealTimeOrder,
 				setStoreId,

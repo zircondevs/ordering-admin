@@ -64,20 +64,25 @@ const Stores = () => {
 			value: store?.state || "N/A"
 		}, 
 		{
+			title: "Local Govt Area",
+			value: store?.localGovernmentArea || "N/A"
+		},
+		{
 			title: "Date Created",
-			value:  new Date(store?.createdAt).toLocaleString() 
+			value:  store?.createdAt ? new Date(store?.createdAt).toLocaleString() : "N/A"
 		}, 
 		{
 			title: "Customer care line",
 			value: store?.customerCareLine || "N/A"
 		}
+		
 	];
 
 	return (
 		<Main>
 
 			<HeaderSTyles height="auto" justifyContent="space-between">
-				<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={ "Black.80"}>
+				<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
 					Store Name: {store?.name || <ThreeDotsLoaderIcon height="15" width="20"/>}
 				</Bold>
 
@@ -88,7 +93,7 @@ const Stores = () => {
 				<Spacer height="32px"/>
 
 
-				<Grid gap="24px" columns="repeat(auto-fit, minmax(200px, 250px))" >
+				<Grid gap="24px" columns="repeat(auto-fit, minmax(200px, 1fr))" >
 					{
 						details.map((detail, idx) => (
 							<Container key={idx} justifyContent="space-between" wrap="nowrap">
@@ -118,7 +123,7 @@ const Stores = () => {
 							All Transactions
 						</Bold>
 						<GeneralCountStyles>
-							<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Black.80"}>
+							<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								{transactions?.count || 0}
 							</Bold>
 						</GeneralCountStyles>
@@ -137,7 +142,7 @@ const Stores = () => {
 								<Table
 									gap={"0"}
 									headBgColor="common.transparent"
-									bodyColor="Black.80"
+									bodyColor="Grey.2"
 									headColor="Black.60"
 									tableHead={tableHead}
 									tableBodys={tableBody}
@@ -152,7 +157,7 @@ const Stores = () => {
 							</GeneralTableStyle>
 							: <Flex margin="40px 0" height="auto" direction="column">
 								<EmptyIcon />
-								<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Black.80"}>
+								<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 									There are no transaction record here yet!.
 								</Span>
 							</Flex>

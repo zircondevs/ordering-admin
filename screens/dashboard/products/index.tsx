@@ -78,7 +78,7 @@ const FoodMenu = () => {
 
 
 			<HeaderSTyles height="auto" justifyContent="space-between">
-				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="28" size="24" colour={"Black.80"}>
+				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Product
 				</Bold>
 
@@ -88,7 +88,7 @@ const FoodMenu = () => {
 							weight="300"
 							direction="end"
 							colour="common.white"
-							dropColor="Black.80"
+							dropColor="Grey.2"
 							dropHovColor="Black.default"
 							hovBgColor="Black.20"
 							searchField={false}
@@ -123,11 +123,11 @@ const FoodMenu = () => {
 						<Container1>
 							<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 								<div>
-									<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Black.80"}>
+									<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 										All Products
 									</Bold>
 									<GeneralCountStyles>
-										<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Black.80"}>
+										<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 											{menu?.count}
 										</Bold>
 									</GeneralCountStyles>
@@ -141,7 +141,7 @@ const FoodMenu = () => {
 								<Table 
 									gap={"0"}
 									headBgColor="common.transparent"
-									bodyColor="Black.80"
+									bodyColor="Grey.2"
 									headColor="Black.60"
 									tableHead={tableHead}
 									tableBodys={tableBody}
@@ -150,7 +150,7 @@ const FoodMenu = () => {
 						</Container1>
 						:
 						<Flex margin="40px 0">
-							<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Black.80"}>
+							<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								There is no product records here yet!.
 							</Span>
 						</Flex>

@@ -50,7 +50,7 @@ const Oops = ({ errorMessage, click, icon, title, btnText, loading = false}: Pro
 				errorMessage ?
 					typeof(errorMessage) === "string" ?
 						<Paragraph 
-							colour={"Black.80"} size="14" lineHeight="21" 
+							colour={"Grey.2"} size="14" lineHeight="21" 
 							weight="fontWeightNormal" fontFamily="sagoe" center
 						>
 							{errorMessage}

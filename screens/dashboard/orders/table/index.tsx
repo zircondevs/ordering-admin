@@ -58,7 +58,7 @@ const OrdersTable = ({orders, loading, title, setSingleOrder, modalRef, pageInfo
 						:
 						<>
 							<SearchSection justifyContent="space-between" margin="0 0 24px" height="auto">
-								<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Black.80"}>
+								<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 									{title}
 								</Bold>
 
@@ -72,7 +72,7 @@ const OrdersTable = ({orders, loading, title, setSingleOrder, modalRef, pageInfo
 											<Table
 												gap={"0"}
 												headBgColor="common.transparent"
-												bodyColor="Black.80"
+												bodyColor="Grey.2"
 												headColor="Black.60"
 												tableHead={tableHead}
 												tableBodys={tableBody}
@@ -89,7 +89,7 @@ const OrdersTable = ({orders, loading, title, setSingleOrder, modalRef, pageInfo
 									: 
 									<Flex margin="50px 0" direction="column">
 										<EmptyIcon />
-										<Span fontFamily='quicksand' weight="700" lineHeight="14" size="12" colour={"Black.80"}>
+										<Span fontFamily='quicksand' weight="700" lineHeight="14" size="12" colour={"Grey.2"}>
 											There is no data here at the moment!
 										</Span>
 									</Flex>

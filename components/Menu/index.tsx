@@ -48,7 +48,7 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 									weight="300"
 									direction="end"
 									colour="Black.default"
-									dropColor="Black.80"
+									dropColor="Grey.2"
 									dropHovColor="Black.default"
 									hovBgColor="Black.20"
 									searchField={false}

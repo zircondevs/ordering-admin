@@ -26,6 +26,8 @@ const Stores = () => {
 		modalRef.current && modalRef.current.preventBodyScroll();
 	};
 
+
+	
  
  
 
@@ -33,7 +35,7 @@ const Stores = () => {
 		<Main>
 
 			<HeaderSTyles height="auto" justifyContent="space-between">
-				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="28" size="24" colour={"Black.80"}>
+				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Stores
 				</Bold>
 				<CustomButton
@@ -53,11 +55,11 @@ const Stores = () => {
 			<Container1>
 				<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 					<div>
-						<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Black.80"}>
+						<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 							All Stores
 						</Bold>
 						<GeneralCountStyles>
-							<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Black.80"}>
+							<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								{stores?.count || 0}
 							</Bold>
 						</GeneralCountStyles>
@@ -81,7 +83,7 @@ const Stores = () => {
 													{store?.address}
 												</Span>
 												<br />
-												<Bold fontFamily='quicksand' weight="&00" lineHeight="24" size="18" colour={ "Black.80"}>
+												<Bold fontFamily='quicksand' weight="&00" lineHeight="24" size="18" colour={ "Grey.2"}>
 													{store?.name}
 												</Bold>
 											</div>
@@ -91,8 +93,8 @@ const Stores = () => {
 											weight='400'
 											colour='Blue.base.default'
 											hovBgColor='Black.10'
-											dropHovColor='Black.80'
-											dropColor='Black.80'
+											dropHovColor='Grey.2'
+											dropColor='Grey.2'
 											direction='end'
 											searchField={false}
 											type="showmore"

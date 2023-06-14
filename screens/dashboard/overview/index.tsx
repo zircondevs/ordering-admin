@@ -1,9 +1,11 @@
 
 
 import React  from "react";
-import {  Main,     } from "./styles";
+import {  Main, OverviewStyles,       } from "./styles";
 import AllOrders from "./AllOrders";
 import WalletSection from "./WalletSection";
+import { Spacer } from "../../../components/Spacer";
+import SetUp from "./set-up";
 
 
 
@@ -11,16 +13,20 @@ import WalletSection from "./WalletSection";
 
 
 
-const Overview = () => {
-
+const Overview = () => { 
 	
-	
-
  
 
 	return (
 		<Main alignItems="stretch">
-			<WalletSection />
+
+			<OverviewStyles>
+				<Spacer height="64px"/>
+				<SetUp />
+				<WalletSection />
+			</OverviewStyles>
+
+
 			<AllOrders  />
 		</Main>
 	);

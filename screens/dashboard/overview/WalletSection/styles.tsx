@@ -1,17 +1,10 @@
 import styled from "styled-components";
 import { Flex, Grid,   } from "../../../../components";
-import { PRIMARY_COLOR } from "../../../../hooks/colors";
+
 
 
  
 
-export const OverviewStyles =  styled("div")`
-	flex: 1;
-	padding: 0  40px;
-	@media (max-width: 700px) {
-		padding: 0  4%;
-	}
-`;
  
 
 export const Cards =  styled(Grid)`
@@ -26,9 +19,17 @@ export const Card =  styled("div")<{active: boolean}>`
 	 border: 1px solid ${({ theme }) => theme.palette.Black[20]};
 	 border-radius: 16px;
 	padding: 24px;
-	background-color:  ${({ active }) => active && PRIMARY_COLOR[0]};
 	@media (max-width: 600px) {
 		padding: 16px;
+	}
+	&:nth-child(1) .icon{
+		background-color:  ${({ theme }) => theme.palette.Orange[80]};
+	}
+	&:nth-child(2) .icon{
+		background-color:  ${({ theme }) => theme.palette.Yellow[0]};
+	}
+	&:nth-child(3) .icon{
+		background-color:  ${({ theme }) => theme.palette.Blue[0]};
 	}
 `;
 export const Icon =  styled(Flex)`
@@ -36,9 +37,8 @@ export const Icon =  styled(Flex)`
 	width: 50px;
 	border-radius: 100%;
 	margin: 24px 0 64px;
-	background-color:  ${({ theme }) => theme.palette.Black[10]};
+	/* background-color:  ${({ theme }) => theme.palette.Black[10]}; */
 	color:  ${({ theme }) => theme.palette.Black[60]};
-
 `;
 
  

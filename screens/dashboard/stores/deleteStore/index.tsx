@@ -3,7 +3,6 @@
 import React  from "react";
 import {    TrashContainer,  } from "./styles";
 import { Bold,        Flex,    Modal,    Span,   } from "../../../../components";
-import { UseContext } from "../../../../state/provider";
 import { Spacer } from "../../../../components/Spacer";
 import CustomButton from "../../../../components/Button";
 import { GenericObjTypes } from "../../../../constants/types";
@@ -25,15 +24,11 @@ interface  PropType {
 
 
 const DeleteStore = ({	open,modalRef, setOpen, onDOne} : PropType) => {
-
-	const { setModal, } = UseContext();
-
 	const { handleDeleteStore , loading } = useDeleteStore();
 
 	const closeModal = () => {
 		setOpen({type: ""});
 		modalRef?.current?.addBodyScroll();
-		setModal("");
 		onDOne();
 	};
 	

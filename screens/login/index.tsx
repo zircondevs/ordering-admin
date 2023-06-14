@@ -98,7 +98,7 @@ const Login = () => {
 										type="button"
 										pad="padding.0"
 										borderRadius="0"
-										activeColor="Black.80"
+										activeColor="Grey.2"
 										text={  "FORGOT PASSWORD?"}
 										onClick={() =>  push("/forgot-password")}  
 									/>
