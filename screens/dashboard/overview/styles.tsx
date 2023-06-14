@@ -9,8 +9,7 @@ import { Flex,  } from "../../../components";
  
  
 export const Main =  styled(Flex)`
-	width: auto;
-	min-height: calc(100vh - 70px);
+	width: auto; 
 `;
  
 

@@ -6,7 +6,6 @@ import { Flex,   } from "../../../components";
  
 export const Main =  styled("div")`
 	width: 100%;
-	min-height: calc(100vh - 70px);
 `;
  
  

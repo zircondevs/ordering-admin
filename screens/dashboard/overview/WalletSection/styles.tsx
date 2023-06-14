@@ -23,13 +23,13 @@ export const Card =  styled("div")<{active: boolean}>`
 		padding: 16px;
 	}
 	&:nth-child(1) .icon{
-		background-color:  ${({ theme }) => theme.palette.Orange[80]};
+		background-color:  ${({ theme }) => theme.palette.Orange["default"]};
 	}
 	&:nth-child(2) .icon{
-		background-color:  ${({ theme }) => theme.palette.Yellow[0]};
+		background-color:  ${({ theme }) => theme.palette.Yellow["default"]};
 	}
 	&:nth-child(3) .icon{
-		background-color:  ${({ theme }) => theme.palette.Blue[0]};
+		background-color:  ${({ theme }) => theme.palette.Blue["default"]};
 	}
 `;
 export const Icon =  styled(Flex)`

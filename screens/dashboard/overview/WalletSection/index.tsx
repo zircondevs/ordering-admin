@@ -35,17 +35,17 @@ const WalletSection = ( ) => {
 		{
 			name: "Total Amount",
 			amount: naira + formatNumber(dashboard?.wallet?.balance),
-			icon: <DataIcon height="20" width="20" colour="Orange.default"/>
+			icon: <DataIcon height="20" width="20" colour="common.white"/>
 		},
 		{
 			name: "Total Orders",
 			amount: formatNumber(dashboard?.totalOrders),
-			icon: <RiderIcon height="20" width="20" colour="Yellow.default"/>
+			icon: <RiderIcon height="20" width="20" colour="common.white"/>
 		},
 		{
 			name: "Total Stores",
 			amount:  formatNumber(dashboard?.store),
-			icon: <StoreIcon height="20" width="20" colour="Blue.default"/>
+			icon: <StoreIcon height="20" width="20" colour="common.white"/>
 		},
 	];
 

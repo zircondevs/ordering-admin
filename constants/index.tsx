@@ -88,7 +88,7 @@ const Constant  = {
 			href: "/dashboard/transactions"
 		},
 		{
-			name: "Users",
+			name: "Customers",
 			icon: <AvatarIcon height="20" width="20"/>,
 			href: "/dashboard/users"
 		},
