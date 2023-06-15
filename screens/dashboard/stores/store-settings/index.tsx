@@ -4,6 +4,8 @@ import { Tabs,  } from "../../../../components";
 import {  Main,   TabsStyles,        } from "./styles"; 
 import { Spacer } from "../../../../components/Spacer";
 import OpeningAndClosingHrs from "./open-and-close-hrs";
+import Welcome from "./welcome";
+import SocialHandles from "./social-handles";
  
 
 
@@ -20,13 +22,13 @@ const StoreSettings = ( ) => {
 			key: "Account Information"
 		},
 		{
-			head: "Store Message Content",
-			body: "sdas",
+			head: "Store Welcome Content",
+			body: <Welcome />,
 			key: "User Management"
 		},
 		{
 			head: "Social handles",
-			body: "sdas",
+			body: <SocialHandles />,
 			key: "User"
 		},
 	];
@@ -42,7 +44,7 @@ const StoreSettings = ( ) => {
 					data={tabData}
 				/>
 			</TabsStyles>
-		
+			<Spacer height="40px"/>
 
 		</Main>
 	);

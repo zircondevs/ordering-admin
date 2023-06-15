@@ -92,9 +92,6 @@ const Drawer = () => {
 							</DrawerItem>
 						)))
 					}
-	
-			
-	
 				</Grid>
 
 			</MenuStyles>

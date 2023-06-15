@@ -12,6 +12,7 @@ export const ProgressCardStyles =  styled(Flex)`
 	background-color:  ${({ theme }) => theme.palette.Yellow[0]};
 	padding: 22px 35px;
 	border-radius: 16px;
+	margin-top: 64px;
 `;
  
 export const DropdownIconStyles =  styled("div")<{visible: boolean}>`
@@ -40,3 +41,4 @@ export const AccordionBodyStyles =  styled(Flex)<{visible: boolean}>`
 	}
 `;
   
+

@@ -2,11 +2,11 @@
  
 import React, { useEffect, useState }    from "react";
 import { Bold, Flex, Input, Span,   } from "../../../../components";
-import {     COlorFields, FavStyles, FormStyles, HeaderSTyles, LogoStyles, Main, UploadBtnStyles,  } from "./styles";
+import {     COlorFields, FavStyles, FormStyles, HeaderSTyles, LogoStyles, Main,    } from "./styles";
 import Image from "next/image";
 import CustomButton from "../../../../components/Button";
 import { Spacer } from "../../../../components/Spacer";
-import {  GeneralInputWrap, GeneralLabel } from "../../../../components/styles";
+import {  GeneralInputWrap, GeneralLabel, GenrealUploadBtnStyles } from "../../../../components/styles";
 import {   useGetAdminGeneralSettings, useUpdateAccountSettings } from "../../../../hooks/useSettigs";
 import { useUploadImage } from "../../../../hooks/imgeUpload";
 import { LoaderIcon } from "../../../../public/assets/svg";
@@ -81,7 +81,7 @@ const AccountInfo = () => {
 							NB. Approved image size is 512x512px. Image should not exceed 900KB
 						</Span>
 						<Spacer height="24px" />
-						<UploadBtnStyles isLoading={loadingImage && imgType === "companyLogo"}>
+						<GenrealUploadBtnStyles isLoading={loadingImage && imgType === "companyLogo"}>
 							<input type="file"  
 								onChange={ async (e) => {
 									const target = e.target ;
@@ -98,7 +98,7 @@ const AccountInfo = () => {
 								{formData?.companyLogo ? "Change Image" : "Upload Image"}
 							</Span>
 							{loadingImage && imgType === "companyLogo" ? <div className="loader"><LoaderIcon height="30" width="30" /></div> : null}
-						</UploadBtnStyles>
+						</GenrealUploadBtnStyles>
 					</div>
 				</Flex>
 
@@ -113,7 +113,7 @@ const AccountInfo = () => {
 							NB. Approved image size is 512x512px.<br /> Image should not exceed 900KB
 						</Span>
 						<Spacer height="24px" />
-						<UploadBtnStyles isLoading={loadingImage  && imgType === "favicon" }>
+						<GenrealUploadBtnStyles isLoading={loadingImage  && imgType === "favicon" }>
 							<input type="file"  
 								onChange={ async (e) => {
 									const target = e.target ;
@@ -130,7 +130,7 @@ const AccountInfo = () => {
 								{formData?.favicon ? "Change" : "Upload"}
 							</Span>
 							{loadingImage && imgType === "favicon" ? <div className="loader"><LoaderIcon height="30" width="30" /></div> : null}
-						</UploadBtnStyles>
+						</GenrealUploadBtnStyles>
 					</div>
 					{
 						formData?.favicon ?
