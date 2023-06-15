@@ -15,13 +15,13 @@ import { useGetDashboardDetails } from "../../../hooks/usedashboard";
 
 const Overview = () => { 
 	
-	const { dashboard ,   } = useGetDashboardDetails();
+	const { dashboard ,  loading } = useGetDashboardDetails();
 
 	return (
 		<Main alignItems="stretch">
 
 			<OverviewStyles>
-				<SetUp {...{dashboard}}  />
+				<SetUp {...{dashboard, loading}}  />
 				<WalletSection {...{dashboard}} />
 			</OverviewStyles>
 

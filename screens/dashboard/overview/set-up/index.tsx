@@ -15,7 +15,7 @@ type progressType =  {title: string, value: boolean, link: string, linkText:stri
 
 
 
-const SetUp = ({dashboard}: {dashboard: any}) => {
+const SetUp = ({dashboard, loading}: {dashboard: any, loading: boolean}) => {
 	const [visible, setVisible] = useState(-1);
 
 
@@ -40,25 +40,26 @@ const SetUp = ({dashboard}: {dashboard: any}) => {
 		},
 	];
 
-	
+
 	return (
 		<>
-			{
-				dashboard?.hasStore && dashboard?.hasProduct && dashboard?.hasStoreManagers ? null
-					:<ProgressCardStyles>
-						<Accordion 
-							gap={"0"}
-							visible={visible}
-							setVisible={setVisible}
-							accordions={[
-								{
-									head: <AccordionHead visible={visible === 0} {...{progress}} />,
-									details: <AccordionBody {...{progress}}  />,
-									key: 1
-								}
-							]}
-						/>
-					</ProgressCardStyles>
+			{	
+				loading ? null :
+					dashboard?.hasStore && dashboard?.hasProduct && dashboard?.hasStoreManagers ? null
+						:<ProgressCardStyles>
+							<Accordion 
+								gap={"0"}
+								visible={visible}
+								setVisible={setVisible}
+								accordions={[
+									{
+										head: <AccordionHead visible={visible === 0} {...{progress}} />,
+										details: <AccordionBody {...{progress}}  />,
+										key: 1
+									}
+								]}
+							/>
+						</ProgressCardStyles>
 			}
 		</>
 	);

@@ -39,7 +39,7 @@ export const FormStyles =  styled(Grid)`
 `;
  
 export const COlorFields =  styled(Flex)`
-	margin-top: 16px;
+	margin-top: 10px;
 	height: auto;
 	border: 1px solid ${({ theme }) => theme.palette.Grey[5]};
 	border-radius: 8px;

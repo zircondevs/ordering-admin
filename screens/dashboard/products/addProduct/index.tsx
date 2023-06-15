@@ -250,7 +250,7 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 											type="submit"
 											nonActiveBgColor="Black.20"
 											borderRadius="0"
-											isLoading={creatingFOod || loading}
+											isLoading={creatingFOod || loading || loadingImage}
 											text={  open.type === "addProduct" ?   "Create Food" : "Update product"}
 										/>
 									</Footer>
