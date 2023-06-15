@@ -9,7 +9,6 @@ import { formatAMPM, formatNumber, formateDate, naira } from "../../../../lib";
 import CustomButton from "../../../../components/Button";
 import { PRIMARY_COLOR } from "../../../../hooks/colors";
 import { GeneralTableStyle } from "../../../../components/styles";
-import { useGetDashboardDetails,   } from "../../../../hooks/usedashboard";
 import { useGetTransactions } from "../../../../hooks/useTransaction";
 import { useRouter } from "next/router";
 import { GenericObjTypes, TransactionStatusType } from "../../../../constants/types";
@@ -21,10 +20,10 @@ import { GenericObjTypes, TransactionStatusType } from "../../../../constants/ty
 
 
 
-const WalletSection = ( ) => {
+const WalletSection = ( {dashboard}: {dashboard: any}) => {
 	const router = useRouter();
 
-	const { dashboard ,   } = useGetDashboardDetails();
+	
 	const { transactions, loading  } = useGetTransactions({limit: 5});
 
 	

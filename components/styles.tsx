@@ -118,9 +118,9 @@ export const GeneralLabel =  styled("label")<{optional?: boolean}>`
 	letter-spacing: 0.025em;
 	padding-bottom: 5px;
 	display: block;
-	left: 16px;
+	/* left: 16px;
 	top: 8px;
-	z-index: 10;
+	z-index: 1; */
 	&:after {
 		content: "(Optional)";
 		position: relative;
@@ -246,3 +246,36 @@ export const GeneralSelectField =  styled(Container)`
 	 }
 `;
 
+
+export const GenrealUploadBtnStyles =  styled("div")<{isLoading: boolean}>`
+	cursor: pointer;
+	input {
+		cursor: pointer;
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		opacity: 0;
+	}
+	.loader {
+		cursor: pointer;
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		width: max-content;
+		height: max-content;
+		margin: auto;
+	}
+	width: max-content;
+	border-radius: 8px;
+	padding: 10px 16px;
+	position: relative;
+	border: 1px solid ${({ theme }) => theme.palette.Grey[1]};
+	span {
+		opacity: ${({ isLoading }) => isLoading ? 0 : 1}
+	}
+`;

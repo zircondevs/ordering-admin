@@ -19,6 +19,7 @@ interface PropsType {
 	children: JSX.Element,
 	icon?: JSX.Element | number | string,
 	innerRef?: React.Ref<PopUpRefType>
+	top?: number
 }
 
 const initial: InitialType = {
@@ -29,7 +30,7 @@ const initial: InitialType = {
 };
 
 const PopUpModal:React.ForwardRefRenderFunction<PopUpRefType, PropsType>  = (props: PropsType, forwardedRef) => {
-	const { icon, children } = props;
+	const { icon, children, top = 0 } = props;
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	// holds getBoundingClientRect details of the clicked icon
 	const [targetDimensions, setTargetDimensions] = useState<InitialType>(initial);
@@ -75,9 +76,10 @@ const PopUpModal:React.ForwardRefRenderFunction<PopUpRefType, PropsType>  = (pro
 						<>
 							<div className={"overlay"} onClick={() =>  handleCloseModal()} />
 							<Content 
+								className="popUp-Content"
 								ref={childrenRef}
 								style={{
-									top: getVerticalPosition(targetDimensions.y, childrenDimension.height),
+									top: getVerticalPosition(targetDimensions.y, childrenDimension.height, top),
 									left: getHorizontalPosition(targetDimensions.x, childrenDimension.width)
 								}}
 							>
@@ -98,11 +100,14 @@ export default React.forwardRef(PopUpModal);
 
  
 
-const getVerticalPosition = (targetYPosition: number, childrenHeight: number) => {
+const getVerticalPosition = (targetYPosition: number, childrenHeight: number, top: number) => {
 	const browserViewHiehgt = document.documentElement.clientHeight;
-	return (targetYPosition + childrenHeight  > browserViewHiehgt) ?
-		(targetYPosition  - (targetYPosition +  childrenHeight - browserViewHiehgt))
-		: targetYPosition;
+	return (targetYPosition + top + childrenHeight  > browserViewHiehgt) ?
+		(targetYPosition  - (targetYPosition  + childrenHeight - browserViewHiehgt))
+		: targetYPosition + top;
+	// return (targetYPosition + childrenHeight  > browserViewHiehgt) ?
+	// 	(targetYPosition  - (targetYPosition +  childrenHeight - browserViewHiehgt))
+	// 	: targetYPosition ;
 };
 
 const getHorizontalPosition = (targetXPosition: number, childrenWidth: number) => {

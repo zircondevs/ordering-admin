@@ -14,7 +14,7 @@ import { useGetOrders } from "../useOrders";
 export const useSocket = () => {
 
 	const { setRealTimeOrder, setRealTimeOrders, state: { storeId}} = UseContext();
-	const { orders  } = useGetOrders( "PROCESSING");
+	const { orders  , loading } = useGetOrders( "PROCESSING");
 
 	const socket = io(`${AUTH_BASE_URL}`);
 
@@ -59,5 +59,5 @@ export const useSocket = () => {
 
 	
   
-	return {    handleJoinRoom  };
+	return {    handleJoinRoom , loadingOrders: loading };
 };
