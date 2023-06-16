@@ -25,14 +25,14 @@ const Address = ({ order}: any ) =>  {
 			<Container1 height="auto" justifyContent="space-between" wrap="nowrap">
 				<Flex width="auto" height="auto" wrap="nowrap">
 					<AddressIcon height="20" width="25"  colour="Orange.default" /> 
-					<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={"Grey.3"}>
+					<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.3"}>
 						Address
 					</Bold>
 				</Flex>
  
 			</Container1>
 			<Spacer height="16px"/>
-			<Span fontFamily='quicksand' weight="600" lineHeight="21" size="16" colour={"Grey.2"}>
+			<Span fontFamily='ubuntu' weight="600" lineHeight="21" size="16" colour={"Grey.2"}>
 				{order?.deliveryAddress}
 			</Span>
 
@@ -45,22 +45,22 @@ const Address = ({ order}: any ) =>  {
 				<Flex width="auto" height="auto" wrap="nowrap" direction="column" alignItems="flex-start">
 					<Flex width="auto" height="auto" wrap="nowrap">
 						<AvatarIcon height="20" width="25"  colour="Orange.default" /> 
-						<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={"Grey.3"}>
+						<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.3"}>
 							Customer Name
 						</Span>
 					</Flex>
 					<Spacer height="8px"/>
-					<Bold fontFamily='quicksand' weight="600" lineHeight="21" size="16" colour={"Grey.2"}>
+					<Bold fontFamily='ubuntu' weight="600" lineHeight="21" size="16" colour={"Grey.2"}>
 						{order?.clientName}
 					</Bold>
 				</Flex>
 
 				<Flex width="auto" height="auto" wrap="nowrap" direction="column" alignItems="flex-end">
-					<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={"Grey.3"} textAlign="end">
+					<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.3"} textAlign="end">
 						Customer phone number
 					</Span>
 					<Spacer height="8px"/>
-					<Bold fontFamily='quicksand' weight="600" lineHeight="21" size="16" colour={"Grey.2"} textAlign="end">
+					<Bold fontFamily='ubuntu' weight="600" lineHeight="21" size="16" colour={"Grey.2"} textAlign="end">
 						{order?.clientPhoneNumber }
 					</Bold>
 				</Flex>
@@ -73,12 +73,12 @@ const Address = ({ order}: any ) =>  {
 			<Container1 height="auto" justifyContent="space-between" wrap="nowrap">
 				<Flex width="auto" height="auto" wrap="nowrap">
 					<RiderIcon height="20" width="30" colour="Orange.default"/> 
-					<Bold fontFamily='quicksand' weight="600" lineHeight="16" size="14" colour={"Grey.3"}>
+					<Bold fontFamily='ubuntu' weight="600" lineHeight="16" size="14" colour={"Grey.3"}>
 						Delivery Type
 					</Bold>
 				</Flex>
  
-				<Span fontFamily='quicksand' weight="400" lineHeight="16" size="16" colour={"Grey.2"}>
+				<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="16" colour={"Grey.2"}>
 					{order?.deliveryType}
 				</Span>
 			</Container1>

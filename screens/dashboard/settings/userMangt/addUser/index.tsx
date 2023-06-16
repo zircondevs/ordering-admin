@@ -60,7 +60,7 @@ const AddUser = ({	open,modalRef, setOpen,onDOne, roles } : PropType) => {
 					<button onClick={() => closeModal()}>
 						<Flex height="auto" justifyContent="flex-start">
 							<LongArrowicon width="20" height="20"/>
-							<Span fontFamily='quicksand' weight="700" lineHeight="16" size="14" colour={"Black.default"}>
+							<Span fontFamily='ubuntu' weight="700" lineHeight="16" size="14" colour={"Black.default"}>
 								Go Back
 							</Span>
 						</Flex>
@@ -71,11 +71,11 @@ const AddUser = ({	open,modalRef, setOpen,onDOne, roles } : PropType) => {
 				<ModalSpacer direction="column" wrap="nowrap" alignItems='stretch'  margin="64px 0">
 
 					<Flex height="auto"   margin="0 0 70px" direction="column" alignItems="flex-start">
-						<Bold fontFamily='quicksandMedium' weight="400" lineHeight="40" size="36" colour={"Black.default"}>
+						<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="40" size="36" colour={"Black.default"}>
 							Add User
 						</Bold>
 						<Spacer height="16px"/>
-						<Span fontFamily='quicksand' weight="700" lineHeight="19" size="16" colour={"Black.60"}>
+						<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Black.60"}>
 							Add a new food on the menu
 						</Span>
 					</Flex>

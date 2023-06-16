@@ -48,11 +48,11 @@ const SocialHandles = ({settings, onDone}: {settings: any, onDone: () => void} )
 
 			<div>
 				<Flex height="auto"   margin="0 0 40px" direction="column" alignItems="flex-start">
-					<Bold fontFamily='quicksandMedium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
+					<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
 						Social handles
 					</Bold>
 					<Spacer height="8px"/>
-					<Span fontFamily='quicksand' weight="700" lineHeight="19" size="14" colour={"Grey.4"}>
+					<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="14" colour={"Grey.4"}>
 						These allows you to share your products on the specified socail platforms.
 					</Span>
 				</Flex>
@@ -78,7 +78,7 @@ const SocialHandles = ({settings, onDone}: {settings: any, onDone: () => void} )
 									{
 										fields.map(field => (
 											<GeneralInputWrap margin="8px 0 0" key={field.name}>
-												<GeneralLabel> Twitter Link</GeneralLabel>
+												<GeneralLabel> {field.label}</GeneralLabel>
 												<Input
 													value={values[field.name as SocialTypes]}
 													name={field.name}

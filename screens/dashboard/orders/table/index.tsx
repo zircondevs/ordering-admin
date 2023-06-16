@@ -43,7 +43,7 @@ const OrdersTable = ({orders, loading, title, setSingleOrder, modalRef, pageInfo
 			date: `${formateDate(new Date(order?.createdAt)).date} ${formateDate(new Date(order?.createdAt)).shortMonth}, 
 				${formateDate(new Date(order?.createdAt)).year}, ${formatAMPM(new Date(order?.createdAt))}` ,
 			action: <button onClick={() => openModal(order)}>
-				<Span fontFamily='quicksand' weight="400" lineHeight="19" size="12" colour={"Error.default"}>
+				<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={"Error.default"}>
 					View
 				</Span>
 			</button>,
@@ -58,7 +58,7 @@ const OrdersTable = ({orders, loading, title, setSingleOrder, modalRef, pageInfo
 						:
 						<>
 							<SearchSection justifyContent="space-between" margin="0 0 24px" height="auto">
-								<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
+								<Bold fontFamily='ubuntu' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 									{title}
 								</Bold>
 
@@ -89,7 +89,7 @@ const OrdersTable = ({orders, loading, title, setSingleOrder, modalRef, pageInfo
 									: 
 									<Flex margin="50px 0" direction="column">
 										<EmptyIcon />
-										<Span fontFamily='quicksand' weight="700" lineHeight="14" size="12" colour={"Grey.2"}>
+										<Span fontFamily='ubuntu' weight="700" lineHeight="14" size="12" colour={"Grey.2"}>
 											There is no data here at the moment!
 										</Span>
 									</Flex>

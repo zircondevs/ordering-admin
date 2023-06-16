@@ -29,7 +29,7 @@ const AllOrders = () => {
 		
 		<Aside >
 			<AsideStyle height="auto" justifyContent="space-between">
-				<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="20" colour={"Grey.2"}>
+				<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="20" colour={"Grey.2"}>
 					New Order Requests
 				</Bold>
 
@@ -46,11 +46,11 @@ const AllOrders = () => {
 			
 			<Orders directions="hidden auto ">
 				<TotalOrders height="auto" justifyContent="flex-start" margin="40px 0 32px">
-					<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
+					<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
 						Latest New Orders
 					</Bold>
 					<div>
-						<Bold fontFamily='quicksand' weight="400" lineHeight="19" size="16" colour={"Black.60"}>
+						<Bold fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Black.60"}>
 							{realTimeOrders?.length}
 						</Bold>
 					</div>
@@ -65,21 +65,21 @@ const AllOrders = () => {
 									realTimeOrders?.map((order, id) => (
 										<RecentOrders key={id} justifyContent="space-between" index={id}>
 											<div>
-												<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
+												<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
 													Order ID
 												</Span>
 												<Spacer height="8px" />
-												<OrderIdStyles fontFamily='quicksand' weight="700" lineHeight="24" size="20" colour={"Black.default"}>
+												<OrderIdStyles fontFamily='ubuntu' weight="700" lineHeight="24" size="20" colour={"Black.default"}>
 													{order.orderId}
 												</OrderIdStyles>
 											</div>
 											<div>
-												<Bold fontFamily='quicksand' weight="400" lineHeight="14" size="12" colour={"Black.default"}>
+												<Bold fontFamily='ubuntu' weight="400" lineHeight="14" size="12" colour={"Black.default"}>
 													{formateDate(new Date(order?.createdAt)).date}  {formateDate(new Date(order?.createdAt)).shortMonth},
 													{formateDate(new Date(order?.createdAt)).year} 
 												</Bold>
 												<Spacer height="4px" />
-												<Span fontFamily='quicksand' weight="400" lineHeight="12" size="10" colour={"Black.60"}>
+												<Span fontFamily='ubuntu' weight="400" lineHeight="12" size="10" colour={"Black.60"}>
 													{formatAMPM(new Date(order?.createdAt))} 
 												</Span>
 											</div>
@@ -91,10 +91,10 @@ const AllOrders = () => {
 							<Flex height="auto" direction="column" margin="70px 0">
 								<OrderIcon height="40" width="40" colour="Grey.4"/>
 								<Spacer height="8px" />
-								<Span fontFamily='quicksand' weight="400" lineHeight="19" size="14" colour={"Black.60"}>
+								<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Black.60"}>
 									No New Orders
 								</Span>
-								<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
+								<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
 									You don’t have any new order requests
 								</Span>
 							</Flex>

@@ -57,7 +57,7 @@ const AccountInfo = () => {
 	return (
 		<Main>
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='40px 0 40px'>
-				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
+				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
 					Update Information
 				</Bold>
 			</HeaderSTyles>
@@ -73,11 +73,11 @@ const AccountInfo = () => {
 					}
 				
 					<div>
-						<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
+						<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
 							Company Logo
 						</Bold>
 						<Spacer height="4px" />
-						<Span fontFamily='quicksand' weight="700" lineHeight="16" size="12" colour={"Grey.3"}>
+						<Span fontFamily='ubuntu' weight="700" lineHeight="16" size="12" colour={"Grey.3"}>
 							NB. Approved image size is 512x512px. Image should not exceed 900KB
 						</Span>
 						<Spacer height="24px" />
@@ -94,7 +94,7 @@ const AccountInfo = () => {
 									}
 								}} 
 							/>
-							<Span fontFamily='quicksand' weight="700" lineHeight="16" size="14" colour={"Grey.2"}>
+							<Span fontFamily='ubuntu' weight="700" lineHeight="16" size="14" colour={"Grey.2"}>
 								{formData?.companyLogo ? "Change Image" : "Upload Image"}
 							</Span>
 							{loadingImage && imgType === "companyLogo" ? <div className="loader"><LoaderIcon height="30" width="30" /></div> : null}
@@ -105,11 +105,11 @@ const AccountInfo = () => {
 
 				<Flex width="auto" margin="0 auto 32px 0" justifyContent="flex-start">			
 					<div>
-						<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
+						<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
 							Favicon
 						</Bold>
 						<Spacer height="4px" />
-						<Span fontFamily='quicksand' weight="700" lineHeight="16" size="12" colour={"Grey.3"}>
+						<Span fontFamily='ubuntu' weight="700" lineHeight="16" size="12" colour={"Grey.3"}>
 							NB. Approved image size is 512x512px.<br /> Image should not exceed 900KB
 						</Span>
 						<Spacer height="24px" />
@@ -126,7 +126,7 @@ const AccountInfo = () => {
 									}
 								}} 
 							/>
-							<Span fontFamily='quicksand' weight="700" lineHeight="16" size="14" colour={"Grey.2"}>
+							<Span fontFamily='ubuntu' weight="700" lineHeight="16" size="14" colour={"Grey.2"}>
 								{formData?.favicon ? "Change" : "Upload"}
 							</Span>
 							{loadingImage && imgType === "favicon" ? <div className="loader"><LoaderIcon height="30" width="30" /></div> : null}
@@ -161,7 +161,7 @@ const AccountInfo = () => {
 				<Flex margin="8px 0 0" justifyContent="flex-start"> 
 					<GeneralLabel>Choose a primary color</GeneralLabel>
 					<COlorFields>
-						<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
+						<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
 							{formData.primaryColor}
 						</Span>
 						<div>
@@ -173,7 +173,7 @@ const AccountInfo = () => {
 				<Flex margin="8px 0 0" justifyContent="flex-start" direction="column" alignItems="flex-start">
 					<GeneralLabel>Choose a secondary color</GeneralLabel>
 					<COlorFields>
-						<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
+						<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
 							{formData.secondaryColor}
 						</Span>
 						<div>

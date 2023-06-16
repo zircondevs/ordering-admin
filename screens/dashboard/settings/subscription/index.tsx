@@ -33,7 +33,7 @@ const Subscription = () => {
 	return (
 		<Main>
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='40px 0 40px'>
-				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
+				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
 					Update Security Information
 				</Bold>
 			</HeaderSTyles>
@@ -44,15 +44,15 @@ const Subscription = () => {
 				{
 					plans.map(plan => (
 						<Card key={plan.duration} pad="60px 36px" direction="column" alignItems="flex-start">
-							<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="24" size="18" colour={"Grey.1"}>
+							<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="24" size="18" colour={"Grey.1"}>
 								{plan.duration}
 							</Bold>
 							<Spacer  height="8px"/>
-							<Span fontFamily='quicksand' weight="400" lineHeight="16" size="12" colour={"Grey.1"}>
+							<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.1"}>
 								For easy access and payments
 							</Span>
 							<Spacer  height="16px"/>
-							<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="40" size="36" colour={"Grey.1"}>
+							<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="40" size="36" colour={"Grey.1"}>
 								₦ {plan.amount}
 							</Bold>
 							<Spacer  height="16px"/>
@@ -71,7 +71,7 @@ const Subscription = () => {
 									plan.benefits.map((benefit, idx) => (
 										<List key={idx} justifyContent="flex-start">
 											<Checkbox  type="radio" checked={true}/>
-											<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={"Grey.2"}>
+											<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.2"}>
 												{benefit}
 											</Span>
 										</List>

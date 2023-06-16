@@ -61,7 +61,7 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 			time: `${formatAMPM(new Date(transaction?.createdAt))}`,
 			amount: "₦" + formatNumber(transaction?.foodCharge),
 			status: <Flex bgColor={status[transaction?.status as TransactionStatusType][0]} width="max-content" pad="3px 8px" margin="0">
-				<Span fontFamily='quicksand' weight="400" lineHeight="19" size="12" colour={status[transaction?.status as TransactionStatusType][1]}>
+				<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={status[transaction?.status as TransactionStatusType][1]}>
 					{transaction?.status}
 				</Span>
 			</Flex>,
@@ -74,7 +74,7 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 		<>
 			<Spacer height="64px"/>
 			<Flex height="auto" justifyContent="space-between">
-				<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
+				<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Overview
 				</Bold>
 
@@ -86,11 +86,11 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 						<Card key={item.name} active={idx === 0}>
 							<Icon className="icon">{item.icon}</Icon>
 							<div>
-								<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
+								<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
 									{(item.amount)}
 								</Bold>
 								<Spacer height="16px"/>
-								<Span fontFamily='quicksand' weight="400" lineHeight="19" size="16" colour={  "Grey.2"}>
+								<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={  "Grey.2"}>
 									{item.name}
 								</Span>
 							</div>
@@ -110,7 +110,7 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 
 						<GeneralTableStyle height="auto" justifyContent="flex-start">
 							<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
-								<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
+								<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
 									Recent {tableBody?.length} Transactions
 								</Bold>
 
@@ -137,7 +137,7 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 						:	
 						<Flex margin="40px 0" height="auto" direction="column">
 							<EmptyIcon />
-							<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+							<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								There are no transaction record here yet!.
 							</Span>
 						</Flex>

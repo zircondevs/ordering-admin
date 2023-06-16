@@ -41,7 +41,7 @@ export const  DesktopLoader = ({ isLoading }: {isLoading: boolean}) => {
 		<DeskTopLoaderStyles isLoading={isLoading}>
 			<Flex>
 				<LoaderIcon height="30" width="30" colour="Blue.dark.default"/>
-				<Span fontFamily='quicksand' weight="700" lineHeight="21" size="14" colour={"Black.default"}>
+				<Span fontFamily='ubuntu' weight="700" lineHeight="21" size="14" colour={"Black.default"}>
 					Loading...
 				</Span>
 			</Flex>
