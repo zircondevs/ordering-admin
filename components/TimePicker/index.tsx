@@ -7,13 +7,18 @@ import { RightArrowIcon } from "../../public/assets/svg";
 import { OverFlowScrollBar } from "../OverflowContainer/styles";
 import PopUpModal, { PopUpRefType } from "../PopUpModal";
 import { BtnStyle, DropdownStylws, Footer, IconStyles,  TimePickerStyles, Times, TimesValue,   } from "./styles";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
  
 
 
 
  interface Proptypes {
 	click: (e: any) => void
+	defaultValue?: {
+		hrs?: number,
+		mins?: number,
+		secs?: number
+	}
  }
 
 
@@ -23,6 +28,12 @@ const TimePicker = (props: Proptypes) => {
 		mins: 0,
 		secs: 0
 	});
+
+
+	useEffect(() => {
+		props?.defaultValue && setValue({...value, ...props.defaultValue});
+	}, [props?.defaultValue?.hrs, props?.defaultValue?.mins, props?.defaultValue?.secs]);
+
 
 	const {hrs, mins, secs} = value;
 	const popUpRef = useRef<PopUpRefType>(null);
@@ -42,7 +53,7 @@ const TimePicker = (props: Proptypes) => {
 			icon={(
 				<IconStyles  wrap="nowrap" justifyContent="space-between">
 					<span>{ `${hrs % 12 || 12}:${mins}:${secs}` } {hrs < 12 ? "AM" : "PM"}</span>
-					<RightArrowIcon height={"15"} width={"15"} colour={"Grey.4"}/>
+					<RightArrowIcon height={"13"} width={"13"} colour={"Grey.4"}/>
 				</IconStyles>
 			)}
 		>
@@ -50,7 +61,7 @@ const TimePicker = (props: Proptypes) => {
 				<DropdownStylws  wrap="nowrap">
 					<OverFlowScrollBar  directions="hidden auto">
 						<Times>{Array.from({length: 23}).map((hr, idx) => (
-							<BtnStyle active={idx + 1 === hrs} key={idx} onClick={() => handleOnChange( "hrs", idx)}>
+							<BtnStyle type="button" active={idx + 1 === hrs} key={idx} onClick={() => handleOnChange( "hrs", idx)}>
 								<TimesValue >{idx + 1}</TimesValue>
 							</BtnStyle>
 						))}</Times>
@@ -58,7 +69,7 @@ const TimePicker = (props: Proptypes) => {
 
 					<OverFlowScrollBar  directions="hidden auto">
 						<Times>{Array.from({length: 59}).map((hr, idx) => (
-							<BtnStyle active={idx  === mins} key={idx} onClick={() => handleOnChange( "mins", idx - 1)}>
+							<BtnStyle type="button" active={idx  === mins} key={idx} onClick={() => handleOnChange( "mins", idx - 1)}>
 								<TimesValue >{idx }</TimesValue>
 							</BtnStyle>
 						))}</Times>
@@ -66,7 +77,7 @@ const TimePicker = (props: Proptypes) => {
 
 					<OverFlowScrollBar  directions="hidden auto">
 						<Times>{Array.from({length: 59}).map((hr, idx) => (
-							<BtnStyle active={idx   === secs} key={idx} onClick={() =>  handleOnChange( "secs", idx - 1)}>
+							<BtnStyle type="button" active={idx   === secs} key={idx} onClick={() =>  handleOnChange( "secs", idx - 1)}>
 								<TimesValue >{idx  }</TimesValue>
 							</BtnStyle>
 						))}</Times>
@@ -81,7 +92,7 @@ const TimePicker = (props: Proptypes) => {
 						}
 					}}
 				>
-					<button>OK</button>
+					<button type="button">OK</button>
 				</Footer>
 			</TimePickerStyles>
 

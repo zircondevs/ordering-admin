@@ -66,7 +66,7 @@ const PopUpModal:React.ForwardRefRenderFunction<PopUpRefType, PropsType>  = (pro
 
 	return (
 		<Wrapper className={"wrapper"} ref={containerRef}>
-			<button className={"layout"} onClick={(e) =>  handleOpenModal(e)} >
+			<button type="button" className={"layout"} onClick={(e) =>  handleOpenModal(e)} >
 				{ icon || <DotsIcon width="3" height="16" />}
 			</button>
 

@@ -7,31 +7,34 @@ import React   from "react";
 import { Bold,  Flex,    Input,         Span,   } from "../../../../../components";
 import { Spacer } from "../../../../../components/Spacer";
 import CustomButton from "../../../../../components/Button";
-import  { TERTIARY_COLOR, WHITE_COLOR } from "../../../../../hooks/colors";
 import {  GeneralInputWrap, GeneralLabel,      } from "../../../../../components/styles";
 import { Form, Formik } from "formik";
 import { Main } from "./styles";
+import { useSetUpStore } from "../../../../../hooks/useSettigs";
+import { removeEmptyValuesFromObj } from "../../../../../lib";
+import { SetUpStoreTypes } from "../../../../../constants/types";
 
 
 
  
-type SocialTypes = "twitter" | "instagram" | "facebook"
+type SocialTypes = "twitterLink" | "instagramLink" | "facebookLink"
 
-const SocialHandles = ( ) => {
-	
+const SocialHandles = ({settings, onDone}: {settings: any, onDone: () => void} ) => {
+	const { handleSetUpStore, loading} = useSetUpStore();
+
 	const fields = [
 		{
-			name: "twitter",
+			name: "twitterLink",
 			label: "Twitter Link",
 			type: "text",
 		},
 		{
-			name: "instagram",
+			name: "instagramLink",
 			label: "Instagram Link",
 			type: "text"
 		},
 		{
-			name: "facebook",
+			name: "facebookLink",
 			label: "Facebook Link",
 			type: "text"
 		},
@@ -58,12 +61,13 @@ const SocialHandles = ( ) => {
 				<Formik
 					enableReinitialize
 					initialValues={{
-						twitter: "",
-						facebook: "",
-						instagram: ""
+						twitterLink:  settings.twitterLink ||  "",
+						facebookLink: settings?.facebookLink || "",
+						instagramLink: settings?.instagramLink || ""
 					}} 
 					onSubmit={ async (values ) => { 
-						console.log(values);
+						const res = await handleSetUpStore(removeEmptyValuesFromObj(values as SetUpStoreTypes));
+						res?.data && onDone();
 					}}
 				>
 					{({ values, handleChange  }) => {
@@ -91,10 +95,11 @@ const SocialHandles = ( ) => {
 
 									<CustomButton
 										size="14"
-										bgColour={TERTIARY_COLOR[2]}
-										bodColour={TERTIARY_COLOR[2]}
-										txtColour={WHITE_COLOR}
+										activeBgColor={"Orange.default"}
+										activeBorderColor={"Orange.default"}
+										activeColor={"common.white"}
 										type="submit"
+										isLoading={loading}
 										pad="padding.smaller"
 										nonActiveBgColor="Black.20"
 										text={  "Save Changes" }

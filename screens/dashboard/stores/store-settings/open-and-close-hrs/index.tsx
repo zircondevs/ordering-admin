@@ -7,11 +7,13 @@ import {   Container1, Footer,   } from "./styles";
 import { Bold, Container, Flex, Grid,     Span,   } from "../../../../../components";
 import { Spacer } from "../../../../../components/Spacer";
 import CustomButton from "../../../../../components/Button";
-import  { TERTIARY_COLOR, WHITE_COLOR } from "../../../../../hooks/colors";
 import {  GeneralLabel,    } from "../../../../../components/styles";
 import { Form, Formik } from "formik";
 import TimePicker from "../../../../../components/TimePicker";
 import Select from "react-select";
+import { useSetUpStore } from "../../../../../hooks/useSettigs";
+import { removeEmptyValuesFromObj } from "../../../../../lib";
+import { SetUpStoreTypes } from "../../../../../constants/types";
 
 
 type OptionType = { value: string, label: string }
@@ -22,8 +24,8 @@ const options = [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satur
  
 
 
-const OpeningAndClosingHrs = ( ) => {
- 
+const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
+	const { handleSetUpStore, loading} = useSetUpStore();
 
 
 	return (
@@ -45,11 +47,13 @@ const OpeningAndClosingHrs = ( ) => {
 				<Formik
 					enableReinitialize
 					initialValues={{
-						workingDays: [] ,
-						address:     "",
+						workingDays:  settings?.workingDays || [] ,
+						openingHours:  settings?.closingHours || "" ,
+						closingHours:  settings?.closingHours || "" ,
 					}} 
 					onSubmit={ async (values ) => { 
-						console.log(values);
+						const res = await handleSetUpStore(removeEmptyValuesFromObj(values as SetUpStoreTypes));
+						res?.data && onDone();
 					}}
 				>
 					{({ values, setFieldValue}) => {
@@ -77,11 +81,25 @@ const OpeningAndClosingHrs = ( ) => {
 										<Flex height="auto" width="auto"   justifyContent="flex-start">
 											<Container margin="0 16px 0 0" width="auto" height="auto">
 												<GeneralLabel>From</GeneralLabel>
-												<TimePicker click={(e) => console.log(e)}/>
+												<TimePicker  
+													defaultValue={
+														settings.openingHours ? 
+															{hrs: +settings.openingHours.split(":")[0], mins: +settings.openingHours.split(":")[1], secs: +settings.openingHours.split(":")[1]} 
+															: {}
+													} 
+													click={(e) => setFieldValue("openingHours", `${e.hrs}:${e.mins}:${e.secs}`  )}  
+												/>
 											</Container>
 											<div>
 												<GeneralLabel>To</GeneralLabel>
-												<TimePicker click={(e) => console.log(e)}/>
+												<TimePicker 
+													defaultValue={
+														settings.closingHours ? 
+															{hrs: +settings.closingHours.split(":")[0], mins: +settings.closingHours.split(":")[1], secs: +settings.closingHours.split(":")[1]} 
+															: {}
+													} 
+													click={(e) => setFieldValue("closingHours", `${e.hrs}:${e.mins}:${e.secs}` )}
+												/>
 											</div>
 										</Flex>
 									</Grid>
@@ -90,10 +108,11 @@ const OpeningAndClosingHrs = ( ) => {
 									<Footer>
 										<CustomButton
 											size="14"
-											bgColour={TERTIARY_COLOR[2]}
-											bodColour={TERTIARY_COLOR[2]}
-											txtColour={WHITE_COLOR}
+											activeBgColor={"Orange.default"}
+											activeBorderColor={"Orange.default"}
+											activeColor={"common.white"}
 											type="submit"
+											isLoading={loading}
 											pad="padding.smaller"
 											nonActiveBgColor="Black.20"
 											text={  "Save Changes" }
