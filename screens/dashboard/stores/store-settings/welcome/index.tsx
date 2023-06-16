@@ -2,7 +2,7 @@
  
 
 
-import React, { useState }   from "react";
+import React, { useEffect, useState }   from "react";
 import {    LogoStyles,   } from "./styles";
 import { Bold,  Flex, Grid,         Span,   } from "../../../../../components";
 import { Spacer } from "../../../../../components/Spacer";
@@ -29,6 +29,17 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 
 	const { handleImageUpload,  loading: loadingImage } = useUploadImage();
 	const { handleSetUpStore, loading} = useSetUpStore();
+
+
+	useEffect(() => {
+		if(settings?.storeImage) {
+			setVisualType("image");
+		}
+		if(settings?.storeVideo) {
+			setVisualType("video");
+		}
+	}, [ settings?.storeVideo, settings?.storeImage]);
+
 
 
 	return (

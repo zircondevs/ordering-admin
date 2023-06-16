@@ -2,7 +2,7 @@
 
 
 
-import React   from "react";
+import React    from "react";
 import {   Container1, Footer,   } from "./styles";
 import { Bold, Container, Flex, Grid,     Span,   } from "../../../../../components";
 import { Spacer } from "../../../../../components/Spacer";
@@ -27,7 +27,7 @@ const options = [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satur
 const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 	const { handleSetUpStore, loading} = useSetUpStore();
 
-
+	
 	return (
 		<div>
 
@@ -48,7 +48,7 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 					enableReinitialize
 					initialValues={{
 						workingDays:  settings?.workingDays || [] ,
-						openingHours:  settings?.closingHours || "" ,
+						openingHours:  settings?.openingHours || "" ,
 						closingHours:  settings?.closingHours || "" ,
 					}} 
 					onSubmit={ async (values ) => { 
