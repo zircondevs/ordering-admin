@@ -43,7 +43,7 @@ const Stores = () => {
 			time: `${formatAMPM(new Date(transaction?.createdAt))}`,
 			amount: "₦" + formatNumber(transaction?.foodCharge),
 			status: <Flex bgColor={status[transaction?.status as TransactionStatusType][0]} width="max-content" pad="3px 8px" margin="0">
-				<Span fontFamily='quicksand' weight="400" lineHeight="19" size="12" colour={status[transaction?.status as TransactionStatusType][1]}>
+				<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={status[transaction?.status as TransactionStatusType][1]}>
 					{transaction?.status}
 				</Span>
 			</Flex>,
@@ -82,7 +82,7 @@ const Stores = () => {
 		<Main>
 
 			<HeaderSTyles height="auto" justifyContent="space-between">
-				<Bold fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
+				<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
 					{store?.name || <ThreeDotsLoaderIcon height="15" width="20"/>}
 				</Bold>
 
@@ -97,11 +97,11 @@ const Stores = () => {
 					{
 						details.map((detail, idx) => (
 							<Container key={idx} justifyContent="space-between" wrap="nowrap">
-								<Span fontFamily='quicksand' weight="400" lineHeight="16" size="12" colour={ "Grey.3"}>
+								<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={ "Grey.3"}>
 									{detail.title}
 								</Span>
 								<Spacer height="4px" />
-								<Bold fontFamily='quicksand' weight="&00" lineHeight="24" size="18" colour={ "Grey.2"}>
+								<Bold fontFamily='ubuntu' weight="&00" lineHeight="24" size="18" colour={ "Grey.2"}>
 									{detail.value}
 								</Bold>
 							</Container>
@@ -119,11 +119,11 @@ const Stores = () => {
 			<Container1 margin="40px 0 0">
 				<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 					<div>
-						<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
+						<Bold fontFamily='ubuntu' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 							All Transactions
 						</Bold>
 						<GeneralCountStyles>
-							<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+							<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								{transactions?.count || 0}
 							</Bold>
 						</GeneralCountStyles>
@@ -157,7 +157,7 @@ const Stores = () => {
 							</GeneralTableStyle>
 							: <Flex margin="40px 0" height="auto" direction="column">
 								<EmptyIcon />
-								<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+								<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 									There are no transaction record here yet!.
 								</Span>
 							</Flex>

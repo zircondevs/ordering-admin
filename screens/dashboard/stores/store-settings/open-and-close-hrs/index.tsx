@@ -34,11 +34,11 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 
 			<div>
 				<Flex height="auto"   margin="0 0 40px" direction="column" alignItems="flex-start">
-					<Bold fontFamily='quicksandMedium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
+					<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
 						Opening & Closing Hours
 					</Bold>
 					<Spacer height="8px"/>
-					<Span fontFamily='quicksand' weight="700" lineHeight="19" size="14" colour={"Grey.4"}>
+					<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="14" colour={"Grey.4"}>
 						Add the times your store is open to taking orders
 					</Span>
 				</Flex>

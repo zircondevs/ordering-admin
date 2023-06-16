@@ -31,11 +31,11 @@ const AllStores = ({openModal, stores, loading}: PropTypes) => {
 			
 			<Flex justifyContent="space-between" margin="40px 0 24px" height="auto">
 				<div>
-					<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
+					<Bold fontFamily='ubuntu' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 						Stores
 					</Bold>
 					<GeneralCountStyles>
-						<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+						<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 							{stores?.count || 0}
 						</Bold>
 					</GeneralCountStyles>
@@ -58,11 +58,11 @@ const AllStores = ({openModal, stores, loading}: PropTypes) => {
 												<StoreIcon colour="Grey.2" height="20" width="20"/>
 											</IconStyles>
 											<div>
-												<Span fontFamily='quicksand' weight="400" lineHeight="14" size="10" colour={ "Grey.3"}>
+												<Span fontFamily='ubuntu' weight="400" lineHeight="14" size="10" colour={ "Grey.3"}>
 													{store?.address}
 												</Span>
 												<br />
-												<Bold fontFamily='quicksand' weight="&00" lineHeight="24" size="18" colour={ "Grey.2"}>
+												<Bold fontFamily='ubuntu' weight="&00" lineHeight="24" size="18" colour={ "Grey.2"}>
 													{store?.name}
 												</Bold>
 											</div>

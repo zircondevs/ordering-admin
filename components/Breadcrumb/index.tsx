@@ -25,7 +25,7 @@ const BreadCrumb = ({
 							role={"button"}
 						>
 							<Span 
-								fontFamily='quicksandSemiBold'
+								fontFamily='ubuntuSemiBold'
 								weight="400"
 								lineHeight="20"
 								size="14"

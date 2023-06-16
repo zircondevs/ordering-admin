@@ -49,7 +49,7 @@ const FoodMenu = () => {
 								<OrderIcon height="40" width="40"/>
 						}
 					</FoodStyles>
-					<Bold fontFamily='quicksand' weight="700" lineHeight="19" size="12" colour={"Grey.1"}>
+					<Bold fontFamily='ubuntu' weight="700" lineHeight="19" size="12" colour={"Grey.1"}>
 						{product?.name}
 					</Bold>
 				</Flex>
@@ -78,7 +78,7 @@ const FoodMenu = () => {
 
 
 			<HeaderSTyles height="auto" justifyContent="space-between">
-				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
+				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Product
 				</Bold>
 
@@ -95,7 +95,7 @@ const FoodMenu = () => {
 							type="showmore"
 							handleSelect={(selected: string) => openModal({type: selected})}
 							icon={(
-								<Span fontFamily='quicksand' weight="400" lineHeight="24" size="18" colour={ "common.white"}>
+								<Span fontFamily='ubuntu' weight="400" lineHeight="24" size="18" colour={ "common.white"}>
 									Add New
 								</Span>
 							)}
@@ -123,11 +123,11 @@ const FoodMenu = () => {
 						<Container1>
 							<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 								<div>
-									<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
+									<Bold fontFamily='ubuntu' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 										All Products
 									</Bold>
 									<GeneralCountStyles>
-										<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+										<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 											{menu?.count}
 										</Bold>
 									</GeneralCountStyles>
@@ -150,7 +150,7 @@ const FoodMenu = () => {
 						</Container1>
 						:
 						<Flex margin="40px 0">
-							<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+							<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								There is no product records here yet!.
 							</Span>
 						</Flex>

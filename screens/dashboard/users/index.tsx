@@ -31,7 +31,7 @@ const Transactions = () => {
 		<Main>
 
 			<HeaderSTyles height="auto" justifyContent="space-between">
-				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
+				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Users
 				</Bold>
 			</HeaderSTyles>
@@ -39,11 +39,11 @@ const Transactions = () => {
 			<Container1>
 				<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 					<div>
-						<Bold fontFamily='quicksand' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
+						<Bold fontFamily='ubuntu' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 							All Users
 						</Bold>
 						<GeneralCountStyles>
-							<Bold fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+							<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								{users?.count}
 							</Bold>
 						</GeneralCountStyles>

@@ -86,7 +86,7 @@ const Drawer = () => {
 								onClick={() => push(drawerItem.href)}
 							>
 								{drawerItem.icon}
-								<Span fontFamily='quicksand' weight="700" lineHeight="19" size="16" colour={"Black.default"}>
+								<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Black.default"}>
 									{drawerItem.name}
 								</Span>
 							</DrawerItem>

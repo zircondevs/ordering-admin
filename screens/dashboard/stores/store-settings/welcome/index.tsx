@@ -48,11 +48,11 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 
 			<div>
 				<Flex height="auto"   margin="0 0 40px" direction="column" alignItems="flex-start">
-					<Bold fontFamily='quicksandMedium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
+					<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
 						Introductory content
 					</Bold>
 					<Spacer height="8px"/>
-					<Span fontFamily='quicksand' weight="700" lineHeight="19" size="14" colour={"Grey.4"}>
+					<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="14" colour={"Grey.4"}>
 						This appears once a user views your link. 
 					</Span>
 				</Flex>
@@ -85,13 +85,13 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 							<Form>
 								<Grid gap="32px">
 									<div>
-										<Span fontFamily='quicksandSemiBold' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
+										<Span fontFamily='ubuntuSemiBold' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
 											Select a media type to upload
 										</Span>
 										<Spacer height="8px"/>
 										<Main gap="20px" columns="repeat(auto-fit, minmax(100px, 170px))">
 											<Flex height="auto" width="auto"   justifyContent="flex-start" >
-												<GeneralLabel>Audio</GeneralLabel>
+												<GeneralLabel>Image</GeneralLabel>
 												<Checkbox checked={visualType === "image"}  onClick={() => setVisualType("image")} type="radio"/>
 											</Flex>
 											<Flex height="auto" width="auto"  justifyContent="flex-start"	>
@@ -110,7 +110,7 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 												<div>
 													<GeneralLabel> Image Upload </GeneralLabel>
 													<Spacer height="4px" />
-													<Span fontFamily='quicksand' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
+													<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
 														NB. Approved image size is 512x512px. Image should not exceed 900KB
 													</Span>
 													<Spacer height="24px" />
@@ -127,7 +127,7 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 																}
 															}} 
 														/>
-														<Span fontFamily='quicksand' weight="700" lineHeight="16" size="14" colour={"Grey.2"}>
+														<Span fontFamily='ubuntu' weight="700" lineHeight="16" size="14" colour={"Grey.2"}>
 															{values?.storeImage ? "Change Image" : "Upload Image"}
 														</Span>
 														{loadingImage && uploadType=== "image"  ? <div className="loader"><LoaderIcon height="30" width="30" /></div> : null}
@@ -141,7 +141,7 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 													<div>
 														<GeneralLabel> Video Upload </GeneralLabel>
 														<Spacer height="4px" />
-														<Span fontFamily='quicksand' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
+														<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
 															NB. Approved image size is 512x512px. Image should not exceed 4mb
 														</Span>
 														<Spacer height="24px" />
@@ -158,7 +158,7 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 																	}
 																}} 
 															/>
-															<Span fontFamily='quicksand' weight="700" lineHeight="16" size="14" colour={"Grey.2"}>
+															<Span fontFamily='ubuntu' weight="700" lineHeight="16" size="14" colour={"Grey.2"}>
 																{values?.storeVideo ? "Change video" : "Upload video"}
 															</Span>
 															{loadingImage  && uploadType === "video"  ? <div className="loader"><LoaderIcon height="30" width="30" /></div> : null}

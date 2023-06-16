@@ -54,7 +54,7 @@ const UserManagemnt = () => {
 	return (
 		<Main>
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='40px 0 40px'>
-				<Bold fontFamily='quicksandSemiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
+				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
 					User Information
 				</Bold>
  
@@ -87,7 +87,7 @@ const UserManagemnt = () => {
 						</GeneralTableStyle>
 						: 	
 						<Flex margin="40px 0">
-							<Span fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+							<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								There are no user  found here!.
 							</Span>
 						</Flex>

@@ -60,7 +60,7 @@ export const GeneralErrorContainer =  styled("small")`
 	position: relative;
 	left: 0;
 	color: ${({ theme }) => theme?.palette?.Error.default };
-	font-family: ${({ theme }) => theme?.typography?.fontFamily["quicksand"] };
+	font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };
 	font-size: ${({ theme }) => theme?.fontSizes["12"] };
 	font-weight: ${({ theme }) => theme?.typography?.fontWeight["400"] };
 	line-height: ${({ theme }) => theme?.typography?.lineHeight["19"] };
@@ -111,7 +111,7 @@ export const GeneralLabel =  styled("label")<{optional?: boolean}>`
 	text-align: start;
 	text-transform: uppercase;
 	color: ${({ theme }) => theme?.palette?.Black[80] };
-	font-family: ${({ theme }) => theme?.typography?.fontFamily["quicksand"] };
+	font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };
 	font-size: ${({ theme }) => theme?.fontSizes["12"] };
 	font-weight: ${({ theme }) => theme?.typography?.fontWeight["400"] };
 	line-height: ${({ theme }) => theme?.typography?.lineHeight["10"] };
@@ -166,6 +166,9 @@ export const GeneralInputWrap =  styled(Container)`
 			}
 		}
 	}
+	input {
+		font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };
+	}
 `; 
  
 export const GeneralCountStyles =  styled("div")`
@@ -189,7 +192,7 @@ export const GeneralTableStyle =  styled(Flex)`
 			min-width: 700px;
 			thead th {
 				padding: 10px 0.8rem;
-				font-family: ${({ theme}) => theme.typography.fontFamily.quicksandSemiBold};
+				font-family: ${({ theme}) => theme.typography.fontFamily.ubuntuSemiBold};
 				font-weight: ${({ theme}) => theme.typography.fontWeight[400]};
 				font-size: 12px;
 				background-color:  ${({ theme }) => theme.palette.Black[10]};
@@ -279,3 +282,18 @@ export const GenrealUploadBtnStyles =  styled("div")<{isLoading: boolean}>`
 		opacity: ${({ isLoading }) => isLoading ? 0 : 1}
 	}
 `;
+
+export const GeneralTextArea=  styled("textarea")`
+	position: relative;
+	font-size: ${({ theme }) => theme?.fontSizes["14"] };
+	font-weight: ${({ theme }) => theme?.typography?.fontWeight["400"] };
+	line-height: ${({ theme }) => theme?.typography?.lineHeight["21"] };
+	padding: 8px ;
+	border: 1px solid ${({ theme }) => theme.palette.Grey[4]};
+	border-radius: 4px;
+	min-height: 50px;
+	width: 100%;
+	resize: vertical;
+	font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };
+
+`; 

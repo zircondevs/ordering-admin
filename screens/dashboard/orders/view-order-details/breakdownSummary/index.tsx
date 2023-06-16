@@ -28,16 +28,16 @@ const BreakdownSummary = ({  order}:any) => {
 			<Total height="auto">
 				<Container >
 					<Flex justifyContent="space-between" wrap="nowrap" alignItems="flex-start">
-						<Span  fontFamily='quicksandLight' weight="700" lineHeight="16" size="14" colour={"Grey.3"}>
+						<Span  fontFamily='ubuntuLight' weight="700" lineHeight="16" size="14" colour={"Grey.3"}>
 							Order ID
 						</Span>
-						<Time  fontFamily='quicksandLight' weight="400" lineHeight="19" size="14" colour={"Grey.1"} textAlign="end">
+						<Time  fontFamily='ubuntuLight' weight="400" lineHeight="19" size="14" colour={"Grey.1"} textAlign="end">
 							{formateDate(new Date(order?.createdAt)).date}  {formateDate(new Date(order?.createdAt)).shortMonth},
 							{formateDate(new Date(order?.createdAt)).year}  
 						</Time>
 					</Flex>
 					<Spacer height="8px"/>
-					<OrderId  fontFamily='quicksand' weight="700" lineHeight="28" size="24" colour={"Grey.1"}>
+					<OrderId  fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={"Grey.1"}>
 						{(order?.orderId)}
 					</OrderId>
 				</Container>
@@ -50,10 +50,10 @@ const BreakdownSummary = ({  order}:any) => {
 					{order?.packs?.map((item: any, idx: number) => (
 						<Flex key={idx} justifyContent="space-between" height="auto"  width="auto">
 							<Flex justifyContent="space-between" height="auto">
-								<Bold  fontFamily='quicksand' weight="400" lineHeight="16" size="14" colour={"Grey.4"}>
+								<Bold  fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.4"}>
 									Pack {idx + 1} {" "}
 								</Bold>
-								<Bold  fontFamily='quicksand' weight="400" lineHeight="16" size="12" colour={"Grey.4"}>
+								<Bold  fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.4"}>
 									Quantity
 								</Bold>
 							</Flex>
@@ -62,11 +62,11 @@ const BreakdownSummary = ({  order}:any) => {
 								{item?.map((product: any, idx: number) => (
 									<Flex key={idx} justifyContent="space-between" height="auto"  width="auto">
 										<div>
-											<Span  fontFamily='quicksand' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
+											<Span  fontFamily='ubuntu' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
 												{MakeOnlyFirstLettersCapital(product?.food?.name)}  
 											</Span>
 										</div>
-										<Span  fontFamily='quicksand' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
+										<Span  fontFamily='ubuntu' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
 											{product?.quantity}   
 										</Span>
 									</Flex>
@@ -86,15 +86,15 @@ const BreakdownSummary = ({  order}:any) => {
 					{order?.packs?.map((item: any, idx: number) => (
 						<Flex key={idx} justifyContent="space-between" height="auto"  width="auto">
 							<div>
-								<Bold  fontFamily='quicksand' weight="700" lineHeight="16" size="12" colour={"Black.default"}>
+								<Bold  fontFamily='ubuntu' weight="700" lineHeight="16" size="12" colour={"Black.default"}>
 									Pack {idx + 1} {" "}
-									<Span  fontFamily='quicksand' weight="400" lineHeight="14" size="12" colour={"Grey.3"}>
+									<Span  fontFamily='ubuntu' weight="400" lineHeight="14" size="12" colour={"Grey.3"}>
 										({item?.length} items)
 									</Span>
 								</Bold>
 							
 							</div>
-							<Bold  fontFamily='quicksand' weight="700" lineHeight="16" size="12" colour={"Grey.2"}>
+							<Bold  fontFamily='ubuntu' weight="700" lineHeight="16" size="12" colour={"Grey.2"}>
 								{naira} 
 								{formatNumber(item.reduce((prev: any, current: any) => (current?.food?.amount * current?.quantity)+ prev,0))}
 							</Bold>
@@ -106,11 +106,11 @@ const BreakdownSummary = ({  order}:any) => {
 					{Object.values(total).map((item, idx) => (
 						<Flex key={idx} justifyContent="space-between" height="auto" >
 							<div>
-								<Bold  fontFamily='quicksand' weight="700" lineHeight="16" size="14" colour={"Black.default"}>
+								<Bold  fontFamily='ubuntu' weight="700" lineHeight="16" size="14" colour={"Black.default"}>
 									{Object.keys(total)[idx]}
 								</Bold>
 							</div>
-							<Bold  fontFamily='quicksand' weight="700" lineHeight="16" size="14" colour={"Black.default"}>
+							<Bold  fontFamily='ubuntu' weight="700" lineHeight="16" size="14" colour={"Black.default"}>
 								{naira}{item}
 							</Bold>
 						</Flex>
@@ -119,11 +119,11 @@ const BreakdownSummary = ({  order}:any) => {
 			</Total>
 			<Flex  justifyContent="flex-end" height="auto"  margin="0 0 70px">
 				<Container margin="0 16px 0 0" width="auto">
-					<Bold  fontFamily='quicksand' weight="700" lineHeight="16" size="16" colour={"Black.default"}>
+					<Bold  fontFamily='ubuntu' weight="700" lineHeight="16" size="16" colour={"Black.default"}>
 						Total:
 					</Bold>
 				</Container>
-				<Bold  fontFamily='quicksandBold' weight="700" lineHeight="16" size="18" colour={"Black.default"}>
+				<Bold  fontFamily='ubuntuBold' weight="700" lineHeight="16" size="18" colour={"Black.default"}>
 					{naira}{formatNumber(order?.foodPrice)}
 				</Bold>
 			</Flex>

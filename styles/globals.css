@@ -1,26 +1,26 @@
 
 @font-face {
-    font-family: "Quicksand-bold";
+    font-family: "UbuntuMono-Bold";
     src: url("../public/Ubuntu_Mono/UbuntuMono-Bold.ttf")
       format("truetype");
   }
 @font-face {
-    font-family: "Quicksand-light";
+    font-family: "UbuntuMono-Regular";
     src: url("../public//Ubuntu_Mono/UbuntuMono-Regular.ttf")
       format("truetype");
   }
 @font-face {
-    font-family: "Quicksand-medium";
+    font-family: "UbuntuMono-Regular";
     src: url("../public//Ubuntu_Mono/UbuntuMono-Regular.ttf")
       format("truetype");
   }
 @font-face {
-    font-family: "Quicksand-regular";
+    font-family: "UbuntuMono-Regular";
     src: url("../public/Ubuntu_Mono/UbuntuMono-Regular.ttf")
       format("truetype");
   }
 @font-face {
-    font-family: "Quicksand-semibold";
+    font-family: "UbuntuMono-Bold";
     src: url("../public//Ubuntu_Mono/UbuntuMono-Bold.ttf")
     format("truetype");
 }
@@ -32,7 +32,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Quicksand-regular, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: UbuntuMono-Regular, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 

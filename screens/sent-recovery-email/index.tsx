@@ -36,7 +36,7 @@ const ForgotPassword = () => {
 
 
 					<Flex height="auto"   margin="0 0 24px" direction="column" alignItems="flex-start">
-						<Bold fontFamily='quicksandMedium' weight="400" lineHeight="40" size="36" colour={"Grey.1"}>
+						<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="40" size="36" colour={"Grey.1"}>
 							Recovery Email Sent
 						</Bold>
 						<Spacer height="16px"/>
@@ -49,7 +49,7 @@ const ForgotPassword = () => {
 							/>
 						</ImageStyles>
 						<Spacer height="16px"/>
-						<Span fontFamily='quicksand' weight="700" lineHeight="19" size="16" colour={"Grey.2"} center>
+						<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Grey.2"} center>
 							Please click on the link  sent to {query?.email}
 						</Span>
 					</Flex>

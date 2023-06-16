@@ -60,7 +60,7 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 											dropdownValue: (
 												<ProfileDropdownList>
 													<LogOutIcon colour={"Error.default"} width="20" height="20"/>
-													<Span  weight="600" fontFamily='quicksand' lineHeight="16" size="14" colour={"Black.default"} center>
+													<Span  weight="600" fontFamily='ubuntu' lineHeight="16" size="14" colour={"Black.default"} center>
 														Log Out
 													</Span>
 												</ProfileDropdownList>)
@@ -71,7 +71,7 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 											dropdownValue: (
 												<ProfileDropdownList >
 													<AvatarIcon colour={"Grey.3"} width="20" height="20"/>
-													<Span  weight="600" fontFamily='quicksand' lineHeight="16" size="14" colour={"Black.default"} center>
+													<Span  weight="600" fontFamily='ubuntu' lineHeight="16" size="14" colour={"Black.default"} center>
 														Profile
 													</Span>
 												</ProfileDropdownList>)
@@ -79,7 +79,7 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 									]}
 									icon={
 										<ProfileCard>
-											<Span  weight="600" fontFamily='quicksandSemiBold' lineHeight="24" size="16" colour={"Black.default"} center>
+											<Span  weight="600" fontFamily='ubuntuSemiBold' lineHeight="24" size="16" colour={"Black.default"} center>
 												{MakeOnlyFirstLettersCapital(user?.clientName || "")}
 											</Span>
 											<LeftArrowIcon  height="15" width="15"/>

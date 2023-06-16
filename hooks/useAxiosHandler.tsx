@@ -54,7 +54,7 @@ export const useAxiosHandler = () => {
 	// Axios put calls
 	const deleteAxiosHandler =  async ({url, token = Token, notify = true, DATA, successMessage }: AxiosCallTypes) => {
 		const { data, status, error, success , message } = await handleAPICall({ url, token, method: "delete", DATA });
-		notify  && success && Notify().success(  successMessage || messageHandler(message)  );
+		notify  && data && Notify().success(  successMessage || messageHandler(message)  );
 		notify  && error && Notify().error(  errorHandler( error ));
 		return { data, status, error, success , message };
 	};
