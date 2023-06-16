@@ -56,7 +56,7 @@ export const TabsStyles =  styled("div")`
 			justify-content: stretch;
 			border: none;
 			& > li {
-				margin: 0 0 10px;
+				margin: 0 0 13px;
 				height: auto;
 				padding: 3px 0;
 				font-size: 14px;

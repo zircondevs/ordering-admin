@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 
 
 
@@ -28,6 +29,19 @@ export const useGetAdminUsers  = () => {
 	});
  
 	return {  loading, users: data?.data , setPageInfo, pageInfo, mutate };
+};
+ 
+
+
+export const useGetStorePolicy  = () => {
+	const { state: { user }} = UseContext();
+	const { data , loading, mutate} = useGetCachedAxiosHandler ({
+		url: `${SETTINGS_URL}/policies/${user?.clientId}`,
+		notify: false,
+		requiredVariable: user?.clientId?.length > 0
+	});
+ 
+	return {  loading, policy: data?.data ,  mutate };
 };
  
 
@@ -88,6 +102,28 @@ export const useUpdateAccountSettings  = () => {
 	};
  
 	return {  loading, handleUpdateAccSettings };
+};
+
+
+export const useSetUpStore  = () => {
+	const { state: { user }} = UseContext();
+	const { postAxiosHandler } = useAxiosHandler();
+	const [loading, setLoading] = useState(false);
+	
+	const handleSetUpStore = async (DATA: object) => {
+		setLoading(true);
+		const { data } = await  postAxiosHandler ({
+			url: `${SETTINGS_URL}/setup/${user?.clientId}`,
+			DATA,
+			successMessage: "Settings updated"
+		});
+		setLoading(false);
+		if(data) {
+			return { data };
+		}
+	};
+ 
+	return {  loading, handleSetUpStore };
 };
 
 export const useAddSettingsUser  = () => {

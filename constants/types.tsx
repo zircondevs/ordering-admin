@@ -34,3 +34,16 @@ export interface AxiosCallTypes {
 
 
 export type TransactionStatusType  = "pending" | "failed" |  "success";
+
+
+export interface SetUpStoreTypes {
+	workingDays?: string[]
+	openingHours?: string;
+	closingHours?: string;
+	storeVideo?: string;
+	storeImage?: string;
+	storeCustomMessage?: string;
+	instagramLink?: string;
+	twitterLink?: string;
+	facebookLink?: string;
+}

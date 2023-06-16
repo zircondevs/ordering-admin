@@ -6,7 +6,10 @@ import { Spacer } from "../../../../components/Spacer";
 import OpeningAndClosingHrs from "./open-and-close-hrs";
 import Welcome from "./welcome";
 import SocialHandles from "./social-handles";
- 
+import CartType from "./cart-type";
+import { useGetAdminGeneralSettings } from "../../../../hooks/useSettigs";
+
+
 
 
  
@@ -14,22 +17,29 @@ import SocialHandles from "./social-handles";
 
 const StoreSettings = ( ) => {
 
+	const { settings,   mutate } = useGetAdminGeneralSettings();
 
+ 
 	const tabData = [
 		{
 			head: "Opening & Closing Hours",
-			body:	<OpeningAndClosingHrs />,
+			body:	<OpeningAndClosingHrs {...{settings, onDone: mutate}} />,
 			key: "Account Information"
 		},
 		{
 			head: "Store Welcome Content",
-			body: <Welcome />,
+			body: <Welcome  {...{settings, onDone: mutate}} />,
 			key: "User Management"
 		},
 		{
 			head: "Social handles",
-			body: <SocialHandles />,
+			body: <SocialHandles  {...{settings, onDone: mutate}} />,
 			key: "User"
+		},
+		{
+			head: "Cart Options",
+			body: <CartType  />,
+			key: "cart polocy"
 		},
 	];
  

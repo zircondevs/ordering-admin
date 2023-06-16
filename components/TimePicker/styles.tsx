@@ -9,8 +9,8 @@ import { Flex, Grid } from "..";
 
 
 export const IconStyles = styled(Flex)`
-	border: 1px solid  ${({ theme }) => theme.palette.Grey[4]};;
-	padding: 10px;
+	border-bottom: 1px solid  ${({ theme }) => theme.palette.Grey[4]};;
+	padding: 10px 0;
 	border-radius: 4px;
 	 & > span {
 		padding-right: 20px;
