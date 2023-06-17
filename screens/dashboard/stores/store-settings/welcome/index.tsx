@@ -95,7 +95,7 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 												<Checkbox checked={visualType === "image"}  onClick={() => setVisualType("image")} type="radio"/>
 											</Flex>
 											<Flex height="auto" width="auto"  justifyContent="flex-start"	>
-												<GeneralLabel>Vidoe</GeneralLabel>
+												<GeneralLabel>Video</GeneralLabel>
 												<Checkbox checked={visualType === "video"} onClick={() => setVisualType("video")} type="radio"/>
 											</Flex>
 										</Main>
@@ -180,9 +180,9 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 
 									<CustomButton
 										size="14"
-										activeBgColor={"Orange.default"}
+										activeBgColor={"common.white"}
 										activeBorderColor={"Orange.default"}
-										activeColor={"common.white"}
+										activeColor={"Orange.default"}
 										type="submit"
 										pad="padding.smaller"
 										isLoading={loading}

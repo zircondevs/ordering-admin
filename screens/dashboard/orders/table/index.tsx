@@ -34,12 +34,14 @@ const OrdersTable = ({orders, loading, title, setSingleOrder, modalRef, pageInfo
 
 
 	
-	const tableHead = [  "Amount",  "User", "Phone", "Date", "Action"];
+	const tableHead = [  "Product Price",  "User", "Phone", "Delivery Address","Delivery Type", "Date", "Action"];
 	const tableBody = orders?.data?.map((order: GenericObjTypes) => (
 		{
-			amount: "₦" + formatNumber(order?.foodPrice),
+			amount: "₦" + formatNumber(order?.productPrice),
 			user:  order?.clientName || (order?.user),
 			phone:  order?.clientPhoneNumber,
+			deliveryAddress:  order?.deliveryAddress,
+			deliveryType:  order?.deliveryType,
 			date: `${formateDate(new Date(order?.createdAt)).date} ${formateDate(new Date(order?.createdAt)).shortMonth}, 
 				${formateDate(new Date(order?.createdAt)).year}, ${formatAMPM(new Date(order?.createdAt))}` ,
 			action: <button onClick={() => openModal(order)}>

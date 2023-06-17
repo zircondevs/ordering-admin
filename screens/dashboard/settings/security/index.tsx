@@ -36,7 +36,7 @@ const Security = () => {
 		<Main>
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='40px 0 40px'>
 				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
-					Update Security Information
+					Update Password
 				</Bold>
 			</HeaderSTyles>
 

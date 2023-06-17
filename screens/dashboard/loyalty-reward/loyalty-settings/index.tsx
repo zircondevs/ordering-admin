@@ -4,7 +4,7 @@
 
 import React   from "react";
 
-import { Bold,  Flex,    Input,         Span,   } from "../../../../components";
+import { Bold,  Flex,    Input,         Span, Switch,   } from "../../../../components";
 import { Spacer } from "../../../../components/Spacer";
 import CustomButton from "../../../../components/Button";
 import {  GeneralInputWrap, GeneralLabel, GeneralTextArea,      } from "../../../../components/styles";
@@ -15,6 +15,7 @@ import { useGetLoyaltySettings, useUpdateLoyaltSettings } from "../../../../hook
 
 
 
+
  
 type SocialTypes = "numberOfPurchasesRequired" | "rewardMessage" ;
 
@@ -22,11 +23,11 @@ const LoayltySettings = ( ) => {
 	const { handleSetLoyaltySettings, loading} = useUpdateLoyaltSettings();
 	const { settings , mutate} = useGetLoyaltySettings();
 
-
+	
 	const fields = [
 		{
 			name: "numberOfPurchasesRequired",
-			label: "Choose Number of Purchase",
+			label: "How many purchases must your customer  make before being added to a loyalty list",
 			placeholder: "Enter number of purchase",
 			type: "text",
 		},
@@ -61,50 +62,68 @@ const LoayltySettings = ( ) => {
 					initialValues={{
 						rewardMessage:  settings?.rewardMessage ||  "",
 						numberOfPurchasesRequired: settings?.numberOfPurchasesRequired || "",
+						enableLoyaltyReward:  settings?.enableLoyaltyReward || false
 					}} 
 					onSubmit={ async (values ) => { 
 						const res = await handleSetLoyaltySettings((values as SetUpStoreTypes));
 						res?.data && mutate();
 					}}
 				>
-					{({ values, handleChange  }) => {
+					{({ values, handleChange, setFieldValue  }) => {
 
 						return (
 							<Form>
+
+ 
+
+
 								<Main gap="32px">
+									<Flex height="auto" width="auto"   justifyContent="flex-start" >
+										<GeneralLabel>Enable Loyalty Reward</GeneralLabel>
+										<Switch
+											activeColor="Success.default"
+											nonActiveColor="Grey.5"
+											click={(e) => setFieldValue("enableLoyaltyReward", e)}
+											initialState={values.enableLoyaltyReward}
+											reValidate
+										/>
+									</Flex>
+										
 									{
-										fields.map(field => (
-											<GeneralInputWrap margin="8px 0 0" key={field.name}>
-												<GeneralLabel> {field.label}</GeneralLabel>
-												{
-													field.type === "textarea" ?
-														<GeneralTextArea 
-															value={values[field.name as SocialTypes]}
-															name={field.name}
-															onChange={handleChange}
-															placeholder={ field.placeholder }
-														/>
-														:
-														<Input
-															value={values[field.name as SocialTypes]}
-															name={field.name}
-															type={"text"} 
-															handleChange={handleChange}
-															borderCol={"Black.20"}
-															activeBorderCol={"Blue.base.default"}
-															placeholder={ field.placeholder }
-															borderRadius="8px"
-														/>
-												}
-											</GeneralInputWrap>
-										))
+										values.enableLoyaltyReward ?
+											fields.map(field => (
+												<GeneralInputWrap margin="8px 0 0" key={field.name}>
+													<GeneralLabel> {field.label}</GeneralLabel>
+													{
+														field.type === "textarea" ?
+															<GeneralTextArea 
+																value={values[field.name as SocialTypes]}
+																name={field.name}
+																onChange={handleChange}
+																placeholder={ field.placeholder }
+															/>
+															:
+															<Input
+																value={values[field.name as SocialTypes]}
+																name={field.name}
+																type={"text"} 
+																handleChange={handleChange}
+																borderCol={"Black.20"}
+																activeBorderCol={"Blue.base.default"}
+																placeholder={ field.placeholder }
+																borderRadius="8px"
+															/>
+													}
+												</GeneralInputWrap>
+											))
+											: null
 									}
 
 									<CustomButton
 										size="14"
-										activeBgColor={"Orange.default"}
+										activeBgColor={"common.white"}
 										activeBorderColor={"Orange.default"}
-										activeColor={"common.white"}
+										activeColor={"Orange.default"}
 										type="submit"
 										isLoading={loading}
 										pad="padding.smaller"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {  STORE_URL } from "../constants/urls";
+import {  SETTINGS_URL, STORE_URL } from "../constants/urls";
 import { UseContext } from "../state/provider";
 import { useAxiosHandler, useGetCachedAxiosHandler } from "./useAxiosHandler";
 
@@ -102,4 +102,25 @@ export const useEditStore  = (storeId: string) => {
 	};
  
 	return {  loading, handleEditStore };
+};
+
+export const useUpdateCartPolicy  = () => {
+	const { putAxiosHandler } = useAxiosHandler();
+	const [loading, setLoading] = useState(false);
+	const { state: { user }} = UseContext();
+
+	const handleUpdatecartPolicy = async ( DATA: object) => {
+		setLoading(true);
+		const { data } = await  putAxiosHandler ({
+			url: `${SETTINGS_URL}/policies/${user?.clientId}`,
+			successMessage: "Update is successful",
+			DATA: { clientId: user?.clientId, "policyName": "cart", ...DATA}
+		});
+		setLoading(false);
+		if(data) {
+			return { data };
+		}
+	};
+ 
+	return {  loading, handleUpdatecartPolicy };
 };

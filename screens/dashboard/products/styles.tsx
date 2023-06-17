@@ -33,8 +33,10 @@ export const FoodStyles =  styled(Flex)`
 	position: relative;
 	height: 40px;
 	width: 40px;
-	margin-right: 8px;
-	flex-wrap: nowrap;
+	min-height: 40px;
+	min-width: 40px;
+	margin-left: -25px;
+	border: 2px solid ${({ theme }) => theme.palette.Grey[3]};
 `;
  
 export const SearchStyles =  styled(Flex)`
@@ -64,6 +66,21 @@ export const AddBtn =  styled(Flex)`
 	background-color: ${() => PRIMARY_COLOR[0]};
 	padding: 14px 24px;
 	border-radius: 8px;
+`;
+ 
+
+export const ProductImages =  styled(Flex)`
+	 width: auto;
+	 justify-content: flex-start;
+	 margin-right: 8px;
+	 min-width: auto;
+	 & > div {
+		border-radius: 100%;
+		overflow: hidden;
+		&:first-child{
+			margin: 0;
+		}
+	 }
 `;
  
  

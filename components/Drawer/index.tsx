@@ -1,5 +1,5 @@
 
-import { DrawerItem,  Layout,  MenuStyles, MenuiconStyles, Overlay, SelectStores,   } from "./styles";
+import { DrawerItem,  Layout,  MenuStyles, MenuiconStyles, Overlay, SelectStores, SingleStore,   } from "./styles";
 import {  Dropdown, Grid, Span  } from "..";
 import React, { useEffect, useState }  from "react";
 import Constant from "../../constants";
@@ -50,29 +50,34 @@ const Drawer = () => {
 				{
 					stores?.data?.length > 0 ?
 						<SelectStores>
-							<Dropdown
-								weight="300"
-								direction="end"
-								colour="Black.default"
-								dropColor="Grey.2"
-								dropHovColor="Black.default"
-								hovBgColor="Black.20"
-								searchField={false}
-								clearSelected
-								initial={stores?.data?.find((store: any) => store?._id === storeId)?.name }
-								handleSelect={(selected: string) => setStoreId(selected)}
-								data={stores?.data?.map((store: any) => (
-									{
-										displayedValue: store?.name, 
-										returnedValue: store?._id,
-										dropdownValue: store?.name
-									}
-								))|| ({
-									displayedValue: "No data", 
-									returnedValue: "No data",
-									dropdownValue: "No data",
-								}) }
-							/>
+							{
+								(stores?.data?.length === 1 )?
+									<SingleStore>{stores?.data?.[0]?.name}</SingleStore>
+									:
+									<Dropdown
+										weight="300"
+										direction="end"
+										colour="Black.default"
+										dropColor="Grey.2"
+										dropHovColor="Black.default"
+										hovBgColor="Black.20"
+										searchField={false}
+										clearSelected
+										initial={stores?.data?.find((store: any) => store?._id === storeId)?.name }
+										handleSelect={(selected: string) => setStoreId(selected)}
+										data={stores?.data?.map((store: any) => (
+											{
+												displayedValue: store?.name, 
+												returnedValue: store?._id,
+												dropdownValue: store?.name
+											}
+										))|| ({
+											displayedValue: "No data", 
+											returnedValue: "No data",
+											dropdownValue: "No data",
+										}) }
+									/>
+							}
 						</SelectStores>
 						: null
 				}
