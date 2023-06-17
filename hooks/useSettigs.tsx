@@ -41,7 +41,7 @@ export const useGetStorePolicy  = () => {
 		requiredVariable: user?.clientId?.length > 0
 	});
  
-	return {  loading, policy: data?.data ,  mutate };
+	return {  loading, policy: data?.data?.data?.[0] ,  mutate };
 };
  
 

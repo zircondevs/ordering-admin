@@ -95,9 +95,9 @@ const SocialHandles = ({settings, onDone}: {settings: any, onDone: () => void} )
 
 									<CustomButton
 										size="14"
-										activeBgColor={"Orange.default"}
+										activeBgColor={"common.white"}
 										activeBorderColor={"Orange.default"}
-										activeColor={"common.white"}
+										activeColor={"Orange.default"}
 										type="submit"
 										isLoading={loading}
 										pad="padding.smaller"

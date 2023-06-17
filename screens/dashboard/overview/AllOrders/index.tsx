@@ -4,7 +4,6 @@ import { Bold, Flex, Grid, Span,  } from "../../../../components";
 import {   Aside, AsideStyle,    OrderIdStyles,    Orders, RecentOrders,   TotalOrders, } from "./styles";
 import { Spacer } from "../../../../components/Spacer";
 import CustomButton from "../../../../components/Button";
-import { PRIMARY_COLOR } from "../../../../hooks/colors";
 import { useSocket } from "../../../../hooks/handlers/useSocket";
 import { formatAMPM, formateDate } from "../../../../lib";
 import { UseContext } from "../../../../state/provider";
@@ -35,10 +34,11 @@ const AllOrders = () => {
 
 				<CustomButton
 					size="14"
-					bodColour={PRIMARY_COLOR[0]}
+					activeColor={"Orange.default"}
+					activeBorderColor={"Orange.default"}
+					activeBgColor={"common.white"}
 					type="button"
 					pad="padding.smallest"
-					txtColour={PRIMARY_COLOR[0]}
 					text={  "See All"}
 					onClick={() =>  router.push("/dashboard/orders")}
 				/>

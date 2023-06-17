@@ -19,12 +19,13 @@ const Transactions = () => {
 		failed:  ["Error.20", "Error.default" ],
 		success: ["Success.20", "Success.default" ],
 	};
-	const tableHead = ["Date","Time", "Amount", "Status" ];
+	const tableHead = ["Date","Time", "Amount", "Mode Of Trans", "Status" ];
 	const tableBody = transactions?.data?.map((transaction: GenericObjTypes) => (
 		{
 			date: `${formateDate(new Date(transaction?.createdAt)).date} ${formateDate(new Date(transaction?.createdAt)).shortMonth}, ${formateDate(new Date(transaction?.createdAt)).year}` ,
 			time: `${formatAMPM(new Date(transaction?.createdAt))}`,
-			amount: "₦" + formatNumber(transaction?.foodCharge),
+			amount: "₦" + formatNumber(transaction?.productCharge),
+			modeOfTransaction:  transaction?.modeOfTransaction,
 			status: <Flex bgColor={status[transaction?.status as TransactionStatusType][0]} width="max-content" pad="3px 8px" margin="0">
 				<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={status[transaction?.status as TransactionStatusType][1]}>
 					{transaction?.status}

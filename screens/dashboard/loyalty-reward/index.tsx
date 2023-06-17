@@ -5,6 +5,7 @@ import { HeaderSTyles, Main, TabsStyles,    } from "./styles";
 import {  GeneralTabStyle,   } from "../../../components/styles";
 import LoyaltyCustomers from "./loyalty-customers";
 import LoayltySettings from "./loyalty-settings";
+import { Spacer } from "../../../components/Spacer";
 
 
 
@@ -51,7 +52,7 @@ const Loyalty = () => {
 			</TabsStyles>
 
  
- 
+			<Spacer height="40px"/>
 		
  
 		</Main>

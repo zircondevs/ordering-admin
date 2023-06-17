@@ -2,11 +2,11 @@
 
 import React, {   useState }   from "react";
 import { Bold, Dropdown, Flex,  Span, Table,      } from "../../../components";
-import {     AddBtn, BtnsStyles, Container1, FoodStyles, HeaderSTyles, Main,   } from "./styles";
+import {     AddBtn, BtnsStyles, Container1, FoodStyles, HeaderSTyles, Main, ProductImages,   } from "./styles";
 import { formatAMPM, formatNumber, formateDate,   } from "../../../lib";
 // import Search from "../../../components/Search";
 import { GeneralCountStyles, GeneralTableStyle } from "../../../components/styles";
-import {   EditIcon, LoaderIcon, OrderIcon,    } from "../../../public/assets/svg";
+import {   EditIcon, LoaderIcon,      } from "../../../public/assets/svg";
 import Image from "next/image";
 import { GenericObjTypes } from "../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library";
@@ -20,7 +20,7 @@ import { useGetCategories } from "../../../hooks/useCategory";
 
 
 
-const FoodMenu = () => {
+const Product = () => {
 
 	const { menu, loading: loadingmenu , mutate} = useGetAllProducts();
 	const { categories,  mutate:mutateCategory } = useGetCategories();
@@ -36,19 +36,20 @@ const FoodMenu = () => {
 		modalRef.current && modalRef.current.preventBodyScroll();
 	};
  
-	const tableHead = [ "Food", "category", "Date","Time", "Amount", "Avaliability", "Action"];
+	const tableHead = [ "Product", "category", "Date","Time", "Amount", "Avaliability", "Action"];
 	const tableBody = menu?.data?.map((product: GenericObjTypes) => (
 		{
 			name: (
-				<Flex width="auto" justifyContent="flex-start">
-					<FoodStyles >
+				<Flex width="auto" justifyContent="flex-start" wrap="nowrap">
+					<ProductImages wrap="nowrap">
 						{
-							product?.productImage ?
-								<Image src={product?.productImage} alt="Logo" objectFit="contain" layout="fill" /> 
-								:
-								<OrderIcon height="40" width="40"/>
+							product?.productImage?.map((img: string, idx: number) => (
+								<FoodStyles key={idx}>
+									<Image src={img} alt="Logo" objectFit="cover" layout="fill" />  
+								</FoodStyles>
+							))
 						}
-					</FoodStyles>
+					</ProductImages>
 					<Bold fontFamily='ubuntu' weight="700" lineHeight="19" size="12" colour={"Grey.1"}>
 						{product?.name}
 					</Bold>
@@ -163,5 +164,5 @@ const FoodMenu = () => {
 		</Main>
 	);
 };
-export default FoodMenu;
+export default Product;
  

@@ -22,6 +22,8 @@ import React, { useEffect, useRef, useState } from "react";
  }
 
 
+const addLeadingZeros = (value: number) =>  (value).toString().padStart(2, "0");
+
 const TimePicker = (props: Proptypes) => {
 	const [value, setValue] = useState({
 		hrs: 0,
@@ -52,7 +54,8 @@ const TimePicker = (props: Proptypes) => {
 			ref={popUpRef}
 			icon={(
 				<IconStyles  wrap="nowrap" justifyContent="space-between">
-					<span>{ `${hrs % 12 || 12}:${mins}:${secs}` } {hrs < 12 ? "AM" : "PM"}</span>
+					<span>{ `${addLeadingZeros(hrs % 12 || 12)}:${addLeadingZeros(mins)}` } {hrs < 12 ? "AM" : "PM"}</span>
+					{/* <span>{ `${hrs % 12 || 12}:${mins}:${secs}` } {hrs < 12 ? "AM" : "PM"}</span> */}
 					<RightArrowIcon height={"13"} width={"13"} colour={"Grey.4"}/>
 				</IconStyles>
 			)}

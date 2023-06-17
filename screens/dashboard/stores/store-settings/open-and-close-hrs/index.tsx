@@ -108,9 +108,9 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 									<Footer>
 										<CustomButton
 											size="14"
-											activeBgColor={"Orange.default"}
+											activeBgColor={"common.white"}
 											activeBorderColor={"Orange.default"}
-											activeColor={"common.white"}
+											activeColor={"Orange.default"}
 											type="submit"
 											isLoading={loading}
 											pad="padding.smaller"

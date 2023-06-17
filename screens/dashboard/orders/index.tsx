@@ -27,6 +27,7 @@ const Overview = () => {
 	const { orders: beenPreparedOrders ,  ...more3 } = useGetOrders(   "BEEN PREPARED");
 	const { orders: canceledOrders ,    ...more4 } = useGetOrders( "CANCELLED");
 	const { orders: onDeliveryOrders ,   ...more5 } = useGetOrders(  "ON DELIVERY");
+	const { orders: openedOrders ,   ...more6 } = useGetOrders(  "OPENED");
 
 	
 
@@ -56,6 +57,11 @@ const Overview = () => {
 			head:  <TabLabel title="On Delivery Orders" count={onDeliveryOrders?.count} />,
 			body: <OrdersTable  {...{...more5}}   {...tableProps}  orders={onDeliveryOrders} title="On Delivery Orders" />,
 			key: "ON DELIVERY"
+		},
+		{
+			head:  <TabLabel title="Opened Orders" count={openedOrders?.count} />,
+			body: <OrdersTable  {...{...more6}}   {...tableProps}  orders={onDeliveryOrders} title="Opened Orders" />,
+			key: "OPENED"
 		},
 	];
 

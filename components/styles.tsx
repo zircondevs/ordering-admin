@@ -17,7 +17,7 @@ export const GeneralModalStyle = styled("div")`
 				 max-height: 100vh;
 				 height: 100vh;
 				 border-radius: 0;
-				 background-color: #FBFBFB;
+				background-color: ${({ theme }) => theme.palette.Grey[6]};
 				 & > div {
 					 height: auto;
 					 & > div:nth-child(1){
@@ -114,7 +114,7 @@ export const GeneralLabel =  styled("label")<{optional?: boolean}>`
 	font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };
 	font-size: ${({ theme }) => theme?.fontSizes["12"] };
 	font-weight: ${({ theme }) => theme?.typography?.fontWeight["400"] };
-	line-height: ${({ theme }) => theme?.typography?.lineHeight["10"] };
+	line-height: ${({ theme }) => theme?.typography?.lineHeight["16"] };
 	letter-spacing: 0.025em;
 	padding-bottom: 5px;
 	display: block;
@@ -291,7 +291,7 @@ export const GeneralTextArea=  styled("textarea")`
 	padding: 8px ;
 	border: 1px solid ${({ theme }) => theme.palette.Grey[4]};
 	border-radius: 4px;
-	min-height: 50px;
+	min-height: 200px;
 	width: 100%;
 	resize: vertical;
 	font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };

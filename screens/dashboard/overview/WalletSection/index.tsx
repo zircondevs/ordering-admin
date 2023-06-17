@@ -7,7 +7,6 @@ import { Spacer } from "../../../../components/Spacer";
 import { DataIcon, EmptyIcon, LoaderIcon, RiderIcon, StoreIcon } from "../../../../public/assets/svg";
 import { formatAMPM, formatNumber, formateDate, naira } from "../../../../lib";
 import CustomButton from "../../../../components/Button";
-import { PRIMARY_COLOR } from "../../../../hooks/colors";
 import { GeneralTableStyle } from "../../../../components/styles";
 import { useGetTransactions } from "../../../../hooks/useTransaction";
 import { useRouter } from "next/router";
@@ -29,7 +28,7 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 	
  
 
-
+	
 	const data = [
 		{
 			name: "Total Amount",
@@ -54,12 +53,13 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 		success: ["Success.20", "Success.default" ],
 	};
 
-	const tableHead = ["Date","Time", "Amount", "Status"];
+	const tableHead = [ "Name","Date","Time", "Amount", "Status"];
 	const tableBody = transactions?.data?.map((transaction: GenericObjTypes) => (
 		{
+			name: transaction?.customerDetails?.name,
 			date: `${formateDate(new Date(transaction?.createdAt)).date} ${formateDate(new Date(transaction?.createdAt)).shortMonth}, ${formateDate(new Date(transaction?.createdAt)).year}` ,
 			time: `${formatAMPM(new Date(transaction?.createdAt))}`,
-			amount: "₦" + formatNumber(transaction?.foodCharge),
+			amount: "₦" + formatNumber(transaction?.productCharge),
 			status: <Flex bgColor={status[transaction?.status as TransactionStatusType][0]} width="max-content" pad="3px 8px" margin="0">
 				<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={status[transaction?.status as TransactionStatusType][1]}>
 					{transaction?.status}
@@ -104,7 +104,7 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 
 			{
 				loading  ?
-					<Flex margin="40px 0"> <LoaderIcon height="40" width="40"/></Flex>
+					<Flex margin="40px 0" height="auto"> <LoaderIcon height="40" width="40"/></Flex>
 					:
 					tableBody?.length > 0 ?
 
@@ -116,10 +116,11 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 
 								<CustomButton
 									size="14"
-									bodColour={PRIMARY_COLOR[0]}
 									type="button"
 									pad="padding.smallest"
-									txtColour={PRIMARY_COLOR[0]}
+									activeColor={"Orange.default"}
+									activeBorderColor={"Orange.default"}
+									activeBgColor={"common.white"}
 									text={  "See All"}
 									onClick={() =>  router.push("/dashboard/transactions") }
 								/>

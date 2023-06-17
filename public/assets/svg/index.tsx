@@ -434,6 +434,25 @@ export const LoaderIcon = (
  
  
  
+export const UploadIcon = (
+	{ height, width, colour  }: { height?: string; width?: string; colour?: string}
+) => (
+	<svg
+		x="0px"
+		y="0px"
+		height={height || "52"}
+		fill={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString() : "currentColor"}
+		width={width || "52"}
+		viewBox="0 0 22 20"
+	>
+		<path d="M2.43192 17.5H19.5748V9.99999H21.7176V18.5714C21.7176 18.8556 21.6048 19.1281 21.4038 19.329C21.2029 19.53 20.9304 19.6428 20.6462 19.6428H1.36049C1.07633 19.6428 0.803808 19.53 0.602877 19.329C0.401945 19.1281 0.289063 18.8556 0.289062 18.5714V9.99999H2.43192V17.5ZM12.0748 6.7857V14.2857H9.93192V6.7857H4.57478L11.0033 0.357132L17.4319 6.7857H12.0748Z" fill={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString() : "currentColor"}/>
+ 
+
+	</svg>
+);
+ 
+ 
+ 
  
  
 export const DataIcon = (

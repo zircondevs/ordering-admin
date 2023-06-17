@@ -41,7 +41,7 @@ const Stores = () => {
 		{
 			date: `${formateDate(new Date(transaction?.createdAt)).date} ${formateDate(new Date(transaction?.createdAt)).shortMonth}, ${formateDate(new Date(transaction?.createdAt)).year}` ,
 			time: `${formatAMPM(new Date(transaction?.createdAt))}`,
-			amount: "₦" + formatNumber(transaction?.foodCharge),
+			amount: "₦" + formatNumber(transaction?.productCharge),
 			status: <Flex bgColor={status[transaction?.status as TransactionStatusType][0]} width="max-content" pad="3px 8px" margin="0">
 				<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={status[transaction?.status as TransactionStatusType][1]}>
 					{transaction?.status}
@@ -69,7 +69,7 @@ const Stores = () => {
 		},
 		{
 			title: "Date Created",
-			value:  store?.createdAt ? new Date(store?.createdAt).toLocaleString() : "N/A"
+			value:  store?.createdAt ? new Date(store?.createdAt).toLocaleString()?.split(",")[0] : "N/A"
 		}, 
 		{
 			title: "Customer care line",
@@ -120,7 +120,7 @@ const Stores = () => {
 				<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 					<div>
 						<Bold fontFamily='ubuntu' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
-							All Transactions
+							Store Activities
 						</Bold>
 						<GeneralCountStyles>
 							<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>

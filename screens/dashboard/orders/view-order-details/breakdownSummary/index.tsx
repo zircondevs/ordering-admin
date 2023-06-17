@@ -63,7 +63,7 @@ const BreakdownSummary = ({  order}:any) => {
 									<Flex key={idx} justifyContent="space-between" height="auto"  width="auto">
 										<div>
 											<Span  fontFamily='ubuntu' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
-												{MakeOnlyFirstLettersCapital(product?.food?.name)}  
+												{MakeOnlyFirstLettersCapital(product?.product?.name)}  
 											</Span>
 										</div>
 										<Span  fontFamily='ubuntu' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
@@ -96,7 +96,7 @@ const BreakdownSummary = ({  order}:any) => {
 							</div>
 							<Bold  fontFamily='ubuntu' weight="700" lineHeight="16" size="12" colour={"Grey.2"}>
 								{naira} 
-								{formatNumber(item.reduce((prev: any, current: any) => (current?.food?.amount * current?.quantity)+ prev,0))}
+								{formatNumber(item.reduce((prev: any, current: any) => (current?.product?.amount * current?.quantity)+ prev,0))}
 							</Bold>
 						</Flex>
 					))}
@@ -124,7 +124,7 @@ const BreakdownSummary = ({  order}:any) => {
 					</Bold>
 				</Container>
 				<Bold  fontFamily='ubuntuBold' weight="700" lineHeight="16" size="18" colour={"Black.default"}>
-					{naira}{formatNumber(order?.foodPrice)}
+					{naira}{formatNumber(order?.productPrice)}
 				</Bold>
 			</Flex>
 		</div>

@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
  
 import React, { useState }   from "react";
-import {   Footer, ImageStyles, UploadBtnStyles,  } from "./styles";
+import {   Footer, ImageStyles,     } from "./styles";
 import { Bold,  Container,  Dropdown,  Flex, Grid, Input, Modal, Span, Switch,   } from "../../../../components";
 import { Spacer } from "../../../../components/Spacer";
 import CustomButton from "../../../../components/Button";
@@ -11,10 +11,10 @@ import * as Yup from "yup";
 import { Form, Formik } from "formik";
 import { GenericObjTypes } from "../../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library";
-import {  LoaderIcon, LongArrowicon } from "../../../../public/assets/svg";
+import {    LongArrowicon,   } from "../../../../public/assets/svg";
 import { useCreateProduct, useUpdateProduct } from "../../../../hooks/useProduct";
-import { useUploadImage } from "../../../../hooks/imgeUpload";
 import Image from "next/image";
+import Upload from "../../../../components/Upload";
 
 
 
@@ -35,14 +35,14 @@ export const AddStoreSchema = Yup.object().shape({
 
 
 
-const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => {
+const AddProduct = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => {
 	const [isAvailable, setIsAvaliable] = useState(true);
  
 
-	const { handleCreateFood, loading: creatingFOod} = useCreateProduct();
-	const { handleUpdateFood, loading: loading} = useUpdateProduct(open?._id);
-	const { handleImageUpload,  loading: loadingImage } = useUploadImage();
+	const { handleCreateProduct, loading: creatingProduct} = useCreateProduct();
+	const { handleUpdateProduct, loading: loading} = useUpdateProduct(open?._id);
 
+	
 	const closeModal = () => {
 		setOpen({type: ""});
 		modalRef?.current?.addBodyScroll();
@@ -95,12 +95,12 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 							name: open?.name ||  "" ,
 							category:  open?.category?._id ||  "" ,
 							amount: open?.amount ||  "" ,
-							productImage: open?.productImage ||  "" ,
+							productImage: open?.productImage ||  [] ,
 						}} 
 						onSubmit={ async (values , actions) => { 
 							const res = open.type === "addProduct" ?
-								await handleCreateFood({...values })
-								: await handleUpdateFood({...values, isAvailable } );
+								await handleCreateProduct({...values })
+								: await handleUpdateProduct({...values, isAvailable } );
 							if(res?.data) {
 								actions.resetForm();
 								closeModal();
@@ -122,6 +122,7 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 													<Switch 
 														activeColor="Success.default"
 														nonActiveColor="Grey.5"
+														reValidate
 														click={(e) => setIsAvaliable(e)}
 														initialState={open.isAvailable}
 													/>
@@ -146,45 +147,10 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 											</GeneralErrorContainer>
 										</GeneralInputWrap>
 
-										{
-											values?.productImage ?
-												<ImageStyles>
-													<Image
-														src={values?.productImage}
-														alt=""
-														layout="fill"
-														objectFit="contain"
-													/>
-												</ImageStyles>
-												: null
-										}
+									
 
 
-										<Container height="auto" justifyContent="flex-start" margin="8px 0 0">
-											<Flex height="auto" justifyContent="flex-start" margin="8px 0 0">
-												<GeneralLabel> Add product Image</GeneralLabel>
-												<UploadBtnStyles isLoading={false}>
-													<input type="file"  
-														onChange={ async (e) => {
-															const target = e.target ;
-															if(target.files && target.files[0]) {
-																const form = new FormData();
-																form.append("image", target.files[0] );
-																const res = await handleImageUpload(form);
-																setFieldValue("productImage", res?.data);
-															}
-														}} 
-													/>
-													<Span fontFamily='ubuntu' weight="700" lineHeight="16" size="14" colour={"Grey.2"}>
-														Upload Image
-													</Span>
-													{loadingImage ?  <div className="loader"><LoaderIcon height="30" width="30" /></div> : null}
-												</UploadBtnStyles>
-											</Flex>
-											<GeneralErrorContainer>
-												{errors.productImage?.toString()}
-											</GeneralErrorContainer>
-										</Container>
+								
 
 										<GeneralInputWrap margin="8px 0 0">
 											<GeneralLabel> Amount</GeneralLabel>
@@ -238,6 +204,25 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 												{errors.category?.toString()}
 											</GeneralErrorContainer>
 										</GeneralInputWrap>
+
+
+										<Grid columns="repeat(auto-fit, minmax(127px, 150px))" gap="10px" justifyContent="flex-start">
+											{
+												values?.productImage?.map((img: string, idx: number) => (
+													<ImageStyles key={idx}>
+														<Image src={img} alt="" layout="fill" objectFit="contain" />
+													</ImageStyles>
+												))
+											}
+										</Grid>
+
+										{
+											values?.productImage?.length > 5 ? null :
+												<Upload onSuccess={(e) => setFieldValue("productImage", [...values.productImage,  e])}/>
+												
+										}
+
+
 									</Grid>
 
 									<Footer>
@@ -248,10 +233,9 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 											txtColour={WHITE_COLOR}
 											fullwidth
 											type="submit"
-											nonActiveBgColor="Black.20"
 											borderRadius="0"
-											isLoading={creatingFOod || loading || loadingImage}
-											text={  open.type === "addProduct" ?   "Create Food" : "Update product"}
+											isLoading={creatingProduct || loading }
+											text={  open.type === "addProduct" ?   "Create product" : "Update product"}
 										/>
 									</Footer>
 								</Form>
@@ -266,4 +250,4 @@ const AddFood = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) => 
 		</GeneralModalStyle>
 	);
 };
-export default AddFood;
+export default AddProduct;

@@ -97,3 +97,12 @@ export const SelectStores =  styled(Flex)`
 		}
 	 }
 `; 
+
+
+export const SingleStore =  styled("div")`
+	padding: 18px 16px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 100%;
+`; 

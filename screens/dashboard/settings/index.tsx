@@ -8,6 +8,7 @@ import AccountInfo from "./accountInfo";
 import UserManagemnt from "./userMangt";
 import Security from "./security";
 import Positions from "./positions";
+import Subscription from "./subscription";
 
 
 
@@ -36,6 +37,11 @@ const Settings = () => {
 			head: "Security",
 			body: <Security />,
 			key: "Security"
+		},
+		{
+			head: "Subscription",
+			body: <Subscription />,
+			key: "Subscription"
 		},
 	];
 

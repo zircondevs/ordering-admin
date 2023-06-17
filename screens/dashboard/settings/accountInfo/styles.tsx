@@ -51,8 +51,14 @@ export const COlorFields =  styled(Flex)`
 		width: 30px;
 		border-radius: 100%;
 		overflow: hidden;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		input {
 			cursor: pointer;
+			min-height: 40px;
+			min-width: 40px;
+			border-radius: 100%;
 		}
 	}
 `;

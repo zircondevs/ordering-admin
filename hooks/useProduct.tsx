@@ -20,12 +20,12 @@ export const useCreateProduct  = () => {
 	const [loading, setLoading] = useState(false);
 	const { state: { storeId }} = UseContext();
 	
-	const handleCreateFood = async (DATA: object) => {
+	const handleCreateProduct = async (DATA: object) => {
 		setLoading(true);
 		const { data } = await  postAxiosHandler ({
 			url: `${PRODUCT_URL}/${storeId}`,
 			DATA,
-			successMessage: "Food created successfully"
+			successMessage: "Product created successfully"
 		});
 		setLoading(false);
 		if(data) {
@@ -33,7 +33,7 @@ export const useCreateProduct  = () => {
 		}
 	};
 
-	return {  loading, handleCreateFood };
+	return {  loading, handleCreateProduct };
 };
  
 
@@ -42,12 +42,12 @@ export const useUpdateProduct  = (productId: string) => {
 	const { patchAxiosHandler } = useAxiosHandler();
 	const [loading, setLoading] = useState(false);
 	
-	const handleUpdateFood = async (DATA: object) => {
+	const handleUpdateProduct = async (DATA: object) => {
 		setLoading(true);
 		const { data } = await  patchAxiosHandler ({
 			url: `${PRODUCT_URL}/${productId}`,
 			DATA,
-			successMessage: "Food updated successfully"
+			successMessage: "Product updated successfully"
 		});
 		setLoading(false);
 		if(data) {
@@ -55,7 +55,7 @@ export const useUpdateProduct  = (productId: string) => {
 		}
 	};
 
-	return {  loading, handleUpdateFood };
+	return {  loading, handleUpdateProduct };
 };
 
 
