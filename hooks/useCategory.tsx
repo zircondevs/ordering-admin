@@ -4,7 +4,7 @@
 
 
 import { useState } from "react";
-import { MENU_URL,   } from "../constants/urls";
+import {   PRODUCT_URL,   } from "../constants/urls";
 import { UseContext } from "../state/provider";
 import { useAxiosHandler, useGetCachedAxiosHandler } from "./useAxiosHandler";
 
@@ -20,7 +20,7 @@ export const useGetCategories  = () => {
 		limit: 10
 	});
 	const { data , loading, mutate} = useGetCachedAxiosHandler ({
-		url: `${MENU_URL}/categories/${user?.clientId}?page=${pageInfo.page}&limit=${pageInfo.limit}`,
+		url: `${PRODUCT_URL}/categories/${user?.clientId}?page=${pageInfo.page}&limit=${pageInfo.limit}`,
 		notify: false,
 		requiredVariable: user?.clientId?.length > 0
 	});
@@ -37,7 +37,7 @@ export const useCreateCategory  = () => {
 	const handleCreateCategory = async (DATA: object) => {
 		setLoading(true);
 		const { data } = await  postAxiosHandler ({
-			url: `${MENU_URL}/categories/${user?.clientId}`,
+			url: `${PRODUCT_URL}/categories/${user?.clientId}`,
 			DATA,
 			successMessage: "Category created"
 		});
