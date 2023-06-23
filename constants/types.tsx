@@ -20,6 +20,7 @@ export interface CacheAxiosTypes {
 	DATA?: object;
 	errMessage?: string;
 	token?: string
+	noToken?: boolean
 }
 
 export interface AxiosCallTypes {

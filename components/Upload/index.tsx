@@ -6,6 +6,7 @@ import {   UploadBtnStyles,    } from "./styles";
 import {  Flex,  Span,   } from "../../components";
 import {  LoaderIcon,   UploadIcon } from "../../public/assets/svg";
 import { useUploadImage } from "../../hooks/imgeUpload";
+import { Spacer } from "../Spacer";
 
 
 
@@ -51,6 +52,11 @@ const Upload = ({	onSuccess , } : PropType) => {
 					Upload Images
 				</Span>
 				<br />
+				<Span fontFamily='ubuntu' weight="400" lineHeight="14" size="12" colour={"Grey.2"}>
+					You can only upload at most 5 images
+				</Span>
+				
+				<Spacer height="8px"/>
 				<Span fontFamily='ubuntu' weight="400" lineHeight="14" size="10" colour={"Grey.3"}>
 					File size must not exceed 2MB. JPG, PNG supported
 				</Span>

@@ -8,6 +8,10 @@ import { PRIMARY_COLOR } from "../hooks/colors";
 
 
 export const GeneralModalStyle = styled("div")`
+	&  >  div  > main > div > div > div > span{
+		 top: 32px;
+		 right: 24px;
+	}
  	&  >  div {
 		background-color: rgba(0, 0, 0, 0.69);
 		 & > main {
@@ -109,15 +113,16 @@ export const GeneralModalHeader =  styled("div")`
 
 export const GeneralLabel =  styled("label")<{optional?: boolean}>`
 	text-align: start;
-	text-transform: uppercase;
-	color: ${({ theme }) => theme?.palette?.Black[80] };
+	/* text-transform: uppercase; */
+	color: ${({ theme }) => theme?.palette?.Grey[1] };
 	font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };
-	font-size: ${({ theme }) => theme?.fontSizes["12"] };
+	font-size: ${({ theme }) => theme?.fontSizes["14"] };
 	font-weight: ${({ theme }) => theme?.typography?.fontWeight["400"] };
-	line-height: ${({ theme }) => theme?.typography?.lineHeight["16"] };
+	line-height: ${({ theme }) => theme?.typography?.lineHeight["19"] };
 	letter-spacing: 0.025em;
 	padding-bottom: 5px;
 	display: block;
+	display: flex;
 	/* left: 16px;
 	top: 8px;
 	z-index: 1; */
@@ -125,7 +130,7 @@ export const GeneralLabel =  styled("label")<{optional?: boolean}>`
 		content: "(Optional)";
 		position: relative;
 		font-size: 10px;
-		line-height: 14px;
+		line-height: 19px;
 		padding-left: 15px;
 		color: ${({ theme }) => theme?.palette?.Error["default"] };
 		display: ${({ optional }) =>  optional ? "block": "none"};
@@ -206,7 +211,10 @@ export const GeneralTableStyle =  styled(Flex)`
 			}
 			/* avoid mobile splitting */
 			thead{
-				display: revert
+				display: revert;
+				th {
+					min-width: unset;
+				}
 			}
 			tbody tr{
 				display: table-row;
@@ -228,7 +236,7 @@ export const GeneralDivider =  styled(Flex)`
 `;
  
 export const GeneralSelectField =  styled(Container)`
-	 border:1px solid  ${({ theme }) => theme?.palette?.Black["20"] };
+	 border:1px solid  ${({ theme }) => theme?.palette?.Grey["5"] };
 	 padding: 8px 0 8px;
 	 height: auto;
 	 border-radius: 8px;

@@ -59,7 +59,7 @@ const Transactions = () => {
 								gap={"0"}
 								headBgColor="common.transparent"
 								bodyColor="Grey.2"
-								headColor="Black.60"
+								headColor="Grey.2"
 								tableHead={tableHead}
 								tableBodys={tableBody}
 							/>

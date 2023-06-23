@@ -46,11 +46,11 @@ const AllOrders = () => {
 			
 			<Orders directions="hidden auto ">
 				<TotalOrders height="auto" justifyContent="flex-start" margin="40px 0 32px">
-					<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
+					<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.2"}>
 						Latest New Orders
 					</Bold>
 					<div>
-						<Bold fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Black.60"}>
+						<Bold fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
 							{realTimeOrders?.length}
 						</Bold>
 					</div>
@@ -65,7 +65,7 @@ const AllOrders = () => {
 									realTimeOrders?.map((order, id) => (
 										<RecentOrders key={id} justifyContent="space-between" index={id}>
 											<div>
-												<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
+												<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.2"}>
 													Order ID
 												</Span>
 												<Spacer height="8px" />
@@ -79,7 +79,7 @@ const AllOrders = () => {
 													{formateDate(new Date(order?.createdAt)).year} 
 												</Bold>
 												<Spacer height="4px" />
-												<Span fontFamily='ubuntu' weight="400" lineHeight="12" size="10" colour={"Black.60"}>
+												<Span fontFamily='ubuntu' weight="400" lineHeight="12" size="10" colour={"Grey.2"}>
 													{formatAMPM(new Date(order?.createdAt))} 
 												</Span>
 											</div>
@@ -91,10 +91,10 @@ const AllOrders = () => {
 							<Flex height="auto" direction="column" margin="70px 0">
 								<OrderIcon height="40" width="40" colour="Grey.4"/>
 								<Spacer height="8px" />
-								<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Black.60"}>
+								<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.2"}>
 									No New Orders
 								</Span>
-								<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
+								<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.2"}>
 									You don’t have any new order requests
 								</Span>
 							</Flex>

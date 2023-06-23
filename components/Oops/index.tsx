@@ -32,7 +32,7 @@ const Oops = ({ errorMessage, click, icon, title, btnText, loading = false}: Pro
 					<>
 						<Spacer height="20px"></Spacer>
 						<Header3 
-							colour={"Black.60"}
+							colour={"Grey.2"}
 							size="font20" 
 							lineHeight="lineHeight24" 
 							weight="fontWeightBold" 

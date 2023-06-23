@@ -231,7 +231,7 @@ export const extractQueryString = (obj: {[e: string | number]: any}) => {
 	const stringArr =  Object.keys(obj).map((each,idx) => {
 		return  (`${each}=${Object.values(obj)[idx]}`) ;
 	});
-	return stringArr.length > 0 ? `?${stringArr.join("&")}` : "";
+	return stringArr.length > 0 ? `${stringArr.join("&")}` : "";
 };
 
 

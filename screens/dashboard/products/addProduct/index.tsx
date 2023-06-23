@@ -1,9 +1,8 @@
 /* eslint-disable max-lines */
  
 import React, { useState }   from "react";
-import {   Footer, ImageStyles,     } from "./styles";
-import { Bold,  Container,  Dropdown,  Flex, Grid, Input, Modal, Span, Switch,   } from "../../../../components";
-import { Spacer } from "../../../../components/Spacer";
+import {   CancelStyles, Footer, ImageStyles,     } from "./styles";
+import { Bold,  Container,  Dropdown,  Flex, Grid, Input, Modal,   Span, Switch,   } from "../../../../components";
 import CustomButton from "../../../../components/Button";
 import  { TERTIARY_COLOR, WHITE_COLOR } from "../../../../hooks/colors";
 import { GeneralErrorContainer, GeneralInputWrap, GeneralLabel, GeneralModalHeader, GeneralModalStyle, GeneralSelectField, ModalSpacer } from "../../../../components/styles";
@@ -11,10 +10,11 @@ import * as Yup from "yup";
 import { Form, Formik } from "formik";
 import { GenericObjTypes } from "../../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library";
-import {    LongArrowicon,   } from "../../../../public/assets/svg";
 import { useCreateProduct, useUpdateProduct } from "../../../../hooks/useProduct";
 import Image from "next/image";
 import Upload from "../../../../components/Upload";
+import EditorContainer from "../../../../components/Editor";
+import { CancelIcon } from "../../../../public/assets/svg";
 
 
 
@@ -59,33 +59,22 @@ const AddProduct = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) 
 				handleClose={() => closeModal()}
 				innerRef={modalRef}
 				direction={"right"}
-				width={"500px"}
-				noCancel
+				width={"700px"}
 				noHeader
 			>
+
 				<GeneralModalHeader>
-					<button onClick={() =>closeModal()}>
-						<Flex height="auto" justifyContent="flex-start">
-							<LongArrowicon width="20" height="20"/>
-							<Span fontFamily='ubuntu' weight="700" lineHeight="16" size="14" colour={"Black.default"}>
-								Go Back
-							</Span>
-						</Flex>
-					</button>
-				</GeneralModalHeader>
-
-
-				<ModalSpacer direction="column" wrap="nowrap" alignItems='stretch'  margin="64px 0">
-
-					<Flex height="auto"   margin="0 0 70px" direction="column" alignItems="flex-start">
+					<Flex height="auto"   margin="0 0 0px" direction="column" alignItems="flex-start">
 						<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="40" size="36" colour={"Black.default"}>
 							{ open?.type === "addProduct"  ? "Add ": "Update "}  Product
 						</Bold>
-						<Spacer height="16px"/>
-						<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Black.60"}>
-							{ open?.type === "addProduct"  ? " Add a new  ": "Update "} product on the menu
-						</Span>
 					</Flex>
+				</GeneralModalHeader>
+
+
+
+				<ModalSpacer direction="column" wrap="nowrap" alignItems='stretch'  margin="20px 0 64px">
+
 
  
 					<Formik
@@ -93,14 +82,16 @@ const AddProduct = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) 
 						validationSchema={AddStoreSchema}
 						initialValues={{
 							name: open?.name ||  "" ,
+							description: open?.description ||  "" ,
+							quantity: open?.quantity ||  "" ,
 							category:  open?.category?._id ||  "" ,
 							amount: open?.amount ||  "" ,
 							productImage: open?.productImage ||  [] ,
 						}} 
 						onSubmit={ async (values , actions) => { 
 							const res = open.type === "addProduct" ?
-								await handleCreateProduct({...values })
-								: await handleUpdateProduct({...values, isAvailable } );
+								await handleCreateProduct({...values, ...(values.quantity && { quantity: values.quantity }) })
+								: await handleUpdateProduct({...values,...(values.quantity && { quantity: values.quantity }) , isAvailable } );
 							if(res?.data) {
 								actions.resetForm();
 								closeModal();
@@ -115,7 +106,7 @@ const AddProduct = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) 
 										{
 											open.type === "editProduct" && 
 											<Flex height="auto" justifyContent="flex-start">
-												<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Black.60"}>
+												<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
 													Is this product still avaliable?
 												</Span>
 												<Container width="auto" height="auto" margin="0 0 0 8px ">
@@ -137,7 +128,7 @@ const AddProduct = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) 
 												name="name" 
 												type={"text"} 
 												handleChange={handleChange}
-												borderCol={"Black.20"}
+												borderCol={"Grey.5"}
 												activeBorderCol={"Blue.base.default"}
 												placeholder="Enter product name"
 												borderRadius="8px"
@@ -146,6 +137,9 @@ const AddProduct = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) 
 												{errors.name?.toString()}
 											</GeneralErrorContainer>
 										</GeneralInputWrap>
+
+
+									
 
 									
 
@@ -159,7 +153,7 @@ const AddProduct = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) 
 												name="amount" 
 												type={"number"} 
 												handleChange={handleChange}
-												borderCol={"Black.20"}
+												borderCol={"Grey.5"}
 												activeBorderCol={"Blue.base.default"}
 												placeholder="Enter an amount"
 												borderRadius="8px"
@@ -205,19 +199,56 @@ const AddProduct = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) 
 											</GeneralErrorContainer>
 										</GeneralInputWrap>
 
+										<GeneralInputWrap margin="8px 0 0">
+											<GeneralLabel optional> How many of this product do you have?</GeneralLabel>
+											<Input
+												value={values.quantity}
+												name="quantity" 
+												type={"number"} 
+												handleChange={handleChange}
+												borderCol={"Grey.5"}
+												activeBorderCol={"Blue.base.default"}
+												placeholder="Enter a number"
+												borderRadius="8px"
+											/>
+											<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.2"}>
+												(Leave this field  empty if its unlimited. This controls the avaliablity of this product by default.)
+											</Span>
+											<GeneralErrorContainer>
+												{errors.quantity?.toString()}
+											</GeneralErrorContainer>
+										</GeneralInputWrap>
+
+										
+
+
+										<Grid gap="16px">
+											<GeneralLabel> Product Description  </GeneralLabel>
+											<EditorContainer initialValue={values.description || "<p>Enter description …</p>"}  handleOnChange={(e) => setFieldValue("description", e)}/>
+										</Grid>
+
 
 										<Grid columns="repeat(auto-fit, minmax(127px, 150px))" gap="10px" justifyContent="flex-start">
 											{
 												values?.productImage?.map((img: string, idx: number) => (
 													<ImageStyles key={idx}>
+														<CancelStyles as="button" type="button"
+															onClick={() => {
+																setFieldValue("productImage", values.productImage?.filter((i: string) => i !== img));
+															}}
+														>
+															<CancelIcon height="8" width="8" colour="common.white"/>
+														</CancelStyles>
 														<Image src={img} alt="" layout="fill" objectFit="contain" />
 													</ImageStyles>
 												))
 											}
 										</Grid>
 
+									
+
 										{
-											values?.productImage?.length > 5 ? null :
+											values?.productImage?.length >= 5 ? null :
 												<Upload onSuccess={(e) => setFieldValue("productImage", [...values.productImage,  e])}/>
 												
 										}

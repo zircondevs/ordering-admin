@@ -75,7 +75,7 @@ const AddUser = ({	open,modalRef, setOpen,onDOne, roles } : PropType) => {
 							Add User
 						</Bold>
 						<Spacer height="16px"/>
-						<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Black.60"}>
+						<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Grey.2"}>
 							Add a new product on the menu
 						</Span>
 					</Flex>

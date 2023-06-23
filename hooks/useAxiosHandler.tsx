@@ -74,13 +74,14 @@ export const useAxiosHandler = () => {
 
 // get request
 export const useGetCachedAxiosHandler = ( 
-	{url, notify = true, requiredVariable  = true, options = {}, DATA,  errMessage = "", token}: CacheAxiosTypes
+	{url, notify = true, requiredVariable  = true, options = {}, DATA,  errMessage = "", token, noToken = false}: CacheAxiosTypes
 ) => {
 	const { state: { token: Token } } = UseContext();
 	
 	const { data, error, mutate, isValidating } = useGetDataWithSWR({
 		url, 
-		token: token || Token, 
+		token: noToken ? "" :  token || Token, 
+
 		requiredVariable: Token && requiredVariable, 
 		method: "get", 
 		...(DATA && {DATA}),

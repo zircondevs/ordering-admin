@@ -5,7 +5,7 @@ import { Check2Icon } from "../../public/assets/svg";
   
 export const Checkbox = ({checked, ...props}: any ) => {
 	return (
-		<CheckboxStyles checked={ checked}>
+		<CheckboxStyles checked={ checked} click={props?.onClick}>
 			{
 				props?.type === "radio" && checked ?
 					<Check2Icon height="12" width="12" colour="common.white"/>

@@ -186,6 +186,27 @@ export const EditIcon = ({ height, width, colour }: Props) => (
 );
 
   
+ 
+export const ImageIcon = (
+	{ height, width, colour  }: { height?: string; width?: string; colour?: string}
+) => (
+	<svg
+		height={height || "52"}
+		fill={ "transparent"}
+		width={width || "52"}
+		x="0"
+		y="0"
+		viewBox="0 0 256 256"
+	>
+
+		<rect width="256" height="256" fill="none"/><rect x="32" y="48" width="192" height="160" rx="8" fill="none" stroke={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor"}  strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/><circle cx="156" cy="100" r="12"/><path d="M147.31,164,173,138.34a8,8,0,0,1,11.31,0L224,178.06" fill="none" stroke={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor"}  strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/><path d="M32,168.69l54.34-54.35a8,8,0,0,1,11.32,0L191.31,208" fill="none" stroke={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor"}  strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/> 
+
+	</svg>
+);
+ 
+ 
+
+
 
 export const PasswordEyeIcon = ({ height, width, colour }: Props) => (
 	<svg

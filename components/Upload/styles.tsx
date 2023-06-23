@@ -13,6 +13,7 @@ import { Flex } from "..";
 export const UploadBtnStyles =  styled(Flex)<{loadingImage: boolean}>`
 	width: 100%;
 	height: auto;
+	max-width: 500px;
 	border-radius: 16px;
 	cursor: ${({ loadingImage }) => loadingImage ? "not-allowed" : "pointer"};
 	border-radius: 8px;

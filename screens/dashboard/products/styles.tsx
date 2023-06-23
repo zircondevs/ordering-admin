@@ -29,15 +29,6 @@ export const Container1 =  styled(Flex)`
 
  
  
-export const FoodStyles =  styled(Flex)`
-	position: relative;
-	height: 40px;
-	width: 40px;
-	min-height: 40px;
-	min-width: 40px;
-	margin-left: -25px;
-	border: 2px solid ${({ theme }) => theme.palette.Grey[3]};
-`;
  
 export const SearchStyles =  styled(Flex)`
 	& > div {
@@ -64,23 +55,12 @@ export const AddBtn =  styled(Flex)`
 	width: max-content;
 	height: max-content;
 	background-color: ${() => PRIMARY_COLOR[0]};
-	padding: 14px 24px;
+	padding:  8px 16px;
 	border-radius: 8px;
+	font-size: 14px;
 `;
  
 
-export const ProductImages =  styled(Flex)`
-	 width: auto;
-	 justify-content: flex-start;
-	 margin-right: 8px;
-	 min-width: auto;
-	 & > div {
-		border-radius: 100%;
-		overflow: hidden;
-		&:first-child{
-			margin: 0;
-		}
-	 }
-`;
+ 
  
  

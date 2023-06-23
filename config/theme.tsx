@@ -3,6 +3,7 @@
 // import { ThemeTypes } from "devs-react-component-library";
 
 const white = "#fff";
+const black = "#000";
 const transparent = "transparent";
 
 const palette = {
@@ -10,6 +11,7 @@ const palette = {
 	common: {
 		white,
 		transparent,
+		black
 	},
 	Black: {
 		default: "#333333",
