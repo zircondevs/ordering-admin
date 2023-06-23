@@ -67,7 +67,7 @@ const AddCategory = ({	open,modalRef, setOpen,onDOne } : PropType) => {
 							Add Categpry
 						</Bold>
 						<Spacer height="16px"/>
-						<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Black.60"}>
+						<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Grey.2"}>
 						Create a new store location for your business
 						</Span>
 					</Flex>

@@ -10,7 +10,6 @@ export const ORDERS_URL = `${AUTH_BASE_URL}api/v1/orders`;
 export const STORE_URL = `${AUTH_BASE_URL}api/v1/store`;
 export const TRANSACTION_URL = `${AUTH_BASE_URL}api/v1/transaction`;
 export const LOYALTY_URL = `${AUTH_BASE_URL}api/v1/Loyalty`;
-export const MENU_URL = `${AUTH_BASE_URL}api/v1/menu`;
 export const PRODUCT_URL = `${AUTH_BASE_URL}api/v1/product`;
 export const SETTINGS_URL = `${AUTH_BASE_URL}api/v1/settings`;
 export const DASHBOARD_URL = `${AUTH_BASE_URL}api/v1/dashboard`;

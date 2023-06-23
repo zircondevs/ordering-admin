@@ -8,7 +8,7 @@ import CustomButton from "../../../../components/Button";
 import { GenericObjTypes } from "../../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library";
 import {  TrashIcon } from "../../../../public/assets/svg";
-import { useDeleteStore } from "../../../../hooks/useStores";
+import { useDeleteProduct } from "../../../../hooks/useProduct";
 
 
 
@@ -23,8 +23,8 @@ interface  PropType {
 
 
 
-const DeleteStore = ({	open,modalRef, setOpen, onDOne} : PropType) => {
-	const { handleDeleteStore , loading } = useDeleteStore();
+const DeleteProduct = ({	open,modalRef, setOpen, onDOne} : PropType) => {
+	const { handleDeleteProduct, loading} = useDeleteProduct();
 
 	const closeModal = () => {
 		setOpen({type: ""});
@@ -37,7 +37,7 @@ const DeleteStore = ({	open,modalRef, setOpen, onDOne} : PropType) => {
 
 	return (
 		<Modal
-			show={open?.type === "delete"}
+			show={open?.type === "deleteProduct"}
 			handleClose={() => closeModal()}
 			innerRef={modalRef}
 			direction={"up"}
@@ -52,11 +52,11 @@ const DeleteStore = ({	open,modalRef, setOpen, onDOne} : PropType) => {
 
 				<Flex height="auto"   margin="40px 0 24px" direction="column" >
 					<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="30" size="24" colour={"Error.default"}>
-						Delete Store?
+						Delete Product?
 					</Bold>
 					<Spacer height="16px"/>
-					<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Grey.3"}>
-						You are about to remove this store
+					<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.3"}>
+						You are about to remove this product
 					</Span>
 				</Flex>
 
@@ -71,7 +71,7 @@ const DeleteStore = ({	open,modalRef, setOpen, onDOne} : PropType) => {
 					text={  "Delete"  }
 					isLoading={loading}
 					onClick={ async () => {
-						const res = await handleDeleteStore(open?.store?._id);
+						const res = await handleDeleteProduct(open?._id);
 						res?.data && closeModal();
 					}}
 				/>
@@ -92,7 +92,7 @@ const DeleteStore = ({	open,modalRef, setOpen, onDOne} : PropType) => {
 		</Modal>
 	);
 };
-export default DeleteStore;
+export default DeleteProduct;
 
  
  

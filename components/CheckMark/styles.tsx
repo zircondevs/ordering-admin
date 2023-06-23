@@ -4,11 +4,11 @@ import styled from "styled-components";
 
 
 
-export const CheckboxStyles = styled(Flex)`
+export const CheckboxStyles = styled(Flex)<{click?: () => any}>`
 width: 20px;
 height: 20px;
 position: relative;
-cursor: pointer;
+cursor: ${({ click }) => click ? "pointer":  "auto"};
 border-radius: 100%;
 &:before {
 	border-radius: 100%;
@@ -44,6 +44,7 @@ input {
 	z-index: 10;
 	width: 20px;
 	height: 20px;
-	cursor: pointer;
+	cursor: ${({ click }) => click ? "pointer":  "auto"};
+
 }
 `;

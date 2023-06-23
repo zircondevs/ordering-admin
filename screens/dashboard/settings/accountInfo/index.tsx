@@ -161,7 +161,7 @@ const AccountInfo = () => {
 				<Flex margin="8px 0 0" justifyContent="flex-start"> 
 					<GeneralLabel>Choose a primary color</GeneralLabel>
 					<COlorFields>
-						<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
+						<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.2"}>
 							{formData.primaryColor}
 						</Span>
 						<div>
@@ -173,7 +173,7 @@ const AccountInfo = () => {
 				<Flex margin="8px 0 0" justifyContent="flex-start" direction="column" alignItems="flex-start">
 					<GeneralLabel>Choose a secondary color</GeneralLabel>
 					<COlorFields>
-						<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Black.60"}>
+						<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.2"}>
 							{formData.secondaryColor}
 						</Span>
 						<div>
