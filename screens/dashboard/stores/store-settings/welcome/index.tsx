@@ -7,27 +7,27 @@ import {    LogoStyles,   } from "./styles";
 import { Bold,  Flex, Grid,         Span,   } from "../../../../../components";
 import { Spacer } from "../../../../../components/Spacer";
 import CustomButton from "../../../../../components/Button";
-import {  GeneralLabel, GenrealUploadBtnStyles,    } from "../../../../../components/styles";
+import {  GeneralLabel,      } from "../../../../../components/styles";
 import { Form, Formik } from "formik";
-import { useUploadImage } from "../../../../../hooks/imgeUpload";
+// import { useUploadImage } from "../../../../../hooks/imgeUpload";
 import Image from "next/image";
-import { LoaderIcon } from "../../../../../public/assets/svg";
 import EditorContainer from "../../../../../components/Editor";
 import { useSetUpStore } from "../../../../../hooks/useSettigs";
 import { removeEmptyValuesFromObj } from "../../../../../lib";
 import { SetUpStoreTypes } from "../../../../../constants/types";
 import { Main } from "../cart-type/styles";
 import { Checkbox } from "../../../../../components/CheckMark";
+import { SettingsUpload } from "../../../../../components/Upload";
 
 
  
 
 
 const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
-	const [uploadType, setUploadType] = useState("");
+	// const [uploadType, setUploadType] = useState("");
 	const [visualType, setVisualType] = useState("");
 
-	const { handleImageUpload,  loading: loadingImage } = useUploadImage();
+	// const { handleImageUpload,  loading: loadingImage } = useUploadImage();
 	const { handleSetUpStore, loading} = useSetUpStore();
 
 
@@ -107,7 +107,8 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 											<Flex width="auto" margin="0 auto 32px 0" justifyContent="flex-start">
 												{ values?.storeImage ? <LogoStyles> <Image src={values?.storeImage} alt="" layout="fill" objectFit="contain"/> </LogoStyles> : null }
 											
-												<div>
+												<SettingsUpload title="Video Upload " onSuccess={(e) =>  setFieldValue("storeImage" , e) }/>
+												{/* <div>
 													<GeneralLabel> Image Upload </GeneralLabel>
 													<Spacer height="4px" />
 													<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
@@ -132,19 +133,21 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 														</Span>
 														{loadingImage && uploadType=== "image"  ? <div className="loader"><LoaderIcon height="30" width="30" /></div> : null}
 													</GenrealUploadBtnStyles>
-												</div>
+												</div> */}
 											</Flex>
 											: visualType === "video" ? 
 												<Flex width="auto" margin="0 auto 32px 0" justifyContent="flex-start">
 													{ values?.storeVideo ? <LogoStyles> <video src={values?.storeVideo}  autoPlay={false}/> </LogoStyles> : null}
 												
-													<div>
+													<SettingsUpload title="Video Upload " onSuccess={(e) =>  setFieldValue("storeVideo" , e) }/>
+													{/* <div>
 														<GeneralLabel> Video Upload </GeneralLabel>
 														<Spacer height="4px" />
 														<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
 															NB. Approved image size is 512x512px. Image should not exceed 4mb
 														</Span>
 														<Spacer height="24px" />
+
 														<GenrealUploadBtnStyles isLoading={loadingImage && uploadType=== "video"  }>
 															<input type="file"  
 																onChange={ async (e) => {
@@ -163,7 +166,7 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 															</Span>
 															{loadingImage  && uploadType === "video"  ? <div className="loader"><LoaderIcon height="30" width="30" /></div> : null}
 														</GenrealUploadBtnStyles>
-													</div>
+													</div> */}
 												</Flex>
 												: null
 									}
@@ -186,7 +189,7 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 										type="submit"
 										pad="padding.smaller"
 										isLoading={loading}
-										disabled={loadingImage}
+										// disabled={loadingImage}
 										nonActiveBgColor="Black.20"
 										text={  "Save Changes" }
 									/> 
