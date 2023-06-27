@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Flex,   } from "../../../../components";
+import { alphaColorsRank, colorType,   } from "../../../../lib";
 
 
 
@@ -25,13 +26,15 @@ export const StoreStyles =  styled(Flex)`
 	border-radius: 16px;
 	padding: 24px;
 	border: 1px solid ${({ theme }) => theme.palette.Black[20]};
-	background-color:  #fff;
 `;
 
- 
-export const IconStyles =  styled(Flex)`
+
+export const IconStyles =  styled(Flex)<{name: string}>`
+background-color:  ${({name}) => alphaColorsRank[name as colorType]};
 	border-radius: 100%;
-	background-color:  ${({ theme }) => theme.palette.Grey[6]};
+	min-width: auto;
+	min-width: 50px;
+	min-height: 50px;
 `;
 export const DropdownContentStyles =  styled(Flex)`
 	font-weight: ${({ theme}) => theme.typography.fontWeight[700]};

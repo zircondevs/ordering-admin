@@ -52,13 +52,13 @@ const AllStores = ({openModal, stores, loading}: PropTypes) => {
 						<Grid gap="24px" columns="repeat(auto-fit, minmax(200px, 300px))" justifyContent="flex-start">
 							{
 								stores?.data?.map((store: GenericObjTypes, idx: number) => (
-									<StoreStyles key={store?._id || idx} justifyContent="space-between" wrap="nowrap">
+									<StoreStyles key={store?._id || idx} justifyContent="space-between" wrap="nowrap" >
 										<Flex width="auto" wrap="nowrap">
-											<IconStyles height="50px" width="50px" margin="0 16px 0 0">
+											<IconStyles name={store?.address?.[0]?.toUpperCase()} height="50px" width="50px" margin="0 16px 0 0">
 												<StoreIcon colour="Grey.2" height="20" width="20"/>
 											</IconStyles>
 											<div>
-												<Span fontFamily='ubuntu' weight="400" lineHeight="14" size="10" colour={ "Grey.3"}>
+												<Span fontFamily='ubuntu' weight="400" lineHeight="14" size="14" colour={ "Grey.3"}>
 													{store?.address}
 												</Span>
 												<br />

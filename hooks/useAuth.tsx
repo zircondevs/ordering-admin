@@ -5,6 +5,7 @@ import { UseContext } from "../state/provider";
 import { STORAGE } from "../applications/storage";
 import Constant from "../constants";
 import { useLogout } from "./handlers/useLogout";
+import Notify from "../applications/notification";
 
 
 
@@ -93,6 +94,10 @@ export const useGetUser  = () => {
 	});
 	useEffect(() => {
 		setUser(data?.data?.data);
+		if(data?.data?.data && data?.data?.data?.accountType !== "CLIENT_ADMIN") {
+			Notify().warning("You are not an admin");
+			handleLogout();
+		}
 	}, [ data ]);
  
 	useEffect(() => {

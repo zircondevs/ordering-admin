@@ -34,8 +34,22 @@ export const FavStyles =  styled("div")`
  
 
  
+export const Container1 =  styled(Flex)`
+	background-color: ${({ theme }) => theme.palette.Grey[6]};
+	padding: 20px;
+	border: 1px solid ${({ theme }) => theme.palette.Grey[5]};
+	margin-bottom: 32px;
+	border-radius: 8px;
+	width: auto;
+	& > div {
+		width: auto;
+	}
+`;
+
+
 export const FormStyles =  styled(Grid)`
-	max-width: 400px;
+	max-width: 700px;
+	margin-bottom: 40px;
 `;
  
 export const COlorFields =  styled(Flex)`

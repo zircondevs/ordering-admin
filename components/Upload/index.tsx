@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-lines */
  
-import React    from "react";
-import {   UploadBtnStyles,    } from "./styles";
-import {  Flex,  Span,   } from "../../components";
+import React, { useState }    from "react";
+import {   SettingsUploadBtnStyles,   UploadBtnStyles,    } from "./styles";
+import {  Bold, Flex,  Span,   } from "../../components";
 import {  LoaderIcon,   UploadIcon } from "../../public/assets/svg";
 import { useUploadImage } from "../../hooks/imgeUpload";
 import { Spacer } from "../Spacer";
+
 
 
 
@@ -20,10 +21,6 @@ const Upload = ({	onSuccess , } : PropType) => {
  
 
 	const { handleImageUpload,  loading: loadingImage } = useUploadImage();
- 
-
-
-	
  
 	return (
 		
@@ -65,3 +62,52 @@ const Upload = ({	onSuccess , } : PropType) => {
 	);
 };
 export default Upload;
+
+
+
+
+interface PropTypes {
+	title?: string
+	size?: string
+	onSuccess: (e: string) => void
+}
+
+export const SettingsUpload = ({title, size, onSuccess}: PropTypes) => {
+ 
+	const [imgUrl, setImgUrl] = useState("");
+	const { handleImageUpload,  loading: loadingImage } = useUploadImage();
+
+
+	return (
+		<div>
+			<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
+				{title || "Upload Image"}
+			</Bold>
+			<Spacer height="4px" />
+			<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
+				NB. Approved image size is {size || "512x512px"}.<br /> Image should not exceed 900KB
+			</Span>
+			<Spacer height="24px" />
+			<SettingsUploadBtnStyles isLoading={loadingImage  }>
+				<input type="file"  
+					onChange={ async (e) => {
+						const target = e.target ;
+						if(target.files && target.files[0]) {
+							const form = new FormData();
+							form.append("image", target.files[0] );
+							const res = await handleImageUpload(form);
+							if(res?.data) {
+								setImgUrl(res?.data);
+								onSuccess( res?.data);
+							}
+						}
+					}} 
+				/>
+				<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.2"}>
+					<UploadIcon height="12" width="12" colour="Grey.3" />	{imgUrl ? "Change" : "Upload"}
+				</Span>
+				{loadingImage  ? <div className="loader"><LoaderIcon height="30" width="30" /></div> : null}
+			</SettingsUploadBtnStyles>
+		</div>
+	);
+};

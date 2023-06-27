@@ -257,6 +257,36 @@ export const colorsRank = (score: number) =>  {
 									: "transparent.default";
 };
 
+export type colorType = "A"| "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" ;
+export const alphaColorsRank = {
+	A: "#dcdfd0",
+	B: "#f9e1e1",
+	C: "#ece3c2",
+	D: "#ddeed1",
+	E: "#d1eed4",
+	F: "#d1eee9",
+	G: "#d1e7ee",
+	H: "#d1d8ee",
+	I: "#d5d1ee",
+	J: "#e1d1ee",
+	K: "#e2d1ee",
+	L: "#eed1ee",
+	M: "#eed1df",
+	N: "#eed1d6",
+	O: "#f0d4d4",
+	P: "#eed9d1",
+	Q: "#d1eed7",
+	R: "#d1d1ee",
+	S: "#eed9d1",
+	T: "#d1dfee",
+	U: "#d7d1ee",
+	V: "#eee5d1",
+	W: "#c2ccdf",
+	X: "#d7cbcb",
+	Y: "re#d2cbd7d",
+	Z: "#fdd6d6",
+};
+
 
 /**
  *
