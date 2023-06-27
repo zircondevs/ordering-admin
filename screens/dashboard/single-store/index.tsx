@@ -12,7 +12,7 @@ import { GeneralTableStyle } from "../../../components/styles";
 import { useRouter } from "next/router";
 import { useGetStore } from "../../../hooks/useStores";
 import { useGetStoreTransactions,   } from "../../../hooks/useTransaction";
-import { GenericObjTypes, TransactionStatusType } from "../../../constants/types";
+import { GenericObjTypes,   } from "../../../constants/types";
 import Paginator from "../../../components/Paginator";
 
 
@@ -32,11 +32,11 @@ const Stores = () => {
 
 	console.log(transactions, "transactions");
  
-	const status = {
-		pending:  ["Blue.dark.20", "Blue.dark" ],
-		failed:  ["Error.20", "Error.default" ],
-		success: ["Success.20", "Success.default" ],
-	};
+	// const status = {
+	// 	pending:  ["Blue.dark.20", "Blue.dark" ],
+	// 	failed:  ["Error.20", "Error.default" ],
+	// 	success: ["Success.20", "Success.default" ],
+	// };
 	const tableHead = ["Date","Time", "Amount", "Status" ];
 	const tableBody = transactions?.data?.map((transaction: GenericObjTypes) => (
 		{
