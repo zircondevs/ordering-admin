@@ -4,13 +4,13 @@ import React  from "react";
 import { Bold,   Flex,   Span, Table,  } from "../../../../components";
 import {     Card,  Cards,  Icon,          } from "./styles";
 import { Spacer } from "../../../../components/Spacer";
-import { DataIcon, EmptyIcon, LoaderIcon, RiderIcon, StoreIcon } from "../../../../public/assets/svg";
+import { DataIcon, EmptyIcon, LoaderIcon } from "../../../../public/assets/svg";
 import { formatAMPM, formatNumber, formateDate, naira } from "../../../../lib";
 import CustomButton from "../../../../components/Button";
 import { GeneralTableStyle } from "../../../../components/styles";
-import { useGetTransactions } from "../../../../hooks/useTransaction";
 import { useRouter } from "next/router";
 import { GenericObjTypes, TransactionStatusType } from "../../../../constants/types";
+import { useGetPaymentLogs } from "../../../../hooks/usePayment";
 
 
 
@@ -23,7 +23,7 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 	const router = useRouter();
 
 	
-	const { transactions, loading  } = useGetTransactions({limit: 5});
+	const { logs, loading  } = useGetPaymentLogs({limit: 5});
 
 	
  
@@ -31,19 +31,14 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 	
 	const data = [
 		{
-			name: "Total Amount Today",
+			name: "Payout Balance",
 			amount: naira + formatNumber(dashboard?.wallet?.balance),
 			icon: <DataIcon height="20" width="20" colour="common.white"/>
 		},
 		{
-			name: "Total Orders",
-			amount: formatNumber(dashboard?.totalOrders),
-			icon: <RiderIcon height="20" width="20" colour="common.white"/>
-		},
-		{
-			name: "Total Stores",
-			amount:  formatNumber(dashboard?.store),
-			icon: <StoreIcon height="20" width="20" colour="common.white"/>
+			name: "Total Paid Out",
+			amount: naira + formatNumber(dashboard?.wallet?.balance),
+			icon: <DataIcon height="20" width="20" colour="common.white"/>
 		},
 	];
 
@@ -54,7 +49,7 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 	};
 
 	const tableHead = [ "Name","Date","Time", "Amount", "Status"];
-	const tableBody = transactions?.data?.map((transaction: GenericObjTypes) => (
+	const tableBody = logs?.map((transaction: GenericObjTypes) => (
 		{
 			name: transaction?.customerDetails?.name,
 			date: `${formateDate(new Date(transaction?.createdAt)).date} ${formateDate(new Date(transaction?.createdAt)).shortMonth}, ${formateDate(new Date(transaction?.createdAt)).year}` ,
@@ -72,15 +67,8 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 	return (
 
 		<>
-			<Spacer height="64px"/>
-			<Flex height="auto" justifyContent="space-between">
-				<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
-					Overview
-				</Bold>
-
-			</Flex>
-			<Spacer height="24px"/>
-			<Cards columns="250px repeat(auto-fit, minmax(180px, 1fr))" gap="24px" justifyContent="flex-start">
+			<Spacer height="40px"/>
+			<Cards columns="  repeat(auto-fit, minmax(180px, 1fr))" gap="24px" justifyContent="flex-start">
 				{
 					data.map((item, idx) => (
 						<Card key={item.name} active={idx === 0}>
@@ -89,7 +77,7 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 								<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
 									{(item.amount)}
 								</Bold>
-								<Spacer height="16px"/>
+								<Spacer height="8px"/>
 								<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={  "Grey.2"}>
 									{item.name}
 								</Span>
@@ -139,7 +127,7 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 						<Flex margin="40px 0" height="auto" direction="column">
 							<EmptyIcon />
 							<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
-								There are no transaction record here yet!.
+								There are no balance logs here yet!.
 							</Span>
 						</Flex>
 			}

@@ -1,7 +1,7 @@
 import React from "react";
-import {  Image, Span } from "..";
-import { ImageIcon,   } from "../../public/assets/svg";
+import {   Span } from "..";
 import { EmptyCard, Frame, Styles } from "./styles";
+import Image from "next/image";
 
 
 
@@ -33,12 +33,10 @@ const ImageCollection = ({images}: {images: string[]}) => {
 			{
 				images.slice(0, 3).map((image, index) => (
 					<Frame key={index} width="44px" height="44px" index={images.length - index}>
-						<Image 
+						<Image
 							src={image} 
-							loader={<ImageIcon height="44" width="44"  colour="Grey.5"/>}
 							width="44px"
 							height="44px"
-							radius="100%"
 						/>
 					</Frame>
 				))

@@ -60,11 +60,13 @@ const Overview = () => {
 		},
 		{
 			head:  <TabLabel title="Opened Orders" count={openedOrders?.count} />,
-			body: <OrdersTable  {...{...more6}}   {...tableProps}  orders={onDeliveryOrders} title="Opened Orders" />,
+			body: <OrdersTable  {...{...more6}}   {...tableProps}  orders={openedOrders}   title="Opened Orders" />,
 			key: "OPENED"
 		},
 	];
 
+
+	
 	return (
 		<Main> 
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='64px 0 40px'>

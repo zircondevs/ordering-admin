@@ -14,8 +14,9 @@ import { GeneralDivider } from "../../../../../components/styles";
 
 const BreakdownSummary = ({  order}:any) => {
 
+
 	const total = {
-		"SUB TOTAL": formatNumber(order?.packs?.reduce((prev: any, current: any) =>  current.reduce((prev: any, current: any) =>  (current?.food?.amount * current?.quantity)+ prev, 0) + prev, 0)),
+		"SUB TOTAL": formatNumber(order?.item?.reduce((prev: any, current: any) =>  current.reduce((prev: any, current: any) =>  (current?.product?.amount * current?.quantity)+ prev, 0) + prev, 0)),
 		"DELIVERY FEE": order?.deliveryCharge,
 	};
 
@@ -47,7 +48,7 @@ const BreakdownSummary = ({  order}:any) => {
 				<Spacer height="20px"/>
 
 				<Grid gap="16px">
-					{order?.packs?.map((item: any, idx: number) => (
+					{order?.item?.map((item: any, idx: number) => (
 						<Flex key={idx} justifyContent="space-between" height="auto"  width="auto">
 							<Flex justifyContent="space-between" height="auto">
 								<Bold  fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.4"}>
@@ -124,7 +125,7 @@ const BreakdownSummary = ({  order}:any) => {
 					</Bold>
 				</Container>
 				<Bold  fontFamily='ubuntuBold' weight="700" lineHeight="16" size="18" colour={"Black.default"}>
-					{naira}{formatNumber(order?.productPrice)}
+					{naira}{formatNumber(order?.productPrice + order?.deliveryCharge)}
 				</Bold>
 			</Flex>
 		</div>

@@ -34,7 +34,8 @@ const OrdersTable = ({orders, loading, title, setSingleOrder, modalRef, pageInfo
 
 
 	
-	const tableHead = [  "Product Price",  "User", "Phone", "Delivery Address","Delivery Type", "Date", "Action"];
+	
+	const tableHead = [  "Product Price",  "User", "Phone", "Delivery Address", "Delivery Type", "Date", "Action"];
 	const tableBody = orders?.data?.map((order: GenericObjTypes) => (
 		{
 			amount: "₦" + formatNumber(order?.productPrice),
