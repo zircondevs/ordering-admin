@@ -68,7 +68,7 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 
 		<>
 			<Spacer height="40px"/>
-			<Cards columns="  repeat(auto-fit, minmax(180px, 1fr))" gap="24px" justifyContent="flex-start">
+			<Cards columns="  repeat(auto-fit, minmax(180px, 400px))" gap="24px" justifyContent="flex-start">
 				{
 					data.map((item, idx) => (
 						<Card key={item.name} active={idx === 0}>

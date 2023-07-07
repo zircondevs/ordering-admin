@@ -24,6 +24,7 @@ const palette = {
 	},
 	Orange: {
 		default: "#FE724D",
+		5: "#FFF1ED",
 		0: "#faede9"
 	},
 	Blue: {
@@ -37,7 +38,8 @@ const palette = {
 		4: "#BDBDBD",
 		5: "#d8d8d8",
 		6: "#F2F2F2",
-		7: "#F2F2F2"
+		7: "#F2F2F2",
+		8: "#FBFBFB"
 	},
 	Success: {
 		default: "#00A64C",
@@ -53,6 +55,7 @@ const palette = {
 	},
 	Yellow: {
 		default: "#FCBC30",
+		5: "#FFFBF3",
 		0: "#FBF4E5"
 	},
 	Error: {

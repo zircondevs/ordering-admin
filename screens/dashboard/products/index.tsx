@@ -1,8 +1,8 @@
 /* eslint-disable max-lines */
 
 import React, {   useState }   from "react";
-import { Bold, Dropdown, Flex,  Span, Table,      } from "../../../components";
-import {     AddBtn, BtnsStyles, Container1,  HeaderSTyles, Main,   SearchStyles,   } from "./styles";
+import { Bold, Dropdown, Flex,   Span, Table,      } from "../../../components";
+import {     AddBtn, BtnsStyles, Container1,  HeaderSTyles, Main,      SearchStyles,   } from "./styles";
 import { formatNumber, formateDate,   } from "../../../lib";
 import { GeneralCountStyles, GeneralTableStyle } from "../../../components/styles";
 import {   EditIcon, LoaderIcon, TrashIcon,      } from "../../../public/assets/svg";
@@ -17,6 +17,7 @@ import Search from "../../../components/Search";
 import ImageCollection from "../../../components/ImageCollection";
 import DeleteProduct from "./deleteProduct";
 import * as _ from "underscore";
+import ProductMetrics from "./productMetrics";
 
 
 
@@ -112,6 +113,10 @@ const Product = () => {
 					</AddBtn>
 				</BtnsStyles>
 			</HeaderSTyles>
+			
+			<ProductMetrics />
+
+
 
 			<Container1>
 				<Flex justifyContent="space-between" margin="0 0 24px" height="auto">

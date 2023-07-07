@@ -19,6 +19,9 @@ export const HeaderSTyles =  styled(Flex)`
 		padding: 40px  4%;
 	}
 `;
+ 
+
+ 
 
 export const Container1 =  styled(Flex)`
 	padding: 0  40px;

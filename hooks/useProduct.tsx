@@ -112,3 +112,23 @@ export const useGetAllProduct  = ( filterObj: object) => {
 
 
  
+
+export const useGetProductMetrics  = (  ) => {
+	const { state: { user }} = UseContext();
+	
+	
+	const { data, loading, error, isValidating , mutate} = useGetCachedAxiosHandler ({
+		url: `${PRODUCT_URL}/performing/${user?.clientId}`,
+		notify: false,
+		requiredVariable: user?.clientId?.length > 0,
+		noToken: true
+	});
+ 
+ 
+	
+	return { productMetrics:  data?.data?.data, loading  , error,  isValidating , mutate};
+};
+
+
+
+ 
