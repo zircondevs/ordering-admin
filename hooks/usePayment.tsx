@@ -4,10 +4,17 @@
 
 
 
-import { useEffect, useState } from "react";
-import { DASHBOARD_URL,  } from "../constants/urls";
-import { UseContext } from "../state/provider";
-import {   useGetCachedAxiosHandler } from "./useAxiosHandler";
+
+
+
+
+
+
+
+import { useState } from "react";
+import {   PAYMENT_URL,  } from "../constants/urls";
+import {   useAxiosHandler, useGetCachedAxiosHandler } from "./useAxiosHandler";
+
 
 
 
@@ -15,24 +22,41 @@ import {   useGetCachedAxiosHandler } from "./useAxiosHandler";
  
 
 
-export const useGetPaymentLogs  = (pageInfoData?: {limit?: number}) => {
-	const { state: { user }} = UseContext();
-	const [pageInfo, setPageInfo] = useState({
-		page: 1,
-		limit: 6,
-		pages: 1,
-		...pageInfoData
-	});
+export const useGetBanks  = () => {
 	const { data , loading, mutate} = useGetCachedAxiosHandler ({
-		url: `${DASHBOARD_URL}/${user?.clientId}?page=${pageInfo.page}&limit=${pageInfo.limit}`,
+		url: `${PAYMENT_URL}/bank/name`,
 		notify: false,
-		requiredVariable: user?.clientId?.length > 0
+
 	});
-	useEffect(() => {
-		data && setPageInfo({...pageInfo, ...data?.data});
-	}, [ data]);
  
-	return {  loading, logs: [], setPageInfo, pageInfo, mutate };
+ 
+	return {  loading, banks: data?.data,  mutate };
 };
+
+
+
+
+
+
+export const useVerifyAccount  = () => {
+	const { putAxiosHandler } = useAxiosHandler();
+	const [loading, setLoading] = useState(false);
+	
+	const handleVerifyAccount = async (DATA: object) => {
+		setLoading(true);
+		const { data } = await  putAxiosHandler ({
+			url: `${PAYMENT_URL}/verify/account`,
+			DATA,
+			notify: false
+		});
+		setLoading(false);
+		if(data) {
+			return { data };
+		}
+	};
  
+	return {  loading, handleVerifyAccount };
+};
+
+
  

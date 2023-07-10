@@ -6,19 +6,16 @@ import { formatAMPM, formatNumber, formateDate,   } from "../../../lib";
 import { GeneralCountStyles, GeneralTableStyle } from "../../../components/styles";
 import {   EmptyIcon, LoaderIcon } from "../../../public/assets/svg";
 import { useGetTransactions } from "../../../hooks/useTransaction";
-import { GenericObjTypes, TransactionStatusType } from "../../../constants/types";
+import { GenericObjTypes,   } from "../../../constants/types";
 import Paginator from "../../../components/Paginator";
+import Status from "../../../components/Status";
 
 
 
 const Transactions = () => {
 	const { transactions, loading , pageInfo, setPageInfo } = useGetTransactions();
 
-	const status = {
-		pending:  ["Blue.dark.20", "Blue.dark" ],
-		failed:  ["Error.20", "Error.default" ],
-		success: ["Success.20", "Success.default" ],
-	};
+ 
 	const tableHead = ["Date","Time", "Amount", "Mode Of Trans", "Status" ];
 	const tableBody = transactions?.data?.map((transaction: GenericObjTypes) => (
 		{
@@ -26,11 +23,7 @@ const Transactions = () => {
 			time: `${formatAMPM(new Date(transaction?.createdAt))}`,
 			amount: "₦" + formatNumber(transaction?.productCharge),
 			modeOfTransaction:  transaction?.modeOfTransaction,
-			status: <Flex bgColor={status[transaction?.status as TransactionStatusType][0]} width="max-content" pad="3px 8px" margin="0">
-				<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={status[transaction?.status as TransactionStatusType][1]}>
-					{transaction?.status}
-				</Span>
-			</Flex>,
+			status: <Status status={transaction?.status} />
 		}
 	));
  

@@ -13,4 +13,6 @@ export const LOYALTY_URL = `${AUTH_BASE_URL}api/v1/Loyalty`;
 export const PRODUCT_URL = `${AUTH_BASE_URL}api/v1/product`;
 export const SETTINGS_URL = `${AUTH_BASE_URL}api/v1/settings`;
 export const DASHBOARD_URL = `${AUTH_BASE_URL}api/v1/dashboard`;
+export const WALLET_URL = `${AUTH_BASE_URL}api/v1/wallet`;
+export const PAYMENT_URL = `${AUTH_BASE_URL}api/v1/payment`;
 

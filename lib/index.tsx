@@ -136,7 +136,7 @@ export const formateDate = (date: string | number | Date) => {
 			"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 		]
 	};
-	const days = ["Sun", "Mon", "Tue", "Thur", "Fri", "Sat", ];
+	const days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat", ];
 	return {
 		date: DATE.getDate(),
 		fullMonth: monthNames.month_names[DATE.getMonth()],

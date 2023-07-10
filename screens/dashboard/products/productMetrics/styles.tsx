@@ -23,9 +23,11 @@ export const MetricsStyles =  styled(Grid)`
 	grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
 	justify-content: flex-start;
 	width: auto;
+	gap: 20px;
 `;
 
 export const CollapseBtnStyles =  styled("button")`
+		border-bottom:  1px solid ${({ theme }) => theme.palette.common["transparent"]};
 	 &:hover{
 		border-bottom:  1px solid ${({ theme }) => theme.palette.Orange["default"]};
 

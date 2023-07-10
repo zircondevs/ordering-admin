@@ -11,9 +11,11 @@ export const ButtonStyle =  styled(Button)<{
 }>`
 	font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };
     background-color: ${({ bgColour, disabled, isLoading  }) =>!disabled && !isLoading && bgColour && bgColour};
-    color: ${({ txtColour, isLoading  }) =>!isLoading  && txtColour};
     border:   ${({ bodColour, disabled, isLoading }) => !disabled && !isLoading && bodColour &&  "1px solid " + bodColour};
 	font-size: 16px;
+	span {
+		color: ${({ txtColour, isLoading  }) =>!isLoading  && txtColour};
+	}
 `;
 
  

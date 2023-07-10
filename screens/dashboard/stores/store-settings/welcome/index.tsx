@@ -9,7 +9,6 @@ import { Spacer } from "../../../../../components/Spacer";
 import CustomButton from "../../../../../components/Button";
 import {  GeneralLabel,      } from "../../../../../components/styles";
 import { Form, Formik } from "formik";
-// import { useUploadImage } from "../../../../../hooks/imgeUpload";
 import Image from "next/image";
 import EditorContainer from "../../../../../components/Editor";
 import { useSetUpStore } from "../../../../../hooks/useSettigs";
@@ -24,10 +23,9 @@ import { SettingsUpload } from "../../../../../components/Upload";
 
 
 const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
-	// const [uploadType, setUploadType] = useState("");
 	const [visualType, setVisualType] = useState("");
 
-	// const { handleImageUpload,  loading: loadingImage } = useUploadImage();
+
 	const { handleSetUpStore, loading} = useSetUpStore();
 
 
@@ -108,65 +106,12 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 												{ values?.storeImage ? <LogoStyles> <Image src={values?.storeImage} alt="" layout="fill" objectFit="contain"/> </LogoStyles> : null }
 											
 												<SettingsUpload title="Video Upload " onSuccess={(e) =>  setFieldValue("storeImage" , e) }/>
-												{/* <div>
-													<GeneralLabel> Image Upload </GeneralLabel>
-													<Spacer height="4px" />
-													<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
-														NB. Approved image size is 512x512px. Image should not exceed 900KB
-													</Span>
-													<Spacer height="24px" />
-													<GenrealUploadBtnStyles isLoading={loadingImage && uploadType=== "image" }>
-														<input type="file"  
-															onChange={ async (e) => {
-																const target = e.target ;
-																if(target.files && target.files[0]) {
-																	setUploadType("image");
-																	const form = new FormData();
-																	form.append("image", target.files[0] );
-																	const res = await handleImageUpload(form);
-																	res?.data && setFieldValue("storeImage" , res?.data);
-																}
-															}} 
-														/>
-														<Span fontFamily='ubuntu' weight="700" lineHeight="16" size="14" colour={"Grey.2"}>
-															{values?.storeImage ? "Change Image" : "Upload Image"}
-														</Span>
-														{loadingImage && uploadType=== "image"  ? <div className="loader"><LoaderIcon height="30" width="30" /></div> : null}
-													</GenrealUploadBtnStyles>
-												</div> */}
 											</Flex>
 											: visualType === "video" ? 
 												<Flex width="auto" margin="0 auto 32px 0" justifyContent="flex-start">
 													{ values?.storeVideo ? <LogoStyles> <video src={values?.storeVideo}  autoPlay={false}/> </LogoStyles> : null}
 												
 													<SettingsUpload title="Video Upload " onSuccess={(e) =>  setFieldValue("storeVideo" , e) }/>
-													{/* <div>
-														<GeneralLabel> Video Upload </GeneralLabel>
-														<Spacer height="4px" />
-														<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
-															NB. Approved image size is 512x512px. Image should not exceed 4mb
-														</Span>
-														<Spacer height="24px" />
-
-														<GenrealUploadBtnStyles isLoading={loadingImage && uploadType=== "video"  }>
-															<input type="file"  
-																onChange={ async (e) => {
-																	const target = e.target ;
-																	if(target.files && target.files[0]) {
-																		setUploadType("video");
-																		const form = new FormData();
-																		form.append("image", target.files[0] );
-																		const res = await handleImageUpload(form);
-																		res?.data && setFieldValue("storeVideo" , res?.data);
-																	}
-																}} 
-															/>
-															<Span fontFamily='ubuntu' weight="700" lineHeight="16" size="14" colour={"Grey.2"}>
-																{values?.storeVideo ? "Change video" : "Upload video"}
-															</Span>
-															{loadingImage  && uploadType === "video"  ? <div className="loader"><LoaderIcon height="30" width="30" /></div> : null}
-														</GenrealUploadBtnStyles>
-													</div> */}
 												</Flex>
 												: null
 									}
@@ -189,7 +134,6 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 										type="submit"
 										pad="padding.smaller"
 										isLoading={loading}
-										// disabled={loadingImage}
 										nonActiveBgColor="Black.20"
 										text={  "Save Changes" }
 									/> 
