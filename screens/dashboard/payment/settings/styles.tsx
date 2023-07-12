@@ -38,11 +38,11 @@ export const CheckStyles =  styled(Flex)`
  
  
  
-export const IconStyle =  styled(Flex)`
+export const IconStyle =  styled(Flex)<{pointer?: boolean}>`
 	border-radius: 100%;
 	width: 42px;
 	height: 42px;
-
+	cursor: ${({ pointer }) => pointer && "pointer"};
 `;
  
  

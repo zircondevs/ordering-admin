@@ -12,17 +12,19 @@ import AddBank from "./addBank";
 import { HandleScrollTypes } from "devs-react-component-library";
 import { UseContext } from "../../../../state/provider";
 import { useGetBanks } from "../../../../hooks/usePayment";
+import { useGetAdminGeneralSettings, useUpdateAccountSettings } from "../../../../hooks/useSettigs";
+import AutomaticPayout from "./autoPayout";
 
 
  
-
-
 
 const Settings = () => {
 	const [modal, setModal] = useState({type: ""});
 	const modalRef = React.useRef<HandleScrollTypes>(null); 
 	const { state: { client }} = UseContext();
-	
+	const { mutate } = useGetAdminGeneralSettings();
+	const { handleUpdateAccSettings , loading} = useUpdateAccountSettings();
+
 	const {banks, loading: loadingBanks } = useGetBanks();
 
 
@@ -30,8 +32,16 @@ const Settings = () => {
 		setModal(obj);
 		modalRef.current && modalRef.current.preventBodyScroll();
 	};
-	const [paymentStructure, setPaymentStructure] = useState("Manual");
+	const [paymentStructure, setPaymentStructure] = useState(client?.withdrawalProcessType ||  "MANUAL");
 	
+
+	const handleUpdate = async (type: string, interval?: string) => {
+		setPaymentStructure(type);
+		await handleUpdateAccSettings({withdrawalProcessType: type, withdrawalInterval: interval || ""});
+		mutate();
+		setPaymentStructure(client?.withdrawalProcessType);
+	};
+
 	return (
 		<Main>
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='40px 0 40px'>
@@ -59,7 +69,7 @@ const Settings = () => {
 								*********{client?.companyDepositAccountNumber.substring(0, 3)}. {client?.companyDepositAccountName}
 							</Span>
 						</div>
-						<IconStyle margin="0  0 0 15px" bgColor="Error.20">
+						<IconStyle margin="0  0 0 15px" bgColor="Error.20" pointer onClick={() => openModal({type: "editBank"})}>
 							<TrashIcon height="20" width="20" colour="Error.default"/>
 						</IconStyle>
 					</Container1>
@@ -78,7 +88,7 @@ const Settings = () => {
 						/>
 			}
 
-			
+
 			
 
 			<Spacer height="30px"/>
@@ -99,40 +109,41 @@ const Settings = () => {
 
 				<Grid gap="20px" columns="repeat(auto-fit, minmax(110px, 120px))" className="checkbox">
 					<CheckStyles height="auto" width="auto"   justifyContent="flex-start" >
-						<Checkbox checked={paymentStructure === "Manual"}  onClick={() => setPaymentStructure("Manual")} type="radio"/>
+						<Checkbox checked={paymentStructure === "MANUAL"}  
+							onClick={  () => paymentStructure === "MANUAL" ? [] :  handleUpdate("MANUAL")} 
+							type="radio"
+						/>
 						<GeneralLabel>Manual</GeneralLabel>
 					</CheckStyles>
 					<CheckStyles height="auto" width="auto"  justifyContent="flex-start">
-						<Checkbox checked={paymentStructure === "Automatic"} onClick={() =>  setPaymentStructure("Automatic")} type="radio"/>
-						<GeneralLabel>Automatic</GeneralLabel>
+						<Checkbox checked={paymentStructure === "AUTOMATED"} 
+							onClick={() => paymentStructure === "AUTOMATED" ? [] :  setModal({type: "withdrawalInterval"})} 
+							type="radio"
+						/>
+						<GeneralLabel>Automated</GeneralLabel>
 					</CheckStyles>
 				</Grid>
 			</Container1>
 
 			<Spacer height="20px"/>
 
-			<AutomaticStyle>
-				<Bold fontFamily='ubuntu' weight="600" lineHeight="21" size="14" colour={"Orange.default"}>
-					Setup automatic payout
-				</Bold>
-			</AutomaticStyle>
 
-			{/* <CustomButton
-				size="14"
-				activeColor={"common.white"}
-				activeBorderColor={"common.white"}
-				type="submit"
-				nonActiveBgColor="Black.20"
-				borderRadius="8"
-				bgColour={PRIMARY_COLOR[0]}
-				text={"Add Changes" }
-			/> */}
-			<AddBank  open={modal} setOpen={setModal} modalRef={modalRef} onDOne={() => []}  banks={banks} />
+			{
+				client?.withdrawalProcessType === "AUTOMATED" ?
+					<AutomaticStyle onClick={() =>  setModal({type: "withdrawalInterval"})} >
+						<Bold fontFamily='ubuntu' weight="600" lineHeight="21" size="14" colour={"Orange.default"}>
+							Setup automatic payout
+						</Bold>
+					</AutomaticStyle>
+					: null
+			}
+
+
+			<AddBank  open={modal} setOpen={setModal} modalRef={modalRef} onDOne={mutate}  banks={banks} />
+			<AutomaticPayout  open={modal} setOpen={setModal} modalRef={modalRef} onDOne={(e) => handleUpdate("AUTOMATED", e)}  loading={loading} />
 
  
 		</Main>
 	);
 };
 export default Settings;
- 
- 

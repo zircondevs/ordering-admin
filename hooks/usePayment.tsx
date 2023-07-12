@@ -14,6 +14,7 @@
 import { useState } from "react";
 import {   PAYMENT_URL,  } from "../constants/urls";
 import {   useAxiosHandler, useGetCachedAxiosHandler } from "./useAxiosHandler";
+import Notify from "../applications/notification";
 
 
 
@@ -51,6 +52,7 @@ export const useVerifyAccount  = () => {
 		});
 		setLoading(false);
 		if(data) {
+			data?.success === false &&	Notify().error("Unable to verify bank account");
 			return { data };
 		}
 	};

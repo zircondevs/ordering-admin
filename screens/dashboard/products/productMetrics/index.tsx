@@ -85,7 +85,7 @@ const ProductMetrics = () => {
 													</Frame>
 													<Flex height="auto" direction="column" alignItems="flex-start">
 														<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={ "Grey.3"}>
-															Most Purchased Product
+															Least Purchased Product
 														</Span>
 														<Bold fontFamily='ubuntu' weight="600" lineHeight="24" size="16" colour={ "Grey.1"}>
 															{MakeOnlyFirstLettersCapital(productMetrics?.lowestSeller?.name)}

@@ -15,6 +15,7 @@ import { GenericObjTypes } from "../../../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library";
 import { LoaderIcon,   } from "../../../../../public/assets/svg";
 import {   useVerifyAccount } from "../../../../../hooks/usePayment";
+import { UseContext } from "../../../../../state/provider";
 
 
 
@@ -40,6 +41,7 @@ const AddBank = ({	open,modalRef, setOpen,onDOne, banks } : PropType) => {
 
 
 	const {handleVerifyAccount, loading: loadingVerify} = useVerifyAccount();
+	const { state: { client }} = UseContext();
 
 	const closeModal = () => {
 		setOpen({type: ""});
@@ -53,7 +55,7 @@ const AddBank = ({	open,modalRef, setOpen,onDOne, banks } : PropType) => {
 	return (
 		<GeneralModalStyle>
 			<Modal
-				show={open?.type === "addBank" }
+				show={open?.type === "addBank" || open?.type === "editBank"}
 				handleClose={() => closeModal()}
 				innerRef={modalRef}
 				direction={"right"}
@@ -67,7 +69,7 @@ const AddBank = ({	open,modalRef, setOpen,onDOne, banks } : PropType) => {
 
 					<Flex height="auto"   margin="0 0 70px" direction="column" alignItems="flex-start">
 						<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="40" size="36" colour={"Black.default"}>
-							Add Account Number
+							{ open?.type === "editBank" ? "Edit" : "Add"} Account Number
 						</Bold>
 						<Spacer height="16px"/>
 						<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Grey.2"}>
@@ -80,8 +82,8 @@ const AddBank = ({	open,modalRef, setOpen,onDOne, banks } : PropType) => {
 						enableReinitialize
 						validationSchema={AddStoreSchema}
 						initialValues={{
-							accountBank: open?.store?.name ||  "" ,
-							accountNumber:  open?.store?.address ||   "",
+							accountBank: open?.type === "editBank" ? client?.companyDepositBank :  "" ,
+							accountNumber:  open?.type === "editBank" ? client?.companyDepositAccountNumber :   "",
 						}} 
 						onSubmit={ async (values , actions) => { 
 							const res =   await handleVerifyAccount({...values, });
@@ -115,7 +117,7 @@ const AddBank = ({	open,modalRef, setOpen,onDOne, banks } : PropType) => {
 															direction='end'
 															searchField={true}
 															clearSelected
-															initial={values.accountBank}
+															initial={banks?.find((_: {code: string}) => _?.code === values?.accountBank)?.name }
 															data={banks?.map((bank: {name: string, code: string}) => (
 																{
 																	returnedValue: bank?.code,
