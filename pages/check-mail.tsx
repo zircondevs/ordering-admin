@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
 import React  from "react";
-import Overview from "../screens/auth/forgot-password";
+import Overview from "../screens/auth/check-mail";
 import AuthLayout from "../components/Layout/Auth-layout";
 
 
 
 
-const ForgotPassword: NextPage = () => {
+const Login: NextPage = () => {
 
 	
 	return (
@@ -16,4 +16,4 @@ const ForgotPassword: NextPage = () => {
 	);
 };
 
-export default ForgotPassword;
+export default Login;

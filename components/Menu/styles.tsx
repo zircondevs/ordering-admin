@@ -21,9 +21,6 @@ export const MenuStyles =  styled("header")`
 `;
 
 export const Line =  styled(Flex)`
-	/* margin-right: 24px;
-	padding-right: 24px; */
-	/* border-right: 2px solid #E0E0E0; */
 	width: auto;
 
 `; 

@@ -2,16 +2,19 @@
 
 
 import React   from "react";
-import { Bold, Flex,  Grid,  Input, Span,  } from "../../components";
+import { Bold, Flex,  Grid,  Input, Span,  } from "../../../components";
 import {  Main, ModalSpacer, } from "./styles";
-import { Spacer } from "../../components/Spacer";
-import { GeneralInputWrap, GeneralLabel,     } from "../../components/styles";
-import CustomButton from "../../components/Button";
-import { TERTIARY_COLOR, WHITE_COLOR } from "../../hooks/colors";
+import { Spacer } from "../../../components/Spacer";
+import { GeneralInputWrap, GeneralLabel,     } from "../../../components/styles";
+import CustomButton from "../../../components/Button";
+import { TERTIARY_COLOR, WHITE_COLOR } from "../../../hooks/colors";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
-import { useLogin } from "../../hooks/useAuth";
+import { useLogin } from "../../../hooks/useAuth";
 import * as Yup from "yup";
+import { singleSpace } from "../../../lib";
+import { STORAGE } from "../../../applications/storage";
+import Constant from "../../../constants";
 
 
 
@@ -41,9 +44,6 @@ const Login = () => {
 						</Span>
 					</Flex>
 
-
- 
- 
  
 					<Formik
 						validationSchema={LoginSchema}
@@ -55,8 +55,9 @@ const Login = () => {
 						onSubmit={ async (values , actions) => { 
 							const res = await handleLogin(values);
 							if(res?.data){
+								const newUser = STORAGE.GET(Constant.keys.newUser);
 								actions.resetForm();
-								push("/dashboard");
+								newUser === "true" ? push("/on-boarding") :  push("/dashboard");
 							}
 						}}
 					>
@@ -103,6 +104,7 @@ const Login = () => {
 										onClick={() =>  push("/forgot-password")}  
 									/>
 								</Flex>
+								
 								<Flex>
 									<CustomButton
 										size="14"
@@ -115,6 +117,23 @@ const Login = () => {
 										borderRadius="8"
 										text={ "Log In" }
 										isLoading={loading}
+									/>
+								</Flex>
+
+								<Flex height="auto"  margin="34px 0" width="auto" >  
+									<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
+										Have an account?
+									</Span>
+									{singleSpace()}
+									<CustomButton
+										size="14"
+										bodColour="transparent"
+										type="button"
+										pad="padding.0"
+										borderRadius="0"
+										activeColor="Grey.2"
+										text={  "Sign Up"}
+										onClick={() =>  push("/signup")}  
 									/>
 								</Flex>
 							</Form>

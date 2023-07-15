@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Flex,   } from "../../components";
+import { Flex } from "../../../components";
 
 
 
@@ -16,12 +16,10 @@ export const Main =  styled(Flex)`
 `;
  
 
- 
- 
- 
-export const ImageStyles =  styled(Flex)`
-	height: 100px;
-	width: 160px;
-	position: relative;
-	margin: auto;
+export const ModalSpacer =  styled(Flex)`
+	padding: 60px 64px 60px;
+	@media (max-width: 1000px) {
+		padding: 24px 24px 60px;
+
+	}
 `;

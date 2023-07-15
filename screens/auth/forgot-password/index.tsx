@@ -2,14 +2,14 @@
 
 
 import React, { useState }   from "react";
-import { Bold, Flex,  Input, Span,  } from "../../components";
+import { Bold, Flex,  Input, Span,  } from "../../../components";
 import {  Main, } from "./styles";
-import { Spacer } from "../../components/Spacer";
-import { GeneralInputWrap, GeneralLabel,  ModalSpacer } from "../../components/styles";
-import CustomButton from "../../components/Button";
-import { TERTIARY_COLOR, WHITE_COLOR } from "../../hooks/colors";
+import { Spacer } from "../../../components/Spacer";
+import { GeneralInputWrap, GeneralLabel,  ModalSpacer } from "../../../components/styles";
+import CustomButton from "../../../components/Button";
+import { TERTIARY_COLOR, WHITE_COLOR } from "../../../hooks/colors";
 import { useRouter } from "next/router";
-import { useForgotPassword } from "../../hooks/useAuth";
+import { useForgotPassword } from "../../../hooks/useAuth";
 
 
 

@@ -1,27 +1,9 @@
 import styled from "styled-components";
-import { Flex } from "../../../../components";
-
-
+import { Flex } from "../../../components";
 
 
 
  
- 
-  
- 
-export const Main =  styled("div")`
-	width: 100%;
-	& .submit-btn {
-		position: absolute;
-		bottom: 0;
-		width: auto;
-		right: 0;
-		left: 0;
-		z-index: 10;
-		background-color:  ${({ theme }) => theme?.palette?.common["white"] };
-	}
-`;
-
 export const ImageStyles =  styled("div")`
 	position: relative;
 	height: 107px;
@@ -29,6 +11,8 @@ export const ImageStyles =  styled("div")`
 	background-color:  ${({ theme }) => theme?.palette?.common["black"] };
 	border-radius: 5px;
 `;
+
+
 export const CancelStyles =  styled(Flex)`
 	background-color:  ${({ theme }) => theme?.palette?.Grey["2"] };
 	position: absolute;
@@ -40,7 +24,3 @@ export const CancelStyles =  styled(Flex)`
 	z-index: 2;
 	cursor: pointer;
 `;
-
-
- 
- 

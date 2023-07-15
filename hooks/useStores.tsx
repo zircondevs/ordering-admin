@@ -93,7 +93,7 @@ export const useEditStore  = (storeId: string) => {
 		const { data } = await  patchAxiosHandler ({
 			url: `${STORE_URL}/${storeId}`,
 			successMessage: "Store updated successfully",
-			DATA
+			DATA,
 		});
 		setLoading(false);
 		if(data) {

@@ -120,7 +120,7 @@ export const GeneralLabel =  styled("label")<{optional?: boolean}>`
 	font-weight: ${({ theme }) => theme?.typography?.fontWeight["400"] };
 	line-height: ${({ theme }) => theme?.typography?.lineHeight["19"] };
 	letter-spacing: 0.025em;
-	padding-bottom: 5px;
+	/* padding-bottom: 5px; */
 	display: block;
 	display: flex;
 	/* left: 16px;

@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import React  from "react";
-import Overview from "../screens/auth/login";
+import Overview from "../screens/on-boarding";
 import AuthLayout from "../components/Layout/Auth-layout";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 
 
@@ -10,9 +11,11 @@ const Login: NextPage = () => {
 
 	
 	return (
-		<AuthLayout>
-			<Overview />
-		</AuthLayout>
+		<ProtectedRoute>
+			<AuthLayout>
+				<Overview />
+			</AuthLayout>
+		</ProtectedRoute>
 	);
 };
 
