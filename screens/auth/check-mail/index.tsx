@@ -5,7 +5,7 @@ import { Bold, Flex,   Span,  } from "../../../components";
 import {  IconStyle, Main, ModalSpacer, } from "./styles";
 import { Spacer } from "../../../components/Spacer";
 // import IMG from "../../../public/assets/animation_500_lh0e9zlp.gif";
-import Image from "next/image";
+// import Image from "next/image";
 import { useRouter } from "next/router";
 
 
