@@ -24,18 +24,41 @@ export const useLogin  = () => {
 		const { data } = await postAxiosHandler ({
 			url: `${AUTH_URL}/admin-login`,
 			DATA,
-			successMessage: "Login successfully",
+			notify: false
 		});
 		setLoading(false);
-		if(data)   { 
+		if(data?.data?.access_token)   { 
 			setToken("");
 			setRefreshToken("");
 			STORAGE.SAVE(Constant.keys.token, data?.data?.access_token);
 			STORAGE.SAVE(Constant.keys.refreshToken, data?.data?.refresh_token);
+			Notify().success("Login successfully");
 			return { data};
 		}
 	};
 	return { handleLogin, loading  };
+};
+
+
+
+export const useCreateAccount  = () => {
+	const { postAxiosHandler } = useAxiosHandler();
+	const [loading, setLoading] = useState(false);
+
+	
+	const handleCreateAccount = async (DATA: object) => {
+		setLoading(true);
+		const { data } = await postAxiosHandler ({
+			url: `${AUTH_URL}/admin-signup`,
+			DATA,
+			notify: false
+		});
+		setLoading(false);
+		if(data)   { 
+			return { data};
+		}
+	};
+	return { handleCreateAccount, loading  };
 };
 
 

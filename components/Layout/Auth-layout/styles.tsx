@@ -23,10 +23,10 @@ export const Container =  styled("section")`
 	@media (${({theme}) => theme.mediaQuery.below.tab}) {
 		width: 100%;
 	}
-	 & > div > div {
+	 /* & > div > div {
 		margin-top: 24px;
 		margin-bottom: 24px;
-	 }
+	 } */
 `;
  
  
