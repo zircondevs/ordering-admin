@@ -7,7 +7,7 @@ import {  GeneralModalHeader, GeneralModalStyle,  ModalSpacer } from "../../../.
 import { GenericObjTypes } from "../../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library";
 import { LongArrowicon } from "../../../../public/assets/svg";
-import CreateStore from "../../../on-boarding/create-store";
+import CreateStore from "../../../onboarding/create-store";
 import { Spacer } from "../../../../components/Spacer";
 
 

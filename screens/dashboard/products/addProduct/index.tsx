@@ -6,7 +6,7 @@ import { Bold,    Flex,  Modal,     } from "../../../../components";
 import {  GeneralModalHeader, GeneralModalStyle,  ModalSpacer } from "../../../../components/styles";
 import { GenericObjTypes } from "../../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library";
-import CreateProduct from "../../../on-boarding/create-product";
+import CreateProduct from "../../../onboarding/create-product";
 
 
 

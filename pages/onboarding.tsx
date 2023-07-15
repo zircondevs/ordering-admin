@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import React  from "react";
-import Overview from "../screens/on-boarding";
+import Overview from "../screens/onboarding";
 import AuthLayout from "../components/Layout/Auth-layout";
 import ProtectedRoute from "../components/ProtectedRoute";
 

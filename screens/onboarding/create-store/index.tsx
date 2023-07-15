@@ -68,9 +68,9 @@ const CreateStore = ({store, onDone}: PropType) => {
 					dialCode:   store?.dialCode || "+234",
 				}} 
 				onSubmit={ async (values , actions) => { 
-					const res = store?.type === "add" ?
-						await handleCreateStore({...values,  })
-						: await handleEditStore({...values,  });
+					const res = store?.type === "edit" ?
+						await handleEditStore({...values, customerCareLine: values?.customerCareLine?.toString()  })
+						: await handleCreateStore({...values, customerCareLine: values?.customerCareLine?.toString()  });
 					if(res?.data) {
 						actions.resetForm();
 						onDone && onDone();

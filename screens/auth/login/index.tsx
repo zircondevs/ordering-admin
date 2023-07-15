@@ -57,7 +57,7 @@ const Login = () => {
 							if(res?.data){
 								const newUser = STORAGE.GET(Constant.keys.newUser);
 								actions.resetForm();
-								newUser === "true" ? push("/on-boarding") :  push("/dashboard");
+								newUser === "true" ? push("/onboarding") : push("/dashboard");
 							}
 						}}
 					>

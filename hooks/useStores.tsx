@@ -42,7 +42,6 @@ export const useCreateStore  = () => {
 	const { state: { user }} = UseContext();
 	const { postAxiosHandler } = useAxiosHandler();
 	const [loading, setLoading] = useState(false);
-	
 	const handleCreateStore = async (DATA: object) => {
 		setLoading(true);
 		const { data } = await  postAxiosHandler ({
