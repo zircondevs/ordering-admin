@@ -4,8 +4,8 @@ import React, { useEffect }   from "react";
 import { Bold, Flex,   Span,  } from "../../../components";
 import {  IconStyle, Main, ModalSpacer, } from "./styles";
 import { Spacer } from "../../../components/Spacer";
-// import IMG from "../../../public/assets/animation_500_lh0e9zlp.gif";
-// import Image from "next/image";
+import IMG from "../../../public/assets/animation_500_lh0e9zlp.gif";
+import Image from "next/image";
 import { useRouter } from "next/router";
 
 
@@ -28,7 +28,7 @@ const CheckMail = () => {
 
 				<ModalSpacer direction="column" wrap="nowrap" alignItems='stretch'>
 					<IconStyle>
-						{/* <Image src={IMG} alt="" /> */}
+						<Image src={IMG} alt="" />
 					</IconStyle>
 
 					<Flex height="auto"   margin="30px 0 24px" direction="column"  >

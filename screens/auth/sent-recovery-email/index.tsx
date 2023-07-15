@@ -7,7 +7,7 @@ import {  ImageStyles, Main, } from "./styles";
 import { Spacer } from "../../../components/Spacer";
 import {   ModalSpacer } from "../../../components/styles";
 import { useRouter } from "next/router";
-import emailGIF from "../../public/assets/animation_500_lh0e9zlp.gif";
+import emailGIF from "../../../public//assets/animation_500_lh0e9zlp.gif";
 import Image from "next/image";
 
 
