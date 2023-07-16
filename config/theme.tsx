@@ -24,6 +24,7 @@ const palette = {
 	},
 	Orange: {
 		default: "#FE724D",
+		80: "#FE8D4D",
 		5: "#FFF1ED",
 		0: "#faede9"
 	},

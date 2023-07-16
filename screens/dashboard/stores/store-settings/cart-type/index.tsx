@@ -49,7 +49,7 @@ const CartType = ( ) => {
 						Cart Structure
 					</Bold>
 					<Spacer height="8px"/>
-					<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="14" colour={"Grey.4"}>
+					<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
 						How do you want your customers to add items to cart?
 					</Span>
 				</Flex>
@@ -57,7 +57,7 @@ const CartType = ( ) => {
 
 				{
 					loadingPolicy?
-						<Flex height="auto"><LoaderIcon height="40" width="40" colour="Orange.default"/></Flex>
+						<Flex height="auto" justifyContent="flex-start"><LoaderIcon height="40" width="40" colour="Orange.default"/></Flex>
 						:
 						<Main gap="20px" columns="repeat(auto-fit, minmax(100px, 170px))">
 							<Flex height="auto" width="auto"   justifyContent="flex-start">

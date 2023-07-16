@@ -37,6 +37,25 @@ export const CheckMarkIcon = (
 		/>
 	</svg>
 );
+
+export const OTHAIcon = (
+	{ height, width, colour,  }: { height?: string; width?: string; colour?: string;  }
+
+) => (
+	<svg 
+		x="0px"
+		y="0px"
+		height={height || "52"}
+		width={width || "52"}
+		viewBox="0 0 30 32"
+		fill="transparent"
+	>
+		<path d="M0 2.15816V7.66558C0 10.4067 2.17416 12.702 4.9153 12.7478C7.71587 12.7935 9.99977 10.5393 9.99977 7.74788C9.99977 10.5096 12.2379 12.7478 14.9997 12.7478C17.7614 12.7478 19.9995 10.5096 19.9995 7.74788C19.9995 10.537 22.2834 12.7935 25.084 12.7478C27.8252 12.702 29.9993 10.409 29.9993 7.66558V2.15816C29.9993 0.967056 29.0345 0 27.8412 0H2.15816C0.96477 0 0 0.96477 0 2.15816Z" fill={  colour ?  (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor" }/>
+		<path d="M25.1229 15.0339H24.9994C23.0653 15.0339 21.3049 14.2772 19.9995 13.0449C18.6941 14.2795 16.9338 15.0362 14.9996 15.0362C13.0655 15.0362 11.3075 14.2795 10.002 13.0472C8.64405 14.332 6.87683 15.0362 4.99988 15.0362H4.87642C4.14484 15.0225 3.43841 14.899 2.77313 14.6795V26.0716C2.77313 29.1008 5.23078 31.5584 8.25998 31.5584H21.7416C24.7708 31.5584 27.2284 29.1008 27.2284 26.0716V14.6795C26.5632 14.899 25.8567 15.0225 25.1252 15.0339H25.1229ZM21.8651 18.2849C21.8651 22.1394 18.6713 25.2623 14.7916 25.148C11.0583 25.036 8.13424 21.8765 8.13424 18.1408V17.8345H11.1954V18.1866C11.1954 20.315 12.9375 22.1256 15.0637 22.0914C17.1304 22.0571 18.8016 20.363 18.8016 18.2894V17.8368H21.8628V18.2894L21.8651 18.2849Z" fill={  colour ?  (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor" }/>
+ 
+
+	</svg>
+);
  
 export const PlusIcon = (
 	{ height, width, colour,  }: { height?: string; width?: string; colour?: string;  }
@@ -81,45 +100,7 @@ export const WarningIcon = (
 );
 
 
-export const PromoIcon = (
-	{ height, width,    }: { height?: string; width?: string; colour?: string; }
-) => (
-	<svg
-		x="0px"
-		y="0px"
-		viewBox="0 0 20 21" 
-		height={height || "52"}
-		width={width || "52"}
-		fill={ "none"}
-	>
-		<path d="M1.66699 8.41667V3.83333C1.66699 3.61232 1.75479 3.40036 1.91107 3.24408C2.06735 3.0878 2.27931 3 2.50033 3H17.5003C17.7213 3 17.9333 3.0878 18.0896 3.24408C18.2459 3.40036 18.3337 3.61232 18.3337 3.83333V8.41667C17.7811 8.41667 17.2512 8.63616 16.8605 9.02686C16.4698 9.41756 16.2503 9.94747 16.2503 10.5C16.2503 11.0525 16.4698 11.5824 16.8605 11.9731C17.2512 12.3638 17.7811 12.5833 18.3337 12.5833V17.1667C18.3337 17.3877 18.2459 17.5996 18.0896 17.7559C17.9333 17.9122 17.7213 18 17.5003 18H2.50033C2.27931 18 2.06735 17.9122 1.91107 17.7559C1.75479 17.5996 1.66699 17.3877 1.66699 17.1667V12.5833C2.21953 12.5833 2.74943 12.3638 3.14013 11.9731C3.53083 11.5824 3.75033 11.0525 3.75033 10.5C3.75033 9.94747 3.53083 9.41756 3.14013 9.02686C2.74943 8.63616 2.21953 8.41667 1.66699 8.41667ZM11.667 4.66667H3.33366V7.14C3.95967 7.45025 4.48655 7.92921 4.85491 8.52288C5.22327 9.11656 5.41846 9.80133 5.41846 10.5C5.41846 11.1987 5.22327 11.8834 4.85491 12.4771C4.48655 13.0708 3.95967 13.5498 3.33366 13.86V16.3333H11.667V4.66667ZM13.3337 4.66667V16.3333H16.667V13.86C16.041 13.5498 15.5141 13.0708 15.1457 12.4771C14.7774 11.8834 14.5822 11.1987 14.5822 10.5C14.5822 9.80133 14.7774 9.11656 15.1457 8.52288C15.5141 7.92921 16.041 7.45025 16.667 7.14V4.66667H13.3337Z" fill="#FE724D"/>
-
-	</svg>
-);
-
-export const CartIcon = ({ height, width, colour }: Props) => (
-	<svg 
-		x="0px"
-		y="0px"
-		height={height || "52"}
-
-		fill={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor" } 
-		width={width || "52"}
-		
-		viewBox="0 0 256 256"
-	>
-		<rect width="256" height="256" fill="none"/><path d="M180,184H83.17a16,16,0,0,1-15.74-13.14L41.92,30.57A8,8,0,0,0,34.05,24H16" fill="none" 
-			stroke={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor" } 
-			strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/><circle cx="84" cy="204" r="20" fill="none" 
-			stroke={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor" } 
-			strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/><circle cx="180" cy="204" r="20" fill="none" 
-			stroke={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor" } 
-			strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/><path d="M62.55,144H188.1a16,16,0,0,0,15.74-13.14L216,64H48" fill="none" 
-			stroke={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor" } 
-			strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/> 
-	</svg>
-
-);
+  
 export const AddressIcon = ({ height, width, colour }: Props) => (
 	<svg 
 		x="0px"
@@ -137,22 +118,7 @@ export const AddressIcon = ({ height, width, colour }: Props) => (
 	</svg>
 
 );
-export const PlateIcon = ({ height, width, colour }: Props) => (
-	<svg 
-		x="0px"
-		y="0px"
-		height={height || "52"}
-		fill={"none"}
-		width={width || "52"}
-		
-		viewBox="0 0 1024 1024"
-	>
-		<path
-			fill={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor" } 
-			d="M128 352.576V352a288 288 0 0 1 491.072-204.224 192 192 0 0 1 274.24 204.48 64 64 0 0 1 57.216 74.24C921.6 600.512 850.048 710.656 736 756.992V800a96 96 0 0 1-96 96H384a96 96 0 0 1-96-96v-43.008c-114.048-46.336-185.6-156.48-214.528-330.496A64 64 0 0 1 128 352.64zm64-.576h64a160 160 0 0 1 320 0h64a224 224 0 0 0-448 0zm128 0h192a96 96 0 0 0-192 0zm439.424 0h68.544A128.256 128.256 0 0 0 704 192c-15.36 0-29.952 2.688-43.52 7.616 11.328 18.176 20.672 37.76 27.84 58.304A64.128 64.128 0 0 1 759.424 352zM672 768H352v32a32 32 0 0 0 32 32h256a32 32 0 0 0 32-32v-32zm-342.528-64h365.056c101.504-32.64 165.76-124.928 192.896-288H136.576c27.136 163.072 91.392 255.36 192.896 288z"/> 
-	</svg>
 
-);
 export const TrashIcon = ({ height, width, colour }: Props) => (
 	<svg 
 		x="0px"
@@ -187,25 +153,7 @@ export const EditIcon = ({ height, width, colour }: Props) => (
 
   
  
-export const ImageIcon = (
-	{ height, width, colour  }: { height?: string; width?: string; colour?: string}
-) => (
-	<svg
-		height={height || "52"}
-		fill={ "transparent"}
-		width={width || "52"}
-		x="0"
-		y="0"
-		viewBox="0 0 256 256"
-	>
-
-		<rect width="256" height="256" fill="none"/><rect x="32" y="48" width="192" height="160" rx="8" fill="none" stroke={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor"}  strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/><circle cx="156" cy="100" r="12"/><path d="M147.31,164,173,138.34a8,8,0,0,1,11.31,0L224,178.06" fill="none" stroke={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor"}  strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/><path d="M32,168.69l54.34-54.35a8,8,0,0,1,11.32,0L191.31,208" fill="none" stroke={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor"}  strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/> 
-
-	</svg>
-);
  
- 
-
 
 
 export const PasswordEyeIcon = ({ height, width, colour }: Props) => (

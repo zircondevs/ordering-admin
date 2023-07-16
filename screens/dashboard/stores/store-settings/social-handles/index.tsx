@@ -52,7 +52,7 @@ const SocialHandles = ({settings, onDone}: {settings: any, onDone: () => void} )
 						Social handles
 					</Bold>
 					<Spacer height="8px"/>
-					<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="14" colour={"Grey.4"}>
+					<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
 						These allows you to share your products on the specified socail platforms.
 					</Span>
 				</Flex>

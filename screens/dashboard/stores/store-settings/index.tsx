@@ -1,6 +1,6 @@
 
 import React   from "react";
-import { Tabs,  } from "../../../../components";
+import {  Tabs,  } from "../../../../components";
 import {  Main,   TabsStyles,        } from "./styles"; 
 import { Spacer } from "../../../../components/Spacer";
 import OpeningAndClosingHrs from "./open-and-close-hrs";
@@ -8,6 +8,8 @@ import Welcome from "./welcome";
 import SocialHandles from "./social-handles";
 import CartType from "./cart-type";
 import { useGetAdminGeneralSettings } from "../../../../hooks/useSettigs";
+
+
 
 
 
@@ -37,7 +39,7 @@ const StoreSettings = ( ) => {
 			key: "User"
 		},
 		{
-			head: "Cart Options",
+			head:  <> Cart Options </>,
 			body: <CartType  />,
 			key: "cart polocy"
 		},

@@ -3,20 +3,19 @@
 
 
 import React    from "react";
-import {   Container1, Footer,   } from "./styles";
+import {   Container1,       } from "./styles";
 import { Bold, Container, Flex, Grid,     Span,   } from "../../../../../components";
 import { Spacer } from "../../../../../components/Spacer";
 import CustomButton from "../../../../../components/Button";
 import {  GeneralLabel,    } from "../../../../../components/styles";
 import { Form, Formik } from "formik";
 import TimePicker from "../../../../../components/TimePicker";
-import Select from "react-select";
 import { useSetUpStore } from "../../../../../hooks/useSettigs";
 import { removeEmptyValuesFromObj } from "../../../../../lib";
 import { SetUpStoreTypes } from "../../../../../constants/types";
+import SelectTags from "../../../../../components/SelectTags";
 
 
-type OptionType = { value: string, label: string }
  
 
 const options = [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ];
@@ -38,7 +37,7 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 						Opening & Closing Hours
 					</Bold>
 					<Spacer height="8px"/>
-					<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="14" colour={"Grey.4"}>
+					<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
 						Add the times your store is open to taking orders
 					</Span>
 				</Flex>
@@ -61,22 +60,15 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 						return (
 							<Form>
 								<Container1 gap="32px">
-									<Grid margin="8px 0 0">
+									<Grid gap="16px">
 										<GeneralLabel>Working Days</GeneralLabel>
 
- 
-										<Select
-											value={ (values.workingDays as string[]).map(option => ({ value: option, label: option })) || []}
-											options={options.map(option => ({ value: option, label: option }))} 
-											isMulti={true}
-											onChange={(option) => {
-												setFieldValue("workingDays", (option as OptionType[]).map((item: OptionType) => item.value));
-											}}
-										/>
+										
+										<SelectTags options={options} active={values.workingDays} setActive={(e) => setFieldValue("workingDays", e)}/>
 									</Grid>
 
 
-									<Grid gap="10px">
+									<Grid gap="16px">
 										<GeneralLabel>Set Opening & Closing Hours</GeneralLabel>
 										<Flex height="auto" width="auto"   justifyContent="flex-start">
 											<Container margin="0 16px 0 0" width="auto" height="auto">
@@ -103,9 +95,10 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 											</div>
 										</Flex>
 									</Grid>
-
-
-									<Footer>
+									
+									<Spacer height="40px"/>
+									
+									<div>
 										<CustomButton
 											size="14"
 											activeBgColor={"common.white"}
@@ -117,7 +110,7 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 											nonActiveBgColor="Black.20"
 											text={  "Save Changes" }
 										/>
-									</Footer>
+									</div>
 								</Container1>
 
 							</Form>

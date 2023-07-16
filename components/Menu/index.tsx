@@ -1,12 +1,12 @@
 
 import {    DrawerMenu,Line,MenuStyles, ProfileCard, ProfileDropdownList,   } from "./styles";
-import {     Dropdown, Flex, Span  } from "..";
+import {     Bold, Dropdown, Flex, Span  } from "..";
 import React  from "react";
 // import Cart from "./cart";
 import { UseContext } from "../../state/provider";
 import Image from "next/image";
-import { AvatarIcon, LeftArrowIcon, LogOutIcon } from "../../public/assets/svg";
-import { MakeOnlyFirstLettersCapital } from "../../lib";
+import { AvatarIcon, LeftArrowIcon, LogOutIcon, OTHAIcon } from "../../public/assets/svg";
+import { MakeOnlyFirstLettersCapital, singleSpace } from "../../lib";
 import { useRouter } from "next/router";
 import { useLogout } from "../../hooks/handlers/useLogout";
 
@@ -29,13 +29,25 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 		<MenuStyles >
 			<Flex wrap='nowrap' justifyContent="space-between">
 				<DrawerMenu   justifyContent='flex-start' wrap='nowrap'>
-					<Image 
-						src={client?.companyLogo ||  "https://logos-world.net/wp-content/uploads/2020/04/Huawei-Logo.png"}
-						alt="Logo"
-						objectFit="contain"
-						layout="fill"
-						objectPosition={"left"}
-					/>
+					{
+						client?.companyLogo ?
+							<Image 
+								src={client?.companyLogo }
+								alt="Logo"
+								objectFit="contain"
+								layout="fill"
+								objectPosition={"left"}
+							/>
+							:
+							<>
+								<OTHAIcon height="30" width="30" colour="Orange.default"/>
+								{singleSpace()}
+								<Bold  weight="600" fontFamily='quicksandMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
+									Otha
+								</Bold>
+							</>
+					}
+
 				</DrawerMenu>
  
 

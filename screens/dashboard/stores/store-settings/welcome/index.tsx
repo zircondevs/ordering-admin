@@ -50,7 +50,7 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 						Introductory content
 					</Bold>
 					<Spacer height="8px"/>
-					<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="14" colour={"Grey.4"}>
+					<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
 						This appears once a user views your link. 
 					</Span>
 				</Flex>
@@ -83,7 +83,7 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 							<Form>
 								<Grid gap="32px">
 									<div>
-										<Span fontFamily='ubuntuSemiBold' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
+										<Span fontFamily='ubuntuMedium' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
 											Select a media type to upload
 										</Span>
 										<Spacer height="8px"/>

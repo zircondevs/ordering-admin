@@ -1,10 +1,10 @@
 
 
 import React, { useState }   from "react";
-import { Bold,   Tabs,  } from "../../../components";
+import { Bold,   Flex,   Tabs,  } from "../../../components";
 import {     HeaderSTyles,   Main,  TabsStyles,      } from "./styles";
 import {  GeneralTabStyle } from "../../../components/styles";
-import {   PlusIcon, } from "../../../public/assets/svg";
+import {   PlusIcon, SettingsIcon, StoreIcon, } from "../../../public/assets/svg";
 import CustomButton from "../../../components/Button";
 import { PRIMARY_COLOR } from "../../../hooks/colors";
 import AddStore from "./addStore";
@@ -29,12 +29,12 @@ const Stores = () => {
  
 	const tabData = [
 		{
-			head: "All Stores",
+			head: <><Flex margin="0 10px 0 0"><StoreIcon  height="15" width="15" colour=""/> </Flex>  All Stores</>,
 			body: <AllStores {...{openModal, stores, loading}} />,
 			key: "Account Information"
 		},
 		{
-			head: "Store Settings",
+			head: <><Flex margin="0 10px 0 0"><SettingsIcon  height="15" width="15" colour=""/> </Flex>  Settings</>,
 			body:  <StoreSettings />,
 			key: "User Management"
 		},

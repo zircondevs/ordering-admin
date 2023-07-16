@@ -56,12 +56,15 @@ export const TabsStyles =  styled("div")`
 			justify-content: stretch;
 			border: none;
 			& > li {
-				margin: 0 0 13px;
+				margin: 0 0 20px;
 				height: auto;
 				padding: 3px 0;
 				font-size: 14px;
 				line-height: 19px;
 				border-radius: 3px;
+				font-weight: 400;
+				width: 100%;
+				justify-content: flex-start;
 				&:hover{
 					color:  ${({ theme }) => theme.palette.Grey["3"]};
 				}

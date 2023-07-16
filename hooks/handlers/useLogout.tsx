@@ -7,7 +7,7 @@ import { UseContext } from "../../state/provider";
 
 
 export const useLogout = () => {
-	const {  setToken, setRefreshToken, setIsAuthenticated } = UseContext();
+	const {  setToken, setRefreshToken, setIsAuthenticated , setClient} = UseContext();
 	const { push } = useRouter();
 
 
@@ -15,6 +15,7 @@ export const useLogout = () => {
 		setToken("");
 		setIsAuthenticated(false);
 		setRefreshToken("");
+		setClient({});
 		STORAGE.DELETE(Constant.keys.token);
 		STORAGE.DELETE(Constant.keys.refreshToken);
 		push("/login");
