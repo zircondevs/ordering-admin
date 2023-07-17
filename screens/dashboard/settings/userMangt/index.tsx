@@ -1,27 +1,30 @@
 /* eslint-disable max-lines */
 
 import React, {   useState }    from "react";
-import {  Bold, Dropdown,  Grid,   Span,  } from "../../../../components";
-import {   Card, Card2, ControlHead, Controls, HeaderSTyles,   Main, SelectControlStyle,  } from "./styles";
+import {  Bold,   Flex,  Grid,   Small,   Span,  } from "../../../../components";
+import {   Card, Card2, ControlHead, Controls, ControlsGrid, HeaderSTyles,   Main, SelectControlStyle,  } from "./styles";
 import CustomButton from "../../../../components/Button";
 import { HandleScrollTypes } from "devs-react-component-library";
-// import AddUser from "./addUser";
-import { Check2Icon,   } from "../../../../public/assets/svg";
-// import {  useGetAdminRoles, useGetAdminUsers } from "../../../../hooks/useSettigs";
-import { Spacer } from "../../../../components/Spacer";
+import AddUser from "./addUser";
+import { Check2Icon, LoaderIcon, WarningIcon,   } from "../../../../public/assets/svg";
+import {    useGetAdminStaff, useGetSettingsRoles, useUpdateAStaffRoles } from "../../../../hooks/useSettigs";
+import SelectTags from "../../../../components/SelectTags";
+import { MakeOnlyFirstLettersCapital,  singleSpace } from "../../../../lib";
+import { Form, Formik } from "formik";
 
 
 
 
 
 const UserManagemnt = () => {
-	const [ , setModal] = useState({type: ""});
+	const [modal, setModal] = useState({type: ""});
 	const [hidden, setHidden] = useState<number[]>([]);
 	const modalRef = React.useRef<HandleScrollTypes>(null); 
+	const [active, setActive] = useState("");
 
-
-	// const  { users, loading, mutate } = useGetAdminUsers();
-	// const { roles,   loading: loadingRoles} = useGetAdminRoles();
+	const  {  loading, handleUpdateStaffRoles } = useUpdateAStaffRoles();
+	const { avaliableModules,   loading: loadingRoles, error } = useGetSettingsRoles();
+	const { staffs,   loading: loadingStaff, mutate, error: staffError} = useGetAdminStaff();
 
 
 	const openModal = (obj: {[e: string]: any, type: string}) => {
@@ -29,40 +32,14 @@ const UserManagemnt = () => {
 		modalRef.current && modalRef.current.preventBodyScroll();
 	};
 
- 
-	const controls = ["Payment", "Orders", "Transactions", "Customers", "Loyalty Rewards", "Stores", "Products", "Settings"];
-	const options = [
-		{
-			role: "Manager",
-			name: "Chinedu",
-			email: "chenedu@gmail.com",
-		},
-		{
-			role: "Manager",
-			name: "Jude Okoro",
-			email: "Okoro@gmail.com",
-			controls: [
-				{
-					control: "Payment",
-					type: "edit",
-				},
-				{
-					control: "Transactions",
-					type: "view",
-				},
-				{
-					control: "Transactions",
-					type: "view",
-				},
-			]
-		},
-	];
-	const Controls2 = [
-		{ name: "View", color: "Yellow.default" },
-		{ name: "Edit", color: "Grey.2" },
-		{ name: "Remove access", color: "Error.default" },
-	];
 
+	
+	const elementsOfArrIsInAnotherArr = (largeArr: string[], smallArr: string[]) =>   largeArr.some(role => smallArr.includes(role));
+
+	const ifThereIsARoleThenAddView = (arr: string[]) =>   elementsOfArrIsInAnotherArr(arr, ["DELETE", "EDIT"]) ? arr.includes("VIEW") ? arr : [...arr, "VIEW"] :  arr;
+
+	
+ 
 	
 	return (
 		<Main>
@@ -84,81 +61,128 @@ const UserManagemnt = () => {
 			</HeaderSTyles>
 
 
- 
+
+			
 			<Grid gap="40px">
 				{
-					options?.map((option, idx) => (
-						<Card key={option?.email}>
-							<ControlHead height="auto" justifyContent="space-between">
-								<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
-									{option.name} - {option.role}
+					loadingRoles || loadingStaff ?
+						<Flex><LoaderIcon height="40" width="40"/></Flex>
+						:
+						error || staffError ?
+							<Flex>
+								<WarningIcon colour="Error.default" height="20" width="20"/>
+								<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
+									We are having issues fatching all staff
 								</Span>
-								<button onClick={() => hidden.includes(idx) ? setHidden(hidden.filter(_ => _ !== idx)) : setHidden([...hidden, idx])}>
-									<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Orange.default"}>
-										{ hidden.includes(idx) ? "Open" : "Collapse" }
-									</Span>
-								</button>
-							</ControlHead>
-							{
-								hidden.includes(idx) ? null :
-									<>
-										<Controls>
-											<Span fontFamily='ubuntu' weight="400" lineHeight="21" size="14" colour={"Orange.default"}>
-												Dashboard Controls
-											</Span>
-										</Controls>
-										<Grid gap="0 16px" columns="repeat(auto-fit, minmax(360px, 1fr))">
-											{
-												controls?.map(control => (
-													<Card2 key={control} justifyContent="space-between">
-														<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.2"}>
-															<Check2Icon colour="Grey.2" width="12" height="12"/>
-															{control}
-														</Span>
-														<SelectControlStyle width="auto" height="auto" justifyContent="flex-end" className="View">
-															<Dropdown
-																weight='600'
-																colour='Grey.2'
-																hovBgColor='Black.10'
-																dropHovColor='Grey.2'
-																dropColor='Grey.2'
-																direction='end'
-																searchField={false}
-																clearSelected
-																initial={ "View"}
-																data={Controls2?.map(_ => ({
-																	returnedValue: _.name,
-																	displayedValue: _.name,
-																	dropdownValue: _.name,
-																}))}
-																handleSelect={(e: string) => console.log("position", e)}
-															/>
-														</SelectControlStyle>
-													</Card2>
-												))
+							</Flex>
+							:
+							staffs?.map((staff: any, idx : number) => (
+								<Card key={staff?.email}>
+									<Formik
+										enableReinitialize
+										initialValues={{
+											moduleAccessible: Object.keys(avaliableModules)?.map((_) => ({
+												name: _ || "",
+												method: (staff?.moduleAccessible?.find((item: any )=> item?.name === _) )?.method    || ["VIEW"]
+											})) 
+											||
+											[ { "name": "overview", "method": [ "VIEW" ] } ]
+										}} 
+										onSubmit={ async (values , options) => { 
+											setActive( staff?._id);
+											const res = await handleUpdateStaffRoles(values, staff?._id);
+											if(res?.data ){
+												mutate();
+												options.resetForm();
+												setActive("");
 											}
-										</Grid>
-									</>
-							}
-						</Card>
-					))
+										}}
+									>
+										{({ values, setFieldValue, dirty}) => {
+											return (
+												<Form>
+													<ControlHead height="auto" justifyContent="space-between" wrap="nowrap">
+														<div>
+															<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
+																{staff?.fullname} 	
+																<Small fontFamily='ubuntu' weight="400" lineHeight="14" size="12" colour={"Grey.3"}>
+																	({staff?.email})
+																</Small>
+															</Span>
+															<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
+																{singleSpace()}| {staff?.position} 
+															</Span>
+														</div>
+														<button type="button" onClick={() => hidden.includes(idx) ? setHidden(hidden.filter(_ => _ !== idx)) : setHidden([...hidden, idx])}>
+															<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Orange.default"}>
+																{ hidden.includes(idx) ? "Open" : "Collapse" }
+															</Span>
+														</button>
+													</ControlHead>
+													{
+														hidden.includes(idx) ? null :
+															<>
+																<Controls>
+																	<Span fontFamily='ubuntu' weight="400" lineHeight="21" size="14" colour={"Orange.default"}>
+																		Dashboard Controls
+																	</Span>
+
+																	<CustomButton
+																		size="10"
+																		type="submit"
+																		nonActiveBgColor="common.white"
+																		nonActiveColor="Grey.3"
+																		nonActiveBorderColor="Grey.6"
+																		borderRadius="8"
+																		activeBgColor="Success.default"
+																		activeBorderColor="common.white"
+																		activeColor="common.white"
+																		text={  "Save Changes"}
+																		disabled={!dirty}
+																		isLoading={loading && active ===  staff?._id}
+																		pad="padding.smallest"
+																	/>
+																</Controls>
+																<ControlsGrid gap="0 16px" columns="1fr 1fr">
+																	{
+																		values.moduleAccessible.map((control, index) => (
+																			<Card2 key={control.name + index} justifyContent="space-between" wrap="nowrap">
+																				<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.2"}>
+																					<Check2Icon colour="Grey.2" width="12" height="12"/>
+																					{MakeOnlyFirstLettersCapital(control.name)}
+																				</Span>
+																				<SelectControlStyle width="auto" height="auto" justifyContent="flex-end" className="View">
+																					<SelectTags 
+																						options={Object.values(avaliableModules)?.[index] as string[]} 
+																						active={ values.moduleAccessible[index].method  } 
+																						setActive={(e, option, state) => {
+																							!state && option === "VIEW" ?
+																								setFieldValue(`moduleAccessible.${index}.method`,  [] )
+																								: setFieldValue(`moduleAccessible.${index}.method`,  ifThereIsARoleThenAddView(e) );
+																						}}/>
+																				</SelectControlStyle>
+																			</Card2>
+																		))
+	
+																	}
+																</ControlsGrid>
+															</>
+													}
+												</Form>
+											);
+										}}
+									</Formik>
+								
+								</Card>
+
+							))
 				}  
 			</Grid>
 
 			
-			<Spacer height="30px"/>
-			<CustomButton
-				size="14"
-				type="submit"
-				nonActiveBgColor="Black.20"
-				borderRadius="8"
-				activeBgColor="Orange.default"
-				activeBorderColor="Orange.default"
-				activeColor="common.white"
-				text={  "Save Changes"}
-				pad="padding.smaller"
-			/>
-			{/* <AddUser   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={mutate}  roles={roles} /> */}
+ 
+			
+			<AddUser   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={() => []}   />
 
 		</Main>
 	);
