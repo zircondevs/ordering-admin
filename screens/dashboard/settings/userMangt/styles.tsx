@@ -41,13 +41,21 @@ export const COlorFields =  styled("div")`
 export const Card =  styled(Flex)`
 	flex-direction: column;
 	align-items: stretch;
-	/* background-color:  ${({ theme }) => theme.palette.Grey[8]}; */
 	border-radius: 5px;
 `;
 export const ControlHead =  styled(Flex)`
 	border-left: 3px solid   ${({ theme }) =>  theme.palette.Orange["default"]};
 	padding: 10px 30px;
 	background-color:  ${({ theme }) => theme.palette.Orange[5]};
+	small{
+		margin-left: 4px;
+	}
+	button {
+		margin-left: 15px;
+	}
+	@media (max-width:700px) {
+		padding: 10px 10px;
+	 }
 `;
 
 
@@ -56,7 +64,6 @@ export const Card2 =  styled(Flex)`
 	padding: 15px 30px;
 	width: auto;
 	background-color:  ${({ theme }) => theme.palette.Grey[8]};
-
 	&:not(:last-child){
 		border-bottom: 1px solid   ${({ theme }) => theme.palette.Grey[5]};
 	}
@@ -70,6 +77,9 @@ export const Card2 =  styled(Flex)`
 			margin-left: 20px;
 		}
 	}
+	@media (max-width:700px) {
+		padding: 10px 10px;
+	 }
 `;
 
 
@@ -84,13 +94,17 @@ export const Controls =  styled(Flex)`
 	}
 `;
 export const SelectControlStyle =  styled(Flex)`
-	 &.View > div > div > span {
-		color:  ${({ theme }) => theme.palette.Grey["2"]};
-	 }
-	 &.Edit > div > div > span {
-		color:  ${({ theme }) => theme.palette.Success["default"]};
-	 }
-	 &.Black > div > div > span {
-		color:  ${({ theme }) => theme.palette.Error["default"]};
+	& > div > div {
+		padding: 1px 5px;
+		margin: 0 0 0 10px;
+		span {
+			font-size: 12px;
+			text-transform: lowercase;
+		}
+	}
+`;
+export const ControlsGrid =  styled(Grid)`
+	 @media (max-width: 1200px) {
+		grid-template-columns: 1fr	
 	 }
 `;

@@ -15,21 +15,6 @@ import { SETTINGS_URL } from "../constants/urls";
 
  
 
-
-export const useGetAdminUsers  = () => {
-	const { state: { user }} = UseContext();
-	const [pageInfo, setPageInfo] = useState({
-		page: 1,
-		limit: 10
-	});
-	const { data , loading, mutate} = useGetCachedAxiosHandler ({
-		url: `${SETTINGS_URL}/users/${user?.clientId}?page=${pageInfo.page}&limit=${pageInfo.limit}`,
-		notify: false,
-		requiredVariable: user?.clientId?.length > 0
-	});
- 
-	return {  loading, users: data?.data , setPageInfo, pageInfo, mutate };
-};
  
 
 
@@ -66,22 +51,62 @@ export const useGetAdminGeneralSettings  = () => {
 };
  
  
-export const useGetAdminRoles = () => {
+export const useGetAdminStaff = () => {
 	const { state: { user }} = UseContext();
 	const [pageInfo, setPageInfo] = useState({
 		page: 1,
 		limit: 10
 	});
-	const { data , loading, mutate} = useGetCachedAxiosHandler ({
-		url: `${SETTINGS_URL}/roles/${user?.clientId}`,
+
+	const { data , loading, mutate, error} = useGetCachedAxiosHandler ({
+		url: `${SETTINGS_URL}/client-users/${user?.clientId}?page=${pageInfo.page}&limit=${pageInfo.limit}`,
 		notify: false,
 		requiredVariable: user?.clientId?.length > 0
 	});
  
-	return {  loading, roles: data?.data?.data , setPageInfo, pageInfo, mutate };
+	return {  loading, staffs: data?.data?.data , setPageInfo, pageInfo, mutate, error };
+};
+ 
+
+export const useGetSettingsRoles = () => {
+	const { state: { user }} = UseContext();
+	const [pageInfo, setPageInfo] = useState({
+		page: 1,
+		limit: 10
+	});
+	const { data , loading, mutate, error} = useGetCachedAxiosHandler ({
+		url: `${SETTINGS_URL}/roles`,
+		notify: false,
+		requiredVariable: user?.clientId?.length > 0
+	});
+ 
+	return {  loading, avaliableModules: data?.data?.data , setPageInfo, pageInfo, mutate , error};
 };
  
  
+ 
+
+
+export const useUpdateAStaffRoles  = () => {
+	const { patchAxiosHandler } = useAxiosHandler();
+	const [loading, setLoading] = useState(false);
+	
+	const handleUpdateStaffRoles = async (DATA: object, staffId: string) => {
+		setLoading(true);
+		const { data } = await  patchAxiosHandler ({
+			url: `${SETTINGS_URL}/edit-role/${staffId}`,
+			DATA,
+			successMessage: "Roles updated"
+		});
+		setLoading(false);
+		if(data) {
+			return { data };
+		}
+	};
+ 
+	return {  loading, handleUpdateStaffRoles };
+};
+
 
 export const useUpdateAccountSettings  = () => {
 	const { state: { user }} = UseContext();

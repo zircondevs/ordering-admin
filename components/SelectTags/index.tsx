@@ -11,20 +11,25 @@ import { CancelIcon } from "../../public/assets/svg";
 interface PropTypes {
 	options: string[]
 	active: string[]
-	setActive: (e: string[]) => void
+	disable?: string[]
+	setActive: (e: string[], option?: string | number, state?: boolean) => void
 }
-const SelectTags = ({options, active, setActive}: PropTypes) => {
+const SelectTags = ({options, active, setActive, disable}: PropTypes) => {
  
 	
 	return (
 		<Layout justifyContent="flex-start">
 			{
 				options.map(option => (
-					<SelectTagStyles key={option} active={active.includes(option)}
+					<SelectTagStyles 
+						key={option} 
+						active={active.includes(option)}
+						disable={disable?.includes(option)}
 						onClick={() => {
-							active.includes(option) ?
-								setActive(active.filter(_ => _!== option))
-								:setActive([...active, option]);
+							disable?.includes(option) ? [] :
+								active.includes(option) ?
+									setActive(active.filter(_ => _!== option), option, false)
+									:setActive([...active, option], option, true);
 						}}
 					>
 						<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={ active.includes(option) ? "Grey.2" :"Grey.3"}>
@@ -32,7 +37,7 @@ const SelectTags = ({options, active, setActive}: PropTypes) => {
 						</Span>
 						{
 							active.includes(option) ?
-								<CancelStyles>
+								<CancelStyles disable={disable?.includes(option)}>
 									<CancelIcon height="5" width="5" colour="common.white" /> 
 								</CancelStyles>
 								: null
