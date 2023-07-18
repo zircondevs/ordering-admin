@@ -51,7 +51,7 @@ const LoayltySettings = ( ) => {
 					Loyalty Reward
 					</Bold>
 					<Spacer height="8px"/>
-					<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="14" colour={"Grey.4"}>
+					<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
 					Set how you reward users 
 					</Span>
 				</Flex>

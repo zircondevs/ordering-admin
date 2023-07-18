@@ -1,11 +1,12 @@
 
 import React   from "react";
-import { Bold,  Tabs,      } from "../../../components";
+import { Bold,  Flex,  Tabs,      } from "../../../components";
 import { HeaderSTyles, Main, TabsStyles,    } from "./styles";
 import {  GeneralTabStyle,   } from "../../../components/styles";
 import LoyaltyCustomers from "./loyalty-customers";
 import LoayltySettings from "./loyalty-settings";
 import { Spacer } from "../../../components/Spacer";
+import {  SettingsIcon, UsersIcon } from "../../../public/assets/svg";
 
 
 
@@ -16,12 +17,13 @@ const Loyalty = () => {
 
 	const tabData = [
 		{
-			head: "Loyalty Customers",
+			head:  <><Flex margin="0 10px 0 0"><UsersIcon  height="15" width="15"/> </Flex> Loyalty Customers </>,
+
 			body: <LoyaltyCustomers   />,
 			key: "Account Information"
 		},
 		{
-			head: "Loyalty Settings",
+			head:  <><Flex margin="0 10px 0 0"><SettingsIcon  height="15" width="15"/> </Flex> Settings </>,
 			body:  <LoayltySettings />,
 			key: "User Management"
 		},

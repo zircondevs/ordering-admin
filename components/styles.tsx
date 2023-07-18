@@ -47,8 +47,8 @@ export const GeneralTabStyle =  styled("div")`
 		/* border: none; */
 		margin: 0;
 		& > li {
-			font-size: ${({ theme }) => theme?.fontSizes["12"] };
-			line-height: ${({ theme }) => theme?.typography.lineHeight["18"] };
+			font-size: ${({ theme }) => theme?.fontSizes["14"] };
+			line-height: ${({ theme }) => theme?.typography.lineHeight["19"] };
 			&.tab-list-active:before {
 				background-color: ${() =>  PRIMARY_COLOR[0]}
 			}
@@ -272,5 +272,5 @@ export const GeneralTextArea=  styled("textarea")`
 	width: 100%;
 	resize: vertical;
 	font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };
-
+	 margin-top: 8px;
 `; 

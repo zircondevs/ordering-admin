@@ -1,6 +1,32 @@
 
 @font-face {
     font-family: "UbuntuMono-Bold";
+    src: url("../public/Open_Sans/static/OpenSans-Bold.ttf")
+      format("truetype");
+  }
+@font-face {
+    font-family: "UbuntuMono-Regular";
+    src: url("../public//Open_Sans/static/OpenSans-Regular.ttf")
+      format("truetype");
+  }
+@font-face {
+    font-family: "UbuntuMono-Light";
+    src: url("../public/Open_Sans/static/OpenSans-Light.ttf")
+      format("truetype");
+  }
+@font-face {
+    font-family: "UbuntuMono-Medium";
+    src: url("../public/Open_Sans/static/OpenSans-Medium.ttf")
+      format("truetype");
+  }
+@font-face {
+    font-family: "UbuntuMono-SemiBold";
+    src: url("../public//Open_Sans/static/OpenSans-SemiBold.ttf")
+    format("truetype");
+}
+ 
+/* @font-face {
+    font-family: "UbuntuMono-Bold";
     src: url("../public/Ubuntu_Mono/UbuntuMono-Bold.ttf")
       format("truetype");
   }
@@ -24,7 +50,7 @@
     src: url("../public//Ubuntu_Mono/UbuntuMono-Bold.ttf")
     format("truetype");
 }
- 
+  */
   
 
 

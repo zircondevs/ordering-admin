@@ -15,6 +15,7 @@ export const ButtonStyle =  styled(Button)<{
 	font-size: 16px;
 	span {
 		color: ${({ txtColour, isLoading  }) =>!isLoading  && txtColour};
+		font-size: 14px;
 	}
 `;
 

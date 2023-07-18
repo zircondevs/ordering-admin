@@ -269,13 +269,22 @@ export const AvatarIcon = (
 			strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
 		<path 
 			d="M7.1607 14.56C4.7407 16.18 4.7407 18.82 7.1607 20.43C9.9107 22.27 14.4207 22.27 17.1707 20.43C19.5907 18.81 19.5907 16.17 17.1707 14.56C14.4307 12.73 9.9207 12.73 7.1607 14.56Z" 
-			stroke={  colour ? 
-				(extractObjectValueFromNestedObject(theme.palette, colour))?.toString() 
-				: "currentColor"
-			} 
+			stroke={  colour ?  (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor"} 
 			strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
  
 
+	</svg>
+);
+export const UsersIcon = (
+	{ height, width, colour  }: { height?: string; width?: string; colour?: string; }
+) => (
+	<svg
+		height={height || "52"}
+		width={width || "52"}
+		viewBox="0 0 256 256"
+		fill="transparent"
+	> 	
+		<rect width="256" height="256" fill="none"/><path d="M192,120a59.91,59.91,0,0,1,48,24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/><path d="M16,144a59.91,59.91,0,0,1,48-24" fill="none" stroke={  colour ?  (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor"}  strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/><circle cx="128" cy="144" r="40" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/><path d="M72,216a65,65,0,0,1,112,0" fill="none" stroke={  colour ?  (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor"}  strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/><path d="M161,80a32,32,0,1,1,31,40" fill="none" stroke={  colour ?  (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor"} strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/><path d="M64,120A32,32,0,1,1,95,80" fill="none" stroke={  colour ?  (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor"}  strokeLinecap="round" strokeLinejoin="round" strokeWidth="16"/> 
 	</svg>
 );
 export const OrderIcon = (
