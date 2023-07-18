@@ -6,7 +6,7 @@ import {   Card, Card2, ControlHead, Controls, ControlsGrid, HeaderSTyles,   Mai
 import CustomButton from "../../../../components/Button";
 import { HandleScrollTypes } from "devs-react-component-library";
 import AddUser from "./addUser";
-import { Check2Icon, LoaderIcon, WarningIcon,   } from "../../../../public/assets/svg";
+import { CancelIcon, Check2Icon, LoaderIcon, WarningIcon,   } from "../../../../public/assets/svg";
 import {    useGetAdminStaff, useGetSettingsRoles, useUpdateAStaffRoles } from "../../../../hooks/useSettigs";
 import SelectTags from "../../../../components/SelectTags";
 import { MakeOnlyFirstLettersCapital,  singleSpace } from "../../../../lib";
@@ -148,7 +148,11 @@ const UserManagemnt = () => {
 																		values.moduleAccessible.map((control, index) => (
 																			<Card2 key={control.name + index} justifyContent="space-between" wrap="nowrap">
 																				<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.2"}>
-																					<Check2Icon colour="Grey.2" width="12" height="12"/>
+																					{
+																						values.moduleAccessible[index].method?.length > 0 ?
+																							<Check2Icon colour="Grey.2" width="12" height="12"/>
+																							:<CancelIcon colour="Error.default" width="10" height="10"/>
+																					}
 																					{MakeOnlyFirstLettersCapital(control.name)}
 																				</Span>
 																				<SelectControlStyle width="auto" height="auto" justifyContent="flex-end" className="View">
