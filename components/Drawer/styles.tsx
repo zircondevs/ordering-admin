@@ -92,7 +92,7 @@ export const SelectStores =  styled(Flex)`
 	 & > div {
 		 width: 100%;
 		 & > div  {
-			padding: 18px 16px;
+			padding: 14px 16px;
 			justify-content: space-between;
 		}
 	 }
@@ -100,7 +100,7 @@ export const SelectStores =  styled(Flex)`
 
 
 export const SingleStore =  styled("div")`
-	padding: 18px 16px;
+	padding: 14px 16px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;

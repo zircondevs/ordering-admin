@@ -14,9 +14,9 @@ import { LoaderIcon } from "../../../public/assets/svg";
 
 
 const Transactions = () => {
-	const { users, loading } = useGetUsers();
+	const { users, loading , error} = useGetUsers();
 	const tableHead = ["Customer Name", "Date Created","Email", "Phone Number",   "Address"];
-	const tableBody = users?.data?.map((user: GenericObjTypes) =>  (
+	const tableBody = users?.data?.length > 0 ? users?.data?.map((user: GenericObjTypes) =>  (
 		{
 			name: user?.fullName,
 			date: `${formateDate(new Date(user?.createdAt)).date} ${formateDate(new Date(user?.createdAt)).shortMonth}, ${formateDate(new Date(user?.createdAt)).year}` ,
@@ -24,9 +24,9 @@ const Transactions = () => {
 			amount: user?.phoneNumber,
 			address: user?.address || "N/A"
 		}
-	));
- 
+	)) : [];
 
+	
 	return (
 		<Main>
 
@@ -54,16 +54,23 @@ const Transactions = () => {
 					loading ?
 						<Flex><LoaderIcon height="40" width="40"/></Flex>
 						:
-						<GeneralTableStyle height="auto" justifyContent="flex-start">
-							<Table 
-								gap={"0"}
-								headBgColor="common.transparent"
-								bodyColor="Grey.2"
-								headColor="Grey.2"
-								tableHead={tableHead}
-								tableBodys={tableBody}
-							/>
-						</GeneralTableStyle>
+						error?
+							<Flex>
+								<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+									We are having trouble fetching all users
+								</Bold>
+							</Flex>
+							:
+							<GeneralTableStyle height="auto" justifyContent="flex-start">
+								<Table 
+									gap={"0"}
+									headBgColor="common.transparent"
+									bodyColor="Grey.2"
+									headColor="Grey.2"
+									tableHead={tableHead}
+									tableBodys={tableBody}
+								/>
+							</GeneralTableStyle>
 				}
 			</Container1>
  
