@@ -9,10 +9,6 @@ import Notify from "../applications/notification";
 
 
 
-
- 
-
-
 export const useLogin  = () => {
 	const { postAxiosHandler } = useAxiosHandler();
 	const [loading, setLoading] = useState(false);
@@ -116,10 +112,12 @@ export const useGetUser  = () => {
 		notify: false
 	});
 	useEffect(() => {
-		setUser(data?.data?.data);
-		if(data?.data?.data && data?.data?.data?.accountType !== "CLIENT_ADMIN") {
-			Notify().warning("You are not an admin");
-			handleLogout();
+		if(data?.data?.data ) {
+			setUser(data?.data?.data);
+			if( (data?.data?.data?.accountType !== "CLIENT_ADMIN" && data?.data?.data?.accountType !== "STAFF")) {
+				Notify().warning("You are not an admin");
+				handleLogout();
+			}
 		}
 	}, [ data ]);
  
@@ -132,8 +130,6 @@ export const useGetUser  = () => {
 
 	return {  loading , error };
 };
-
-
 
 
 

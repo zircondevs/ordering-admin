@@ -89,7 +89,7 @@ const AutomaticPayout = ({	open,modalRef, setOpen,onDOne,  loading } : PropType)
 								<Form>
 									<Grid gap="32px">
 
-								
+ 
 										<GeneralInputWrap margin="8px 0 0">
 											<GeneralLabel>Bank Name</GeneralLabel>
 											<GeneralSelectField>
@@ -103,7 +103,7 @@ const AutomaticPayout = ({	open,modalRef, setOpen,onDOne,  loading } : PropType)
 													searchField={true}
 													clearSelected
 													initial={values.withdrawalInterval }
-													data={["MONTHLY", "QUATERLY", "YEARLY"]?.map((interval: string) => (
+													data={["MONTHLY", "QUARTERLY", "WEEKLY"]?.map((interval: string) => (
 														{
 															returnedValue: interval,
 															displayedValue:  interval,

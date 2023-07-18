@@ -93,7 +93,7 @@ const Product = () => {
 							type="showmore"
 							handleSelect={(selected: string) => openModal({type: selected})}
 							icon={(
-								<Span fontFamily='ubuntu' weight="400" lineHeight="24" size="18" colour={ "common.white"}>
+								<Span fontFamily='ubuntu' weight="400" lineHeight="24" size="14" colour={ "common.white"}>
 									Add New
 								</Span>
 							)}

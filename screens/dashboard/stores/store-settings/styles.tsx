@@ -72,7 +72,7 @@ export const TabsStyles =  styled("div")`
 					display: none
 				}
 				&.tab-list-active{
-					padding: 3px 7px;
+					padding: 8px 17px;
 					color:  ${({ theme }) => theme.palette.Grey["2"]};
 					border-left: 3px solid  ${({ theme }) => theme.palette.Orange["default"]};
 					background-color:   ${({ theme }) => theme.palette.Grey["6"]};
