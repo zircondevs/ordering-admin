@@ -78,7 +78,7 @@ export const ModalSpacer =  styled(Flex)`
 		padding: 24px 24px 60px;
 	}
 	@media (max-width: 700px) {
-		padding: 24px 12px 60px;
+		padding: 24px 4% 60px;
 	}
 `;
 

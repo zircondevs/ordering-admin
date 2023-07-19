@@ -21,6 +21,11 @@ export const Container1 =  styled(Flex)`
 	& > .checkbox {
 		flex: 1;
 		margin-left: 50px;
+		@media (max-width: 850px) {
+			min-width: 100%;
+			margin: 10px 0 0 0;
+			justify-content: flex-start;
+		}
 	}
 `;
 
