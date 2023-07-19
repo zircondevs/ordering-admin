@@ -16,10 +16,17 @@ export const HeaderSTyles =  styled(Flex)`
 	flex-direction: column;
 	justify-content: stretch;
 	align-items: stretch;
+	@media (max-width: 1000px) {
+		padding: 40px  4% 0;
+	}
 `;
+
 
 export const Container1 =  styled(Flex)`
 	padding: 0  40px 40px;
+	@media (max-width: 1000px) {
+		padding: 0  4% 40px;
+	}
 `;
  
 
