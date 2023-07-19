@@ -113,19 +113,14 @@ export const GeneralModalHeader =  styled("div")`
 
 export const GeneralLabel =  styled("label")<{optional?: boolean}>`
 	text-align: start;
-	/* text-transform: uppercase; */
 	color: ${({ theme }) => theme?.palette?.Grey[1] };
 	font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };
 	font-size: ${({ theme }) => theme?.fontSizes["14"] };
 	font-weight: ${({ theme }) => theme?.typography?.fontWeight["400"] };
 	line-height: ${({ theme }) => theme?.typography?.lineHeight["19"] };
 	letter-spacing: 0.025em;
-	/* padding-bottom: 5px; */
 	display: block;
 	display: flex;
-	/* left: 16px;
-	top: 8px;
-	z-index: 1; */
 	&:after {
 		content: "(Optional)";
 		position: relative;
@@ -194,7 +189,7 @@ export const GeneralTableStyle =  styled(Flex)`
 		width: 100%;
 		& > div > table {
 			background-color: transparent;
-			min-width: 700px;
+			/* min-width: 700px; */
 			thead th {
 				padding: 10px 0.8rem;
 				font-family: ${({ theme}) => theme.typography.fontFamily.ubuntuSemiBold};
