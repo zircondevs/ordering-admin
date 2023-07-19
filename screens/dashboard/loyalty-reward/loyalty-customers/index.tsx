@@ -1,7 +1,7 @@
 
 import React, { useState }   from "react";
 import { Bold, Flex,  Span, Table,   } from "../../../../components";
-import {     Container1,   Main,      } from "./styles";
+import {         Main,      } from "./styles";
 import {  formatNumber,   } from "../../../../lib";
 import { GeneralCountStyles,   GeneralTableStyle } from "../../../../components/styles";
 import {   LoaderIcon, LoyaltyIcon, TrashIcon } from "../../../../public/assets/svg";
@@ -65,7 +65,7 @@ const LoyaltyCustomers = () => {
 					:
 					loyaltyCustomers?.data?.length > 0 ?
 
-						<Container1>
+						<Flex>
 							<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 								<div>
 									<Bold fontFamily='ubuntu' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
@@ -102,7 +102,7 @@ const LoyaltyCustomers = () => {
 								pages = {pageInfo?.pages }
 								currentPage = {(+pageInfo?.page)}
 							/>
-						</Container1>
+						</Flex>
 						: 
 						<Flex margin="40px 0" height="auto" direction="column">
 							<LoyaltyIcon colour="Grey.4"/>

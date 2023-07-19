@@ -68,6 +68,7 @@ export const Card2 =  styled(Flex)`
 		border-bottom: 1px solid   ${({ theme }) => theme.palette.Grey[5]};
 	}
 	& > span {
+			white-space: nowrap;
 		svg {
 			margin-right: 8px;
 		}
@@ -94,9 +95,15 @@ export const Controls =  styled(Flex)`
 	}
 `;
 export const SelectControlStyle =  styled(Flex)`
+	& > div {
+		justify-content: flex-end;
+	}
 	& > div > div {
 		padding: 1px 5px;
 		margin: 0 0 0 10px;
+		@media (max-width: 400px) {
+			margin: 0 0 5px 10px;
+		}
 		span {
 			font-size: 12px;
 			text-transform: lowercase;

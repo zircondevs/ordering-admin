@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Flex,   } from "../../../../components";
+import { Flex, Grid,   } from "../../../../components";
 
 
 
@@ -12,6 +12,14 @@ export const Main =  styled("div")`
 
 export const HeaderSTyles =  styled(Flex)`
 	padding: 0  0;
+`;
+
+ 
+
+export const SubCardStyle =  styled(Grid)`
+	@media (max-width: 1200px) {
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+	}
 `;
 
  

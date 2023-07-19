@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Flex,   } from "../../../../components";
+import { Flex, Grid,   } from "../../../../components";
 import { alphaColorsRank, colorType,   } from "../../../../lib";
 
 
@@ -12,11 +12,23 @@ export const Main =  styled("div")`
  
 
  
-export const Container1 =  styled(Flex)`
-
-@media (max-width: 700px) {
-		padding: 0  4%;
+export const StoreCards =  styled(Grid)`
+	@media (max-width: 1300px) {
+		grid-template-columns: 1fr 1fr 1fr
 	}
+	@media (max-width: 1200px) {
+		grid-template-columns: 1fr   1fr
+	}
+	@media (max-width: 900px) {
+		grid-template-columns:     1fr
+	}
+	@media (max-width: 700px) {
+		grid-template-columns:   1fr  1fr
+	}
+	@media (max-width: 500px) {
+		grid-template-columns: 1fr
+	}
+ 
 `;
  
 
@@ -26,6 +38,9 @@ export const StoreStyles =  styled(Flex)`
 	border-radius: 16px;
 	padding: 24px;
 	border: 1px solid ${({ theme }) => theme.palette.Black[20]};
+	@media (max-width: 600px) {
+		padding: 15px;
+	}
 `;
 
 

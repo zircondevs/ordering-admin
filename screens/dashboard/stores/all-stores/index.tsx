@@ -1,7 +1,7 @@
 
 import React   from "react";
-import { Bold, Dropdown, Flex, Grid, Span,  } from "../../../../components";
-import {     Container1,  DropdownContentStyles,   IconStyles, Main, StoreStyles,        } from "./styles"; 
+import { Bold, Dropdown, Flex,   Span,  } from "../../../../components";
+import {     DropdownContentStyles,   IconStyles, Main, StoreCards, StoreStyles,        } from "./styles"; 
 import {  GeneralCountStyles,   } from "../../../../components/styles";
 import { DotsIcon, EditIcon, LoaderIcon, PasswordEyeIcon,  StoreIcon, TrashIcon } from "../../../../public/assets/svg";
 import { useRouter } from "next/router";
@@ -43,13 +43,13 @@ const AllStores = ({openModal, stores, loading}: PropTypes) => {
 			</Flex>
 
  
-			<Container1>
+			<Flex>
 
 				{
 					loading ?
 						<LoaderIcon height="40 " width="40"/>
 						:
-						<Grid gap="24px" columns="repeat(auto-fit, minmax(200px, 300px))" justifyContent="flex-start">
+						<StoreCards gap="24px" columns="repeat(auto-fit, minmax(200px, 300px))" justifyContent="flex-start">
 							{
 								stores?.data?.map((store: GenericObjTypes, idx: number) => (
 									<StoreStyles key={store?._id || idx} justifyContent="space-between" wrap="nowrap" >
@@ -58,7 +58,7 @@ const AllStores = ({openModal, stores, loading}: PropTypes) => {
 												<StoreIcon colour="Grey.2" height="20" width="20"/>
 											</IconStyles>
 											<div>
-												<Span fontFamily='ubuntu' weight="400" lineHeight="14" size="14" colour={ "Grey.3"}>
+												<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.3"}>
 													{store?.address}
 												</Span>
 												<br />
@@ -124,10 +124,10 @@ const AllStores = ({openModal, stores, loading}: PropTypes) => {
 									</StoreStyles>
 								))
 							}
-						</Grid>
+						</StoreCards>
 				}
 
-			</Container1>
+			</Flex>
 		
 
 		</Main>

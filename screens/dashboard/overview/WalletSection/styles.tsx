@@ -11,6 +11,9 @@ export const Cards =  styled(Grid)`
 	@media (max-width: 1200px) {
 		grid-template-columns: repeat(auto-fit,  250px)
 	}
+	@media (max-width: 900px) {
+		grid-template-columns: repeat(auto-fit,  minmax(200px, 1fr))
+	}
 `;
 
  
@@ -19,9 +22,7 @@ export const Card =  styled("div")<{active: boolean}>`
 	 border: 1px solid ${({ theme }) => theme.palette.Black[20]};
 	 border-radius: 16px;
 	padding: 24px;
-	@media (max-width: 600px) {
-		padding: 16px;
-	}
+
 	&:nth-child(1) .icon{
 		background-color:  ${({ theme }) => theme.palette.Orange["default"]};
 	}
@@ -31,14 +32,19 @@ export const Card =  styled("div")<{active: boolean}>`
 	&:nth-child(3) .icon{
 		background-color:  ${({ theme }) => theme.palette.Blue["default"]};
 	}
+	@media (max-width: 600px) {
+		padding: 16px;
+	}
 `;
 export const Icon =  styled(Flex)`
 	height: 50px;
 	width: 50px;
 	border-radius: 100%;
-	margin: 24px 0 64px;
-	/* background-color:  ${({ theme }) => theme.palette.Black[10]}; */
+	margin: 24px 0 60px;
 	color:  ${({ theme }) => theme.palette.Black[60]};
+	@media (max-width: 600px) {
+		margin: 24px 0 ;
+	}
 `;
 
  

@@ -1,7 +1,7 @@
 
 import React    from "react";
 import { Bold, Grid, Span,   } from "../../../../components";
-import {      Card,   HeaderSTyles,   List,   Main,  } from "./styles";
+import {      Card,   HeaderSTyles,   List,   Main, SubCardStyle,  } from "./styles";
  
 import CustomButton from "../../../../components/Button";
 import { Checkbox } from "../../../../components/CheckMark";
@@ -40,7 +40,7 @@ const Subscription = () => {
 
  
  
-			<Grid columns="repeat(auto-fit, minmax(200px, 250px))" justifyContent="flex-start" gap="16px">
+			<SubCardStyle columns="repeat(auto-fit, minmax(200px, 250px))" justifyContent="flex-start" gap="16px">
 				{
 					plans.map(plan => (
 						<Card key={plan.duration} pad="60px 36px" direction="column" alignItems="flex-start">
@@ -82,7 +82,7 @@ const Subscription = () => {
 						</Card>
 					))
 				}
-			</Grid>
+			</SubCardStyle>
  
  
 		</Main>

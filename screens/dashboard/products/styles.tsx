@@ -42,6 +42,13 @@ export const SearchStyles =  styled(Flex)`
 		margin-right: 16px;
 		min-width: auto;
 	}
+	@media (max-width: 500px) {
+		width: 100%;
+		margin-top: 20px;
+		& > div {
+			max-width: unset;
+		}
+	}
 `;
 
  
