@@ -68,7 +68,7 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 									
 									<ControlsGrid gap="0 16px" columns="1fr">
 
-										<Container3 height="auto" pad="15px 30px" bgColor="Orange.5" justifyContent="flex-start">
+										<Container3 height="auto" pad="15px 30px" bgColor="Orange.-5" justifyContent="flex-start">
 											<Span  fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>Working Days</Span>
 										</Container3>
 
