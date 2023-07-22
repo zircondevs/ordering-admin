@@ -55,6 +55,12 @@ export const TabsStyles =  styled("div")`
 			align-items: flex-start;
 			justify-content: stretch;
 			border: none;
+			@media (max-width: 1000px) {
+				margin: 0 0 32px;
+				padding: 0;
+				flex-direction: row;
+				align-items: stretch;	
+			}
 			& > li {
 				margin: 0 0 20px;
 				height: auto;
@@ -76,12 +82,24 @@ export const TabsStyles =  styled("div")`
 					color:  ${({ theme }) => theme.palette.Grey["2"]};
 					border-left: 3px solid  ${({ theme }) => theme.palette.Orange["default"]};
 					background-color:   ${({ theme }) => theme.palette.Grey["6"]};
+					@media (max-width: 1000px) {
+						border: none;
+						/* border-top: 3px solid  ${({ theme }) => theme.palette.Orange["default"]}; */
+						background-color:   ${({ theme }) => theme.palette.Orange["5"]};
+						 color:   ${({ theme }) => theme.palette.Orange["default"]};
+					}
+				}
+				@media (max-width: 1000px) {
+					margin: 0 16px 0 0;
 				}
 			}
 		}
 		& > div {
 			flex: 1;
 			padding: 0 0 0 0;
+		}
+		@media (max-width: 1000px) {
+			flex-direction: column;
 		}
 	}
 `;

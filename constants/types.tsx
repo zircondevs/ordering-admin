@@ -38,9 +38,7 @@ export type TransactionStatusType  = "pending" | "failed" |  "success";
 
 
 export interface SetUpStoreTypes {
-	workingDays?: string[]
-	openingHours?: string;
-	closingHours?: string;
+	workingDays?: {openingHours: string, closingHours: string, day: string}[]
 	storeVideo?: string;
 	storeImage?: string;
 	storeCustomMessage?: string;

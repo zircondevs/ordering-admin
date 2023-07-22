@@ -9,7 +9,7 @@ import { Flex, Grid } from "..";
 
 
 export const IconStyles = styled(Flex)`
-	padding: 10px 0;
+	padding: 5px 0;
 	border-radius: 4px;
 	 & > span {
 		padding-right: 8px;
