@@ -198,7 +198,7 @@ export const GeneralTableStyle =  styled(Flex)`
 				font-family: ${({ theme}) => theme.typography.fontFamily.ubuntuSemiBold};
 				font-weight: ${({ theme}) => theme.typography.fontWeight[400]};
 				font-size: 12px;
-				background-color:  ${({ theme }) => theme.palette.Orange[0]};
+				background-color:  ${({ theme }) => theme.palette.Orange[5]};
 			}
 			tbody td {
 				padding: 1rem 0.8rem;
