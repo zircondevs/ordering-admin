@@ -31,7 +31,7 @@ const WorkingDays = [
 const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 	const { handleSetUpStore, loading} = useSetUpStore();
 
-	console.log(settings.workingDays);
+	console.log(settings?.workingDays);
 	
 	return (
 		<div>
@@ -60,7 +60,7 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 						console.log(values);
 					}}
 				>
-					{({ values, setFieldValue}) => {
+					{({ values, setFieldValue, dirty}) => {
 
 						return (
 							<Form>
@@ -84,7 +84,7 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 																	setFieldValue(`workingDays[${index}].closingHours`, "");
 																}else {
 																	setFieldValue(`workingDays[${index}].openingHours`, "8:0:0"  );
-																	setFieldValue(`workingDays[${index}].closingHours`, "17:0:0");
+																	setFieldValue(`workingDays[${index}].closingHours`, "16:0:0");
 																}
 															}}
 														/>
@@ -148,8 +148,8 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 											activeColor={"Orange.default"}
 											type="submit"
 											isLoading={loading}
+											disabled={!dirty}
 											pad="padding.smaller"
-											nonActiveBgColor="Black.20"
 											text={  "Save Changes" }
 										/>
 									</div>
