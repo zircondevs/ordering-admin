@@ -54,4 +54,18 @@ export const IconStyles =  styled(Flex)`
 
  
  
+export const NavStyles =  styled("div")`
+	background-color:  ${({ theme }) => theme.palette.Orange[0]};
+	margin: 0 -40px;
+	width: auto;
+	padding: 10px 40px;
+	@media (max-width: 1000px) {
+		margin: 0 -4% 0;
+		padding: 4%;
+	}
+`;
+ 
+
+ 
+ 
  

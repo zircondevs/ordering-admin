@@ -25,18 +25,18 @@ const BreadCrumb = ({
 							role={"button"}
 						>
 							<Span 
-								fontFamily='ubuntuSemiBold'
+								fontFamily='ubuntu'
 								weight="400"
 								lineHeight="20"
 								size="14"
-								colour={list.length === (index +1) ? "Grey.4" : "Grey.2"}
+								colour={list.length === (index +1) ? "Grey.3" : "Orange.60"}
 							>
 								{item.name}
 							</Span>
 						</button>
 						{
 							list.length === (index +1) ? null :
-								<LeftArrowIcon colour={"Grey.4"} width='10' height="10"/>
+								<LeftArrowIcon colour={"Grey.3"} width='10' height="10"/>
 						}
 					</React.Fragment>
 				))

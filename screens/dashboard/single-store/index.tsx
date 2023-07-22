@@ -2,9 +2,9 @@
 
 import React, { useEffect }    from "react";
 import { Bold,  Container,  Flex, Grid, Span, Table,  } from "../../../components";
-import {     Container1,    HeaderSTyles,  Main,    } from "./styles";
+import {     Container1,    HeaderSTyles,  Main, NavStyles,    } from "./styles";
 import { GeneralCountStyles, GeneralDivider } from "../../../components/styles";
-import {    EmptyIcon, LoaderIcon, ThreeDotsLoaderIcon ,  } from "../../../public/assets/svg";
+import {    EmptyIcon, LoaderIcon, LocationIcon, ThreeDotsLoaderIcon ,  } from "../../../public/assets/svg";
 import BreadCrumb from "../../../components/Breadcrumb";
 import { formatAMPM, formatNumber, formateDate } from "../../../lib";
 import { Spacer } from "../../../components/Spacer";
@@ -59,6 +59,7 @@ const Stores = () => {
 		{
 			title: "Location",
 			value: store?.address || "N/A",
+			icon: <Flex width="15px" margin="0 4px 0 0" height="15px"><LocationIcon colour="Error.default" height="15" width="15"/></Flex>
 		},
 		{
 			title: "State",
@@ -88,8 +89,10 @@ const Stores = () => {
 				</Bold>
 
 				<Spacer height="40px"/>
-	
-				<BreadCrumb list={[{name: "Stores", link: "/dashboard/stores"}, {name: store?.name || "Loading..."}]}/>
+
+				<NavStyles>
+					<BreadCrumb list={[{name: "Stores", link: "/dashboard/stores"}, {name: store?.name || "Loading..."}]}/>
+				</NavStyles>
 
 				<Spacer height="32px"/>
 
@@ -98,9 +101,12 @@ const Stores = () => {
 					{
 						details.map((detail, idx) => (
 							<Container key={idx} justifyContent="space-between" wrap="nowrap">
-								<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={ "Grey.3"}>
-									{detail.title}
-								</Span>
+								<Flex height="auto" width="auto" justifyContent="flex-start">
+									{detail.icon}
+									<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={ "Grey.3"}>
+										{detail.title}
+									</Span>
+								</Flex>
 								<Spacer height="4px" />
 								<Bold fontFamily='ubuntu' weight="&00" lineHeight="24" size="18" colour={ "Grey.2"}>
 									{detail.value}

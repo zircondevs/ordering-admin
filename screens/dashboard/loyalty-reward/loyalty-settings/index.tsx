@@ -7,17 +7,48 @@ import React   from "react";
 import { Bold,  Flex,    Input,         Span, Switch,   } from "../../../../components";
 import { Spacer } from "../../../../components/Spacer";
 import CustomButton from "../../../../components/Button";
-import {  GeneralInputWrap, GeneralLabel, GeneralTextArea,      } from "../../../../components/styles";
+import {  GeneralErrorContainer, GeneralInputWrap, GeneralLabel, GeneralTextArea,      } from "../../../../components/styles";
 import { Form, Formik } from "formik";
 import { Main } from "./styles";
 import { SetUpStoreTypes } from "../../../../constants/types";
 import { useGetLoyaltySettings, useUpdateLoyaltSettings } from "../../../../hooks/useLoyalty";
+import * as Yup from "yup";
+
+
+
+
+export const Schema = Yup.object().shape({
+	enableLoyaltyReward: Yup.boolean().required("Percentage discount is required"),
+	percentageDiscount: Yup.number()
+		.min(1, "Should not be less than 1")
+		.max(100, "Cannot be greater than 100")
+		.when("enableLoyaltyReward", (enableLoyaltyReward, schema) => {
+			if(enableLoyaltyReward)
+				return schema.required("Percentage discount is required");
+			return schema;
+		}),
+	numberOfPurchasesRequired: Yup.number()
+		.when("enableLoyaltyReward", (enableLoyaltyReward, schema) => {
+			if(enableLoyaltyReward)
+				return schema.required("Number of purchases  is required");
+			return schema;
+		}),
+	rewardMessage: Yup.string()
+		.min(4, "Too Short!")
+		.max(50, "Too Long!")
+		.when("enableLoyaltyReward", (enableLoyaltyReward, schema) => {
+			if(enableLoyaltyReward)
+				return schema.required("Message is required");
+			return schema;
+		})
+});
+
 
 
 
 
  
-type SocialTypes = "numberOfPurchasesRequired" | "rewardMessage" ;
+type SocialTypes = "numberOfPurchasesRequired" | "rewardMessage" | "percentageDiscount" ;
 
 const LoayltySettings = ( ) => {
 	const { handleSetLoyaltySettings, loading} = useUpdateLoyaltSettings();
@@ -26,10 +57,16 @@ const LoayltySettings = ( ) => {
 	
 	const fields = [
 		{
+			name: "percentageDiscount",
+			label: "How much % discount do you want to give your customers on each order?",
+			placeholder: "Enter number of between 1 and 100",
+			type: "text",
+		},
+		{
 			name: "numberOfPurchasesRequired",
 			label: "How many purchases must your customer  make before being added to a loyalty list",
 			placeholder: "Enter number of purchase",
-			type: "text",
+			type: "number",
 		},
 		{
 			name: "rewardMessage",
@@ -52,14 +89,16 @@ const LoayltySettings = ( ) => {
 					</Bold>
 					<Spacer height="8px"/>
 					<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
-					Set how you reward users 
+						Control how you reward users 
 					</Span>
 				</Flex>
 
 
 				<Formik
 					enableReinitialize
+					validationSchema={Schema}
 					initialValues={{
+						percentageDiscount:  settings?.percentageDiscount ||  "",
 						rewardMessage:  settings?.rewardMessage ||  "",
 						numberOfPurchasesRequired: settings?.numberOfPurchasesRequired || "",
 						enableLoyaltyReward:  settings?.enableLoyaltyReward || false
@@ -69,7 +108,7 @@ const LoayltySettings = ( ) => {
 						res?.data && mutate();
 					}}
 				>
-					{({ values, handleChange, setFieldValue  }) => {
+					{({ values, handleChange, setFieldValue , errors }) => {
 
 						return (
 							<Form>
@@ -88,6 +127,8 @@ const LoayltySettings = ( ) => {
 											reValidate
 										/>
 									</Flex>
+
+
 										
 									{
 										values.enableLoyaltyReward ?
@@ -114,6 +155,9 @@ const LoayltySettings = ( ) => {
 																borderRadius="8px"
 															/>
 													}
+													<GeneralErrorContainer>
+														{values?.enableLoyaltyReward && errors?.[field.name as SocialTypes]}
+													</GeneralErrorContainer>
 												</GeneralInputWrap>
 											))
 											: null

@@ -3,8 +3,8 @@
 
 
 import React    from "react";
-import {   Container1,       } from "./styles";
-import { Bold, Container, Flex, Grid,     Span,   } from "../../../../../components";
+import {   Container1, Container2,       } from "./styles";
+import { Bold,  Flex, Grid,     Span,   } from "../../../../../components";
 import { Spacer } from "../../../../../components/Spacer";
 import CustomButton from "../../../../../components/Button";
 import {  GeneralLabel,    } from "../../../../../components/styles";
@@ -71,7 +71,7 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 									<Grid gap="16px">
 										<GeneralLabel>Set Opening & Closing Hours</GeneralLabel>
 										<Flex height="auto" width="auto"   justifyContent="flex-start">
-											<Container margin="0 16px 0 0" width="auto" height="auto">
+											<Container2 margin="0 32px 0 0" width="auto" height="auto">
 												<GeneralLabel>From</GeneralLabel>
 												<TimePicker  
 													defaultValue={
@@ -81,8 +81,8 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 													} 
 													click={(e) => setFieldValue("openingHours", `${e.hrs}:${e.mins}:${e.secs}`  )}  
 												/>
-											</Container>
-											<div>
+											</Container2>
+											<Container2>
 												<GeneralLabel>To</GeneralLabel>
 												<TimePicker 
 													defaultValue={
@@ -92,7 +92,7 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 													} 
 													click={(e) => setFieldValue("closingHours", `${e.hrs}:${e.mins}:${e.secs}` )}
 												/>
-											</div>
+											</Container2>
 										</Flex>
 									</Grid>
 									

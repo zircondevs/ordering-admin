@@ -1,14 +1,14 @@
 /* eslint-disable max-lines */
 
 import React    from "react";
-import { Bold,  Tabs   } from "../../../components";
+import { Bold,  Flex,  Tabs   } from "../../../components";
 import {     HeaderSTyles, Main,    TabsStyles, } from "./styles";
 import {   GeneralTabStyle } from "../../../components/styles";
 import AccountInfo from "./accountInfo";
 import UserManagemnt from "./userMangt";
 import Security from "./security";
-import Positions from "./positions";
 import Subscription from "./subscription";
+import { AvatarIcon, PadlockIcon, SettingsIcon } from "../../../public/assets/svg";
 
 
 
@@ -19,22 +19,23 @@ const Settings = () => {
  
 	const tabData = [
 		{
-			head: "Account Information",
+			head: <><Flex margin="0 10px 0 0"><AvatarIcon  height="15" width="15" colour=""/> </Flex>  Account Information</>,
 			body: <AccountInfo />,
 			key: "Account Information"
 		},
 		{
-			head: "User Management",
+			head: <><Flex margin="0 10px 0 0"><SettingsIcon  height="15" width="15" colour=""/> </Flex>  User Management</>,
+
 			body:  <UserManagemnt   />,
 			key: "User Management"
 		},
+		// {
+		// 	head: <><Flex margin="0 10px 0 0"><SettingsIcon  height="15" width="15" colour=""/> </Flex>  Position</>,
+		// 	body: <Positions  />,
+		// 	key: "Position"
+		// },
 		{
-			head: "Position",
-			body: <Positions  />,
-			key: "Position"
-		},
-		{
-			head: "Security",
+			head: <><Flex margin="0 10px 0 0"><PadlockIcon  height="15" width="15" colour=""/> </Flex>  Security</>,
 			body: <Security />,
 			key: "Security"
 		},
