@@ -102,7 +102,7 @@ export const SelectControlStyle =  styled(Flex)`
 		padding: 1px 5px;
 		margin: 0 0 0 10px;
 		@media (max-width: 400px) {
-			margin: 0 0 5px 10px;
+			margin: 2px 0 2px 10px;
 		}
 		span {
 			font-size: 12px;

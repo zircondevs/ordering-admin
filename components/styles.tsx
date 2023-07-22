@@ -191,15 +191,14 @@ export const GeneralTableStyle =  styled(Flex)`
 			background-color: transparent;
 			/* min-width: 700px; */
 			thead th {
-				padding: 10px 0.8rem;
+				padding: 16px 0.8rem;
 				font-family: ${({ theme}) => theme.typography.fontFamily.ubuntuSemiBold};
 				font-weight: ${({ theme}) => theme.typography.fontWeight[400]};
 				font-size: 12px;
-				background-color:  ${({ theme }) => theme.palette.Black[10]};
-				border-right: 5px solid  ${({ theme }) => theme.palette.common["white"]};
+				background-color:  ${({ theme }) => theme.palette.Orange[0]};
 			}
 			tbody td {
-				padding: 1.2rem 0.8rem;
+				padding: 1rem 0.8rem;
 				& > div {
 					border-radius: 8px;
 				}
@@ -213,6 +212,11 @@ export const GeneralTableStyle =  styled(Flex)`
 			}
 			tbody tr{
 				display: table-row;
+				border-bottom: 1px solid  ${({ theme }) => theme.palette.Grey["6"]};
+				border-radius: 20px;
+				&:nth-child(2n){
+					background-color:   ${({ theme }) => theme.palette.Grey["8"]};
+				}
 				td:before{
 					display: none;
 				}
