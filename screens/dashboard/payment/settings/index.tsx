@@ -7,7 +7,7 @@ import { PRIMARY_COLOR } from "../../../../hooks/colors";
 import { Spacer } from "../../../../components/Spacer";
 import { Checkbox } from "../../../../components/CheckMark";
 import { GeneralDivider, GeneralLabel } from "../../../../components/styles";
-import { BankIcon, TrashIcon } from "../../../../public/assets/svg";
+import { BankIcon, EditIcon,  } from "../../../../public/assets/svg";
 import AddBank from "./addBank";
 import { HandleScrollTypes } from "devs-react-component-library";
 import { UseContext } from "../../../../state/provider";
@@ -70,7 +70,7 @@ const Settings = () => {
 							</Span>
 						</div>
 						<IconStyle margin="0  0 0 15px" bgColor="Error.20" pointer onClick={() => openModal({type: "editBank"})}>
-							<TrashIcon height="20" width="20" colour="Error.default"/>
+							<EditIcon height="20" width="20" colour="Error.default"/>
 						</IconStyle>
 					</Container1>
 					:
