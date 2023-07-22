@@ -52,6 +52,7 @@ export const ControlHead =  styled(Flex)`
 	}
 	button {
 		margin-left: 15px;
+		min-width: unset;
 	}
 	@media (max-width:700px) {
 		padding: 10px 10px;
@@ -93,6 +94,9 @@ export const Controls =  styled(Flex)`
 	& > div > span {
 		margin-left: 10px;
 	}
+	@media (max-width:700px) {
+		padding: 10px 10px;
+	 }
 `;
 export const SelectControlStyle =  styled(Flex)`
 	& > div {

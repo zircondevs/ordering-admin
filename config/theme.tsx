@@ -28,6 +28,7 @@ const palette = {
 		60: "orange",
 		5: "#FFF1ED",
 		0: "#faede9",
+		"-5": "#fff7f4"
 	},
 	Blue: {
 		default: "#2F80ED",

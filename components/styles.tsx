@@ -45,6 +45,15 @@ export const GeneralModalStyle = styled("div")`
 export const GeneralTabStyle =  styled("div")`
     & > div > ol {
 		/* border: none; */
+		scrollbar-width: none;
+		&::-webkit-scrollbar{
+			display: none;
+		}
+		&::-webkit-scrollbar {
+			width: 0 !important
+		}
+		-ms-overflow-style: none;
+		scrollbar-width: none;
 		margin: 0;
 		& > li {
 			font-size: ${({ theme }) => theme?.fontSizes["14"] };
@@ -198,7 +207,7 @@ export const GeneralTableStyle =  styled(Flex)`
 				font-family: ${({ theme}) => theme.typography.fontFamily.ubuntuSemiBold};
 				font-weight: ${({ theme}) => theme.typography.fontWeight[400]};
 				font-size: 12px;
-				background-color:  ${({ theme }) => theme.palette.Orange[5]};
+				background-color:  ${({ theme }) => theme.palette.Orange[-5]};
 			}
 			tbody td {
 				padding: 1rem 0.8rem;
