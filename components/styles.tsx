@@ -190,6 +190,9 @@ export const GeneralTableStyle =  styled(Flex)`
 		& > div > table {
 			background-color: transparent;
 			/* min-width: 700px; */
+			thead tr{
+				border-bottom: 3px solid   ${({ theme }) =>  theme.palette.Orange["default"]};
+			}
 			thead th {
 				padding: 16px 0.8rem;
 				font-family: ${({ theme}) => theme.typography.fontFamily.ubuntuSemiBold};
