@@ -103,7 +103,7 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 																					{
 																						hrs: +workingDay.openingHours.split(":")[0], 
 																						mins: +workingDay.openingHours.split(":")[1], 
-																						secs: +workingDay.openingHours.split(":")[1]} 
+																						secs: +workingDay.openingHours.split(":")[2]} 
 																					: {}
 																			} 
 																			click={(e) => setFieldValue(`workingDays[${index}].openingHours`, `${e.hrs}:${e.mins}:${e.secs}`  )}  
@@ -121,7 +121,7 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 																					{
 																						hrs: +workingDay.closingHours.split(":")[0], 
 																						mins: +workingDay.closingHours.split(":")[1], 
-																						secs: +workingDay.closingHours.split(":")[1]
+																						secs: +workingDay.closingHours.split(":")[2]
 																					} 
 																					: {}
 																			} 

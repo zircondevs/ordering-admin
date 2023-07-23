@@ -38,7 +38,7 @@ export const TimePickerStyles = styled("div")`
 	box-shadow: 0 0 10px 4px #e3e3e3;
 	height: 200px;
 	border-radius: 4px;
-	padding: 5px 0;
+	/* padding: 5px 0; */
 	overflow: hidden;
 	background-color: white;
 	display: flex;
@@ -53,6 +53,7 @@ export const DropdownStylws = styled(Flex)`
 	 overflow: hidden;
 	 background-color: #fbfbfb;
 	 flex: 1;
+	 border-bottom: 1px solid ${({theme }) =>   theme?.palette?.Grey["5"]  };
 	 & > div {
 		flex: 1;
 	 }
@@ -60,14 +61,12 @@ export const DropdownStylws = styled(Flex)`
  
 
 export const BtnStyle = styled("button")<{active: boolean}>`
-	background-color: ${({ active}) => active && "#e8e8e8"};
+	background-color: ${({ active,theme }) => active &&   theme?.palette?.Grey["5"]  };
 	padding: 7px 0;
-	border-radius: 4px;
 	transition: 200ms linear;
 	&:hover span {
 		color: black;
-	}
-	
+	}	
 `;
  
 
@@ -86,13 +85,11 @@ export const TimesValue = styled("span")`
 	text-align: center;
 	cursor: pointer;
 	color: #8e8c8c;
-	
 `;
  
 
 export const Footer = styled(Flex)`
 	height: auto;
-	justify-content: flex-end;
 	 button {
 		padding: 10px;
 		color:  ${({theme }) =>   theme?.palette?.Grey["3"]  };
@@ -100,5 +97,36 @@ export const Footer = styled(Flex)`
 			color:${({theme }) =>   theme?.palette?.Orange["default"]  };
 		}
 	 }
+`;
+ 
+
+export const Container1 = styled(Flex)`
+	flex-wrap: nowrap;
+	align-items: stretch;
+	flex-direction: column;
+	width: auto;
+	&:nth-child(2){
+		border-right: 1px solid ${({theme }) =>   theme?.palette?.Grey["5"]  };
+		border-left: 1px solid ${({theme }) =>   theme?.palette?.Grey["5"]  };
+	}
+	& > div {
+		border-top: 1px solid #d8d8d8;
+	}
+	& > span svg{
+		transform: rotate(90deg);
+	}
+`;
+ 
+export const TimeName = styled("span")`
+	font-family: ${({ theme }) => theme.typography.fontFamily.regular};
+	font-weight: ${({ theme }) => theme.typography.fontWeight[400]};
+	line-height: ${({ theme }) => theme.typography.lineHeight[19]};
+	font-size: ${({ theme }) => theme.fontSizes[13]};
+	text-align: center;
+	cursor: pointer;
+	white-space: nowrap;
+	background-color:${({theme }) =>   theme?.palette?.Orange["5"]  };
+	color:${({theme }) =>   theme?.palette?.Orange["default"]  };
+	 padding: 10px 5px;
 `;
  

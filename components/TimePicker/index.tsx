@@ -3,10 +3,11 @@
 
 
 
-import { RightArrowIcon } from "../../public/assets/svg";
+ 
+import { LongArrowicon, RightArrowIcon } from "../../public/assets/svg";
 import { OverFlowScrollBar } from "../OverflowContainer/styles";
 import PopUpModal, { PopUpRefType } from "../PopUpModal";
-import { BtnStyle, DropdownStylws, Footer, IconStyles,  TimePickerStyles, Times, TimesValue,   } from "./styles";
+import { BtnStyle, Container1, DropdownStylws, Footer, IconStyles,  TimeName,  TimePickerStyles, Times, TimesValue,   } from "./styles";
 import React, { useEffect, useRef, useState } from "react";
  
 
@@ -55,36 +56,50 @@ const TimePicker = (props: Proptypes) => {
 			icon={(
 				<IconStyles  wrap="nowrap" justifyContent="space-between">
 					<span>{ `${addLeadingZeros(hrs % 12 || 12)}:${addLeadingZeros(mins)}` } {hrs < 12 ? "AM" : "PM"}</span>
-					{/* <span>{ `${hrs % 12 || 12}:${mins}:${secs}` } {hrs < 12 ? "AM" : "PM"}</span> */}
 					<RightArrowIcon height={"13"} width={"13"} colour={"Grey.4"}/>
 				</IconStyles>
 			)}
 		>
 			<TimePickerStyles>
 				<DropdownStylws  wrap="nowrap">
-					<OverFlowScrollBar  directions="hidden auto">
-						<Times>{Array.from({length: 23}).map((hr, idx) => (
-							<BtnStyle type="button" active={idx + 1 === hrs} key={idx} onClick={() => handleOnChange( "hrs", idx)}>
-								<TimesValue >{idx + 1}</TimesValue>
-							</BtnStyle>
-						))}</Times>
-					</OverFlowScrollBar>
+					<Container1>
+						<TimeName>Hrs
+							<LongArrowicon colour="Grey.3" height="13" width="13"/>
+						</TimeName>
+						<OverFlowScrollBar  directions="hidden auto">
+							<Times>{Array.from({length: 23}).map((hr, idx) => (
+								<BtnStyle type="button" active={idx + 1 === hrs} key={idx} onClick={() => handleOnChange( "hrs", idx)}>
+									<TimesValue >{idx + 1}</TimesValue>
+								</BtnStyle>
+							))}</Times>
+						</OverFlowScrollBar>
+					</Container1>
+					
+					<Container1>
+						<TimeName>Mins
+							<LongArrowicon colour="Grey.3" height="13" width="13"/>
+						</TimeName>
+						<OverFlowScrollBar  directions="hidden auto">
+							<Times>{Array.from({length: 59}).map((hr, idx) => (
+								<BtnStyle type="button" active={idx  === mins} key={idx} onClick={() => handleOnChange( "mins", idx - 1)}>
+									<TimesValue >{idx }</TimesValue>
+								</BtnStyle>
+							))}</Times>
+						</OverFlowScrollBar>
+					</Container1>
 
-					<OverFlowScrollBar  directions="hidden auto">
-						<Times>{Array.from({length: 59}).map((hr, idx) => (
-							<BtnStyle type="button" active={idx  === mins} key={idx} onClick={() => handleOnChange( "mins", idx - 1)}>
-								<TimesValue >{idx }</TimesValue>
-							</BtnStyle>
-						))}</Times>
-					</OverFlowScrollBar>
-
-					<OverFlowScrollBar  directions="hidden auto">
-						<Times>{Array.from({length: 59}).map((hr, idx) => (
-							<BtnStyle type="button" active={idx   === secs} key={idx} onClick={() =>  handleOnChange( "secs", idx - 1)}>
-								<TimesValue >{idx  }</TimesValue>
-							</BtnStyle>
-						))}</Times>
-					</OverFlowScrollBar>
+					<Container1>
+						<TimeName>Secs
+							<LongArrowicon colour="Grey.3" height="13" width="13"/>
+						</TimeName>
+						<OverFlowScrollBar  directions="hidden auto">
+							<Times>{Array.from({length: 59}).map((hr, idx) => (
+								<BtnStyle type="button" active={idx   === secs} key={idx} onClick={() =>  handleOnChange( "secs", idx - 1)}>
+									<TimesValue >{idx }</TimesValue>
+								</BtnStyle>
+							))}</Times>
+						</OverFlowScrollBar>
+					</Container1>
 				</DropdownStylws>
 
 

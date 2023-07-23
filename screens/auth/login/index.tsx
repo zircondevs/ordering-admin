@@ -122,7 +122,7 @@ const Login = () => {
 
 								<Flex height="auto"  margin="34px 0 0" width="auto" >  
 									<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
-										Have an account?
+										Don&apos;t have an account?
 									</Span>
 									{singleSpace()}
 									<CustomButton
