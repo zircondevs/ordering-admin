@@ -7,6 +7,7 @@ import { UseContext } from "../../state/provider";
 import { useGetOrders } from "../useOrders";
 
 
+
  
 
 
@@ -14,13 +15,13 @@ import { useGetOrders } from "../useOrders";
 export const useSocket = () => {
 
 	const { setRealTimeOrder, setRealTimeOrders, state: { storeId}} = UseContext();
-	const { orders  , loading } = useGetOrders( "PROCESSING");
+	const { orders  , loading ,  } = useGetOrders( "PROCESSING");
 
 	const socket = io(`${AUTH_BASE_URL}`);
 
 	
+
 	const onNewOrders = (res: {[e: string]: object}) => {
-		console.log("new orders",  res );
 		setRealTimeOrder(res);
 	};
 
@@ -30,24 +31,22 @@ export const useSocket = () => {
 	// clientId or storeId
 	const handleJoinRoom = ( storeId:  string) => {
 		socket.emit("join-room", {room: storeId});
-		console.log("Joined room", storeId);
 	};
 
  
-	socket.on("data", onNewOrders);
 
+	
 
 
 	useEffect(() => {
 		orders && setRealTimeOrders(orders?.data);
-		console.log(orders?.data, "orders");
 	}, [orders, storeId]);
 
 
 
 	useEffect(() => {
 		socket.on("connect", () => {
-			console.log("Connected with id ", socket.id );
+			// console.log("Connected with id ", socket.id );
 		});
 		return () => {
 			socket.off("data", onNewOrders); 

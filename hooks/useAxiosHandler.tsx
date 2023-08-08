@@ -2,10 +2,12 @@
 import { handleAPICall, useGetDataWithSWR } from "../lib/axiosHandler";
 import { errorHandler, messageHandler} from "../lib/errorHandler";
 import { useCallback } from "react";
-import  {  useSWRConfig } from "swr";
+import  {  useSWRConfig,   } from "swr";
 import { UseContext } from "../state/provider";
 import Notify from "../applications/notification";
 import { AxiosCallTypes, CacheAxiosTypes } from "../constants/types";
+
+
 
 
 
@@ -77,8 +79,7 @@ export const useGetCachedAxiosHandler = (
 	{url, notify = true, requiredVariable  = true, options = {}, DATA,  errMessage = "", token, noToken = false}: CacheAxiosTypes
 ) => {
 	const { state: { token: Token } } = UseContext();
-	
-	const { data, error, mutate, isValidating } = useGetDataWithSWR({
+	const { data, error,  isValidating,mutate } = useGetDataWithSWR({
 		url, 
 		token: noToken ? "" :  token || Token, 
 
@@ -93,13 +94,16 @@ export const useGetCachedAxiosHandler = (
 			...options
 		}, 
 	});
+	
+
 	error && notify && Notify().error( errMessage  ? errMessage :  (errorHandler(error) || "Somethng went wrong") );
 	return {
-		data:  data,
+		data:   data,
 		loading: requiredVariable  ? !error && !data : false,
 		error,
 		mutate,
-		isValidating
+		isValidating,
+		token: Token,
 	};
 };
 // post request

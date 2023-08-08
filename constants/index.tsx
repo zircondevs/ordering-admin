@@ -16,6 +16,7 @@ export const PROFILE_IS_UPDATED = (user: any) =>{
 const Constant  = {
 	keys: {
 		token: "authorization",
+		cacheToken: "cacheToken",
 		refreshToken: "refresh",
 		difficultyLevel: "difficultyLevel",
 		subject: "subject",

@@ -15,7 +15,7 @@ export const useGetOrders  = ( status: string) => {
 		limit: 5
 	});
 	
-	const { data , loading} = useGetCachedAxiosHandler ({
+	const { data , loading, mutate } = useGetCachedAxiosHandler ({
 		url: `${ORDERS_URL}/${storeId}?page=${pageInfo.page}&limit=${pageInfo.limit}&status=${status}`,
 		notify: false,
 		requiredVariable: storeId?.length > 0 && status?.length > 0
@@ -25,7 +25,7 @@ export const useGetOrders  = ( status: string) => {
 		data && setPageInfo({...pageInfo, ...data?.data});
 	}, [data ]);
  
-	return {  loading, orders: data?.data , setPageInfo, pageInfo };
+	return {  loading, orders: data?.data , setPageInfo, pageInfo, mutate };
 };
  
 

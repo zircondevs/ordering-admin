@@ -37,7 +37,7 @@ export const useGetAdminGeneralSettings  = () => {
 		page: 1,
 		limit: 10
 	});
-	const { data , loading, mutate} = useGetCachedAxiosHandler ({
+	const { data , loading, mutate, } = useGetCachedAxiosHandler ({
 		url: `${SETTINGS_URL}/general/${user?.clientId}`,
 		notify: false,
 		requiredVariable: user?.clientId?.length > 0

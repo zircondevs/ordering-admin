@@ -26,12 +26,12 @@ export function ProtectedRoute({ children }: any ) {
 		setToken , setRefreshToken, setIsAuthenticated, setLoading
 	} = UseContext();
 
- 
 
+	
 	const { query, isReady, pathname } = useRouter();
 	const {tokenIsValid } = useValidateToken();
 	const { handleLogout } = useLogout();
-	const { error } = useGetUser();
+	const { error,  isValidating  } = useGetUser();
 	useGetAdminGeneralSettings();
 	
 	
@@ -55,12 +55,30 @@ export function ProtectedRoute({ children }: any ) {
 		}
 	}, [isReady, query, pathname]);
 
+
+	
+
 	useEffect(() => {
-		if(token && user) {
+		if(token &&  user?.accountType && !isValidating) {
 			setIsAuthenticated(true);
 			setLoading(false);
+		}else{
+			setLoading(true);
 		}
-	}, [token, user?.accountType ]);
+	}, [token, user?.accountType, isValidating ]);
+
+
+	
+
+
+	
+	if(loading ) return (
+		<Main>
+			<Flex>
+				<LoaderIcon width="40px" height="40px"/>
+			</Flex>
+		</Main>
+	);
 
 
 	if(error) return (
@@ -77,14 +95,7 @@ export function ProtectedRoute({ children }: any ) {
 		</Main>
 	);
 
-
-	if(loading) return (
-		<Main>
-			<Flex>
-				<LoaderIcon width="40px" height="40px"/>
-			</Flex>
-		</Main>
-	);
+	
 
 	
 	return (
