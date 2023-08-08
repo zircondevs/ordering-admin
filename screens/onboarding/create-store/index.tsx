@@ -29,7 +29,6 @@ export const AddStoreSchema = Yup.object().shape({
 	customerCareLine: Yup.string()
 		.min(10)
 		.max(12)
-		.required("  Customer Care Line is required"),
 });
 
 

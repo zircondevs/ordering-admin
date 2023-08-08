@@ -6,6 +6,8 @@ import { STORAGE } from "../applications/storage";
 import Constant from "../constants";
 import { useLogout } from "./handlers/useLogout";
 import Notify from "../applications/notification";
+import { useCheckMutate } from "./handlers/useCheckMutate";
+
 
 
 
@@ -57,11 +59,7 @@ export const useCreateAccount  = () => {
 	return { handleCreateAccount, loading  };
 };
 
-
-
  
-
-
 export const useForgotPassword  = () => {
 	const { postAxiosHandler } = useAxiosHandler();
 	const [loading, setLoading] = useState(false);
@@ -107,9 +105,9 @@ export const useGetUser  = () => {
 	const {setUser} = UseContext();
 	const { handleLogout } = useLogout();
  
-	const { data , loading, error} = useGetCachedAxiosHandler ({
+	const { data , loading, error, isValidating, mutate} = useGetCachedAxiosHandler ({
 		url: `${AUTH_URL}/me`,
-		notify: false
+		notify: false,
 	});
 	useEffect(() => {
 		if(data?.data?.data ) {
@@ -120,15 +118,16 @@ export const useGetUser  = () => {
 			}
 		}
 	}, [ data ]);
+
+ 
+	useCheckMutate(mutate);
  
 	useEffect(() => {
 		if(error?.response?.data?.statusCode === 401){
 			handleLogout();
 		}
 	}, [error]);
-
-
-	return {  loading , error };
+	return {  loading , error, isValidating };
 };
 
 

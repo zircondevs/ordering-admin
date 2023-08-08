@@ -7,15 +7,19 @@ import { UseContext } from "../../state/provider";
 
 
 export const useLogout = () => {
-	const {  setToken, setRefreshToken, setIsAuthenticated , setClient} = UseContext();
+	const {  setToken, setRefreshToken, setIsAuthenticated , setClient, setUser, state: { token }} = UseContext();
 	const { push } = useRouter();
 
 
 	const handleLogout = () => {
+		STORAGE.SAVE(Constant.keys.cacheToken, token);
+
+
 		setToken("");
 		setIsAuthenticated(false);
 		setRefreshToken("");
 		setClient({});
+		setUser({});
 		STORAGE.DELETE(Constant.keys.token);
 		STORAGE.DELETE(Constant.keys.refreshToken);
 		push("/login");
