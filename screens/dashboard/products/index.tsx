@@ -10,14 +10,15 @@ import { GenericObjTypes } from "../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library";
 import AddCategory from "./addCategory";
 import AddProduct from "./addProduct";
-import {   useGetAllProduct,   } from "../../../hooks/useProduct";
+import {   useDeleteProduct, useGetAllProduct,   } from "../../../hooks/useProduct";
 import { Checkbox } from "../../../components/CheckMark";
 import { useGetCategories } from "../../../hooks/useCategory";
 import Search from "../../../components/Search";
 import ImageCollection from "../../../components/ImageCollection";
-import DeleteProduct from "./deleteProduct";
 import * as _ from "underscore";
 import ProductMetrics from "./productMetrics";
+import { useGetetUserRoleModule } from "../../../hooks/handlers/useRole";
+import DeleteModal from "../../../components/DeleteModal";
 
 
 
@@ -25,12 +26,14 @@ import ProductMetrics from "./productMetrics";
 
 const Product = () => {
 	const [filterProduct, setFilterProduct] = useState({   name: "" });
+	const {EDIT , DELETE } = useGetetUserRoleModule( "products");
 
 	const { product, loading: loadingmenu , mutate} = useGetAllProduct(filterProduct);
 	const { categories,  mutate:mutateCategory } = useGetCategories();
+	const { handleDeleteProduct, loading} = useDeleteProduct();
 
 
-	const [modal, setModal] = useState({type: ""});
+	const [modal, setModal] = useState<GenericObjTypes & {type: string}>({type: ""});
 	const modalRef = React.useRef<HandleScrollTypes>(null); 
 	const optimisedTriggerHandler = _.throttle((e: any) => (( e: string) => setFilterProduct({...filterProduct, name: e}))(e), 2000, { leading: false });
 
@@ -57,15 +60,29 @@ const Product = () => {
 			quantity: product?.quantity || (product?.isAvailable ? 0 : "unlimited"),
 			amount: "₦" + formatNumber(product?.amount),
 			isAvailable: <Checkbox checked={product?.isAvailable} type="radio" />,
-			action: (
-				<Flex justifyContent="flex-start" wrap="nowrap">
-					<Flex width="auto" height="auto" margin="0 8px 0 0" as="button" onClick={() => openModal({type: "deleteProduct", ...product})}>
-						<TrashIcon colour="Error.default" height="20" width="20"/>
-					</Flex>
-					<Flex width="auto" height="auto" as="button" onClick={() => openModal({type: "editProduct", ...product})}>
-						<EditIcon colour="Grey.2" height="20" width="20"/>
-					</Flex>
-				</Flex>
+			...(
+				EDIT || DELETE ?
+					{
+						action: (
+							<Flex justifyContent="flex-start" wrap="nowrap">
+								{
+									DELETE ?
+										<Flex width="auto" height="auto" margin="0 8px 0 0" as="button" onClick={() => openModal({type: "deleteProduct", ...product})}>
+											<TrashIcon colour="Error.default" height="20" width="20"/>
+										</Flex>
+										: null
+								}
+								{
+									EDIT ?
+										<Flex width="auto" height="auto" as="button" onClick={() => openModal({type: "editProduct", ...product})}>
+											<EditIcon colour="Grey.2" height="20" width="20"/>
+										</Flex>
+										: null
+								}
+							</Flex>
+						)
+					}
+					: []
 			)
 		}
 	));
@@ -80,38 +97,42 @@ const Product = () => {
 					Product
 				</Bold>
 
-				<BtnsStyles width="auto">
-					<AddBtn>
-						<Dropdown
-							weight="300"
-							direction="end"
-							colour="common.white"
-							dropColor="Grey.2"
-							dropHovColor="Black.default"
-							hovBgColor="Black.20"
-							searchField={false}
-							type="showmore"
-							handleSelect={(selected: string) => openModal({type: selected})}
-							icon={(
-								<Span fontFamily='ubuntu' weight="400" lineHeight="24" size="14" colour={ "common.white"}>
-									Add New
-								</Span>
-							)}
-							data={ [
-								{
-									displayedValue: "Add New Product", 
-									returnedValue: "addProduct",
-									dropdownValue: "Add New Product",
-								},
-								{
-									displayedValue: "Add Category", 
-									returnedValue: "addCategory",
-									dropdownValue: "Add Category",
-								},
-							] }
-						/>
-					</AddBtn>
-				</BtnsStyles>
+				{
+					EDIT ?
+						<BtnsStyles width="auto">
+							<AddBtn>
+								<Dropdown
+									weight="300"
+									direction="end"
+									colour="common.white"
+									dropColor="Grey.2"
+									dropHovColor="Black.default"
+									hovBgColor="Black.20"
+									searchField={false}
+									type="showmore"
+									handleSelect={(selected: string) => openModal({type: selected})}
+									icon={(
+										<Span fontFamily='ubuntu' weight="400" lineHeight="24" size="14" colour={ "common.white"}>
+											Add New
+										</Span>
+									)}
+									data={ [
+										{
+											displayedValue: "Add New Product", 
+											returnedValue: "addProduct",
+											dropdownValue: "Add New Product",
+										},
+										{
+											displayedValue: "Add Category", 
+											returnedValue: "addCategory",
+											dropdownValue: "Add Category",
+										},
+									] }
+								/>
+							</AddBtn>
+						</BtnsStyles>
+						: null
+				}
 			</HeaderSTyles>
 			
 			<ProductMetrics />
@@ -161,7 +182,14 @@ const Product = () => {
  
 		
 			<AddCategory   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={ mutateCategory}  />
-			<DeleteProduct   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={mutate}   />
+			<DeleteModal  
+				state={modal.type === "deleteProduct"} setState={setModal} 
+				modalRef={modalRef} 
+				onSubmit={() => handleDeleteProduct(modal?._id)}
+				title="	Delete Product?"
+				loading={loading}
+				initial={{type: ""}}
+			/>
 			<AddProduct   open={modal} setOpen={setModal} modalRef={modalRef} onDOne={mutate}  categories={categories}/>
 		</Main>
 	);
