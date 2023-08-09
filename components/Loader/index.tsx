@@ -71,5 +71,5 @@ export const IconLoader = () => {
 				</Flex>
 			</Flex>
 		</Animate>
-	)
- }
+	);
+};
