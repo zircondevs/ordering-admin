@@ -15,7 +15,7 @@ const DashboardLayout = ({  children}: any ) => {
 	const { state: { roleMangt }} = UseContext();
 	const {pathname } = useRouter();
 
-	const pathIsPresent = 	filterRequiredRole(Constant.drawer, roleMangt.moduleAccessible)?.find((page: any) => page?.href === pathname);
+	const pathIsAllowed  = 	filterRequiredRole(Constant.drawer, roleMangt.moduleAccessible)?.find((page: any) => page?.href === pathname);
 
  
 
@@ -28,7 +28,7 @@ const DashboardLayout = ({  children}: any ) => {
 			
 			<Container  >
 				{
-					pathIsPresent? 
+					pathIsAllowed ? 
 						children
 						:
 						<Flex direction="column" margin="80px 0px !important">

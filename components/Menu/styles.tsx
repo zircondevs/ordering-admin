@@ -22,20 +22,48 @@ export const MenuStyles =  styled("header")`
 
 export const Line =  styled(Flex)`
 	width: auto;
+	& > div > div {
+		width: 100%;
+		& > div{
+			width: 100%;
+		}
+		span {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	}
 	& > div > div > div > svg{
-				min-width: 10px;
+		min-width: 10px;
 	}
 `; 
 
 
 
+export const DrawerMenuWrapper =  styled(Flex)`
+	min-width: unset;
+	margin-right: 10px;
+	& > b {
+		min-width: unset;
+		@media (max-width: 700px){
+			display: none;
+		}
+	}
+`; 
+
 export const DrawerMenu =  styled(Flex)`
 	position: relative;
 	max-width: 130px;
 	height: 47px;
+	width: 50px;
+	margin-right: 10px;
 	@media (max-width: 700px){
         margin-left: 40px;
     }
+	img {
+		height: 100%;
+		width: 1005;
+	}
 `; 
  
 export const ButnStyles =  styled(Flex)`
