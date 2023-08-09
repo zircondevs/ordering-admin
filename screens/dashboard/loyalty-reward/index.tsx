@@ -7,12 +7,14 @@ import LoyaltyCustomers from "./loyalty-customers";
 import LoayltySettings from "./loyalty-settings";
 import { Spacer } from "../../../components/Spacer";
 import {  SettingsIcon, UsersIcon } from "../../../public/assets/svg";
+import { useGetetUserRoleModule } from "../../../hooks/handlers/useRole";
 
 
 
 const Loyalty = () => {
  
- 
+	const {EDIT, DELETE } = useGetetUserRoleModule( "loyalty reward");
+
  
 
 	const tabData = [
@@ -29,8 +31,8 @@ const Loyalty = () => {
 		},
 	];
 	
- 
 
+	
 	return (
 		<Main>
 
@@ -44,12 +46,16 @@ const Loyalty = () => {
 
 			<TabsStyles>
 				<GeneralTabStyle>
-					<Tabs
-						nonActiveColor="Grey.4"
-						activeColor="grey.2"
-						click={() => []}
-						data={tabData}
-					/>
+					{
+						EDIT || DELETE ?
+							<Tabs
+								nonActiveColor="Grey.4"
+								activeColor="grey.2"
+								click={() => []}
+								data={tabData}
+							/>
+							: <LoyaltyCustomers   />
+					}
 				</GeneralTabStyle>
 			</TabsStyles>
 

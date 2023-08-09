@@ -20,6 +20,10 @@ export const Container =  styled("section")`
 	@media (max-width: 700px){
         width: 100%
     }
+	& > * {
+		max-width: 1300px;
+		margin: auto;
+	}
 `;
  
  

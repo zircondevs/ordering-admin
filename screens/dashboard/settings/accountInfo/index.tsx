@@ -8,6 +8,7 @@ import CustomButton from "../../../../components/Button";
 import {  GeneralInputWrap, GeneralLabel,   } from "../../../../components/styles";
 import {   useGetAdminGeneralSettings, useUpdateAccountSettings } from "../../../../hooks/useSettigs";
 import { SettingsUpload } from "../../../../components/Upload";
+import { useGetetUserRoleModule } from "../../../../hooks/handlers/useRole";
 
 
 
@@ -30,6 +31,7 @@ const AccountInfo = () => {
 	const { handleUpdateAccSettings, loading } = useUpdateAccountSettings();
 	const { settings , mutate} = useGetAdminGeneralSettings();
 
+	const {EDIT } = useGetetUserRoleModule( "settings");
 
 	const [formData, setFormData] = useState<FormTypes>({favicon: "", companyName: "", companyLogo: "", primaryColor: "", secondaryColor: "", deliveryCharge: 0 , fontFamily: {}});
 
@@ -73,8 +75,13 @@ const AccountInfo = () => {
 							</LogoStyles>
 							: null
 					}
-				
-					<SettingsUpload title="Company Logo" onSuccess={(e) =>  setFormData({  ...formData,  companyLogo:  e})}/>
+					{
+						EDIT ? 
+							<SettingsUpload title="Company Logo" onSuccess={(e) =>  setFormData({  ...formData,  companyLogo:  e})}/> 
+							: <Bold fontFamily='ubuntuMedium' weight="400" lineHeight="24" size="18" colour={"Grey.2"}>
+								Company Logo
+							</Bold>
+					}
 				</Flex>
 
 					
@@ -88,7 +95,12 @@ const AccountInfo = () => {
 							</FavStyles>
 							: null
 					}
-					<SettingsUpload title="Favicon" onSuccess={(e) =>  setFormData({  ...formData,  favicon:  e})}/>
+					{
+						EDIT ? <SettingsUpload title="Favicon" onSuccess={(e) =>  setFormData({  ...formData,  favicon:  e})}/> 
+							: <Bold fontFamily='ubuntuMedium' weight="400" lineHeight="24" size="18" colour={"Grey.2"}>
+								Favicon
+							</Bold>
+					}
 
 				</Flex>
 			</Container1>
@@ -175,18 +187,22 @@ const AccountInfo = () => {
 				</GeneralInputWrap>
 
 			</FormStyles>
-
-			<CustomButton
-				size="14"
-				activeColor={"common.white"}
-				type="submit"
-				activeBorderColor={"common.white"}
-				borderRadius="8"
-				activeBgColor={"Orange.default"}
-				isLoading={loading}
-				onClick={handleSubmit}
-				text={"Update changes" }
-			/>
+			
+			{
+				EDIT ?
+					<CustomButton
+						size="14"
+						activeColor={"common.white"}
+						type="submit"
+						activeBorderColor={"common.white"}
+						borderRadius="8"
+						activeBgColor={"Orange.default"}
+						isLoading={loading}
+						onClick={handleSubmit}
+						text={"Update changes" }
+					/>
+					: null
+			}
 		
 
  

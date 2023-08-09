@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { GenericObjTypes } from "../constants/types";
 import { 
-	SET_IS_AUTHENTICATED, SET_LOADING,  SET_REFRESH_TOKEN,   SET_TOKEN, SET_USER, SET_CLIENT, SET_REAL_TIME_ORDERS, SET_STORE_ID, SET_REAL_TIME_ORDER,   
+	SET_IS_AUTHENTICATED, SET_LOADING,  SET_REFRESH_TOKEN,   SET_TOKEN, SET_USER, SET_CLIENT, SET_REAL_TIME_ORDERS, SET_STORE_ID, SET_REAL_TIME_ORDER, SET_ROLE_MANAGEMENT,   
 } from "./actions";
 
 
@@ -15,6 +15,7 @@ export type StateType = {
 	realTimeOrders:   GenericObjTypes[],
 	client: GenericObjTypes;
 	storeId: string
+	roleMangt:   {accountType: "" | "STAFF" | "CLIENT_ADMIN", moduleAccessible: {name: string, method: string[]}[]}
 }
 
 export type ActionTypes =
@@ -63,6 +64,11 @@ export type ActionTypes =
 	type:  typeof SET_STORE_ID
 	payload:  string
 }
+|
+{
+	type:  typeof SET_ROLE_MANAGEMENT
+	payload: {accountType: "" | "STAFF" | "CLIENT_ADMIN", moduleAccessible: {name: string, method: string[]}[]}
+}
  
 
 export type ContestTypes =  {
@@ -75,5 +81,6 @@ export type ContestTypes =  {
 	setRealTimeOrder: (e:  GenericObjTypes ) => void;
 	setRealTimeOrders: (e:  GenericObjTypes[] ) => void;
 	setStoreId: (e:  string ) => void;
+	setRoleMangt: (e:    {accountType: "" | "STAFF" | "CLIENT_ADMIN", moduleAccessible: {name: string, method: string[]}[]} ) => void;
 	state: StateType
 }

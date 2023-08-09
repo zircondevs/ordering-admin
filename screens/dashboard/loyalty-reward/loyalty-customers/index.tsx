@@ -9,6 +9,7 @@ import { GenericObjTypes,   } from "../../../../constants/types";
 import Paginator from "../../../../components/Paginator";
 import { useGetLoyaltyCustomers, useRemoveLoyaltyCustomer } from "../../../../hooks/useLoyalty";
 import { Spacer } from "../../../../components/Spacer";
+import { useGetetUserRoleModule } from "../../../../hooks/handlers/useRole";
 
 
 
@@ -16,39 +17,45 @@ const LoyaltyCustomers = () => {
 	const [activeCustomer, setActiveCustomer] = useState("");
 	const { loyaltyCustomers, loading , pageInfo, setPageInfo, mutate } = useGetLoyaltyCustomers();
 	const { handleRemoveLoyaltyCustomer,loading: loadingDelete } = useRemoveLoyaltyCustomer();
-
+	const { DELETE } = useGetetUserRoleModule( "loyalty reward");
  
-	const tableHead = [ "Customer", "Email","Phone Number", "Purchases", "Action" ];
+	const tableHead = DELETE ? [ "Customer", "Email","Phone Number", "Purchases",    "Action"   ] :  [ "Customer", "Email","Phone Number", "Purchases",   ];
 	const tableBody = loyaltyCustomers?.data?.map((loyalty: GenericObjTypes) => (
 		{
 			customer:    (loyalty?.fullName),
 			email:    (loyalty?.email),
 			phone:    (loyalty?.phone),
 			Purchases:   formatNumber(loyalty?.numberOfTimesPurchased),
-			action: (
-				<Flex width="max-content" margin="0"  justifyContent="flex-start"
-					onClick={ async() => {
-						if(activeCustomer === loyalty?._id && loadingDelete) return;
-						setActiveCustomer(loyalty?._id);
-						const res = await	handleRemoveLoyaltyCustomer(loyalty?._id);
-						res?.data && mutate();
-					}}
-				>
+			...(
+				DELETE ?
 					{
-						activeCustomer === loyalty?._id && loadingDelete ?
-							<LoaderIcon height="20" width="20"/>
-							:
-							<>
-								<Flex width="auto" height="auto" as="button"   margin="0 8px 0 0" >
-									<TrashIcon colour="Error.default" height="20" width="20"/>
-								</Flex>
-								<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12"  colour="Error.default" >
-									Remove
-								</Span>
-							</>
+						action: (
+							<Flex width="max-content" margin="0"  justifyContent="flex-start"
+								onClick={ async() => {
+									if(activeCustomer === loyalty?._id && loadingDelete) return;
+									setActiveCustomer(loyalty?._id);
+									const res = await	handleRemoveLoyaltyCustomer(loyalty?._id);
+									res?.data && mutate();
+								}}
+							>
+								{
+									activeCustomer === loyalty?._id && loadingDelete ?
+										<LoaderIcon height="20" width="20"/>
+										:
+										<>
+											<Flex width="auto" height="auto" as="button"   margin="0 8px 0 0" >
+												<TrashIcon colour="Error.default" height="20" width="20"/>
+											</Flex>
+											<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12"  colour="Error.default" >
+												Remove
+											</Span>
+										</>
+								}
+							</Flex>
+						),
 					}
-				</Flex>
-			),
+					: {}
+			)
 		}
 	));
 

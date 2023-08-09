@@ -6,6 +6,7 @@ import {  GeneralCountStyles,   } from "../../../../components/styles";
 import { DotsIcon, EditIcon, LoaderIcon, PasswordEyeIcon,  StoreIcon, TrashIcon } from "../../../../public/assets/svg";
 import { useRouter } from "next/router";
 import { GenericObjTypes } from "../../../../constants/types";
+import { useGetetUserRoleModule } from "../../../../hooks/handlers/useRole";
  
 
 
@@ -21,8 +22,14 @@ interface PropTypes {
 const AllStores = ({openModal, stores, loading}: PropTypes) => {
 
 	const { push } = useRouter();
+	const {EDIT, DELETE } = useGetetUserRoleModule( "stores");
 
 
+	const actions : any= [
+		{ name: "View", icon:  <> <PasswordEyeIcon height="15" width="15" colour="Grey.1"/> 	View Store </> },
+		EDIT ? { name: "Edit", icon:  <> <EditIcon height="15" width="15" colour="Grey.3"/>	Edit Store </> } : {},
+		DELETE ? { name: "Delete", icon:  <> <TrashIcon height="15" width="15" colour="Error.default"/> 	Delete Store </> } : {}
+	];
  
 	return (
 		<Main>
@@ -78,47 +85,23 @@ const AllStores = ({openModal, stores, loading}: PropTypes) => {
 											searchField={false}
 											type="showmore"
 											icon={<DotsIcon height="15" width="15"/>}
-											data={[
-												{
-													returnedValue: "view",
-													displayedValue: "",
-													dropdownValue:(
-														<DropdownContentStyles>
-															<PasswordEyeIcon height="15" width="15" colour="Grey.1"/>
-																View Store
-														</DropdownContentStyles>
-													)
-												},
-												{
-													returnedValue: "edit",
-													displayedValue: "",
-													dropdownValue:(
-														<DropdownContentStyles>
-															<EditIcon height="15" width="15" colour="Grey.3"/>
-																Edit
-														</DropdownContentStyles>
-													)
-												},
-												{
-													returnedValue: "delete",
-													displayedValue: "",
-													dropdownValue:(
-														<DropdownContentStyles>
-															<TrashIcon height="15" width="15" colour="Error.default"/>
-																Delete
-														</DropdownContentStyles>
-													),
-												},
-											]}
+											data={actions.filter((_: {name?: string, icon?: Element}) => _?.name).map((action: {name: string, icon: Element}) => {
+												return (
+													{
+														returnedValue: action.name,
+														displayedValue: "",
+														dropdownValue: <DropdownContentStyles> {action.icon} </DropdownContentStyles>
+													}
+												);
+											})
+											}
 											handleSelect={(e) => {
-												e === "view" ? 
-													push({
-														pathname: `/dashboard/stores/${store?._id}`,
-														query: {state : store?.state},
-													},
-													`/dashboard/stores/${store?._id}` 
+												e === "View" ? 
+													push(
+														{ pathname: `/dashboard/stores/${store?._id}`, query: {state : store?.state}, },
+														`/dashboard/stores/${store?._id}` 
 													)
-													: openModal({type: e, store});
+													: openModal({type: e?.toLowerCase(), store});
 											}}
 										/>
 									</StoreStyles>

@@ -84,6 +84,39 @@ export const useGetSettingsRoles = () => {
 };
  
  
+
+export const useGetStaffRoles = ( ) => {
+	const { state: { user }, setRoleMangt} = UseContext();
+	const [pageInfo, setPageInfo] = useState({
+		page: 1,
+		limit: 10
+	});
+	const { data , loading, mutate, error, token} = useGetCachedAxiosHandler ({
+		url: `${SETTINGS_URL}/user/${user?._id}`,
+		notify: false,
+		requiredVariable: user?._id?.length > 0 && (user?.accountType === "STAFF")
+	});
+ 
+	useEffect(() => {
+		if(user?.accountType === "STAFF") {
+			if(data) {
+				setRoleMangt({
+					accountType: "STAFF",
+					moduleAccessible: data?.data?.data?.[0]?.moduleAccessible
+				});
+			}
+		}else if(user?.accountType === "CLIENT_ADMIN") {
+			setRoleMangt({
+				accountType: "CLIENT_ADMIN",
+				moduleAccessible: []
+			});
+		}
+	}, [ data, user?.accountType , token]);
+
+	return {  loading, staffRoles: data?.data?.data?.[0] , setPageInfo, pageInfo, mutate , error};
+};
+ 
+ 
  
 
 

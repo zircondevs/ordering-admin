@@ -9,12 +9,14 @@ import UserManagemnt from "./userMangt";
 import Security from "./security";
 import Subscription from "./subscription";
 import { AvatarIcon, PadlockIcon, SettingsIcon } from "../../../public/assets/svg";
+import { useGetetUserRoleModule } from "../../../hooks/handlers/useRole";
 
 
 
 
 const Settings = () => {
  
+	const {IS_CLIENT_ADMIN  } = useGetetUserRoleModule( "settings");
 
  
 	const tabData = [
@@ -23,22 +25,23 @@ const Settings = () => {
 			body: <AccountInfo />,
 			key: "Account Information"
 		},
-		{
-			head: <><Flex margin="0 10px 0 0"><SettingsIcon  height="15" width="15" colour=""/> </Flex>  User Management</>,
-
-			body:  <UserManagemnt   />,
-			key: "User Management"
-		},
+		IS_CLIENT_ADMIN ?
+			{
+				head: <><Flex margin="0 10px 0 0"><SettingsIcon  height="15" width="15" colour=""/> </Flex>  User Management</>,
+				body:  <UserManagemnt   />,
+				key: "User Management"
+			}: {},
 		// {
 		// 	head: <><Flex margin="0 10px 0 0"><SettingsIcon  height="15" width="15" colour=""/> </Flex>  Position</>,
 		// 	body: <Positions  />,
 		// 	key: "Position"
 		// },
-		{
-			head: <><Flex margin="0 10px 0 0"><PadlockIcon  height="15" width="15" colour=""/> </Flex>  Security</>,
-			body: <Security />,
-			key: "Security"
-		},
+		IS_CLIENT_ADMIN ?
+			{
+				head: <><Flex margin="0 10px 0 0"><PadlockIcon  height="15" width="15" colour=""/> </Flex>  Security</>,
+				body: <Security />,
+				key: "Security"
+			}: {},
 		{
 			head: "Subscription",
 			body: <Subscription />,
@@ -46,7 +49,6 @@ const Settings = () => {
 		},
 	];
 
-	
 
 	return (
 		<Main>
@@ -65,7 +67,7 @@ const Settings = () => {
 						nonActiveColor="Grey.4"
 						activeColor="grey.2"
 						click={() => []}
-						data={tabData}
+						data={tabData.filter((_) => _?.head ) as  { head: any; body: any; key: any;}[]}
 					/>
 				</GeneralTabStyle>
 			</TabsStyles>

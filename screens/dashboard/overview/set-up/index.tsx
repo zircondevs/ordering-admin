@@ -44,7 +44,7 @@ const SetUp = ({dashboard, loading}: {dashboard: any, loading: boolean}) => {
 	return (
 		<>
 			{	
-				loading ? null :
+				!dashboard || loading ? null :
 					dashboard?.hasStore && dashboard?.hasProduct && dashboard?.hasStoreManagers ? null
 						:<ProgressCardStyles>
 							<Accordion 

@@ -166,6 +166,20 @@ export const RemoveNonNumbersFromArr = (obj: object) => {
 };
 
 
+
+
+export const filterRequiredRole =  (major: {name: string, icon:  JSX.Element, href: string}[], minor:  {name: string,method: string[] }[]) => {
+	return major?.filter((ad: {name: string}) =>  minor.every(fd => {
+		return !((fd.name?.toUpperCase() === ad.name?.toUpperCase()) && fd?.method?.length ==  0);
+	}));
+};
+
+
+
+
+
+
+
 export const  highestValueFromObj = (obj: object) => {
 	return  Math.max.apply(null, RemoveNonNumbersFromArr(obj));
 };
