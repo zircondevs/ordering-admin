@@ -13,11 +13,13 @@ import DeleteStore from "./deleteStore";
 import { useGetStores } from "../../../hooks/useStores";
 import AllStores from "./all-stores";
 import StoreSettings from "./store-settings";
+import { useGetetUserRoleModule } from "../../../hooks/handlers/useRole";
  
 const Stores = () => {
 	const { stores , loading, mutate  } = useGetStores();
 	const [modal, setModal] = useState({type: ""});
 	const modalRef = React.useRef<HandleScrollTypes>(null); 
+	const {EDIT } = useGetetUserRoleModule( "stores");
 
 	
 
@@ -41,8 +43,8 @@ const Stores = () => {
 	];
 	
  
- 
 
+	
 	return (
 		<Main>
 
@@ -67,12 +69,17 @@ const Stores = () => {
 
 			<TabsStyles>
 				<GeneralTabStyle>
-					<Tabs
-						nonActiveColor="Grey.4"
-						activeColor="grey.2"
-						click={() => []}
-						data={tabData}
-					/>
+					{
+						EDIT ?
+							<Tabs
+								nonActiveColor="Grey.4"
+								activeColor="grey.2"
+								click={() => []}
+								data={tabData}
+							/>
+							: <AllStores {...{openModal, stores, loading}} />
+
+					}
 				</GeneralTabStyle>
 			</TabsStyles>
 

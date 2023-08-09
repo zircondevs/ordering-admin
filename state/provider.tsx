@@ -3,7 +3,7 @@ import React, { createContext, useReducer} from "react";
 import { 
  
 	SET_IS_AUTHENTICATED, SET_LOADING, 
-	SET_REFRESH_TOKEN,   SET_TOKEN, SET_USER, SET_CLIENT, SET_REAL_TIME_ORDERS, SET_STORE_ID, SET_REAL_TIME_ORDER 
+	SET_REFRESH_TOKEN,   SET_TOKEN, SET_USER, SET_CLIENT, SET_REAL_TIME_ORDERS, SET_STORE_ID, SET_REAL_TIME_ORDER, SET_ROLE_MANAGEMENT 
 } from "./actions";
 import { reducer } from "./reducer";
 import { ContestTypes, StateType } from "./types";
@@ -22,7 +22,11 @@ const initialState: StateType = {
 	loading: true,
 	client: {},
 	realTimeOrders: [],
-	storeId: ""
+	storeId: "",
+	roleMangt: {
+		accountType: "",
+		moduleAccessible: []
+	}
 };
 
 
@@ -40,6 +44,7 @@ export function ProviderContext({ children }: any ) {
 	const setRealTimeOrder = (payload:  GenericObjTypes) => dispatch({ type: SET_REAL_TIME_ORDER, payload }); 
 	const setRealTimeOrders = (payload:  GenericObjTypes[]) => dispatch({ type: SET_REAL_TIME_ORDERS, payload }); 
 	const setStoreId = (payload:  string) => dispatch({ type: SET_STORE_ID, payload }); 
+	const setRoleMangt = (payload:  {accountType: "" | "STAFF" | "CLIENT_ADMIN", moduleAccessible: {name: string, method: string[]}[]} ) => dispatch({ type: SET_ROLE_MANAGEMENT, payload }); 
 
 
 	return (
@@ -54,7 +59,8 @@ export function ProviderContext({ children }: any ) {
 				setClient,
 				setRealTimeOrder,
 				setStoreId,
-				setRealTimeOrders
+				setRealTimeOrders,
+				setRoleMangt
 			}}
 		>
 			{children}

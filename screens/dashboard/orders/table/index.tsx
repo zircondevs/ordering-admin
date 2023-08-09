@@ -3,13 +3,14 @@
 import React     from "react";
 import {  Bold, Flex,  Span, Table,   } from "../../../../components";
 import {     Main, SearchSection, TableHeadStyle,   } from "./styles";
-import { formatAMPM, formatNumber, formateDate,   } from "../../../../lib";
+import { formatAMPM, formatNumber, formateDate,     } from "../../../../lib";
 import { GenericObjTypes } from "../../../../constants/types";
 import { EmptyIcon, LoaderIcon } from "../../../../public/assets/svg";
 import { GeneralTableStyle } from "../../../../components/styles";
 // import Search from "../../../../components/Search";
 import { HandleScrollTypes } from "devs-react-component-library";
 import Paginator from "../../../../components/Paginator";
+import { useGetetUserRoleModule } from "../../../../hooks/handlers/useRole";
 
 
 
@@ -32,10 +33,13 @@ const OrdersTable = ({orders, loading, title, setSingleOrder, modalRef, pageInfo
 		modalRef.current && modalRef.current.preventBodyScroll();
 	};
 
-
+	const {EDIT} = useGetetUserRoleModule(  "orders");
 	
 	
-	const tableHead = [  "Product Price",  "User", "Phone", "Delivery Address", "Delivery Type", "Date", "Action"];
+	const tableHead = EDIT ?  
+		[  "Product Price",  "User", "Phone", "Delivery Address", "Delivery Type", "Date", "Action" ]
+		:[  "Product Price",  "User", "Phone", "Delivery Address", "Delivery Type", "Date",  ];
+		
 	const tableBody = orders?.data?.map((order: GenericObjTypes) => (
 		{
 			amount: "₦" + formatNumber(order?.productPrice),
@@ -45,11 +49,17 @@ const OrdersTable = ({orders, loading, title, setSingleOrder, modalRef, pageInfo
 			deliveryType:  order?.deliveryType,
 			date: `${formateDate(new Date(order?.createdAt)).date} ${formateDate(new Date(order?.createdAt)).shortMonth}, 
 				${formateDate(new Date(order?.createdAt)).year}, ${formatAMPM(new Date(order?.createdAt))}` ,
-			action: <button onClick={() => openModal(order)}>
-				<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={"Error.default"}>
-					View
-				</Span>
-			</button>,
+			...(
+				EDIT ? 
+					{
+						action: <button onClick={() => openModal(order)}>
+							<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={"Error.default"}>
+								View
+							</Span>
+						</button>
+					}
+					: {}
+			)
 		}
 	));
 	return (

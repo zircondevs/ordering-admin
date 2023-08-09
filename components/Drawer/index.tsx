@@ -9,6 +9,7 @@ import { DrawerIcon,   } from "../../public/assets/svg";
 import { useGetStores } from "../../hooks/useStores";
 import { UseContext } from "../../state/provider";
 import { STORAGE } from "../../applications/storage";
+import { filterRequiredRole } from "../../lib";
 
 
 
@@ -16,13 +17,13 @@ const Drawer = () => {
 	const { pathname, push } = useRouter();
 	const [openDrawer, setOpenDrawer] = useState(false);
 	const activePage = (href: string) => pathname.split("/")[2] === href.split("/")[2];
-	const { state: {storeId}, setStoreId, } = UseContext();
+	const { state: {storeId, roleMangt }, setStoreId, } = UseContext();
 
 
 	const { stores, } = useGetStores();
 
- 
 
+	
 	useEffect(() => {
 		stores?.data?.[0]?._id && setStoreId(stores?.data?.[0]?._id );
 	}, [stores?.data?.[0]?._id ]);
@@ -85,17 +86,18 @@ const Drawer = () => {
 
 				<Grid>
 					{
-						Constant.drawer.map((drawerItem => (
-							<DrawerItem key={drawerItem.name}
-								active={activePage(drawerItem?.href)}
-								onClick={() => push(drawerItem.href)}
-							>
-								{drawerItem.icon}
-								<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="14" colour={"Black.default"}>
-									{drawerItem.name}
-								</Span>
-							</DrawerItem>
-						)))
+						(roleMangt?.accountType === "CLIENT_ADMIN" ? Constant.drawer : filterRequiredRole(Constant.drawer, roleMangt.moduleAccessible) )
+							?.map((drawerItem => (
+								<DrawerItem key={drawerItem.name}
+									active={activePage(drawerItem?.href)}
+									onClick={() => push(drawerItem.href)}
+								>
+									{drawerItem.icon}
+									<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="14" colour={"Black.default"}>
+										{drawerItem.name}
+									</Span>
+								</DrawerItem>
+							)))
 					}
 				</Grid>
 

@@ -5,16 +5,16 @@ import { useRouter } from "next/router";
 import React, { useEffect }   from "react";
 import { STORAGE } from "../../applications/storage";
 import { useValidateToken } from "../../applications/validateToken";
-import {   Flex, Span } from "..";
+import {   Bold, Flex, Span } from "..";
 import Constant from "../../constants";
 import { useLogout } from "../../hooks/handlers/useLogout";
 
-import { isDefined } from "../../lib";
+import { isDefined, singleSpace } from "../../lib";
 import { UseContext } from "../../state/provider";
-import { Main } from "./styles";
-import {  LoaderIcon, WarningIcon } from "../../public/assets/svg";
+import { Animate, Main } from "./styles";
+import {   OTHAIcon, WarningIcon } from "../../public/assets/svg";
 import { useGetUser } from "../../hooks/useAuth";
-import { useGetAdminGeneralSettings } from "../../hooks/useSettigs";
+import { useGetAdminGeneralSettings, useGetStaffRoles } from "../../hooks/useSettigs";
 
 
 
@@ -22,7 +22,7 @@ import { useGetAdminGeneralSettings } from "../../hooks/useSettigs";
 
 export function ProtectedRoute({ children }: any ) {
 	const { 
-		state: { token, loading, user,  }, 
+		state: { token, loading, user,  roleMangt}, 
 		setToken , setRefreshToken, setIsAuthenticated, setLoading
 	} = UseContext();
 
@@ -34,6 +34,7 @@ export function ProtectedRoute({ children }: any ) {
 	const { error,  isValidating  } = useGetUser();
 	useGetAdminGeneralSettings();
 	
+	useGetStaffRoles();
 	
 	useEffect(() => {
 		const _token = query["auth-token"] as string || STORAGE.GET(Constant.keys.token);
@@ -57,15 +58,14 @@ export function ProtectedRoute({ children }: any ) {
 
 
 	
-
 	useEffect(() => {
-		if(token &&  user?.accountType && !isValidating) {
+		if(token &&  user?.accountType && !isValidating && roleMangt.accountType?.length > 0) {
 			setIsAuthenticated(true);
 			setLoading(false);
 		}else{
 			setLoading(true);
 		}
-	}, [token, user?.accountType, isValidating ]);
+	}, [token, user?.accountType, isValidating,  roleMangt.accountType ]);
 
 
 	
@@ -73,11 +73,24 @@ export function ProtectedRoute({ children }: any ) {
 
 	
 	if(loading ) return (
-		<Main>
+		<Animate>
 			<Flex>
-				<LoaderIcon width="40px" height="40px"/>
+				<Flex width="auto">
+					<OTHAIcon height="30" width="30" colour="Orange.default"/>
+					{singleSpace()}
+					<Bold  weight="600" fontFamily='quicksandMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
+						Otha
+					</Bold>
+				</Flex>
+				<Flex width="auto" className="fixed">
+					<OTHAIcon height="30" width="30" colour="Grey.1"/>
+					{singleSpace()}
+					<Bold  weight="600" fontFamily='quicksandMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
+						Otha
+					</Bold>
+				</Flex>
 			</Flex>
-		</Main>
+		</Animate>
 	);
 
 

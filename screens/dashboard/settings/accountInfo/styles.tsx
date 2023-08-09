@@ -26,8 +26,8 @@ export const LogoStyles =  styled("div")`
 export const FavStyles =  styled("div")`
 	border-radius: 100%;
 	position: relative;
-	height: 40px;
-	width: 40px;
+	height: 100px;
+	width: 100px;
 	margin-right: 24px;
 `;
 

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
  
 import React, { useState }    from "react";
 import { Bold,   Grid,  Span,   } from "../../../../components";
@@ -7,13 +8,15 @@ import { PRIMARY_COLOR } from "../../../../hooks/colors";
 import { Spacer } from "../../../../components/Spacer";
 import { Checkbox } from "../../../../components/CheckMark";
 import { GeneralDivider, GeneralLabel } from "../../../../components/styles";
-import { BankIcon, EditIcon,  } from "../../../../public/assets/svg";
+import { BankIcon, EditIcon, TrashIcon,  } from "../../../../public/assets/svg";
 import AddBank from "./addBank";
 import { HandleScrollTypes } from "devs-react-component-library";
 import { UseContext } from "../../../../state/provider";
 import { useGetBanks } from "../../../../hooks/usePayment";
 import { useGetAdminGeneralSettings, useUpdateAccountSettings } from "../../../../hooks/useSettigs";
 import AutomaticPayout from "./autoPayout";
+import { useGetetUserRoleModule } from "../../../../hooks/handlers/useRole";
+import DeleteModal from "../../../../components/DeleteModal";
 
 
  
@@ -24,7 +27,7 @@ const Settings = () => {
 	const { state: { client }} = UseContext();
 	const { mutate } = useGetAdminGeneralSettings();
 	const { handleUpdateAccSettings , loading} = useUpdateAccountSettings();
-
+	const {EDIT, DELETE } = useGetetUserRoleModule( "payment");
 	const {banks, loading: loadingBanks } = useGetBanks();
 
 
@@ -69,9 +72,20 @@ const Settings = () => {
 								*********{client?.companyDepositAccountNumber.substring(0, 3)}. {client?.companyDepositAccountName}
 							</Span>
 						</div>
-						<IconStyle margin="0  0 0 15px" bgColor="Error.20" pointer onClick={() => openModal({type: "editBank"})}>
-							<EditIcon height="20" width="20" colour="Error.default"/>
-						</IconStyle>
+						{
+							EDIT ?
+								<IconStyle margin="0  0 0 15px" bgColor="Error.20" pointer onClick={() => openModal({type: "editBank"})}>
+									<EditIcon height="20" width="20" colour="Error.default"/>
+								</IconStyle>
+								: null
+						}
+						{
+							DELETE ?
+								<IconStyle margin="0  0 0 15px" bgColor="Error.20" pointer onClick={() => setModal({type: "deleteBank"})}>
+									<TrashIcon height="20" width="20" colour="Error.default"/>
+								</IconStyle>
+								: null
+						}
 					</Container1>
 					:
 					loadingBanks || !(banks?.length > 0) ? null :
@@ -141,6 +155,17 @@ const Settings = () => {
 
 			<AddBank  open={modal} setOpen={setModal} modalRef={modalRef} onDOne={mutate}  banks={banks} />
 			<AutomaticPayout  open={modal} setOpen={setModal} modalRef={modalRef} onDOne={(e) => handleUpdate("AUTOMATED", e)}  loading={loading} />
+			<DeleteModal 
+				state={modal.type === "deleteBank"} 
+				setState={setModal} 
+				initial={{type: ""}}
+				modalRef={modalRef}   
+				title="Delete Bank Details"
+				loading={loading} 
+				onSubmit={() => {
+					handleUpdateAccSettings({ companyDepositBank: "", companyDepositAccountNumber: "", withdrawalInterval: "", withdrawalProcessType: ""});
+				}}
+			/>
 
  
 		</Main>

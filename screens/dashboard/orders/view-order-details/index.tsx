@@ -10,6 +10,7 @@ import { HandleScrollTypes } from "devs-react-component-library";
 import { useGetOrder } from "../../../../hooks/useOrders";
 import Address from "./address";
 import { LoaderIcon } from "../../../../public/assets/svg";
+import { useGetetUserRoleModule } from "../../../../hooks/handlers/useRole";
 
 
 
@@ -27,7 +28,7 @@ const ViewOrderDetails = ({	setSingleOrder, singleOrder ,modalRef,  } : PropType
 
 
 	const { order, loading  } = useGetOrder(singleOrder?._id);
-	
+	const {EDIT} = useGetetUserRoleModule( "orders");
 
 	const closeModal = () => {
 		setSingleOrder({});
@@ -73,22 +74,25 @@ const ViewOrderDetails = ({	setSingleOrder, singleOrder ,modalRef,  } : PropType
 							</TabStyles>
 					}
  
-
-					<Footer>
-						<CustomButton
-							size="14"
-							activeBgColor="Orange.default"
-							activeBorderColor="Orange.default"
-							activeColor={"common.white"}
-							fullwidth
-							type="button"
-							nonActiveBgColor="Grey.5"
-							nonActiveColor="Grey.3"
-							borderRadius="0"
-							text={ "Continue"  }
-							onClick={() =>   handleContinue() }
-						/>
-					</Footer>
+					{
+						EDIT ?
+							<Footer>
+								<CustomButton
+									size="14"
+									activeBgColor="Orange.default"
+									activeBorderColor="Orange.default"
+									activeColor={"common.white"}
+									fullwidth
+									type="button"
+									nonActiveBgColor="Grey.5"
+									nonActiveColor="Grey.3"
+									borderRadius="0"
+									text={ "Continue"  }
+									onClick={() =>   handleContinue() }
+								/>
+							</Footer>
+							: null
+					}
 
 				</Flex>
 			</Modal>
