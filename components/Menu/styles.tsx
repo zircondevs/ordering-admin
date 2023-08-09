@@ -22,7 +22,9 @@ export const MenuStyles =  styled("header")`
 
 export const Line =  styled(Flex)`
 	width: auto;
-
+	& > div > div > div > svg{
+				min-width: 10px;
+	}
 `; 
 
 

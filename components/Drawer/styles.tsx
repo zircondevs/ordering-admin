@@ -94,6 +94,9 @@ export const SelectStores =  styled(Flex)`
 		 & > div  {
 			padding: 14px 16px;
 			justify-content: space-between;
+			svg {
+				min-width: 10px;
+			}
 		}
 	 }
 `; 
