@@ -7,7 +7,7 @@ import { UseContext } from "../../state/provider";
 
 
 export const useLogout = () => {
-	const {  setToken, setRefreshToken, setIsAuthenticated , setClient, setUser, state: { token }} = UseContext();
+	const {  setToken, setRefreshToken, setIsAuthenticated , setClient, setUser, setPathIsAccessible, state: { token }} = UseContext();
 	const { push } = useRouter();
 
 
@@ -17,6 +17,7 @@ export const useLogout = () => {
 
 		setToken("");
 		setIsAuthenticated(false);
+		setPathIsAccessible(false);
 		setRefreshToken("");
 		setClient({});
 		setUser({});

@@ -85,7 +85,7 @@ export const useGetSettingsRoles = () => {
  
  
 
-export const useGetStaffRoles = ( ) => {
+export const useGetStaffRoles = () => {
 	const { state: { user }, setRoleMangt} = UseContext();
 	const [pageInfo, setPageInfo] = useState({
 		page: 1,
@@ -94,7 +94,7 @@ export const useGetStaffRoles = ( ) => {
 	const { data , loading, mutate, error, token} = useGetCachedAxiosHandler ({
 		url: `${SETTINGS_URL}/user/${user?._id}`,
 		notify: false,
-		requiredVariable: user?._id?.length > 0 && (user?.accountType === "STAFF")
+		requiredVariable: user?._id?.length > 0 && (user?.accountType === "STAFF"),
 	});
  
 	useEffect(() => {
@@ -119,6 +119,26 @@ export const useGetStaffRoles = ( ) => {
  
  
 
+
+export const useGetStaffRoles2  = () => {
+	const { getAxiosHandler } = useAxiosHandler();
+	const [loading, setLoading] = useState(false);
+	
+	const handleGetStaffRole = async ( Token: string, staffId: string) => {
+		setLoading(true);
+		const { data } = await  getAxiosHandler ({
+			url: `${SETTINGS_URL}/user/${staffId}`,
+			successMessage: "Roles updated",
+			token: Token
+		});
+		setLoading(false);
+		if(data) {
+			return { staffRole: data?.data?.data  };
+		}
+	};
+ 
+	return {  loading, handleGetStaffRole };
+};
 
 export const useUpdateAStaffRoles  = () => {
 	const { patchAxiosHandler } = useAxiosHandler();

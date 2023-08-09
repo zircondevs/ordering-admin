@@ -2,19 +2,20 @@
 
 
 import { useRouter } from "next/router";
-import React, { useEffect }   from "react";
+import React, {  useEffect,  }   from "react";
 import { STORAGE } from "../../applications/storage";
 import { useValidateToken } from "../../applications/validateToken";
-import {   Bold, Flex, Span } from "..";
+import {    Flex, Span } from "..";
 import Constant from "../../constants";
 import { useLogout } from "../../hooks/handlers/useLogout";
 
-import { isDefined, singleSpace } from "../../lib";
+import {    isDefined,   } from "../../lib";
 import { UseContext } from "../../state/provider";
-import { Animate, Main } from "./styles";
-import {   OTHAIcon, WarningIcon } from "../../public/assets/svg";
+import {   Main } from "./styles";
+import {    WarningIcon } from "../../public/assets/svg";
 import { useGetUser } from "../../hooks/useAuth";
 import { useGetAdminGeneralSettings, useGetStaffRoles } from "../../hooks/useSettigs";
+import { IconLoader } from "../Loader";
 
 
 
@@ -22,10 +23,9 @@ import { useGetAdminGeneralSettings, useGetStaffRoles } from "../../hooks/useSet
 
 export function ProtectedRoute({ children }: any ) {
 	const { 
-		state: { token, loading, user,  roleMangt}, 
+		state: { token, loading, user,  roleMangt, pathIsAccessible }, 
 		setToken , setRefreshToken, setIsAuthenticated, setLoading
 	} = UseContext();
-
 
 	
 	const { query, isReady, pathname } = useRouter();
@@ -68,30 +68,12 @@ export function ProtectedRoute({ children }: any ) {
 	}, [token, user?.accountType, isValidating,  roleMangt.accountType ]);
 
 
-	
+ 
+ 
 
-
 	
-	if(loading ) return (
-		<Animate>
-			<Flex>
-				<Flex width="auto">
-					<OTHAIcon height="30" width="30" colour="Orange.default"/>
-					{singleSpace()}
-					<Bold  weight="600" fontFamily='quicksandMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
-						Otha
-					</Bold>
-				</Flex>
-				<Flex width="auto" className="fixed">
-					<OTHAIcon height="30" width="30" colour="Grey.1"/>
-					{singleSpace()}
-					<Bold  weight="600" fontFamily='quicksandMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
-						Otha
-					</Bold>
-				</Flex>
-			</Flex>
-		</Animate>
-	);
+	if(loading || !pathIsAccessible ) return  <IconLoader />;
+	
 
 
 	if(error) return (

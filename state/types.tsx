@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { GenericObjTypes } from "../constants/types";
 import { 
-	SET_IS_AUTHENTICATED, SET_LOADING,  SET_REFRESH_TOKEN,   SET_TOKEN, SET_USER, SET_CLIENT, SET_REAL_TIME_ORDERS, SET_STORE_ID, SET_REAL_TIME_ORDER, SET_ROLE_MANAGEMENT,   
+	SET_IS_AUTHENTICATED, SET_LOADING,  SET_REFRESH_TOKEN,   SET_TOKEN, SET_USER, SET_CLIENT, SET_REAL_TIME_ORDERS, SET_STORE_ID, SET_REAL_TIME_ORDER, SET_ROLE_MANAGEMENT, SET_PATH_IS_ACCESSIBLE,   
 } from "./actions";
 
 
@@ -12,6 +12,7 @@ export type StateType = {
 	isAuthenticated: boolean,
 	user:  {  [key: string]: any },
 	loading: boolean,
+	pathIsAccessible: boolean,
 	realTimeOrders:   GenericObjTypes[],
 	client: GenericObjTypes;
 	storeId: string
@@ -70,11 +71,18 @@ export type ActionTypes =
 	payload: {accountType: "" | "STAFF" | "CLIENT_ADMIN", moduleAccessible: {name: string, method: string[]}[]}
 }
  
+|
+{
+	type:  typeof SET_PATH_IS_ACCESSIBLE
+	payload: boolean
+}
+ 
 
 export type ContestTypes =  {
 	setToken: (e: string) => void;
 	setRefreshToken: (e: string) => void;
 	setIsAuthenticated: (e: boolean) => void;
+	setPathIsAccessible: (e: boolean) => void;
 	setUser: (e: {   [key: string]: any }) => void;
 	setLoading: (e: boolean ) => void;
 	setClient: (e:  GenericObjTypes ) => void;

@@ -1,6 +1,6 @@
 import {
 	SET_IS_AUTHENTICATED,
-	SET_LOADING,  SET_REFRESH_TOKEN,   SET_TOKEN, SET_USER, SET_CLIENT, SET_REAL_TIME_ORDERS, SET_STORE_ID, SET_REAL_TIME_ORDER, SET_ROLE_MANAGEMENT,  
+	SET_LOADING,  SET_REFRESH_TOKEN,   SET_TOKEN, SET_USER, SET_CLIENT, SET_REAL_TIME_ORDERS, SET_STORE_ID, SET_REAL_TIME_ORDER, SET_ROLE_MANAGEMENT, SET_PATH_IS_ACCESSIBLE,  
 } from "./actions";
 import { ActionTypes, StateType } from "./types";
   
@@ -40,6 +40,9 @@ export const reducer = (state: StateType, action: ActionTypes) => {
 
 	case SET_ROLE_MANAGEMENT:
 		return { ...state, roleMangt: action.payload, };
+		
+	case SET_PATH_IS_ACCESSIBLE:
+		return { ...state, pathIsAccessible: action.payload, };
 
   
 		
