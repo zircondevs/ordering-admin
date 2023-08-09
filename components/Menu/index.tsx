@@ -1,8 +1,7 @@
 
-import {    DrawerMenu,Line,MenuStyles, ProfileCard, ProfileDropdownList,   } from "./styles";
-import {     Bold, Dropdown, Flex, Span  } from "..";
+import {    DrawerMenu,DrawerMenuWrapper,Line,MenuStyles, ProfileCard, ProfileDropdownList,   } from "./styles";
+import {     Bold, Dropdown, Flex,  Span  } from "..";
 import React  from "react";
-// import Cart from "./cart";
 import { UseContext } from "../../state/provider";
 import Image from "next/image";
 import { AvatarIcon, LeftArrowIcon, LogOutIcon, OTHAIcon } from "../../public/assets/svg";
@@ -28,27 +27,33 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 	return (
 		<MenuStyles >
 			<Flex wrap='nowrap' justifyContent="space-between">
-				<DrawerMenu   justifyContent='flex-start' wrap='nowrap'>
-					{
-						client?.companyLogo ?
-							<Image 
-								src={client?.companyLogo }
-								alt="Logo"
-								objectFit="contain"
-								layout="fill"
-								objectPosition={"left"}
-							/>
-							:
-							<>
-								<OTHAIcon height="30" width="30" colour="Orange.default"/>
-								{singleSpace()}
-								<Bold  weight="600" fontFamily='quicksandMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
-									Otha
-								</Bold>
-							</>
-					}
-
-				</DrawerMenu>
+				
+				{
+					client?.companyLogo ?
+						<DrawerMenuWrapper width="auto" height="auto" wrap="nowrap">
+							<DrawerMenu   justifyContent='flex-start' wrap='nowrap'>
+								<Image 
+									src={client?.companyLogo }
+									alt="Logo"
+									objectFit="contain"
+									layout="fill"
+									objectPosition={"left"}
+								/>
+							</DrawerMenu>
+							<Bold  weight="600" fontFamily='quicksandMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
+								{user?.clientName}
+							</Bold>
+						</DrawerMenuWrapper>
+						:
+						<Flex width="auto" height="auto" wrap="nowrap">
+							<OTHAIcon height="30" width="30" colour="Orange.default"/>
+							{singleSpace()}
+							<Bold  weight="600" fontFamily='quicksandMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
+								Otha
+							</Bold>
+						</Flex>
+				}
+ 
  
 
 				{
@@ -91,8 +96,8 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 									]}
 									icon={
 										<ProfileCard>
-											<Span  weight="600" fontFamily='ubuntuSemiBold' lineHeight="24" size="16" colour={"Black.default"} center>
-												{MakeOnlyFirstLettersCapital(user?.clientName || "")}
+											<Span  weight="600" fontFamily='ubuntu' lineHeight="19" size="14" colour={"Black.default"} center>
+												{MakeOnlyFirstLettersCapital(user?.email || "")}
 											</Span>
 											<LeftArrowIcon  height="15" width="15"/>
 										</ProfileCard>
@@ -101,7 +106,6 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 
 								
 							</Line>
-							{/* <Cart /> */}
 						</Flex>
 				}
 				
