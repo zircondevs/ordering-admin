@@ -23,8 +23,14 @@ const Constant  = {
 		newUser: "nu",
 		
 
-		// keys used for initial login controls
+		/**
+		 * cacheToken controls when to mutate the auth api to fetch new logged in user to avoid cacheing
+		 */
 		cacheToken: "cacheToken",
+
+		/**
+		 * routeIsSavedToLocalStorage controls where the logged user gets redirected to
+		 */
 		routeIsSavedToLocalStorage: "risls"
 	},
 	modal: {

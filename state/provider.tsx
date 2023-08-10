@@ -60,6 +60,11 @@ export function ProviderContext({ children }: any ) {
 	
 	
 	useEffect(() => {
+		/**
+		 * routeIsSavedToLocalStorage ensure that the user is redirected to the first page he has access to, not just to the default  dashboard page
+		 * Once routeIsSavedToLocalStorage is available (this is set on logout), the initial redirect page is set
+		 * and routeIsSavedToLocalStorage is deleted to prevent a second redirect
+		 */
 		const routeIsSavedToLocalStorage =  STORAGE.GET(Constant.keys.routeIsSavedToLocalStorage);
 		if(!state.token || !state.roleMangt.accountType ) return;
 
@@ -77,9 +82,6 @@ export function ProviderContext({ children }: any ) {
 				STORAGE.SAVE(Constant.keys.routeIsSavedToLocalStorage, true);
 			}, 1000);
 		}
- 
-		
-		
 	},  [state.token, state.roleMangt.accountType]);
 
 

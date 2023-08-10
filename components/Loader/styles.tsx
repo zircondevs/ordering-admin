@@ -102,10 +102,10 @@ export const Animate =  styled(Flex)`
 			top: 0;
 		}
 		&:before {
-			animation: ${moveInRight} 8s ease-in-out   infinite;
+			animation: ${moveInRight} 4s ease-in-out   infinite;
 		}
 		&:after {
-			animation: ${moveInUp} 8s ease-in-out infinite;
+			animation: ${moveInUp} 4s ease-in-out infinite;
 		}
 	}
 	 .fixed {
