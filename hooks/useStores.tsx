@@ -27,13 +27,13 @@ export const useGetStores  = () => {
 
 
 export const useGetStore  = (storeId: string, state: string) => {
-	const { data , loading, mutate} = useGetCachedAxiosHandler ({
+	const { data , loading, mutate, error} = useGetCachedAxiosHandler ({
 		url: `${STORE_URL}/one/${storeId}?state=${state}`,
 		notify: false,
 		requiredVariable: storeId?.length > 0 && state?.length > 0
 	});
  
-	return {  loading, store: data?.data?.data ,   mutate };
+	return {  loading, store: data?.data?.data ,   mutate, error };
 };
  
 

@@ -97,10 +97,7 @@ const AllStores = ({openModal, stores, loading}: PropTypes) => {
 											}
 											handleSelect={(e) => {
 												e === "View" ? 
-													push(
-														{ pathname: `/dashboard/stores/${store?._id}`, query: {state : store?.state}, },
-														`/dashboard/stores/${store?._id}` 
-													)
+													push(  `/dashboard/stores/${store?._id}?s=${store?.state}` )
 													: openModal({type: e?.toLowerCase(), store});
 											}}
 										/>

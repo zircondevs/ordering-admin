@@ -11,11 +11,13 @@ import { Flex, Span } from "../..";
 import { WarningIcon } from "../../../public/assets/svg";
 
 
+
 const DashboardLayout = ({  children}: any ) => {
 	const { state: { roleMangt }} = UseContext();
 	const {pathname } = useRouter();
 
-	const pathIsAllowed  = 	filterRequiredRole(Constant.drawer, roleMangt.moduleAccessible)?.find((page: any) => page?.href === pathname);
+
+	const pathIsAllowed  = 	filterRequiredRole(Constant.drawer, roleMangt.moduleAccessible)?.find((page: any) => pathname.includes(page?.href));
 
  
 
@@ -37,7 +39,7 @@ const DashboardLayout = ({  children}: any ) => {
 								You do not have permission to access this page
 							</Span>
 							<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={"Grey.3"}>
-								Please reach out to your asministrator for any inquires.
+								Please reach out to your administrator for any inquires.
 							</Span>
 						</Flex>
 				}

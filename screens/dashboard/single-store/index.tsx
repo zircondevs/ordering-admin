@@ -4,9 +4,9 @@ import React, { useEffect }    from "react";
 import { Bold,  Container,  Flex, Grid, Span, Table,  } from "../../../components";
 import {     Container1,    HeaderSTyles,  Main, NavStyles,    } from "./styles";
 import { GeneralCountStyles, GeneralDivider } from "../../../components/styles";
-import {    EmptyIcon, LoaderIcon, LocationIcon, ThreeDotsLoaderIcon ,  } from "../../../public/assets/svg";
+import {    EmptyIcon, LoaderIcon, LocationIcon, ThreeDotsLoaderIcon, WarningIcon ,  } from "../../../public/assets/svg";
 import BreadCrumb from "../../../components/Breadcrumb";
-import { formatAMPM, formatNumber, formateDate } from "../../../lib";
+import { formatAMPM, formatNumber, formateDate, singleSpace } from "../../../lib";
 import { Spacer } from "../../../components/Spacer";
 import { GeneralTableStyle } from "../../../components/styles";
 import { useRouter } from "next/router";
@@ -14,6 +14,7 @@ import { useGetStore } from "../../../hooks/useStores";
 import { useGetStoreTransactions,   } from "../../../hooks/useTransaction";
 import { GenericObjTypes,   } from "../../../constants/types";
 import Paginator from "../../../components/Paginator";
+import Tooltip from "../../../components/Tooltip";
 
 
 
@@ -22,32 +23,23 @@ import Paginator from "../../../components/Paginator";
 const Stores = () => {
 	const  { query, back } = useRouter();
 
-	const { store } = useGetStore(query?.storeId as string, query?.state as string);
+	const { store,  error } = useGetStore(query?.storeId as string, query?.s as string);
 	const { transactions, loading , pageInfo, setPageInfo } = useGetStoreTransactions( );
 	useEffect(() => {
-		if(!query?.storeId || !query?.state){
+		if(!query?.storeId || !query?.s){
 			back();
 		}
 	}, [ query ]);
 
-	console.log(transactions, "transactions");
  
-	// const status = {
-	// 	pending:  ["Blue.dark.20", "Blue.dark" ],
-	// 	failed:  ["Error.20", "Error.default" ],
-	// 	success: ["Success.20", "Success.default" ],
-	// };
+ 
+ 
 	const tableHead = ["Date","Time", "Amount", "Status" ];
 	const tableBody = transactions?.data?.map((transaction: GenericObjTypes) => (
 		{
 			date: `${formateDate(new Date(transaction?.createdAt)).date} ${formateDate(new Date(transaction?.createdAt)).shortMonth}, ${formateDate(new Date(transaction?.createdAt)).year}` ,
 			time: `${formatAMPM(new Date(transaction?.createdAt))}`,
 			amount: "₦" + formatNumber(transaction?.productCharge),
-			// status: <Flex bgColor={status[transaction?.status as TransactionStatusType][0]} width="max-content" pad="3px 8px" margin="0">
-			// 	<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={status[transaction?.status as TransactionStatusType][1]}>
-			// 		{transaction?.status}
-			// 	</Span>
-			// </Flex>,
 		}
 	));
 
@@ -80,41 +72,57 @@ const Stores = () => {
 		
 	];
 
+
 	return (
 		<Main>
-
 			<HeaderSTyles height="auto" justifyContent="space-between">
-				<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
-					{store?.name || <ThreeDotsLoaderIcon height="15" width="20"/>}
-				</Bold>
+				{
+					
+					error ?
+						<Flex justifyContent="flex-start" height="auto" alignItems="flex-start">
+							<Span fontFamily='ubuntu' weight="400" lineHeight="21" size="16" colour={ "Grey.1"}>
+								Store
+							</Span>
+							{singleSpace()}
+							<Tooltip message={"Error occured while loading this store details."} top="-20px">
+								<WarningIcon colour="Yellow.default" height="20" width="20"/>
+							</Tooltip>
+						</Flex>
+						:
+						<>
+							<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
+								{store?.name || <ThreeDotsLoaderIcon height="15" width="20"/>}
+							</Bold>
 
-				<Spacer height="40px"/>
+							<Spacer height="40px"/>
 
-				<NavStyles>
-					<BreadCrumb list={[{name: "Stores", link: "/dashboard/stores"}, {name: store?.name || "Loading..."}]}/>
-				</NavStyles>
+							<NavStyles>
+								<BreadCrumb list={[{name: "Stores", link: "/dashboard/stores"}, {name: store?.name || "Loading..."}]}/>
+							</NavStyles>
 
-				<Spacer height="32px"/>
+							<Spacer height="32px"/>
 
 
-				<Grid gap="24px" columns="repeat(auto-fit, minmax(200px, 1fr))" >
-					{
-						details.map((detail, idx) => (
-							<Container key={idx} justifyContent="space-between" wrap="nowrap">
-								<Flex height="auto" width="auto" justifyContent="flex-start">
-									{detail.icon}
-									<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={ "Grey.3"}>
-										{detail.title}
-									</Span>
-								</Flex>
-								<Spacer height="4px" />
-								<Bold fontFamily='ubuntu' weight="&00" lineHeight="24" size="18" colour={ "Grey.2"}>
-									{detail.value}
-								</Bold>
-							</Container>
-						))
-					}
-				</Grid>
+							<Grid gap="24px" columns="repeat(auto-fit, minmax(200px, 1fr))" >
+								{ 
+									details.map((detail, idx) => (
+										<Container key={idx} justifyContent="space-between" wrap="nowrap">
+											<Flex height="auto" width="auto" justifyContent="flex-start">
+												{detail.icon}
+												<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={ "Grey.3"}>
+													{detail.title}
+												</Span>
+											</Flex>
+											<Spacer height="4px" />
+											<Bold fontFamily='ubuntu' weight="&00" lineHeight="24" size="18" colour={ "Grey.2"}>
+												{detail.value}
+											</Bold>
+										</Container>
+									))
+								}
+							</Grid>
+						</>
+				}
 			</HeaderSTyles>
 
 		

@@ -52,18 +52,22 @@ const Stores = () => {
 				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Stores
 				</Bold>
-				<CustomButton
-					size="14"
-					type="button"
-					pad="padding.smaller"
-					text={  "Add Store"}
-					activeBorderColor="Grey.3"
-					bgColour={PRIMARY_COLOR[0]}
-					bodColour={PRIMARY_COLOR[0]}
-					activeColor={"common.white"}
-					onClick={() =>   openModal({type: "add"}) }
-					icon={<PlusIcon colour="common.white" height="15px" width="15px"/>}
-				/>
+				{
+					EDIT ?
+						<CustomButton
+							size="14"
+							type="button"
+							pad="padding.smaller"
+							text={  "Add Store"}
+							activeBorderColor="Grey.3"
+							bgColour={PRIMARY_COLOR[0]}
+							bodColour={PRIMARY_COLOR[0]}
+							activeColor={"common.white"}
+							onClick={() =>   openModal({type: "add"}) }
+							icon={<PlusIcon colour="common.white" height="15px" width="15px"/>}
+						/>
+						: null
+				}
 			</HeaderSTyles>
 
 
