@@ -16,7 +16,7 @@ type progressType =  {title: string, value: boolean, link: string, linkText:stri
 
 
 const SetUp = ({dashboard, loading}: {dashboard: any, loading: boolean}) => {
-	const [visible, setVisible] = useState(-1);
+	const [visible, setVisible] = useState(0);
 
 
 	const progress = [
