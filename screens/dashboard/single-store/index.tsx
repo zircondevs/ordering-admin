@@ -58,10 +58,6 @@ const Stores = () => {
 			value: store?.state || "N/A"
 		}, 
 		{
-			title: "Local Govt Area",
-			value: store?.localGovernmentArea || "N/A"
-		},
-		{
 			title: "Date Created",
 			value:  store?.createdAt ? new Date(store?.createdAt).toLocaleString()?.split(",")[0] : "N/A"
 		}, 
