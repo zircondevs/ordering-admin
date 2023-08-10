@@ -1,12 +1,12 @@
 
 import React   from "react";
-import { Bold, Flex,   Table,      } from "../../../components";
+import { Bold, Flex,   Span,   Table,      } from "../../../components";
 import { Container1, HeaderSTyles, Main,    } from "./styles";
 import {     formateDate,   } from "../../../lib";
 import { GeneralCountStyles, GeneralTableStyle } from "../../../components/styles";
 import { useGetUsers } from "../../../hooks/useAuth";
 import { GenericObjTypes } from "../../../constants/types";
-import { LoaderIcon } from "../../../public/assets/svg";
+import {  EmptyIcon, LoaderIcon } from "../../../public/assets/svg";
  
 
 
@@ -42,11 +42,15 @@ const Transactions = () => {
 						<Bold fontFamily='ubuntu' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 							All customers
 						</Bold>
-						<GeneralCountStyles>
-							<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
-								{users?.count}
-							</Bold>
-						</GeneralCountStyles>
+						{
+							users?.count ?
+								<GeneralCountStyles>
+									<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+										{users?.count}
+									</Bold>
+								</GeneralCountStyles>
+								: null
+						}
 					</div>
 				</Flex>
 
@@ -60,17 +64,24 @@ const Transactions = () => {
 									We are having trouble fetching all users
 								</Bold>
 							</Flex>
-							:
-							<GeneralTableStyle height="auto" justifyContent="flex-start">
-								<Table 
-									gap={"0"}
-									headBgColor="common.transparent"
-									bodyColor="Grey.2"
-									headColor="Grey.2"
-									tableHead={tableHead}
-									tableBodys={tableBody}
-								/>
-							</GeneralTableStyle>
+							: users?.lenght > 0 ?
+								<GeneralTableStyle height="auto" justifyContent="flex-start">
+									<Table 
+										gap={"0"}
+										headBgColor="common.transparent"
+										bodyColor="Grey.2"
+										headColor="Grey.2"
+										tableHead={tableHead}
+										tableBodys={tableBody}
+									/>
+								</GeneralTableStyle>
+								:	
+								<Flex margin="40px 0" height="auto" direction="column">
+									<EmptyIcon />
+									<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+										You do not have any customers yet
+									</Span>
+								</Flex>
 				}
 			</Container1>
  

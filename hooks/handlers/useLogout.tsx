@@ -23,6 +23,7 @@ export const useLogout = () => {
 		setUser({});
 		STORAGE.DELETE(Constant.keys.token);
 		STORAGE.DELETE(Constant.keys.refreshToken);
+		STORAGE.DELETE(Constant.keys.routeIsSavedToLocalStorage);
 		push("/login");
 	};
 	return { handleLogout };

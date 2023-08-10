@@ -11,6 +11,7 @@ import { GenericObjTypes } from "../constants/types";
 import { filterRequiredRole } from "../lib";
 import Constant from "../constants";
 import { useRouter } from "next/router";
+import { STORAGE } from "../applications/storage";
 
 
 export const Context = createContext({} as ContestTypes);
@@ -59,15 +60,26 @@ export function ProviderContext({ children }: any ) {
 	
 	
 	useEffect(() => {
+		const routeIsSavedToLocalStorage =  STORAGE.GET(Constant.keys.routeIsSavedToLocalStorage);
 		if(!state.token || !state.roleMangt.accountType ) return;
-		
-		if(state.roleMangt.accountType === "CLIENT_ADMIN"){
-			push("/dashboard");
-		}else{
-			const accessiblePages = filterRequiredRole(Constant.drawer, state.roleMangt.moduleAccessible);
-			push(accessiblePages?.[0]?.href);
+
+		if(routeIsSavedToLocalStorage) {
+			setPathIsAccessible(true);
+		}else {
+			if(state.roleMangt.accountType === "CLIENT_ADMIN"){
+				push("/dashboard");
+			}else{
+				const accessiblePages = filterRequiredRole(Constant.drawer, state.roleMangt.moduleAccessible);
+				push(accessiblePages?.[0]?.href);
+			}
+			setTimeout(() => {
+				setPathIsAccessible(true);
+				STORAGE.SAVE(Constant.keys.routeIsSavedToLocalStorage, true);
+			}, 1000);
 		}
-		setTimeout(() => setPathIsAccessible(true), 1000);
+ 
+		
+		
 	},  [state.token, state.roleMangt.accountType]);
 
 

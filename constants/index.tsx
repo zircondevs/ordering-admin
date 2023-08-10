@@ -16,12 +16,16 @@ export const PROFILE_IS_UPDATED = (user: any) =>{
 const Constant  = {
 	keys: {
 		token: "authorization",
-		cacheToken: "cacheToken",
 		refreshToken: "refresh",
 		difficultyLevel: "difficultyLevel",
 		subject: "subject",
 		storeId: "portal_ST",
-		newUser: "nu"
+		newUser: "nu",
+		
+
+		// keys used for initial login controls
+		cacheToken: "cacheToken",
+		routeIsSavedToLocalStorage: "risls"
 	},
 	modal: {
 		checkout: "CHECKOUT",

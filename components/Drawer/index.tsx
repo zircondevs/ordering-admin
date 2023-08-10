@@ -17,7 +17,7 @@ const Drawer = () => {
 	const { pathname, push } = useRouter();
 	const [openDrawer, setOpenDrawer] = useState(false);
 	const activePage = (href: string) => pathname.split("/")[2] === href.split("/")[2];
-	const { state: {storeId, roleMangt , pathIsAccessible}, setStoreId, } = UseContext();
+	const { state: {storeId, roleMangt , token}, setStoreId, } = UseContext();
 
 
 	const { stores, } = useGetStores();
@@ -26,7 +26,7 @@ const Drawer = () => {
 	
 	useEffect(() => {
 		stores?.data?.[0]?._id && setStoreId(stores?.data?.[0]?._id );
-	}, [stores?.data?.[0]?._id , pathIsAccessible]);
+	}, [stores?.data?.[0]?._id , token]);
 
 
 	useEffect(() => {

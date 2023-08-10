@@ -33,8 +33,11 @@ const DashboardLayout = ({  children}: any ) => {
 						:
 						<Flex direction="column" margin="80px 0px !important">
 							<WarningIcon colour="Error.default" height="20" width="20"/>
-							<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Black.default"}>
+							<Span fontFamily='ubuntu' weight="400" lineHeight="24" size="14" colour={"Grey.1"}>
 								You do not have permission to access this page
+							</Span>
+							<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={"Grey.3"}>
+								Please reach out to your asministrator for any inquires.
 							</Span>
 						</Flex>
 				}

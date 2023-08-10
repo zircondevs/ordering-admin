@@ -41,7 +41,7 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 								/>
 							</DrawerMenu>
 							<Bold  weight="600" fontFamily='quicksandMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
-								{user?.clientName}
+								{MakeOnlyFirstLettersCapital(user?.clientName)}
 							</Bold>
 						</DrawerMenuWrapper>
 						:
