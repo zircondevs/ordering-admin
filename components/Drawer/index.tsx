@@ -10,6 +10,7 @@ import { useGetStores } from "../../hooks/useStores";
 import { UseContext } from "../../state/provider";
 import { STORAGE } from "../../applications/storage";
 import { filterRequiredRole } from "../../lib";
+import { OverFlowScrollBar } from "../OverflowContainer/styles";
 
 
 
@@ -44,63 +45,68 @@ const Drawer = () => {
 			{
 				openDrawer ? <Overlay onClick={() => setOpenDrawer(false)}/> : null
 			}
+
+	
 			<MenuStyles openDrawer={openDrawer}>
-				<Spacer height="64px"/>
+				<OverFlowScrollBar directions="hidden auto ">
+					<Spacer height="64px"/>
 				
 
-				{
-					stores?.data?.length > 0 ?
-						<SelectStores>
-							{
-								(stores?.data?.length === 1 )?
-									<SingleStore>{stores?.data?.[0]?.name}</SingleStore>
-									:
-									<Dropdown
-										weight="300"
-										direction="end"
-										colour="Black.default"
-										dropColor="Grey.2"
-										dropHovColor="Black.default"
-										hovBgColor="Black.20"
-										searchField={false}
-										clearSelected
-										initial={stores?.data?.find((store: any) => store?._id === storeId)?.name }
-										handleSelect={(selected: string) => setStoreId(selected)}
-										data={stores?.data?.map((store: any) => (
-											{
-												displayedValue: store?.name, 
-												returnedValue: store?._id,
-												dropdownValue: store?.name
-											}
-										))|| ({
-											displayedValue: "No data", 
-											returnedValue: "No data",
-											dropdownValue: "No data",
-										}) }
-									/>
-							}
-						</SelectStores>
-						: null
-				}
-
-
-				<Grid>
 					{
-						(roleMangt?.accountType === "CLIENT_ADMIN" ? Constant.drawer : filterRequiredRole(Constant.drawer, roleMangt.moduleAccessible) )
-							?.map((drawerItem => (
-								<DrawerItem key={drawerItem.name}
-									active={activePage(drawerItem?.href)}
-									onClick={() => push(drawerItem.href)}
-								>
-									{drawerItem.icon}
-									<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="14" colour={"Black.default"}>
-										{drawerItem.name}
-									</Span>
-								</DrawerItem>
-							)))
+						stores?.data?.length > 0 ?
+							<SelectStores>
+								{
+									(stores?.data?.length === 1 )?
+										<SingleStore>{stores?.data?.[0]?.name}</SingleStore>
+										:
+										<Dropdown
+											weight="300"
+											direction="end"
+											colour="Black.default"
+											dropColor="Grey.2"
+											dropHovColor="Black.default"
+											hovBgColor="Black.20"
+											searchField={false}
+											clearSelected
+											initial={stores?.data?.find((store: any) => store?._id === storeId)?.name }
+											handleSelect={(selected: string) => setStoreId(selected)}
+											data={stores?.data?.map((store: any) => (
+												{
+													displayedValue: store?.name, 
+													returnedValue: store?._id,
+													dropdownValue: store?.name
+												}
+											))|| ({
+												displayedValue: "No data", 
+												returnedValue: "No data",
+												dropdownValue: "No data",
+											}) }
+										/>
+								}
+							</SelectStores>
+							: null
 					}
-				</Grid>
 
+
+				
+					<Grid>
+						{
+							(roleMangt?.accountType === "CLIENT_ADMIN" ? Constant.drawer : filterRequiredRole(Constant.drawer, roleMangt.moduleAccessible) )
+								?.map((drawerItem => (
+									<DrawerItem key={drawerItem.name}
+										active={activePage(drawerItem?.href)}
+										onClick={() => push(drawerItem.href)}
+									>
+										{drawerItem.icon}
+										<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="14" colour={"Black.default"}>
+											{drawerItem.name}
+										</Span>
+									</DrawerItem>
+								)))
+						}
+					</Grid>
+
+				</OverFlowScrollBar>
 			</MenuStyles>
 		</Layout>
 	);

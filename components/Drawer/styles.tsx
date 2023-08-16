@@ -38,23 +38,27 @@ export const MenuStyles =  styled("aside")<{openDrawer: boolean}>`
     width: auto;
     height: 100vh;
     background-color: ${({ theme }) => theme?.palette?.common["white"] };
-    padding: 0 3%;
+
     position: fixed;
     z-index:  ${({ theme }) => theme?.zIndex["drawer"] };;
     left: 0;
     top: 0;
 	width: 280px;
 	bottom: 0;
-	padding-top: 70px;
+	
 	border: 1px solid #E0E0E0;
-    @media (${({theme}) => theme.mediaQuery.below["tab"]}){
-        padding: 0 4%;
-		padding-top: 70px;
-    }
+
     @media (max-width: 700px){
 		transition: 200ms ease-in;
 		transform: ${({  openDrawer }) => !openDrawer  ? "translateX(-280px)" : "translateX(0)"}; 
     }
+	& > div {
+		width: 100%;
+		padding: 70px 3vw 40px;
+		@media (${({theme}) => theme.mediaQuery.below["tab"]}){
+			padding: 70px 4vw 40px;
+		}
+	}
 `;
 
 export const DrawerMenu =  styled(Flex)`
