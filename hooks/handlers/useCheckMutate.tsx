@@ -14,7 +14,7 @@ import { STORAGE } from "../../applications/storage";
 
 
 
-export const useCheckMutate  = ( mutate: any ) => {
+export const useReloadOnTokenChange  = (   ) => {
  
 	const { state: { token }} = UseContext();
  
@@ -26,7 +26,7 @@ export const useCheckMutate  = ( mutate: any ) => {
 
 		if(token !== cachedToken){
 			STORAGE.DELETE(Constant.keys.cacheToken);
-			mutate();
+			window.location  = window.location.href as Location | (string & Location);
 		}
 	}, [token,  ]); 
 };

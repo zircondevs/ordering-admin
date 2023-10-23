@@ -6,7 +6,7 @@ import { STORAGE } from "../applications/storage";
 import Constant from "../constants";
 import { useLogout } from "./handlers/useLogout";
 import Notify from "../applications/notification";
-import { useCheckMutate } from "./handlers/useCheckMutate";
+
 
 
 
@@ -60,6 +60,8 @@ export const useCreateAccount  = () => {
 };
 
  
+
+
 export const useForgotPassword  = () => {
 	const { postAxiosHandler } = useAxiosHandler();
 	const [loading, setLoading] = useState(false);
@@ -78,6 +80,8 @@ export const useForgotPassword  = () => {
 	};
 	return { handleForgotPassword, loading  };
 };
+
+
 
 
 export const useResetPassword  = () => {
@@ -105,7 +109,7 @@ export const useGetUser  = () => {
 	const {setUser} = UseContext();
 	const { handleLogout } = useLogout();
  
-	const { data , loading, error, isValidating, mutate} = useGetCachedAxiosHandler ({
+	const { data , loading, error, isValidating,  } = useGetCachedAxiosHandler ({
 		url: `${AUTH_URL}/me`,
 		notify: false,
 	});
@@ -116,12 +120,8 @@ export const useGetUser  = () => {
 				Notify().warning("You are not an admin");
 				handleLogout();
 			}
-		}
-	}, [ data ]);
-
- 
-	useCheckMutate(mutate);
- 
+		}else if(data?.data?.statusCode  === 401)handleLogout();
+	}, [ data ]); 
 	useEffect(() => {
 		if(error?.response?.data?.statusCode === 401){
 			handleLogout();

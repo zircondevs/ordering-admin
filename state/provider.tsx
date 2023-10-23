@@ -68,7 +68,10 @@ export function ProviderContext({ children }: any ) {
 		const routeIsSavedToLocalStorage =  STORAGE.GET(Constant.keys.routeIsSavedToLocalStorage);
 		if(!state.token || !state.roleMangt.accountType ) return;
 
-		if(routeIsSavedToLocalStorage) {
+
+		
+
+		if(routeIsSavedToLocalStorage && JSON.parse(routeIsSavedToLocalStorage)) {
 			setPathIsAccessible(true);
 		}else {
 			if(state.roleMangt.accountType === "CLIENT_ADMIN"){
@@ -79,7 +82,7 @@ export function ProviderContext({ children }: any ) {
 			}
 			setTimeout(() => {
 				setPathIsAccessible(true);
-				STORAGE.SAVE(Constant.keys.routeIsSavedToLocalStorage, true);
+				STORAGE.SAVE(Constant.keys.routeIsSavedToLocalStorage, JSON.stringify(true));
 			}, 1000);
 		}
 	},  [state.token, state.roleMangt.accountType]);

@@ -16,12 +16,14 @@ import {    WarningIcon } from "../../public/assets/svg";
 import { useGetUser } from "../../hooks/useAuth";
 import { useGetAdminGeneralSettings, useGetStaffRoles } from "../../hooks/useSettigs";
 import { IconLoader } from "../Loader";
+import { useReloadOnTokenChange } from "../../hooks/handlers/useCheckMutate";
 
 
 
 
 
 export function ProtectedRoute({ children }: any ) {
+	useReloadOnTokenChange();
 	const { 
 		state: { token, loading, user,  roleMangt, pathIsAccessible }, 
 		setToken , setRefreshToken, setIsAuthenticated, setLoading
@@ -33,7 +35,6 @@ export function ProtectedRoute({ children }: any ) {
 	const { handleLogout } = useLogout();
 	const { error,  isValidating  } = useGetUser();
 	useGetAdminGeneralSettings();
-	
 	useGetStaffRoles();
 	
 	useEffect(() => {
@@ -67,7 +68,7 @@ export function ProtectedRoute({ children }: any ) {
 		}
 	}, [token, user?.accountType, isValidating,  roleMangt.accountType ]);
 
-
+ 
  
  
 

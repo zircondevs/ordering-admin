@@ -24,12 +24,12 @@ const Home: NextPage = () => {
 export default Home;
 
 
-// export const getServerSideProps = async () => {
-// 	return {
-// 		redirect: {
-// 			destination: "/dashboard",
-// 			permanent: false,
-// 		},
-// 	};
+export const getServerSideProps = async () => {
+	return {
+		redirect: {
+			destination: "/dashboard",
+			permanent: false,
+		},
+	};
  
-// };
+};

@@ -24,7 +24,7 @@ const Overview = () => {
 
 	const { orders: processingOrders ,   ...more1 } = useGetOrders( "PROCESSING");
 	const { orders ,  ...more2 } = useGetOrders( "DELIVERED");
-	const { orders: beenPreparedOrders ,  ...more3 } = useGetOrders(   "BEEN PREPARED");
+	// const { orders: beenPreparedOrders ,  ...more3 } = useGetOrders(   "BEEN PREPARED");
 	const { orders: canceledOrders ,    ...more4 } = useGetOrders( "CANCELLED");
 	const { orders: onDeliveryOrders ,   ...more5 } = useGetOrders(  "ON DELIVERY");
 	const { orders: openedOrders ,   ...more6 } = useGetOrders(  "OPENED");
@@ -43,11 +43,11 @@ const Overview = () => {
 			body: <OrdersTable   {...{...more2}}  {...tableProps}  orders={orders}   title="Delivered Orders" />,
 			key: "DELIVERED"
 		},
-		{
-			head:  <TabLabel title="Been Prepared Orders" count={beenPreparedOrders?.count} />,
-			body: <OrdersTable  {...{...more3}}   {...tableProps}  orders={beenPreparedOrders}  title="Been Prepared Orders" />,
-			key: "BEEN PREPARED"
-		},
+		// {
+		// 	head:  <TabLabel title="Been Prepared Orders" count={beenPreparedOrders?.count} />,
+		// 	body: <OrdersTable  {...{...more3}}   {...tableProps}  orders={beenPreparedOrders}  title="Been Prepared Orders" />,
+		// 	key: "BEEN PREPARED"
+		// },
 		{
 			head:  <TabLabel title="Canceled Orders" count={canceledOrders?.count} />,
 			body: <OrdersTable  {...{...more4}}   {...tableProps}  orders={canceledOrders}  title="Canceled Orders" />,
