@@ -11,12 +11,7 @@ import {   useAxiosHandler, useGetCachedAxiosHandler } from "./useAxiosHandler";
 import { SETTINGS_URL } from "../constants/urls";
 
 
-
-
  
-
- 
-
 
 export const useGetStorePolicy  = () => {
 	const { state: { user }} = UseContext();
@@ -27,6 +22,18 @@ export const useGetStorePolicy  = () => {
 	});
  
 	return {  loading, policy: data?.data?.data?.[0] ,  mutate };
+};
+ 
+
+export const useGetWorkingDays  = () => {
+	const { state: { user }} = UseContext();
+	const { data , loading, mutate} = useGetCachedAxiosHandler ({
+		url: `${SETTINGS_URL}/other-settings/${user?.clientId}`,
+		notify: false,
+		requiredVariable: user?.clientId?.length > 0
+	});
+ 
+	return {  loading, workingDays: data?.data?.data?.workingDays  ,  mutate };
 };
  
 
@@ -246,6 +253,28 @@ export const useUpdateSettingsUser  = (userId: string) => {
 	};
  
 	return {  loading, handleUpdateSettingsUser };
+};
+
+
+ 
+export const useUpdateStorePolicy  = (userId: string) => {
+	const { putAxiosHandler } = useAxiosHandler();
+	const [loading, setLoading] = useState(false);
+
+	const handleUpdateStorePolicy = async (DATA: object) => {
+		setLoading(true);
+		const { data } = await  putAxiosHandler ({
+			url: `${SETTINGS_URL}/policies/${userId}`,
+			DATA,
+			successMessage: "User updated successfully"
+		});
+		setLoading(false);
+		if(data) {
+			return { data };
+		}
+	};
+ 
+	return {  loading, handleUpdateStorePolicy };
 };
 
 

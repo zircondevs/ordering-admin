@@ -10,29 +10,28 @@ import CustomButton from "../../../../../components/Button";
 import {  GeneralLabel,    } from "../../../../../components/styles";
 import { Form, Formik } from "formik";
 import TimePicker from "../../../../../components/TimePicker";
-import { useSetUpStore } from "../../../../../hooks/useSettigs";
+import { useGetWorkingDays, useSetUpStore } from "../../../../../hooks/useSettigs";
 import { MakeOnlyFirstLettersCapital,   } from "../../../../../lib";
 import { SetUpStoreTypes } from "../../../../../constants/types";
 import { Checkbox } from "../../../../../components/CheckMark";
 
 
- 
-const WorkingDays = [
-	{ day: "MONDAY", openingHours: "8:0:0", closingHours: "16:0:0" },
-	{ day: "TUESDAY", openingHours: "8:0:0", closingHours: "16:0:0" },
-	{ day: "WEDNESDAY", openingHours: "8:0:0", closingHours: "16:0:0" },
-	{ day: "THURSDAY", openingHours: "8:0:0", closingHours: "16:0:0" },
-	{ day: "FRIDAY", openingHours: "8:0:0", closingHours: "16:0:0" },
-	{ day: "SATURDAY", openingHours: "", closingHours: "" },
-	{ day: "SUNDAY", openingHours: "", closingHours: "" },
-];
+const days = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"];
 
 
-const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
+
+const OpeningAndClosingHrs = ( ) => {
 	const { handleSetUpStore, loading} = useSetUpStore();
+	const { workingDays, mutate } = useGetWorkingDays();
 
-	console.log(settings?.workingDays);
 	
+	const WorkingDays = days.map((day, index) => ({ 
+		day: workingDays?.[index]?.day || day, 
+		openingHours: workingDays?.[index]?.day  ?  workingDays?.[index]?.openingHours : "8:0:0", 
+		closingHours: workingDays?.[index]?.day  ? workingDays?.[index]?.closingHours :  "16:0:0" 
+	}));
+ 
+ 
 	return (
 		<div>
 
@@ -56,8 +55,7 @@ const OpeningAndClosingHrs = ( {settings, onDone}: {settings: any, onDone: () =>
 					}} 
 					onSubmit={ async (values ) => { 
 						const res = await handleSetUpStore((values as SetUpStoreTypes));
-						res?.data && onDone();
-						console.log(values);
+						res?.data && mutate();
 					}}
 				>
 					{({ values, setFieldValue, dirty}) => {

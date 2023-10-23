@@ -60,6 +60,8 @@ export const useCreateAccount  = () => {
 };
 
  
+
+
 export const useForgotPassword  = () => {
 	const { postAxiosHandler } = useAxiosHandler();
 	const [loading, setLoading] = useState(false);
@@ -78,6 +80,8 @@ export const useForgotPassword  = () => {
 	};
 	return { handleForgotPassword, loading  };
 };
+
+
 
 
 export const useResetPassword  = () => {
@@ -116,7 +120,7 @@ export const useGetUser  = () => {
 				Notify().warning("You are not an admin");
 				handleLogout();
 			}
-		}
+		}else if(data?.data?.statusCode  === 401)handleLogout();
 	}, [ data ]); 
 	useEffect(() => {
 		if(error?.response?.data?.statusCode === 401){

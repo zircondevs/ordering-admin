@@ -25,7 +25,7 @@ const StoreSettings = ( ) => {
 	const tabData = [
 		{
 			head: "Opening & Closing Hours",
-			body:	<OpeningAndClosingHrs {...{settings, onDone: mutate}} />,
+			body:	<OpeningAndClosingHrs  />,
 			key: "Account Information"
 		},
 		{

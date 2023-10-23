@@ -68,7 +68,7 @@ export function ProtectedRoute({ children }: any ) {
 		}
 	}, [token, user?.accountType, isValidating,  roleMangt.accountType ]);
 
-
+ 
  
  
 

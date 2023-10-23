@@ -84,7 +84,6 @@ export const TabsStyles =  styled("div")`
 					background-color:   ${({ theme }) => theme.palette.Grey["6"]};
 					@media (max-width: 1000px) {
 						border: none;
-						/* border-top: 3px solid  ${({ theme }) => theme.palette.Orange["default"]}; */
 						background-color:   ${({ theme }) => theme.palette.Orange["5"]};
 						 color:   ${({ theme }) => theme.palette.Orange["default"]};
 					}
