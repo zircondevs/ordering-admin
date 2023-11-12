@@ -43,11 +43,6 @@ const Overview = () => {
 			body: <OrdersTable   {...{...more2}}  {...tableProps}  orders={orders}   title="Delivered Orders" />,
 			key: "DELIVERED"
 		},
-		// {
-		// 	head:  <TabLabel title="Been Prepared Orders" count={beenPreparedOrders?.count} />,
-		// 	body: <OrdersTable  {...{...more3}}   {...tableProps}  orders={beenPreparedOrders}  title="Been Prepared Orders" />,
-		// 	key: "BEEN PREPARED"
-		// },
 		{
 			head:  <TabLabel title="Canceled Orders" count={canceledOrders?.count} />,
 			body: <OrdersTable  {...{...more4}}   {...tableProps}  orders={canceledOrders}  title="Canceled Orders" />,

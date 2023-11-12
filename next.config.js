@@ -6,6 +6,7 @@ const nextConfig = {
 	},
 	env: {
 		AUTH_URL: process.env.NEXT_PUBLIC_AUTH_URL,
+		PORTL_URL: process.env.NEXT_PUBLIC_PORTL_URL,
 	},
 	compiler: {
 		// Enables the styled-components SWC transform

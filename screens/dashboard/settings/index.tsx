@@ -1,31 +1,24 @@
-/* eslint-disable max-lines */
-
-import React, { useEffect, useState }    from "react";
+ 
+import React    from "react";
 import { Bold,  Flex,   Tabs   } from "../../../components";
-import {     HeaderSTyles, Main,         StoreLinkStyles,    TabsStyles, } from "./styles";
+import {     HeaderSTyles, Main,           TabsStyles, } from "./styles";
 import {   GeneralTabStyle } from "../../../components/styles";
 import AccountInfo from "./accountInfo";
 import UserManagemnt from "./userMangt";
 import Security from "./security";
 import Subscription from "./subscription";
-import { AvatarIcon, PadlockIcon, SettingsIcon, StoreIcon } from "../../../public/assets/svg";
+import { AvatarIcon, PadlockIcon, SettingsIcon,   } from "../../../public/assets/svg";
 import { useGetetUserRoleModule } from "../../../hooks/handlers/useRole";
-import { UseContext } from "../../../state/provider";
+import StoreLink from "../../../components/StoreLink";
 
 
 
 
 
 const Settings = () => {
-	const { state: { client }} = UseContext();
 	const {IS_CLIENT_ADMIN  } = useGetetUserRoleModule( "settings");
 
-	const [copied, setCopied] = useState(false);
-
-
-	useEffect(() => {
-		copied && setTimeout(() => setCopied(false),  2000);
-	}, [ copied ]);
+ 
  
 	const tabData = [
 		{
@@ -67,26 +60,7 @@ const Settings = () => {
 					Settings
 				</Bold>
 
-				{
-					client?.companyName ?
-						<StoreLinkStyles wrap="nowrap" copied={copied}>
-							<StoreIcon height="16" width="16"  colour={"Blue.default"}/>
-							<a href={`https://${client?.companyName}.otha.io`} 	rel="noopener noreferrer" target="_blank" >
-								<Bold fontFamily='ubuntuMedium' weight="600" lineHeight="19" size="14" colour={"Blue.default"}>
-									{`https://${client?.companyName}.otha.io`}
-								</Bold>
-							</a>
-							<button
-								onClick={() => {
-									setCopied(true);
-									navigator.clipboard.writeText(`https://${client?.companyName}.otha.io`);
-								}}
-							>
-								{copied ? "Copied" : "Copy Store Link"}
-							</button>
-						</StoreLinkStyles>
-						: null
-				}
+				<StoreLink />
 			</HeaderSTyles>
 
 	
