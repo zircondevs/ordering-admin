@@ -61,17 +61,17 @@ export function ProviderContext({ children }: any ) {
 	
 	useEffect(() => {
 		/**
-		 * routeIsSavedToLocalStorage ensure that the user is redirected to the first page he has access to, not just to the default  dashboard page
-		 * Once routeIsSavedToLocalStorage is available (this is set on logout), the initial redirect page is set
-		 * and routeIsSavedToLocalStorage is deleted to prevent a second redirect
+		 * isRouteIsSavedToLocalStorage ensure that the user is redirected to the first page he has access to, not just to the default  dashboard page
+		 * Once isRouteIsSavedToLocalStorage is available (this is set on logout), the initial redirect page is set
+		 * and isRouteIsSavedToLocalStorage is deleted to prevent a second redirect
 		 */
-		const routeIsSavedToLocalStorage =  STORAGE.GET(Constant.keys.routeIsSavedToLocalStorage);
+		const isRouteIsSavedToLocalStorage =  STORAGE.GET(Constant.keys.isRouteIsSavedToLocalStorage);
 		if(!state.token || !state.roleMangt.accountType ) return;
 
 
 		
 
-		if(routeIsSavedToLocalStorage && JSON.parse(routeIsSavedToLocalStorage)) {
+		if(isRouteIsSavedToLocalStorage && JSON.parse(isRouteIsSavedToLocalStorage)) {
 			setPathIsAccessible(true);
 		}else {
 			if(state.roleMangt.accountType === "CLIENT_ADMIN"){
@@ -82,7 +82,7 @@ export function ProviderContext({ children }: any ) {
 			}
 			setTimeout(() => {
 				setPathIsAccessible(true);
-				STORAGE.SAVE(Constant.keys.routeIsSavedToLocalStorage, JSON.stringify(true));
+				STORAGE.SAVE(Constant.keys.isRouteIsSavedToLocalStorage, JSON.stringify(true));
 			}, 1000);
 		}
 	},  [state.token, state.roleMangt.accountType]);

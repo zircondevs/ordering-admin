@@ -29,9 +29,9 @@ const Constant  = {
 		cacheToken: "cacheToken",
 
 		/**
-		 * routeIsSavedToLocalStorage controls where the logged user gets redirected to
+		 * isRouteIsSavedToLocalStorage controls where the logged user gets redirected to
 		 */
-		routeIsSavedToLocalStorage: "risls"
+		isRouteIsSavedToLocalStorage: "risls"
 	},
 	modal: {
 		checkout: "CHECKOUT",

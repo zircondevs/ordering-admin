@@ -16,14 +16,14 @@ import {    WarningIcon } from "../../public/assets/svg";
 import { useGetUser } from "../../hooks/useAuth";
 import { useGetAdminGeneralSettings, useGetStaffRoles } from "../../hooks/useSettigs";
 import { IconLoader } from "../Loader";
-import { useReloadOnTokenChange } from "../../hooks/handlers/useCheckMutate";
+import { useClearBrowserSessionWhenTokeChanges } from "../../hooks/handlers/useClearBrowserSession";
 
 
 
 
 
 export function ProtectedRoute({ children }: any ) {
-	useReloadOnTokenChange();
+	useClearBrowserSessionWhenTokeChanges();
 	const { 
 		state: { token, loading, user,  roleMangt, pathIsAccessible }, 
 		setToken , setRefreshToken, setIsAuthenticated, setLoading

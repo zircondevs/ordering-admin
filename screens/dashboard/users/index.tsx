@@ -7,6 +7,7 @@ import { GeneralCountStyles, GeneralTableStyle } from "../../../components/style
 import { useGetUsers } from "../../../hooks/useAuth";
 import { GenericObjTypes } from "../../../constants/types";
 import {  EmptyIcon, LoaderIcon } from "../../../public/assets/svg";
+import Paginator from "../../../components/Paginator";
  
 
 
@@ -14,7 +15,7 @@ import {  EmptyIcon, LoaderIcon } from "../../../public/assets/svg";
 
 
 const Transactions = () => {
-	const { users, loading , error} = useGetUsers();
+	const { users, loading , error, pageInfo, setPageInfo } = useGetUsers();
 	const tableHead = ["Customer Name", "Date Created","Email", "Phone Number",   "Address"];
 	const tableBody = users?.data?.length > 0 ? users?.data?.map((user: GenericObjTypes) =>  (
 		{
@@ -25,6 +26,7 @@ const Transactions = () => {
 			address: user?.address || "N/A"
 		}
 	)) : [];
+
 
 	
 	return (
@@ -64,7 +66,7 @@ const Transactions = () => {
 									We are having trouble fetching all users
 								</Bold>
 							</Flex>
-							: users?.lenght > 0 ?
+							: users?.data?.length > 0 ?
 								<GeneralTableStyle height="auto" justifyContent="flex-start">
 									<Table 
 										gap={"0"}
@@ -73,6 +75,13 @@ const Transactions = () => {
 										headColor="Grey.2"
 										tableHead={tableHead}
 										tableBodys={tableBody}
+									/>
+									<Paginator
+										onPageChange={(p) => setPageInfo((prev: any) => ({...prev, page: p  }))}  
+										firstLast={true} 
+										prevNext
+										pages = {pageInfo?.pages }
+										currentPage = {(+pageInfo?.page)}
 									/>
 								</GeneralTableStyle>
 								:	

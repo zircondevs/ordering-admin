@@ -14,7 +14,7 @@ import { STORAGE } from "../../applications/storage";
 
 
 
-export const useReloadOnTokenChange  = (   ) => {
+export const useClearBrowserSessionWhenTokeChanges  = (   ) => {
  
 	const { state: { token }} = UseContext();
  
