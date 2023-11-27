@@ -84,10 +84,10 @@ export const GeneralErrorContainer =  styled("small")`
 export const ModalSpacer =  styled(Flex)`
 	padding: 24px 64px 60px;
 	@media (max-width: 1000px) {
-		padding: 24px 24px 60px;
+		padding: 24px 24px  ;
 	}
 	@media (max-width: 700px) {
-		padding: 24px 4% 60px;
+		padding: 24px 4%  ;
 	}
 `;
 

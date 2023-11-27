@@ -16,6 +16,8 @@ import { CancelIcon } from "../../../public/assets/svg";
 import Image from "next/image";
 import Upload from "../../../components/Upload";
 import * as Yup from "yup";
+import { STORAGE } from "../../../applications/storage";
+import Constant from "../../../constants";
 
 
 
@@ -65,10 +67,12 @@ const CreateProduct = ({	product, onDone,   categories } : PropType) => {
 				productImage: product?.productImage ||  [] ,
 			}} 
 			onSubmit={ async (values , actions) => { 
-				const res = product?.type === "addProduct" ?
-					await handleCreateProduct({...values, ...(values.quantity && { quantity: values.quantity }) })
-					: await handleUpdateProduct({...values,...(values.quantity && { quantity: values.quantity }) , isAvailable } );
+				const res = product?.type === "editProduct" ?
+					await handleUpdateProduct({...values,...(values.quantity && { quantity: values.quantity }) , isAvailable } )
+					:await handleCreateProduct({...values, ...(values.quantity && { quantity: values.quantity }) });
 				if(res?.data) {
+					STORAGE.DELETE(Constant.keys.newUser);
+  
 					actions.resetForm();
 					onDone && onDone();
 				}
@@ -205,7 +209,6 @@ const CreateProduct = ({	product, onDone,   categories } : PropType) => {
 								<GeneralLabel> Product Description  </GeneralLabel>
 								<EditorContainer initialValue={values.description || "<p>Enter description …</p>"}  handleOnChange={(e) => setFieldValue("description", e)}/>
 							</Grid>
-
 
 							<Grid columns="repeat(auto-fit, minmax(127px, 150px))" gap="10px" justifyContent="flex-start">
 								{

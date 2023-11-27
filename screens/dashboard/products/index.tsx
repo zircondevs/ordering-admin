@@ -58,7 +58,7 @@ const Product = () => {
 			category: product?.category?.name,
 			date: `${formateDate(new Date(product?.createdAt)).date} ${formateDate(new Date(product?.createdAt)).shortMonth}, ${formateDate(new Date(product?.createdAt)).year}` ,
 			quantity: product?.quantity || (product?.isAvailable ? 0 : "unlimited"),
-			amount: "₦" + formatNumber(product?.amount),
+			amount: typeof(+product?.amount) === "number" ? `₦${formatNumber(product?.amount)}` : "N/A",
 			isAvailable: <Checkbox checked={product?.isAvailable} type="radio" />,
 			...(
 				EDIT || DELETE ?

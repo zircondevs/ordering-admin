@@ -19,7 +19,7 @@ export const Main =  styled(Flex)`
 export const ModalSpacer =  styled(Flex)`
 	padding: 60px 64px 60px;
 	@media (max-width: 1000px) {
-		padding: 24px 24px 60px;
+		padding: 24px 24px ;
 
 	}
 `;

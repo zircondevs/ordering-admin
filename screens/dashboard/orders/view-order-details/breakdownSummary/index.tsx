@@ -13,10 +13,11 @@ import { GeneralDivider } from "../../../../../components/styles";
  
 
 const BreakdownSummary = ({  order}:any) => {
-
+ 
 
 	const total = {
-		"SUB TOTAL": formatNumber(order?.item?.reduce((prev: any, current: any) =>  current.reduce((prev: any, current: any) =>  (current?.product?.amount * current?.quantity)+ prev, 0) + prev, 0)),
+		"SUB TOTAL": formatNumber(order?.item?.reduce((prev: any, current: any) => current?.product?.amount * current?.quantity  + prev, 0)),
+		// "SUB TOTAL": formatNumber(order?.item?.reduce((prev: any, current: any) =>  current?.reduce((prev: any, current: any) =>  (current?.product?.amount * current?.quantity)+ prev, 0) + prev, 0)),
 		"DELIVERY FEE": order?.deliveryCharge,
 	};
 
@@ -97,7 +98,7 @@ const BreakdownSummary = ({  order}:any) => {
 							</div>
 							<Bold  fontFamily='ubuntu' weight="700" lineHeight="16" size="12" colour={"Grey.2"}>
 								{naira} 
-								{formatNumber(item.reduce((prev: any, current: any) => (current?.product?.amount * current?.quantity)+ prev,0))}
+								{formatNumber(item?.reduce((prev: any, current: any) => (current?.product?.amount * current?.quantity)+ prev,0))}
 							</Bold>
 						</Flex>
 					))}

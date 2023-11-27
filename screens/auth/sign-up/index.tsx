@@ -21,10 +21,10 @@ import Constant from "../../../constants";
 
 
 export const LoginSchema = Yup.object().shape({
-	businessName: Yup.string().required("Business name is required"), 
-	email: Yup.string().required("email is required"), 
-	password: Yup.string().required("password is required"), 
-	phoneNumber: Yup.string().required("Phone number is required"), 
+	clientName: Yup.string().required("Business name is required"), 
+	clientEmail: Yup.string().required("clientEmail is required"), 
+	clientPassword: Yup.string().required("password is required"), 
+	clientPhone: Yup.string().required("Phone number is required"), 
 });
 
 
@@ -53,24 +53,18 @@ const Login = () => {
 						validationSchema={LoginSchema}
 						enableReinitialize
 						initialValues={{
-							businessName: "",
-							email: "",
-							password: "",
-							dialCode: "+234",
-							phoneNumber: "",
+							clientName: "",
+							clientEmail: "",
+							clientPassword: "",
+							// dialCode: "+234",
+							clientPhone: "",
 						}} 
 						onSubmit={ async (values , actions) => { 
 							const res = await handleCreateAccount(values);
 							if(res?.data){
 								STORAGE.SAVE(Constant.keys.newUser, "true");
 								actions.resetForm();
-								push(
-									{
-										pathname:  "/check-mail",
-										query: {email : values.email},
-									},
-									"/check-mail"
-								);
+								push( "/login");
 							}
 						}}
 					>
@@ -80,8 +74,8 @@ const Login = () => {
 									<GeneralInputWrap margin="8px 0 0">
 										<GeneralLabel>Business Name </GeneralLabel>
 										<Input
-											value={values.businessName}
-											name="businessName" 
+											value={values.clientName}
+											name="clientName" 
 											type={"text"} 
 											handleChange={handleChange}
 											borderCol={"Black.20"}
@@ -90,24 +84,24 @@ const Login = () => {
 											borderRadius="8px"
 										/>
 										<GeneralErrorContainer>
-											{errors.businessName}
+											{errors.clientName}
 										</GeneralErrorContainer>
 									</GeneralInputWrap>
 
 									<GeneralInputWrap margin="8px 0 0">
 										<GeneralLabel> Email </GeneralLabel>
 										<Input
-											value={values.email}
-											name="email" 
+											value={values.clientEmail}
+											name="clientEmail" 
 											type={"text"} 
 											handleChange={handleChange}
 											borderCol={"Black.20"}
 											activeBorderCol={"Blue.base.default"}
-											placeholder="Enter your email"
+											placeholder="Enter your clientEmail"
 											borderRadius="8px"
 										/>
 										<GeneralErrorContainer>
-											{errors.email}
+											{errors.clientEmail}
 										</GeneralErrorContainer>
 									</GeneralInputWrap>
 
@@ -115,8 +109,8 @@ const Login = () => {
 									<GeneralInputWrap margin="8px 0 0">
 										<GeneralLabel>Password</GeneralLabel>
 										<Input
-											value={values.password}
-											name="password" 
+											value={values.clientPassword}
+											name="clientPassword" 
 											type={"password"} 
 											handleChange={handleChange}
 											borderCol={"Black.20"}
@@ -125,16 +119,16 @@ const Login = () => {
 											borderRadius="8px"
 										/>
 										<GeneralErrorContainer>
-											{errors.password}
+											{errors.clientPassword}
 										</GeneralErrorContainer>
 									</GeneralInputWrap>
 
 									<GeneralInputWrap margin="8px 0 0">
 										<GeneralLabel> Phone Number</GeneralLabel>
 										<Input
-											value={values.phoneNumber}
-											name="phoneNumber" 
-											type={"number"} 
+											value={values.clientPhone}
+											name="clientPhone" 
+											type={"text"} 
 											handleChange={handleChange}
 											borderCol={"Grey.5"}
 											activeBorderCol={"Grey.2"}
@@ -163,7 +157,7 @@ const Login = () => {
 											}
 										/>
 										<GeneralErrorContainer>
-											{errors.phoneNumber}
+											{errors.clientPhone}
 										</GeneralErrorContainer>
 									</GeneralInputWrap>
 								</Grid>

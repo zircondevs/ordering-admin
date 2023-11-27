@@ -68,14 +68,14 @@ export function ProviderContext({ children }: any ) {
 		const isRouteIsSavedToLocalStorage =  STORAGE.GET(Constant.keys.isRouteIsSavedToLocalStorage);
 		if(!state.token || !state.roleMangt.accountType ) return;
 
-
+		const newUser = STORAGE.GET(Constant.keys.newUser);
 		
 
 		if(isRouteIsSavedToLocalStorage && JSON.parse(isRouteIsSavedToLocalStorage)) {
 			setPathIsAccessible(true);
 		}else {
 			if(state.roleMangt.accountType === "CLIENT_ADMIN"){
-				push("/dashboard");
+				newUser === "true" ? push("/onboarding") : push("/dashboard");
 			}else{
 				const accessiblePages = filterRequiredRole(Constant.drawer, state.roleMangt.moduleAccessible);
 				push(accessiblePages?.[0]?.href);

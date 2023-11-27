@@ -11,6 +11,10 @@ import CreateProduct from "./create-product";
 import { useRouter } from "next/router";
 import { UseContext } from "../../state/provider";
 import { useGetStores } from "../../hooks/useStores";
+import { STORAGE } from "../../applications/storage";
+import Constant from "../../constants";
+import CreateCategory from "./create-category";
+import { useGetCategories } from "../../hooks/useCategory";
 
 
 
@@ -22,7 +26,7 @@ const OnBoarding = () => {
 	const {  setStoreId, } = UseContext();
 
 	const { stores , loading, mutate  } = useGetStores();
-
+	const { categories, mutate: muategetCategory } =  useGetCategories();
 
 
 	useEffect(() => {
@@ -70,6 +74,31 @@ const OnBoarding = () => {
 
 					<ProductIcon height="50" width="50"/>
 					<Spacer height="16px"/>
+					<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="28" size="24" colour={"Black.default"} center>
+						What kind of product do you intent to sell
+					</Bold>
+				</Flex>
+				{
+					loading ?  <Flex><LoaderIcon /></Flex> 
+						: <CreateCategory 
+							onDone={() => {
+								setStep(3);
+								muategetCategory();
+							}} 
+						/>
+				}
+			</>
+		),
+		3: (
+			<>
+				<Flex height="auto"   margin="0 0 40px" direction="column"  >
+					<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.3"}>
+						Step {step}
+					</Span>
+					<Spacer height="16px"/>
+
+					<ProductIcon height="50" width="50"/>
+					<Spacer height="16px"/>
 					<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="28" size="24" colour={"Black.default"}>
 						Add Your First Product
 					</Bold>
@@ -78,7 +107,7 @@ const OnBoarding = () => {
 					loading ? 
 						<Flex><LoaderIcon /></Flex>
 						:
-						<CreateProduct onDone={() => push("/")}/>
+						<CreateProduct onDone={() => push("/")} categories={categories}/>
 				}
 			</>
 		)
@@ -88,7 +117,12 @@ const OnBoarding = () => {
 			<Main>
 				<ModalSpacer direction="column" wrap="nowrap" alignItems='stretch'  margin="40px 0">
 
-					<SkipStyles fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Error.default"}onClick={() => push("/")} >
+					<SkipStyles fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Error.default"}
+						onClick={() => {
+							push("/");
+							STORAGE.DELETE(Constant.keys.newUser); 
+						}} 
+					>
 						Skip
 					</SkipStyles>
 			

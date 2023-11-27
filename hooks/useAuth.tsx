@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AUTH_URL } from "../constants/urls";
+import { AUTH_URL, CLIENT_URL } from "../constants/urls";
 import { useAxiosHandler, useGetCachedAxiosHandler } from "./useAxiosHandler";
 import { UseContext } from "../state/provider";
 import { STORAGE } from "../applications/storage";
@@ -47,9 +47,9 @@ export const useCreateAccount  = () => {
 	const handleCreateAccount = async (DATA: object) => {
 		setLoading(true);
 		const { data } = await postAxiosHandler ({
-			url: `${AUTH_URL}/admin-signup`,
+			url: `${CLIENT_URL}`,
 			DATA,
-			notify: false
+			// notify: false
 		});
 		setLoading(false);
 		if(data)   { 

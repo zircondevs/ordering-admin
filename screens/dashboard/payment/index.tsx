@@ -48,6 +48,7 @@ const Overview = () => {
 	const data = [
 		{
 			name: "Payout Balance",
+			description: "This is",
 			amount: naira + formatNumber(dashboard?.wallet?.balance),
 			icon: <DataIcon height="20" width="20" colour="common.white"/>
 		},

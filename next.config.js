@@ -6,6 +6,7 @@ const nextConfig = {
 	},
 	env: {
 		AUTH_URL: process.env.NEXT_PUBLIC_AUTH_URL,
+		NEXT_PUBLIC_SOCKET_URL: process.env.NEXT_PUBLIC_SOCKET_URL,
 		PORTL_URL: process.env.NEXT_PUBLIC_PORTL_URL,
 	},
 	compiler: {
@@ -30,7 +31,7 @@ const nextConfig = {
 					{
 						key: "Content-Security-Policy",
 						// eslint-disable-next-line max-len
-						value: `default-src 'self'  ${process.env.NEXT_PUBLIC_AUTH_URL}; form-action 'self'; frame-src 'self' *; object-src 'self'; img-src 'self' data: http://res.cloudinary.com/; frame-ancestors 'none'; child-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; worker-src 'self'; manifest-src 'self'; script-src   'self' ${process.env.NODE_ENV === "development" ? "'unsafe-eval'" : ""}`
+						value: `default-src 'self'  ${process.env.NEXT_PUBLIC_AUTH_URL} ${process.env.NEXT_PUBLIC_SOCKET_URL}; form-action 'self'; frame-src 'self' *; object-src 'self'; img-src 'self' data: http://res.cloudinary.com/; frame-ancestors 'none'; child-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; worker-src 'self'; manifest-src 'self'; script-src   'self' ${process.env.NODE_ENV === "development" ? "'unsafe-eval'" : ""}`
 					},
 					{
 						key: "Referrer-Policy",

@@ -33,7 +33,7 @@ const Upload = ({	onSuccess , } : PropType) => {
 						const form = new FormData();
 						form.append("image", target.files[0] );
 						const res = await handleImageUpload(form);
-						onSuccess( res?.data);
+						res?.data && onSuccess( res?.data);
 					}
 				}} 
 			/>

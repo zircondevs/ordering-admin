@@ -34,9 +34,9 @@ const Overview = () => {
 	const tableProps = {singleOrder, setSingleOrder, modalRef,  };
 	const tabData = [
 		{
-			head: <TabLabel title="In Progress" count={processingOrders?.count} />,
-			body:  <OrdersTable  {...{...more1 }} {...tableProps} orders={processingOrders}  title="Orders In Progress " />,
-			key: "PROCESSING"
+			head: <TabLabel title="Pending Orders" count={processingOrders?.count} />,
+			body:  <OrdersTable  {...{...more1 }} {...tableProps} orders={processingOrders}  title="Pending Orders " />,
+			key: "PENDING"
 		},
 		{
 			head:  <TabLabel title="Delivered Orders" count={orders?.count} />,

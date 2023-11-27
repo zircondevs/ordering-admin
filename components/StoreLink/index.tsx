@@ -15,7 +15,7 @@ const StoreLink = () => {
 	
 	const [copied, setCopied] = useState(false);
 
-
+ 
 	useEffect(() => {
 		copied && setTimeout(() => setCopied(false),  2000);
 	}, [ copied ]);
@@ -24,15 +24,15 @@ const StoreLink = () => {
 	return (
 		<StoreLinkStyles wrap="nowrap" copied={copied}>
 			<StoreIcon height="16" width="16"  colour={"Blue.default"}/>
-			<a href={`${process.env.PORTL_URL}${client?.companyName}`} 	rel="noopener noreferrer" target="_blank" >
+			<a href={`${process.env.PORTL_URL}${client?.companyName?.toLowerCase()}`} 	rel="noopener noreferrer" target="_blank" >
 				<Bold fontFamily='ubuntuMedium' weight="600" lineHeight="19" size="14" colour={"Blue.default"}>
-					{`${process.env.PORTL_URL}${client?.companyName}`}
+					{`${process.env.PORTL_URL}${client?.companyName?.toLowerCase()}`}
 				</Bold>
 			</a>
 			<button
 				onClick={() => {
 					setCopied(true);
-					navigator.clipboard.writeText(`${process.env.PORTL_URL}${client?.companyName}`);
+					navigator.clipboard.writeText(`${process.env.PORTL_URL}${client?.companyName?.toLowerCase()}`);
 				}}
 			>
 				{copied ? "Copied" : "Copy Store Link"}

@@ -27,8 +27,7 @@ export const useAxiosHandler = () => {
 		{url, token = Token, notify = true, DATA, successMessage, errorMessage, headers }: 
 		AxiosCallTypes & {headers?: any}
 	) => {
-		const { data, status, error, success , message , statusCode } = await handleAPICall({ url, token, method: "post", DATA, headers });
- 
+		const { data, status, error, success , message , statusCode } = await handleAPICall({ url, token, method: "post", DATA, headers }); 
 		notify  && data && Notify().success(  successMessage || messageHandler(message) );
 		notify  && error && Notify().error( errorMessage || errorHandler( error )  );
 		return { data, status, error, success , message, statusCode };

@@ -366,3 +366,13 @@ export const hshString = (input: string) => {
 	}
 	return hash;
 };
+
+export const MaskString = (cardnumber: string ) => {
+	if(typeof(cardnumber) !== "string") return;
+	const first4 = cardnumber.substring(0, 2);
+	const last5 = cardnumber.substring(cardnumber.length - 5);
+
+	const mask = cardnumber.substring(4, cardnumber.length - 5).replace(/\d/g,"*");
+
+	return first4 + mask + last5;
+};

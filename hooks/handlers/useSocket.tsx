@@ -23,6 +23,7 @@ export const useSocket = () => {
 
 	const onNewOrders = (res: {[e: string]: object}) => {
 		setRealTimeOrder(res);
+		console.log("new order", res);
 	};
 
 
@@ -31,6 +32,7 @@ export const useSocket = () => {
 	// clientId or storeId
 	const handleJoinRoom = ( storeId:  string) => {
 		socket.emit("join-room", {room: storeId});
+		console.log("JOINING_ROOM", storeId);
 	};
 
  
