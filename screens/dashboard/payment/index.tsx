@@ -12,6 +12,7 @@ import { formatNumber, naira } from "../../../lib";
 import BalanceLog from "./balanceLog";
 import WidthDrawlLogs from "./widthdrawlLogs";
 import Settings from "./settings";
+import { useGetTotalPaidOut } from "../../../hooks/usePayment";
 
 
 
@@ -24,8 +25,10 @@ const Overview = () => {
 	
 	const { dashboard ,    } = useGetDashboardDetails();
 
+	const {totalPaidOut} =useGetTotalPaidOut();
 
-
+	console.log(totalPaidOut, "totalPaidOut")
+	
 	const tabData = [
 		{
 			head: <><Flex margin="0 10px 0 0"> <DataIcon height="15" width="15"  /> </Flex> Daily Balance</>,

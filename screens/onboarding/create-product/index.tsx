@@ -18,15 +18,19 @@ import Upload from "../../../components/Upload";
 import * as Yup from "yup";
 import { STORAGE } from "../../../applications/storage";
 import Constant from "../../../constants";
+import { Spacer } from "../../../components/Spacer";
 
 
 
 
 export const AddStoreSchema = Yup.object().shape({
-	name: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("Your full name is required"),
-	category: Yup.string(),
+	name: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("The full name is required"),
+	category: Yup.string().required("category is required"),
 	amount: Yup.number().required("Amount is required"),
-	productImage: Yup.mixed().required("Image is required"),
+	description: Yup.number().required("Description is required"),
+	productImage: Yup.array().of(
+		Yup.string().required("Image is required")
+	).required("Image is required"),
 });
 
 interface  PropType {
@@ -120,11 +124,7 @@ const CreateProduct = ({	product, onDone,   categories } : PropType) => {
 
 
 						
-
-						
-
-
-					
+ 
 
 							<GeneralInputWrap margin="8px 0 0">
 								<GeneralLabel> Amount</GeneralLabel>
@@ -205,10 +205,14 @@ const CreateProduct = ({	product, onDone,   categories } : PropType) => {
 							
 
 
-							<Grid gap="16px">
+							<div>
 								<GeneralLabel> Product Description  </GeneralLabel>
+								<Spacer height="16px"/>
 								<EditorContainer initialValue={values.description || "<p>Enter description …</p>"}  handleOnChange={(e) => setFieldValue("description", e)}/>
-							</Grid>
+								<GeneralErrorContainer>
+									{errors.description?.toString()}
+								</GeneralErrorContainer>
+							</div>
 
 							<Grid columns="repeat(auto-fit, minmax(127px, 150px))" gap="10px" justifyContent="flex-start">
 								{
@@ -231,9 +235,14 @@ const CreateProduct = ({	product, onDone,   categories } : PropType) => {
 
 							{
 								values?.productImage?.length >= 5 ? null :
-									<Upload onSuccess={(e) => setFieldValue("productImage", [...values.productImage,  e])}/>
+									<>
+										<Upload onSuccess={(e) => setFieldValue("productImage", [...values.productImage,  e])}/>
+									</>
 									
 							}
+							<GeneralErrorContainer>
+								{errors.productImage?.toString()}
+							</GeneralErrorContainer>
 
 
 						</Grid>
@@ -247,7 +256,9 @@ const CreateProduct = ({	product, onDone,   categories } : PropType) => {
 								fullwidth
 								type="submit"
 								borderRadius="0"
+								nonActiveColor="Black.40"
 								isLoading={creatingProduct || loading }
+								disabled={values?.productImage?.length < 1}
 								text={  product?.type === "editProduct" ?   "Update  product" : "Create product"}
 							/>
 						</div>

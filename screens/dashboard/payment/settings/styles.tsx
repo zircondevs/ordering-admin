@@ -53,13 +53,6 @@ export const IconStyle =  styled(Flex)<{pointer?: boolean}>`
  
  
  
-export const AutomaticStyle =  styled("button")`
-	border-bottom:  1px solid ${({ theme }) => theme.palette.common["transparent"]};
-	 &:hover{
-		border-bottom:  1px solid ${({ theme }) => theme.palette.Orange["default"]};
-	 }
-`;
- 
  
 export const FormStyles =  styled(Grid)`
 	max-width: 400px;

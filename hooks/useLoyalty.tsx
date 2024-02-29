@@ -47,7 +47,7 @@ export const useGetLoyaltySettings  = () => {
 		requiredVariable: user?.clientId?.length > 0
 	});
  
-	return {  loading, settings: data?.data?.data ,  mutate };
+	return {  loading, loyaltySettings: data?.data?.data ,  mutate };
 };
 
 
@@ -84,7 +84,7 @@ export const useUpdateLoyaltSettings = () => {
 		const { data } = await  postAxiosHandler ({
 			url: `${LOYALTY_URL}/${user?.clientId}`,
 			DATA,
-			successMessage: "Settings updated"
+			successMessage: "Loyalty settings updated"
 		});
 		setLoading(false);
 		if(data) {

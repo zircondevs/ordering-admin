@@ -16,7 +16,6 @@ import ViewOrderDetails from "./view-order-details";
 
 const Overview = () => {
 	
-
 	const [singleOrder, setSingleOrder] = useState<GenericObjTypes>({});
 	const modalRef = React.useRef<HandleScrollTypes>(null); 
 
@@ -30,36 +29,36 @@ const Overview = () => {
 	const { orders: openedOrders ,   ...more6 } = useGetOrders(  "OPENED");
 
 	
-
+ 
 	const tableProps = {singleOrder, setSingleOrder, modalRef,  };
 	const tabData = [
 		{
-			head: <TabLabel title="Pending Orders" count={processingOrders?.count} />,
+			head: <TabLabel title="Pending Orders" count={more1?.pageInfo?.count} />,
 			body:  <OrdersTable  {...{...more1 }} {...tableProps} orders={processingOrders}  title="Pending Orders " />,
-			key: "PENDING"
+			key: "PROCESSING"
 		},
 		{
-			head:  <TabLabel title="Delivered Orders" count={orders?.count} />,
+			head:  <TabLabel title="Delivered Orders" count={more2?.pageInfo?.count} />,
 			body: <OrdersTable   {...{...more2}}  {...tableProps}  orders={orders}   title="Delivered Orders" />,
 			key: "DELIVERED"
 		},
 		{
-			head:  <TabLabel title="Canceled Orders" count={canceledOrders?.count} />,
+			head:  <TabLabel title="Canceled Orders" count={more4?.pageInfo?.count} />,
 			body: <OrdersTable  {...{...more4}}   {...tableProps}  orders={canceledOrders}  title="Canceled Orders" />,
 			key: "CANCELLED"
 		},
 		{
-			head:  <TabLabel title="On Delivery Orders" count={onDeliveryOrders?.count} />,
+			head:  <TabLabel title="On Delivery Orders" count={more5?.pageInfo?.count} />,
 			body: <OrdersTable  {...{...more5}}   {...tableProps}  orders={onDeliveryOrders} title="On Delivery Orders" />,
 			key: "ON DELIVERY"
 		},
 		{
-			head:  <TabLabel title="Opened Orders" count={openedOrders?.count} />,
+			head:  <TabLabel title="Opened Orders" count={more6?.pageInfo?.count} />,
 			body: <OrdersTable  {...{...more6}}   {...tableProps}  orders={openedOrders}   title="Opened Orders" />,
 			key: "OPENED"
 		},
 	];
-
+ 
 
 	
 	return (

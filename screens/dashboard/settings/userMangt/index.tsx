@@ -6,7 +6,7 @@ import {   Card, Card2, ControlHead, Controls, ControlsGrid, HeaderSTyles,   Mai
 import CustomButton from "../../../../components/Button";
 import { HandleScrollTypes } from "devs-react-component-library";
 import AddUser from "./addUser";
-import { CancelIcon, Check2Icon, LoaderIcon, WarningIcon,   } from "../../../../public/assets/svg";
+import { CancelIcon, Check2Icon, LoaderIcon, UsersIcon, WarningIcon,   } from "../../../../public/assets/svg";
 import {    useGetAdminStaff, useGetSettingsRoles, useUpdateAStaffRoles } from "../../../../hooks/useSettigs";
 import SelectTags from "../../../../components/SelectTags";
 import { MakeOnlyFirstLettersCapital,  singleSpace } from "../../../../lib";
@@ -76,110 +76,118 @@ const UserManagemnt = () => {
 								</Span>
 							</Flex>
 							:
-							staffs?.map((staff: any, idx : number) => (
-								<Card key={staff?.email}>
-									<Formik
-										enableReinitialize
-										initialValues={{
-											moduleAccessible: Object.keys(avaliableModules)?.map((_) => ({
-												name: _ || "",
-												method: (staff?.moduleAccessible?.find((item: any )=> item?.name === _) )?.method    || ["VIEW"]
-											})) 
-											||
-											[ { "name": "overview", "method": [ "VIEW" ] } ]
-										}} 
-										onSubmit={ async (values , options) => { 
-											setActive( staff?._id);
-											const res = await handleUpdateStaffRoles(values, staff?._id);
-											if(res?.data ){
-												mutate();
-												options.resetForm();
-												setActive("");
-											}
-										}}
-									>
-										{({ values, setFieldValue, dirty}) => {
-											return (
-												<Form>
-													<ControlHead height="auto" justifyContent="space-between" wrap="nowrap">
-														<div>
-															<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
-																{staff?.fullname} 	
-																<Small fontFamily='ubuntu' weight="400" lineHeight="14" size="12" colour={"Grey.3"}>
-																	({staff?.email})
-																</Small>
-															</Span>
-															<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
-																{singleSpace()}| {staff?.position} 
-															</Span>
-														</div>
-														<button type="button" onClick={() => hidden.includes(idx) ? setHidden(hidden.filter(_ => _ !== idx)) : setHidden([...hidden, idx])}>
-															<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Orange.default"}>
-																{ hidden.includes(idx) ? "Open" : "Collapse" }
-															</Span>
-														</button>
-													</ControlHead>
-													{
-														hidden.includes(idx) ? null :
-															<>
-																<Controls>
-																	<Span fontFamily='ubuntu' weight="400" lineHeight="21" size="14" colour={"Orange.default"}>
-																		Dashboard Controls
-																	</Span>
+							staffs?.length > 0 ?
+								staffs?.map((staff: any, idx : number) => (
+									<Card key={staff?.email}>
+										<Formik
+											enableReinitialize
+											initialValues={{
+												moduleAccessible: Object.keys(avaliableModules)?.map((_) => ({
+													name: _ || "",
+													method: (staff?.moduleAccessible?.find((item: any )=> item?.name === _) )?.method    || ["VIEW"]
+												})) 
+												||
+												[ { "name": "overview", "method": [ "VIEW" ] } ]
+											}} 
+											onSubmit={ async (values , options) => { 
+												setActive( staff?._id);
+												const res = await handleUpdateStaffRoles(values, staff?._id);
+												if(res?.data ){
+													mutate();
+													options.resetForm();
+													setActive("");
+												}
+											}}
+										>
+											{({ values, setFieldValue, dirty}) => {
+												return (
+													<Form>
+														<ControlHead height="auto" justifyContent="space-between" wrap="nowrap">
+															<div>
+																<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
+																	{staff?.fullname} 	
+																	<Small fontFamily='ubuntu' weight="400" lineHeight="14" size="12" colour={"Grey.3"}>
+																		({staff?.email})
+																	</Small>
+																</Span>
+																<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
+																	{singleSpace()}| {staff?.position} 
+																</Span>
+															</div>
+															<button type="button" onClick={() => hidden.includes(idx) ? setHidden(hidden.filter(_ => _ !== idx)) : setHidden([...hidden, idx])}>
+																<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Orange.default"}>
+																	{ hidden.includes(idx) ? "Open" : "Collapse" }
+																</Span>
+															</button>
+														</ControlHead>
+														{
+															hidden.includes(idx) ? null :
+																<>
+																	<Controls>
+																		<Span fontFamily='ubuntu' weight="400" lineHeight="21" size="14" colour={"Orange.default"}>
+																			Dashboard Controls
+																		</Span>
 
-																	<CustomButton
-																		size="10"
-																		type="submit"
-																		nonActiveBgColor="common.white"
-																		nonActiveColor="Grey.3"
-																		nonActiveBorderColor="Grey.6"
-																		borderRadius="8"
-																		activeBgColor="Success.default"
-																		activeBorderColor="common.white"
-																		activeColor="common.white"
-																		text={  "Save Changes"}
-																		disabled={!dirty}
-																		isLoading={loading && active ===  staff?._id}
-																		pad="padding.smallest"
-																	/>
-																</Controls>
-																<ControlsGrid gap="0 16px" columns="1fr 1fr">
-																	{
-																		values.moduleAccessible.map((control, index) => (
-																			<Card2 key={control.name + index} justifyContent="space-between" wrap="nowrap">
-																				<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.2"}>
-																					{
-																						values.moduleAccessible[index].method?.length > 0 ?
-																							<Check2Icon colour="Grey.2" width="12" height="12"/>
-																							:<CancelIcon colour="Error.default" width="10" height="10"/>
-																					}
-																					{MakeOnlyFirstLettersCapital(control.name)}
-																				</Span>
-																				<SelectControlStyle width="auto" height="auto" justifyContent="flex-end" className="View">
-																					<SelectTags 
-																						options={Object.values(avaliableModules)?.[index] as string[]} 
-																						active={ values.moduleAccessible[index].method  } 
-																						setActive={(e, option, state) => {
-																							!state && option === "VIEW" ?
-																								setFieldValue(`moduleAccessible.${index}.method`,  [] )
-																								: setFieldValue(`moduleAccessible.${index}.method`,  ifThereIsARoleThenAddView(e) );
-																						}}/>
-																				</SelectControlStyle>
-																			</Card2>
-																		))
-	
-																	}
-																</ControlsGrid>
-															</>
-													}
-												</Form>
-											);
-										}}
-									</Formik>
-								
-								</Card>
+																		<CustomButton
+																			size="10"
+																			type="submit"
+																			nonActiveBgColor="common.white"
+																			nonActiveColor="Grey.3"
+																			nonActiveBorderColor="Grey.6"
+																			borderRadius="8"
+																			activeBgColor="Success.default"
+																			activeBorderColor="common.white"
+																			activeColor="common.white"
+																			text={  "Save Changes"}
+																			disabled={!dirty}
+																			isLoading={loading && active ===  staff?._id}
+																			pad="padding.smallest"
+																		/>
+																	</Controls>
+																	<ControlsGrid gap="0 16px" columns="1fr 1fr">
+																		{
+																			values.moduleAccessible.map((control, index) => (
+																				<Card2 key={control.name + index} justifyContent="space-between" wrap="nowrap">
+																					<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.2"}>
+																						{
+																							values.moduleAccessible[index].method?.length > 0 ?
+																								<Check2Icon colour="Grey.2" width="12" height="12"/>
+																								:<CancelIcon colour="Error.default" width="10" height="10"/>
+																						}
+																						{MakeOnlyFirstLettersCapital(control.name)}
+																					</Span>
+																					<SelectControlStyle width="auto" height="auto" justifyContent="flex-end" className="View">
+																						<SelectTags 
+																							options={Object.values(avaliableModules)?.[index] as string[]} 
+																							active={ values.moduleAccessible[index].method  } 
+																							setActive={(e, option, state) => {
+																								!state && option === "VIEW" ?
+																									setFieldValue(`moduleAccessible.${index}.method`,  [] )
+																									: setFieldValue(`moduleAccessible.${index}.method`,  ifThereIsARoleThenAddView(e) );
+																							}}/>
+																					</SelectControlStyle>
+																				</Card2>
+																			))
+		
+																		}
+																	</ControlsGrid>
+																</>
+														}
+													</Form>
+												);
+											}}
+										</Formik>
+									
+									</Card>
 
-							))
+								))
+								:
+								<Flex height="auto" direction='column'>
+									<UsersIcon colour="Black.80" height="40" width="40"/>
+									<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
+										You have not added any staff yet!
+									</Span>
+								</Flex>
 				}  
 			</Grid>
 

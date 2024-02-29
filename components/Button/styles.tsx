@@ -14,7 +14,7 @@ export const ButtonStyle =  styled(Button)<{
     border:   ${({ bodColour, disabled, isLoading }) => !disabled && !isLoading && bodColour &&  "1px solid " + bodColour};
 	font-size: 16px;
 	span {
-		color: ${({ txtColour, isLoading  }) =>!isLoading  && txtColour};
+		color: ${({ txtColour, isLoading, disabled  }) => !disabled && !isLoading  && txtColour};
 		font-size: 14px;
 	}
 `;

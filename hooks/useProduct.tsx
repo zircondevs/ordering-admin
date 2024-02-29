@@ -106,7 +106,10 @@ export const useGetAllProduct  = ( filterObj: object) => {
 	}, [ data ]);
  
 	
-	return { product: CACHE?.data, loading: loading && !CACHE?.data , error, setPageinfo , pageInfo, isValidating , mutate};
+	return { 
+		product: CACHE?.data,   error, setPageinfo , pageInfo, isValidating , mutate,
+		loading: loading  && !(CACHE?.data?.data?.length > 0), 
+	};
 };
 
 

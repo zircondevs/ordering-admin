@@ -63,7 +63,7 @@ const AddProduct = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) 
 							product={{
 								name: open?.name ||  "" ,
 								description: open?.description ||  "" ,
-								quantity: open?.quantity ||  "" ,
+								quantity:  isFinite(open?.quantity) ? null : open?.quantity ||  "" ,
 								category:  {_id: open?.category?._id , name: open?.category?.name },
 								amount: open?.amount ||  "" ,
 								productImage: open?.productImage ||  [] ,

@@ -4,14 +4,9 @@ import { objIsEmpty } from "../lib";
 
 
 
-export const useCACHE = (data: {data: {[e: string]: any }}, isValidating: boolean) => {
-	const [CACHE, setCACHE] = useState<{[e: string]: any }>({ });
+export const useCACHE = (data: {data: {[e: string]: any }}, isValidating: boolean, ) => {
+	const [CACHE, setCACHE] = useState<{[e: string]: any }>([]);
 	const [ready, setReady] = useState(false);
-	useEffect(() => {
-		if(ready && data && !objIsEmpty(data)){
-			setCACHE(data);
-		}
-	}, [ isValidating, ready, data ]);
 
 
 	useEffect(() => {
@@ -19,8 +14,11 @@ export const useCACHE = (data: {data: {[e: string]: any }}, isValidating: boolea
 		if(ready && data && !objIsEmpty(data)){
 			setCACHE(data);
 		}
-	}, [ready, data ]);
+	}, [ready, data, isValidating ]);
+
+ 
 
 	return { CACHE };
 };
 
+ 

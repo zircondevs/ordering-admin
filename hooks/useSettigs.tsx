@@ -190,6 +190,31 @@ export const useUpdateAccountSettings  = () => {
 };
 
 
+
+
+export const useAddBank  = (status?: string  ) => {
+	const { patchAxiosHandler } = useAxiosHandler();
+	const [loading, setLoading] = useState(false);
+	const {state: { client }} =  UseContext();
+	
+	const handleAddbank = async (DATA: object) => {
+		setLoading(true);
+		const { data } = await  patchAxiosHandler ({
+			url: `${SETTINGS_URL}/${client?.clientId}`,
+			DATA, 
+			successMessage: `Bank ${status || "added"} successfully`
+		});
+		setLoading(false);
+		if(data) {
+			return { data };
+		}
+	};
+ 
+	return {  loading, handleAddbank };
+};
+
+
+
 export const useSetUpStore  = () => {
 	const { state: { user }} = UseContext();
 	const { postAxiosHandler } = useAxiosHandler();

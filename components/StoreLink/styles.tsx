@@ -9,6 +9,7 @@ import { Flex } from "../../components";
 export const StoreLinkStyles =  styled(Flex)<{copied: boolean}>`
 	width: auto;
 	justify-content: flex-end;
+	height: auto;
 	@media (max-width: 700px) {
 		margin:   20px 0;
 	}

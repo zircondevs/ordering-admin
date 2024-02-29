@@ -28,7 +28,7 @@ export const TabsStyles =  styled("div")`
 export const TableHeadStyle =  styled(Flex)`
 	border-radius: 16px;
 	margin-top: 40px;
-	& > div {
+	& > div> div {
 		& > div {
 			max-width: 300px;
 			@media (max-width: 900px) {

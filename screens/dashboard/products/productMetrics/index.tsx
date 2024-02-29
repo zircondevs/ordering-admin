@@ -46,12 +46,12 @@ const ProductMetrics = () => {
 														<Image src={productMetrics?.highestSeller?.productImage?.[0]}  width="100%" height="100%" />
 													</Frame>
 													<Flex height="auto" direction="column" alignItems="flex-start">
-														<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={ "Grey.3"}>
-															Most Purchased Product
-														</Span>
 														<Bold fontFamily='ubuntu' weight="600" lineHeight="24" size="16" colour={ "Grey.1"}>
-															{MakeOnlyFirstLettersCapital(productMetrics?.highestSeller?.name)}
+															Most Purchased Product
 														</Bold>
+														<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={ "Grey.3"}>
+															{MakeOnlyFirstLettersCapital(productMetrics?.highestSeller?.name)}
+														</Span>
 
 														<Flex height="auto" justifyContent="space-between" margin="20px 0 0">
 															<Flex height="auto" direction="column" width="auto" alignItems="flex-start">
@@ -84,12 +84,12 @@ const ProductMetrics = () => {
 														<Image src={productMetrics?.lowestSeller?.productImage?.[0]}  width="100%" height="100%" />
 													</Frame>
 													<Flex height="auto" direction="column" alignItems="flex-start">
-														<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={ "Grey.3"}>
-															Least Purchased Product
-														</Span>
 														<Bold fontFamily='ubuntu' weight="600" lineHeight="24" size="16" colour={ "Grey.1"}>
-															{MakeOnlyFirstLettersCapital(productMetrics?.lowestSeller?.name)}
+															Least Purchased Product
 														</Bold>
+														<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={ "Grey.3"}>
+															{MakeOnlyFirstLettersCapital(productMetrics?.lowestSeller?.name)}
+														</Span>
 
 														<Flex height="auto" justifyContent="space-between" margin="20px 0 0">
 															<Flex height="auto" direction="column" width="auto" alignItems="flex-start">

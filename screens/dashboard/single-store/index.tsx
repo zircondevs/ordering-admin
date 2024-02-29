@@ -4,7 +4,7 @@ import React, { useEffect }    from "react";
 import { Bold,  Container,  Flex, Grid, Span, Table,  } from "../../../components";
 import {     Container1,    HeaderSTyles,  Main, NavStyles,    } from "./styles";
 import { GeneralCountStyles, GeneralDivider } from "../../../components/styles";
-import {    EmptyIcon, LoaderIcon, LocationIcon, ThreeDotsLoaderIcon, WarningIcon ,  } from "../../../public/assets/svg";
+import {    EmptyIcon, LoaderIcon, LocationIcon,   WarningIcon ,  } from "../../../public/assets/svg";
 import BreadCrumb from "../../../components/Breadcrumb";
 import { formatAMPM, formatNumber, formateDate, singleSpace } from "../../../lib";
 import { Spacer } from "../../../components/Spacer";
@@ -23,7 +23,7 @@ import Tooltip from "../../../components/Tooltip";
 const Stores = () => {
 	const  { query, back } = useRouter();
 
-	const { store,  error } = useGetStore(query?.storeId as string, query?.s as string);
+	const { store,  error , loading: loadingStoreDetails} = useGetStore(query?.storeId as string, query?.s as string);
 	const { transactions, loading , pageInfo, setPageInfo } = useGetStoreTransactions( );
 	useEffect(() => {
 		if(!query?.storeId || !query?.s){
@@ -73,51 +73,52 @@ const Stores = () => {
 		<Main>
 			<HeaderSTyles height="auto" justifyContent="space-between">
 				{
+					loadingStoreDetails? null :
 					
-					error ?
-						<Flex justifyContent="flex-start" height="auto" alignItems="flex-start">
-							<Span fontFamily='ubuntu' weight="400" lineHeight="21" size="16" colour={ "Grey.1"}>
-								Store
-							</Span>
-							{singleSpace()}
-							<Tooltip message={"Error occured while loading this store details."} top="-20px">
-								<WarningIcon colour="Yellow.default" height="20" width="20"/>
-							</Tooltip>
-						</Flex>
-						:
-						<>
-							<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
-								{store?.name || <ThreeDotsLoaderIcon height="15" width="20"/>}
-							</Bold>
+						error ?
+							<Flex justifyContent="flex-start" height="auto" alignItems="flex-start">
+								<Span fontFamily='ubuntu' weight="400" lineHeight="21" size="16" colour={ "Grey.1"}>
+									Store
+								</Span>
+								{singleSpace()}
+								<Tooltip message={"Error occured while loading this store details."} top="-20px">
+									<WarningIcon colour="Yellow.default" height="20" width="20"/>
+								</Tooltip>
+							</Flex>
+							:
+							<>
+								<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
+									{store?.name || ""}
+								</Bold>
 
-							<Spacer height="40px"/>
+								<Spacer height="40px"/>
 
-							<NavStyles>
-								<BreadCrumb list={[{name: "Stores", link: "/dashboard/stores"}, {name: store?.name || "Loading..."}]}/>
-							</NavStyles>
+								<NavStyles>
+									<BreadCrumb list={[{name: "Stores", link: "/dashboard/stores"}, {name: store?.name || "Loading..."}]}/>
+								</NavStyles>
 
-							<Spacer height="32px"/>
+								<Spacer height="32px"/>
 
 
-							<Grid gap="24px" columns="repeat(auto-fit, minmax(200px, 1fr))" >
-								{ 
-									details.map((detail, idx) => (
-										<Container key={idx} justifyContent="space-between" wrap="nowrap">
-											<Flex height="auto" width="auto" justifyContent="flex-start">
-												{detail.icon}
-												<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={ "Grey.3"}>
-													{detail.title}
-												</Span>
-											</Flex>
-											<Spacer height="4px" />
-											<Bold fontFamily='ubuntu' weight="&00" lineHeight="24" size="18" colour={ "Grey.2"}>
-												{detail.value}
-											</Bold>
-										</Container>
-									))
-								}
-							</Grid>
-						</>
+								<Grid gap="24px" columns="repeat(auto-fit, minmax(200px, 1fr))" >
+									{ 
+										details.map((detail, idx) => (
+											<Container key={idx} justifyContent="space-between" wrap="nowrap">
+												<Flex height="auto" width="auto" justifyContent="flex-start">
+													{detail.icon}
+													<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={ "Grey.3"}>
+														{detail.title}
+													</Span>
+												</Flex>
+												<Spacer height="4px" />
+												<Bold fontFamily='ubuntu' weight="&00" lineHeight="24" size="18" colour={ "Grey.2"}>
+													{detail.value}
+												</Bold>
+											</Container>
+										))
+									}
+								</Grid>
+							</>
 				}
 			</HeaderSTyles>
 
@@ -139,9 +140,6 @@ const Stores = () => {
 							</Bold>
 						</GeneralCountStyles>
 					</div>
-					{/* <SearchStyles wrap="nowrap" alignItems="stretch" width="auto">
-						<Search placeholder="Search by ticket ID" />
-					</SearchStyles> */}
 				</Flex>
 
 				{

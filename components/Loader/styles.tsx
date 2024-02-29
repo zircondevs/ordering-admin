@@ -9,12 +9,23 @@ import styled, { keyframes } from "styled-components";
 
 
 
-const blink = ()  => keyframes`
+// const blink = ()  => keyframes`
+// 	0% {
+// 		opacity: .3;
+// 	}
+// 	50% {
+// 		opacity: .7;
+// 	}
+// 	100% {
+// 		opacity: .3;
+// 	}
+// `;
+export const blink = ()  => keyframes`
 	0% {
 		opacity: .3;
 	}
 	50% {
-		opacity: .7;
+		opacity: 1;
 	}
 	100% {
 		opacity: .3;

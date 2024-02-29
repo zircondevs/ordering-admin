@@ -20,7 +20,7 @@ import Constant from "../../../constants";
 
 
 
-export const LoginSchema = Yup.object().shape({
+export const Schema = Yup.object().shape({
 	clientName: Yup.string().required("Business name is required"), 
 	clientEmail: Yup.string().required("clientEmail is required"), 
 	clientPassword: Yup.string().required("password is required"), 
@@ -50,7 +50,7 @@ const Login = () => {
 
  
 					<Formik
-						validationSchema={LoginSchema}
+						validationSchema={Schema}
 						enableReinitialize
 						initialValues={{
 							clientName: "",

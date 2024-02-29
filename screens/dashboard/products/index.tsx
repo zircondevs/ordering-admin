@@ -4,7 +4,7 @@ import React, {   useState }   from "react";
 import { Bold, Dropdown, Flex,   Span, Table,      } from "../../../components";
 import {     AddBtn, BtnsStyles, Container1,  HeaderSTyles, Main,      SearchStyles,   } from "./styles";
 import { formatNumber, formateDate,   } from "../../../lib";
-import { GeneralCountStyles, GeneralTableStyle } from "../../../components/styles";
+import { GeneralCountStyles, GeneralTAnimatingContainer, GeneralTableStyle } from "../../../components/styles";
 import {   EditIcon, LoaderIcon, TrashIcon,      } from "../../../public/assets/svg";
 import { GenericObjTypes } from "../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library";
@@ -28,7 +28,7 @@ const Product = () => {
 	const [filterProduct, setFilterProduct] = useState({   name: "" });
 	const {EDIT , DELETE } = useGetetUserRoleModule( "products");
 
-	const { product, loading: loadingmenu , mutate} = useGetAllProduct(filterProduct);
+	const { product, loading: loadingmenu , mutate, isValidating} = useGetAllProduct(filterProduct);
 	const { categories,  mutate:mutateCategory } = useGetCategories();
 	const { handleDeleteProduct, loading} = useDeleteProduct();
 
@@ -57,9 +57,9 @@ const Product = () => {
 			),
 			category: product?.category?.name,
 			date: `${formateDate(new Date(product?.createdAt)).date} ${formateDate(new Date(product?.createdAt)).shortMonth}, ${formateDate(new Date(product?.createdAt)).year}` ,
-			quantity: product?.quantity || (product?.isAvailable ? 0 : "unlimited"),
+			quantity: isFinite(product?.quantity) ?  "Unlimited"  : (product?.quantity ),
 			amount: typeof(+product?.amount) === "number" ? `₦${formatNumber(product?.amount)}` : "N/A",
-			isAvailable: <Checkbox checked={product?.isAvailable} type="radio" />,
+			isAvailable: <Checkbox checked={ isFinite(product?.quantity)  ? true : product?.isAvailable} type="radio" />,
 			...(
 				EDIT || DELETE ?
 					{
@@ -160,16 +160,18 @@ const Product = () => {
 						<Flex margin="40px 0"><LoaderIcon height="40" width="40"/> </Flex>
 						: tableBody?.length > 0 ?
 				
-							<GeneralTableStyle height="auto" justifyContent="flex-start">
-								<Table 
-									gap={"0"}
-									headBgColor="common.transparent"
-									bodyColor="Grey.2"
-									headColor="Grey.2"
-									tableHead={tableHead}
-									tableBodys={tableBody}
-								/>
-							</GeneralTableStyle>
+							<GeneralTAnimatingContainer isValidating={isValidating}>
+								<GeneralTableStyle height="auto" justifyContent="flex-start">
+									<Table 
+										gap={"0"}
+										headBgColor="common.transparent"
+										bodyColor="Grey.2"
+										headColor="Grey.2"
+										tableHead={tableHead}
+										tableBodys={tableBody}
+									/>
+								</GeneralTableStyle>
+							</GeneralTAnimatingContainer>
 							:
 							<Flex margin="40px 0">
 								<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>

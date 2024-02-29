@@ -3,7 +3,7 @@ import React   from "react";
 import { Bold, Flex,  Span, Table,      } from "../../../components";
 import {     Container1, HeaderSTyles, Main,    } from "./styles";
 import { formatAMPM, formatNumber, formateDate,   } from "../../../lib";
-import { GeneralCountStyles, GeneralTableStyle } from "../../../components/styles";
+import { GeneralCountStyles, GeneralTAnimatingContainer, GeneralTableStyle } from "../../../components/styles";
 import {   EmptyIcon, LoaderIcon } from "../../../public/assets/svg";
 import { useGetTransactions } from "../../../hooks/useTransaction";
 import { GenericObjTypes,   } from "../../../constants/types";
@@ -13,7 +13,7 @@ import Status from "../../../components/Status";
 
 
 const Transactions = () => {
-	const { transactions, loading , pageInfo, setPageInfo } = useGetTransactions();
+	const { transactions, loading , pageInfo, setPageInfo, isValidating } = useGetTransactions();
 
  
 	const tableHead = ["Date","Time", "Amount", "Mode Of Trans", "Status" ];
@@ -63,16 +63,18 @@ const Transactions = () => {
 
 
 				
-							<GeneralTableStyle height="auto" justifyContent="flex-start">
-								<Table 
-									gap={"0"}
-									headBgColor="common.transparent"
-									bodyColor="Grey.2"
-									headColor="Grey.2"
-									tableHead={tableHead}
-									tableBodys={tableBody}
-								/>
-							</GeneralTableStyle>
+							<GeneralTAnimatingContainer isValidating={isValidating}>
+								<GeneralTableStyle height="auto" justifyContent="flex-start">
+									<Table 
+										gap={"0"}
+										headBgColor="common.transparent"
+										bodyColor="Grey.2"
+										headColor="Grey.2"
+										tableHead={tableHead}
+										tableBodys={tableBody}
+									/>
+								</GeneralTableStyle>
+							</GeneralTAnimatingContainer>
 
 							<Paginator 
 								onPageChange={(p) => setPageInfo((prev: any) => ({...prev, page: p  }))}  

@@ -19,7 +19,7 @@ export const useLogin  = () => {
 	
 	const handleLogin = async (DATA: object) => {
 		setLoading(true);
-		const { data } = await postAxiosHandler ({
+		const { data , error} = await postAxiosHandler ({
 			url: `${AUTH_URL}/admin-login`,
 			DATA,
 			notify: false
@@ -33,6 +33,7 @@ export const useLogin  = () => {
 			Notify().success("Login successfully");
 			return { data};
 		}
+		error && Notify().error(error);
 	};
 	return { handleLogin, loading  };
 };
@@ -132,17 +133,4 @@ export const useGetUser  = () => {
 
 
 
-export const useGetUsers  = () => {
-	const {state: { user }} = UseContext();
-	const [pageInfo, setPageInfo] = useState({
-		page: 1,
-		limit: 10,
-		pages: 1
-	});
-	const { data , loading, error} = useGetCachedAxiosHandler ({
-		url: `${AUTH_URL}/users/${user?.clientId}?page=${pageInfo.page}&limit=${pageInfo.limit}`,
-		notify: false
-	});
  
-	return {  loading , error , users: data?.data, pageInfo, setPageInfo };
-};

@@ -17,7 +17,7 @@ const palette = {
 		default: "#333333",
 		80: "#4F4F4F",
 		60: "#828282",
-		40: "##BDBDBD",
+		40: "#BDBDBD",
 		20: "#E0E0E0",
 		10: "#F2F2F2",
 		5: "#fbfafa",
@@ -93,6 +93,7 @@ const palette = {
 
 const shadows = {
 	small: "0px 8px 4px rgba(0, 0, 0, 0.02)",
+	smaller: "0px 2px 6px rgba(0, 0, 0, 0.2)",
 };
 
 const typography = {

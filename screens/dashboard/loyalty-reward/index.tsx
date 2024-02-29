@@ -42,7 +42,7 @@ const Loyalty = () => {
 				</Bold>
 			</HeaderSTyles>
 
-
+ 
 
 			<TabsStyles>
 				<GeneralTabStyle>

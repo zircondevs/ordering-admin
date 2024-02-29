@@ -91,7 +91,7 @@ const AutomaticPayout = ({	open,modalRef, setOpen,onDOne,  loading } : PropType)
 
  
 										<GeneralInputWrap margin="8px 0 0">
-											<GeneralLabel>Bank Name</GeneralLabel>
+											<GeneralLabel>Select  period</GeneralLabel>
 											<GeneralSelectField>
 												<Dropdown
 													weight='600'
@@ -100,7 +100,7 @@ const AutomaticPayout = ({	open,modalRef, setOpen,onDOne,  loading } : PropType)
 													dropHovColor='Grey.2'
 													dropColor='Grey.2'
 													direction='end'
-													searchField={true}
+													searchField={false}
 													clearSelected
 													initial={values.withdrawalInterval }
 													data={["MONTHLY", "QUARTERLY", "WEEKLY"]?.map((interval: string) => (
@@ -132,7 +132,7 @@ const AutomaticPayout = ({	open,modalRef, setOpen,onDOne,  loading } : PropType)
 											nonActiveBgColor="Black.20"
 											borderRadius="0"
 											isLoading={ loading}
-											text={"Set Payout"}
+											text={"Set Payout Period"}
 										/>
 									</Footer>
 								</Form>

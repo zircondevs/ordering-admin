@@ -1,9 +1,10 @@
 /* eslint-disable max-lines */
 
  
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Container, Flex } from ".";
 import { PRIMARY_COLOR } from "../hooks/colors";
+import { blink } from "./Loader/styles";
 
 
 
@@ -277,11 +278,26 @@ export const GeneralTextArea=  styled("textarea")`
 	font-weight: ${({ theme }) => theme?.typography?.fontWeight["400"] };
 	line-height: ${({ theme }) => theme?.typography?.lineHeight["21"] };
 	padding: 8px ;
-	border: 1px solid ${({ theme }) => theme.palette.Grey[4]};
+	border: 1px solid ${({ theme }) => theme.palette.Black[20]};
 	border-radius: 4px;
 	min-height: 200px;
 	width: 100%;
 	resize: vertical;
 	font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };
 	 margin-top: 8px;
+	 &:focus {
+		border: 1px solid ${({ theme }) => theme.palette.Black[40]};
+	 }
 `; 
+
+
+
+const complexMixin = css<{isValidating?: boolean}>`
+  animation: ${ blink()} 1000ms linear infinite ;
+`;
+
+ 
+export const GeneralTAnimatingContainer =  styled(Container)<{isValidating?: boolean}>`
+	width: 100%;
+	 ${props => (props.isValidating ? complexMixin : "animation: none")};
+`;

@@ -9,6 +9,7 @@ import { TRANSACTION_URL } from "../constants/urls";
 import { UseContext } from "../state/provider";
 import {   useGetCachedAxiosHandler } from "./useAxiosHandler";
 import { useRouter } from "next/router";
+import { useCACHE } from "./useCache";
 
 
 
@@ -23,16 +24,23 @@ export const useGetTransactions  = (pageInfoData?: {limit?: number}) => {
 		pages: 1,
 		...pageInfoData
 	});
-	const { data , loading, mutate} = useGetCachedAxiosHandler ({
+	const { data , loading, mutate, isValidating} = useGetCachedAxiosHandler ({
 		url: `${TRANSACTION_URL}/${user?.clientId}?page=${pageInfo.page}&limit=${pageInfo.limit}`,
 		notify: false,
 		requiredVariable: user?.clientId?.length > 0
 	});
+
+	const { CACHE ,  } =  useCACHE(data, isValidating);
+
+
 	useEffect(() => {
 		data && setPageInfo({...pageInfo, ...data?.data});
 	}, [ data]);
  
-	return {  loading, transactions: data?.data , setPageInfo, pageInfo, mutate };
+	return {  
+		loading: loading  && !(CACHE?.data?.data?.length > 0), 
+		transactions: CACHE?.data , setPageInfo, pageInfo, mutate , isValidating
+	};
 };
  
 

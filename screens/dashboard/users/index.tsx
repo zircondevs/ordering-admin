@@ -3,11 +3,11 @@ import React   from "react";
 import { Bold, Flex,   Span,   Table,      } from "../../../components";
 import { Container1, HeaderSTyles, Main,    } from "./styles";
 import {     formateDate,   } from "../../../lib";
-import { GeneralCountStyles, GeneralTableStyle } from "../../../components/styles";
-import { useGetUsers } from "../../../hooks/useAuth";
+import { GeneralCountStyles, GeneralTAnimatingContainer, GeneralTableStyle } from "../../../components/styles";
 import { GenericObjTypes } from "../../../constants/types";
 import {  EmptyIcon, LoaderIcon } from "../../../public/assets/svg";
 import Paginator from "../../../components/Paginator";
+import { usegetCustomers } from "../../../hooks/useCustomers";
  
 
 
@@ -15,9 +15,9 @@ import Paginator from "../../../components/Paginator";
 
 
 const Transactions = () => {
-	const { users, loading , error, pageInfo, setPageInfo } = useGetUsers();
+	const { customers, loading , error, pageInfo, setPageInfo , isValidating} = usegetCustomers();
 	const tableHead = ["Customer Name", "Date Created","Email", "Phone Number",   "Address"];
-	const tableBody = users?.data?.length > 0 ? users?.data?.map((user: GenericObjTypes) =>  (
+	const tableBody = customers?.length > 0 ? customers?.map((user: GenericObjTypes) =>  (
 		{
 			name: user?.fullName,
 			date: `${formateDate(new Date(user?.createdAt)).date} ${formateDate(new Date(user?.createdAt)).shortMonth}, ${formateDate(new Date(user?.createdAt)).year}` ,
@@ -26,6 +26,7 @@ const Transactions = () => {
 			address: user?.address || "N/A"
 		}
 	)) : [];
+
 
 
 	
@@ -45,10 +46,10 @@ const Transactions = () => {
 							All customers
 						</Bold>
 						{
-							users?.count ?
+							pageInfo?.count ?
 								<GeneralCountStyles>
 									<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
-										{users?.count}
+										{pageInfo?.count}
 									</Bold>
 								</GeneralCountStyles>
 								: null
@@ -66,24 +67,26 @@ const Transactions = () => {
 									We are having trouble fetching all users
 								</Bold>
 							</Flex>
-							: users?.data?.length > 0 ?
-								<GeneralTableStyle height="auto" justifyContent="flex-start">
-									<Table 
-										gap={"0"}
-										headBgColor="common.transparent"
-										bodyColor="Grey.2"
-										headColor="Grey.2"
-										tableHead={tableHead}
-										tableBodys={tableBody}
-									/>
-									<Paginator
-										onPageChange={(p) => setPageInfo((prev: any) => ({...prev, page: p  }))}  
-										firstLast={true} 
-										prevNext
-										pages = {pageInfo?.pages }
-										currentPage = {(+pageInfo?.page)}
-									/>
-								</GeneralTableStyle>
+							: customers?.length > 0 ?
+								<GeneralTAnimatingContainer isValidating={isValidating}>
+									<GeneralTableStyle height="auto" justifyContent="flex-start">
+										<Table 
+											gap={"0"}
+											headBgColor="common.transparent"
+											bodyColor="Grey.2"
+											headColor="Grey.2"
+											tableHead={tableHead}
+											tableBodys={tableBody}
+										/>
+										<Paginator
+											onPageChange={(p) => setPageInfo((prev: any) => ({...prev, page: p  }))}  
+											firstLast={true} 
+											prevNext
+											pages = {pageInfo?.pages }
+											currentPage = {(+pageInfo?.page)}
+										/>
+									</GeneralTableStyle>
+								</GeneralTAnimatingContainer>
 								:	
 								<Flex margin="40px 0" height="auto" direction="column">
 									<EmptyIcon />

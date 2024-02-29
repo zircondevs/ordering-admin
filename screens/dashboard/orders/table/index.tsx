@@ -6,7 +6,7 @@ import {     Main, SearchSection, TableHeadStyle,   } from "./styles";
 import { formatAMPM, formatNumber, formateDate,     } from "../../../../lib";
 import { GenericObjTypes } from "../../../../constants/types";
 import { EmptyIcon, LoaderIcon } from "../../../../public/assets/svg";
-import { GeneralTableStyle } from "../../../../components/styles";
+import { GeneralTAnimatingContainer, GeneralTableStyle } from "../../../../components/styles";
 // import Search from "../../../../components/Search";
 import { HandleScrollTypes } from "devs-react-component-library";
 import Paginator from "../../../../components/Paginator";
@@ -15,17 +15,18 @@ import { useGetetUserRoleModule } from "../../../../hooks/handlers/useRole";
 
 
 interface PropTypes {
-	orders:{data:  GenericObjTypes[]}, 
+	orders:  GenericObjTypes[], 
 	loading: boolean, 
+	isValidating: boolean, 
 	title: string
 	modalRef: React.RefObject<HandleScrollTypes>;
 	setSingleOrder: React.Dispatch<React.SetStateAction<GenericObjTypes>>
 	setPageInfo: any;
-	pageInfo: any
+	pageInfo: any,
 }
 
 
-const OrdersTable = ({orders, loading, title, setSingleOrder, modalRef, pageInfo, setPageInfo }: PropTypes ) => {
+const OrdersTable = ({orders, loading, title, setSingleOrder, modalRef, pageInfo, setPageInfo , isValidating,   }: PropTypes ) => {
 	
  
 	const openModal = (obj: object) => {
@@ -35,12 +36,12 @@ const OrdersTable = ({orders, loading, title, setSingleOrder, modalRef, pageInfo
 
 	const {EDIT} = useGetetUserRoleModule(  "orders");
 	
-	
+
 	const tableHead = EDIT ?  
 		[  "Product Price",  "User", "Phone", "Delivery Address", "Delivery Type", "Date", "Action" ]
 		:[  "Product Price",  "User", "Phone", "Delivery Address", "Delivery Type", "Date",  ];
 		
-	const tableBody = orders?.data?.map((order: GenericObjTypes) => (
+	const tableBody = orders?.map((order: GenericObjTypes) => (
 		{
 			amount: "₦" + formatNumber(order?.productPrice),
 			user:  order?.clientName || (order?.user),
@@ -81,18 +82,20 @@ const OrdersTable = ({orders, loading, title, setSingleOrder, modalRef, pageInfo
 							{
 								tableBody?.length > 0 ?
 									<>
-										<GeneralTableStyle>
-											<Table
-												gap={"0"}
-												headBgColor="common.transparent"
-												bodyColor="Grey.2"
-												headColor="Grey.2"
-												tableHead={tableHead}
-												tableBodys={tableBody}
-											/>
-										</GeneralTableStyle>
+										<GeneralTAnimatingContainer isValidating={isValidating}>
+											<GeneralTableStyle>
+												<Table
+													gap={"0"}
+													headBgColor="common.transparent"
+													bodyColor="Grey.2"
+													headColor="Grey.2"
+													tableHead={tableHead}
+													tableBodys={tableBody}
+												/>
+											</GeneralTableStyle>
+										</GeneralTAnimatingContainer>
 										<Paginator
-											onPageChange={(p) => setPageInfo((prev: any) => ({...prev, page: p  }))}  
+											onPageChange={(p) => setPageInfo((prev: any) => ({...prev, page: p ,   }))}  
 											firstLast={true} 
 											prevNext
 											pages = {pageInfo?.pages }

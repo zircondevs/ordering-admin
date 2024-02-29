@@ -12,7 +12,6 @@ import { useGetTransactions } from "../../../../hooks/useTransaction";
 import { useRouter } from "next/router";
 import { GenericObjTypes,   } from "../../../../constants/types";
 import Status from "../../../../components/Status";
-import StoreLink from "../../../../components/StoreLink";
 
 
 
@@ -72,7 +71,7 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 					Overview
 				</Bold>
 
-				<StoreLink />
+		
 			</Flex>
 			<Spacer height="24px"/>
 			<Cards columns="250px repeat(auto-fit, minmax(180px, 1fr))" gap="24px" justifyContent="flex-start">
