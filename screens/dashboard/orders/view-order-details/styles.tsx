@@ -6,7 +6,7 @@ import { ModalSpacer } from "../../../../components/styles";
   
 
 export const ModalStyle =  styled("div")`
- 	&  >  div {
+ 	&  >  div  > div {
 		background-color: rgba(0, 0, 0, 0.69);
 		 & > main {
 			 justify-content: flex-end;

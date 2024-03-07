@@ -302,5 +302,3 @@ export const useUpdateStorePolicy  = (userId: string) => {
 	return {  loading, handleUpdateStorePolicy };
 };
 
-
- 

@@ -70,7 +70,7 @@ const ViewOrderDetails = ({	setSingleOrder, singleOrder ,modalRef,  } : PropType
 							:
 							<TabStyles id="SUMMARY" justifyContent='flex-start'>
 								<Address  {...{order, ...singleOrder}}  />
-								<TotalCard  {...{order, ...singleOrder}} />
+								<TotalCard  {...{order}} />
 							</TabStyles>
 					}
  

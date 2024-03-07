@@ -84,7 +84,7 @@ const LoayltySettings = ( ) => {
 			info: "NB: A purchase can contain more than one product if your cart policy is by pack (check store settings)"
 		},
 		AMOUNT: {
-			label: "How MUCH goods must your customer  spend in total before being added to a loyalty list",
+			label: "How MUCH goods must your customer  buy accumulatively before being added to a loyalty list",
 			key: "totalAmountToBePurchased",
 			info: ""
 		},
@@ -159,7 +159,7 @@ const LoayltySettings = ( ) => {
 
 								{
 									values.enableLoyaltyReward ?
-										<Main gap="40px 100px" columns="1fr 1fr">
+										<Main gap="40px 100px" columns="1fr 1fr ">
 											<FieldCard	value={1}>
 												<GeneralInputWrap>
 													<GeneralLabel> How much % discount do you want to give your customers on each order?</GeneralLabel>

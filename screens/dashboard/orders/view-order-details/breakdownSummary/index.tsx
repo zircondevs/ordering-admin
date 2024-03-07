@@ -8,12 +8,14 @@ import { Bold,       Container,       Flex,  Grid,  Span,   } from "../../../../
 import {   MakeOnlyFirstLettersCapital, formatNumber, formateDate, naira } from "../../../../../lib";
 import { Spacer } from "../../../../../components/Spacer";
 import { GeneralDivider } from "../../../../../components/styles";
+import { UseContext } from "../../../../../state/provider";
+import { useGetAdminGeneralSettings, useGetStorePolicy } from "../../../../../hooks/useSettigs";
 
 
  
 
 const BreakdownSummary = ({  order}:any) => {
- 
+	const {  settings} = useGetAdminGeneralSettings();
 
 	const total = {
 		"SUB TOTAL": formatNumber(order?.item?.reduce((prev: any, current: any) => current?.product?.amount * current?.quantity  + prev, 0)),
@@ -22,7 +24,7 @@ const BreakdownSummary = ({  order}:any) => {
 	};
 
  
-
+console.log(settings)
 
 	
 	return (
@@ -61,18 +63,21 @@ const BreakdownSummary = ({  order}:any) => {
 							</Flex>
 							<Spacer height="10px"/>
 							<Grid gap="10px">
-								{item?.map((product: any, idx: number) => (
-									<Flex key={idx} justifyContent="space-between" height="auto"  width="auto">
-										<div>
-											<Span  fontFamily='ubuntu' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
-												{MakeOnlyFirstLettersCapital(product?.product?.name)}  
+								{item?.length > 0? 
+									item?.map((product: any, idx: number) => (
+										<Flex key={idx} justifyContent="space-between" height="auto"  width="auto">
+											<div>
+												<Span  fontFamily='ubuntu' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
+													{MakeOnlyFirstLettersCapital(product?.product?.name)}  
+												</Span>
+											</div>
+											<Span  fontFamily='ubuntu' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
+												{product?.quantity}   
 											</Span>
-										</div>
-										<Span  fontFamily='ubuntu' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
-											{product?.quantity}   
-										</Span>
-									</Flex>
-								))}
+										</Flex>
+									))
+									: null
+								}
 							</Grid>
 						</Flex>
 					))}
