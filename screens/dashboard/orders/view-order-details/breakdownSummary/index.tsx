@@ -8,23 +8,21 @@ import { Bold,       Container,       Flex,  Grid,  Span,   } from "../../../../
 import {   MakeOnlyFirstLettersCapital, formatNumber, formateDate, naira } from "../../../../../lib";
 import { Spacer } from "../../../../../components/Spacer";
 import { GeneralDivider } from "../../../../../components/styles";
-import { UseContext } from "../../../../../state/provider";
-import { useGetAdminGeneralSettings, useGetStorePolicy } from "../../../../../hooks/useSettigs";
 
 
  
 
 const BreakdownSummary = ({  order}:any) => {
-	const {  settings} = useGetAdminGeneralSettings();
 
 	const total = {
 		"SUB TOTAL": formatNumber(order?.item?.reduce((prev: any, current: any) => current?.product?.amount * current?.quantity  + prev, 0)),
-		// "SUB TOTAL": formatNumber(order?.item?.reduce((prev: any, current: any) =>  current?.reduce((prev: any, current: any) =>  (current?.product?.amount * current?.quantity)+ prev, 0) + prev, 0)),
+		// "SUB TOTAL": formatNumber(order?.item?.reduce((prev: any, current: any) =>  current?.reduce((prev: any, current: any) =>  
+		// (current?.product?.amount * current?.quantity)+ prev, 0) + prev, 0)),
 		"DELIVERY FEE": order?.deliveryCharge,
 	};
 
  
-console.log(settings)
+	// console.log(settings)
 
 	
 	return (
