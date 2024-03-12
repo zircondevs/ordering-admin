@@ -14,7 +14,7 @@ const nextConfig = {
 		styledComponents: true
 	},
 	poweredByHeader: false,
-	distDir: "out",
+ 
 	async headers() {
 		return [
 			{
