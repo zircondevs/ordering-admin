@@ -19,7 +19,7 @@ const Address = ({ order}: any ) =>  {
 		
 
  
-	
+ 
 	return (
 		<DeliveryTypeStyle height="autp" justifyContent="space-between" PRIMARY_COLOR={"red"}>
 			<Container1 height="auto" justifyContent="space-between" wrap="nowrap">
@@ -33,7 +33,7 @@ const Address = ({ order}: any ) =>  {
 			</Container1>
 			<Spacer height="16px"/>
 			<Span fontFamily='ubuntu' weight="600" lineHeight="21" size="16" colour={"Grey.2"}>
-				{order?.deliveryAddress}
+				{order?.deliveryAddress || "N/A"}
 			</Span>
 
 			<Spacer height="20px"/>
@@ -51,7 +51,7 @@ const Address = ({ order}: any ) =>  {
 					</Flex>
 					<Spacer height="8px"/>
 					<Bold fontFamily='ubuntu' weight="600" lineHeight="21" size="16" colour={"Grey.2"}>
-						{order?.clientName}
+						{order?.clientName || "N/A"}
 					</Bold>
 				</Flex>
 
@@ -61,7 +61,7 @@ const Address = ({ order}: any ) =>  {
 					</Span>
 					<Spacer height="8px"/>
 					<Bold fontFamily='ubuntu' weight="600" lineHeight="21" size="16" colour={"Grey.2"} textAlign="end">
-						{order?.clientPhoneNumber }
+						{order?.clientPhoneNumber || "N/A" }
 					</Bold>
 				</Flex>
 			</Container1>
@@ -79,7 +79,7 @@ const Address = ({ order}: any ) =>  {
 				</Flex>
  
 				<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="16" colour={"Grey.2"}>
-					{order?.deliveryType}
+					{order?.deliveryType || "N/A" }
 				</Span>
 			</Container1>
  

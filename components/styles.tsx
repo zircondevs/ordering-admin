@@ -9,11 +9,11 @@ import { blink } from "./Loader/styles";
 
 
 export const GeneralModalStyle = styled("div")`
-	&  >  div  > main > div > div > div > span{
+	&  > div >  div  > main > div > div > div > span{
 		 top: 32px;
 		 right: 24px;
 	}
- 	&  >  div {
+ 	&  >  div > div {
 		background-color: rgba(0, 0, 0, 0.69);
 		 & > main {
 			 justify-content: flex-end;
@@ -23,8 +23,11 @@ export const GeneralModalStyle = styled("div")`
 				 height: 100vh;
 				 border-radius: 0;
 				background-color: ${({ theme }) => theme.palette.Grey[6]};
+
+			 
 				 & > div {
 					 height: auto;
+				 
 					 & > div:nth-child(1){
 						position: absolute;
 						z-index: 100;
@@ -42,6 +45,8 @@ export const GeneralModalStyle = styled("div")`
 		 }
 	}
 `;
+
+
  
 export const GeneralTabStyle =  styled("div")`
     & > div > ol {

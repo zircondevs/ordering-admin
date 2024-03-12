@@ -15,10 +15,11 @@ export const useGetOrders  = ( status: "PROCESSING" | "DELIVERED" | "CANCELLED" 
 		page: 1,
 		limit: 5,
 		count: 1,
+		pages: 1
 	});
  
 
-	const { data , loading, mutate , isValidating } = useGetCachedAxiosHandler ({
+	const { data , loading, mutate , isValidating, error } = useGetCachedAxiosHandler ({
 		url:  `${ORDERS_URL}/${storeId}?page=${pageInfo.page}&limit=${pageInfo.limit}&status=${status}`,
 		notify: false,
 		requiredVariable: storeId?.length > 0 && status?.length > 0
@@ -31,7 +32,7 @@ export const useGetOrders  = ( status: "PROCESSING" | "DELIVERED" | "CANCELLED" 
 	}, [data ]);
   
 
-	return {    orders: CACHE?.data?.data , setPageInfo, pageInfo, mutate, isValidating, loading: loading && !(CACHE?.data?.data?.length  > 0),  status };
+	return {    orders: CACHE?.data?.data , setPageInfo, pageInfo, mutate, isValidating, loading: loading && !(CACHE?.data?.data?.length  > 0),  status, error };
 };
  
 

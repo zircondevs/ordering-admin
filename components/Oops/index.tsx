@@ -2,7 +2,7 @@
 
 import { Container } from "./styles";
 import { Spacer } from "../Spacer";
-import { Header3,   Paragraph, Button } from "..";
+import { Button, Flex, Span } from "..";
 import React from "react";
 
 
@@ -10,12 +10,11 @@ interface PropType {
 	errorMessage?: string | JSX.Element, 
 	click?: () => void, 
 	icon?: any, 
-	title?: string, 
 	btnText?: string;
 	loading?: boolean;
 }
 
-const Oops = ({ errorMessage, click, icon, title, btnText, loading = false}: PropType) => {
+const Oops = ({ errorMessage, click, icon, btnText, loading = false}: PropType) => {
 
 	return (
 		<Container 
@@ -23,57 +22,41 @@ const Oops = ({ errorMessage, click, icon, title, btnText, loading = false}: Pro
 		>
 			<Spacer height="20px"></Spacer>
 
-			{icon ? icon : null}
+			<Flex height="auto" >
+				{icon ? <Flex height="auto" width="auto" margin="0 10px 0 0">{icon}</Flex> : null}
 
-			
+				
+				{
+					errorMessage ?
+						typeof(errorMessage) === "string" ?
+							<Span 
+								colour={"Grey.2"} size="14" lineHeight="21" 
+								weight="fontWeightNormal" fontFamily="sagoe" center
+							>
+								{errorMessage}
+							</Span>
+							: errorMessage
+						: null
+				}
 
-			{
-				title ?
-					<>
-						<Spacer height="20px"></Spacer>
-						<Header3 
-							colour={"Grey.2"}
-							size="font20" 
-							lineHeight="lineHeight24" 
-							weight="fontWeightBold" 
-							fontFamily="sagoe"
-							center
-						>
-							{title }
-						</Header3>
-					</>
-					: null
-			}
+			</Flex>
 
 			<Spacer height="10px"></Spacer>
-			{
-				errorMessage ?
-					typeof(errorMessage) === "string" ?
-						<Paragraph 
-							colour={"Grey.2"} size="14" lineHeight="21" 
-							weight="fontWeightNormal" fontFamily="sagoe" center
-						>
-							{errorMessage}
-						</Paragraph>
-						: errorMessage
-					: null
-			}
 
-			<Spacer height="10px"></Spacer>
 
 			{
 				click ? 
 					<Button 
 						size='14'
 						nonActiveColor="Black.20"
-						activeColor="Black.default"
+						activeColor="Blue.default"
 						nonActiveBgColor={"Black.5"}
-						nonActiveBorderColor={"Black.5"}
+						nonActiveBorderColor={"common.white"}
 						activeBgColor="transparent.default"
-						activeBorderColor="Black.default"
+						activeBorderColor="common.white"
 						text={btnText}
 						borderRadius="8"
-						pad={"padding.smaller"}
+						pad={"padding.0"}
 						onClick={() =>  click()}
 						isLoading={loading}
 					/>

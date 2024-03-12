@@ -32,6 +32,7 @@ const palette = {
 	},
 	Blue: {
 		default: "#2F80ED",
+		80: "#316bc6",
 		0: "#E9F0FB"
 	},
 	Grey: {

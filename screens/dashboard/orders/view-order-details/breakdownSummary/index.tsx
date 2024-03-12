@@ -5,7 +5,7 @@
 import React  from "react";
 import {   OrderId, Time, Total,   } from "./styles";
 import { Bold,       Container,       Flex,  Grid,  Span,   } from "../../../../../components";
-import {   MakeOnlyFirstLettersCapital, formatNumber, formateDate, naira } from "../../../../../lib";
+import {   MakeOnlyFirstLettersCapital, formatNumber, formateDate, naira, formatAMPM } from "../../../../../lib";
 import { Spacer } from "../../../../../components/Spacer";
 import { GeneralDivider } from "../../../../../components/styles";
 
@@ -15,16 +15,16 @@ import { GeneralDivider } from "../../../../../components/styles";
 const BreakdownSummary = ({  order}:any) => {
 
 	const total = {
-		"SUB TOTAL": formatNumber(order?.item?.reduce((prev: any, current: any) => current?.product?.amount * current?.quantity  + prev, 0)),
-		// "SUB TOTAL": formatNumber(order?.item?.reduce((prev: any, current: any) =>  current?.reduce((prev: any, current: any) =>  
-		// (current?.product?.amount * current?.quantity)+ prev, 0) + prev, 0)),
+		"SUB TOTAL": Array.isArray(order?.item?.[0]) ?
+			formatNumber(order?.item?.reduce((prev: any, current: any) =>  current?.reduce((prev: any, current: any) =>  
+				(current?.product?.amount * current?.quantity)+ prev, 0) + prev, 0))
+			: formatNumber(order?.item?.reduce((prev: any, current: any) => current?.product?.amount * current?.quantity  + prev, 0)),
 		"DELIVERY FEE": order?.deliveryCharge,
 	};
 
  
-	// console.log(settings)
 
-	
+ 
 	return (
 		<div>
 			<Total height="auto">
@@ -34,8 +34,8 @@ const BreakdownSummary = ({  order}:any) => {
 							Order ID
 						</Span>
 						<Time  fontFamily='ubuntuLight' weight="400" lineHeight="19" size="14" colour={"Grey.1"} textAlign="end">
-							{formateDate(new Date(order?.createdAt)).date}  {formateDate(new Date(order?.createdAt)).shortMonth},
-							{formateDate(new Date(order?.createdAt)).year}  
+							{ `${`${formateDate(new Date(order?.createdAt)).date} ${formateDate(new Date(order?.createdAt)).shortMonth}`}
+							, ${formateDate(new Date(order?.createdAt)).year}  ${formatAMPM(new Date(order?.createdAt))}`  }
 						</Time>
 					</Flex>
 					<Spacer height="8px"/>
@@ -48,38 +48,72 @@ const BreakdownSummary = ({  order}:any) => {
 				<GeneralDivider />
 				<Spacer height="20px"/>
 
-				<Grid gap="16px">
-					{order?.item?.map((item: any, idx: number) => (
-						<Flex key={idx} justifyContent="space-between" height="auto"  width="auto">
+				{
+					Array.isArray(order?.item?.[0]) ?
+						<Grid gap="16px">   {/* Cart by pack */}
+							{order?.item?.map((item: any, idx: number) => (
+								<Flex key={idx} justifyContent="space-between" height="auto"  width="auto">
+									<Flex justifyContent="space-between" height="auto">
+										<Bold  fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.4"}>
+											Pack {idx + 1} {" "}
+										</Bold>
+										<Bold  fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.4"}>
+											Quantity
+										</Bold>
+									</Flex>
+									<Spacer height="10px"/>
+									<Grid gap="10px">
+										{item?.length > 0? 
+											item?.map((product: any, idx: number) => (
+												<Flex key={idx} justifyContent="space-between" height="auto"  width="auto">
+													<div>
+														<Span  fontFamily='ubuntu' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
+															{MakeOnlyFirstLettersCapital(product?.product?.name)}  
+														</Span>
+													</div>
+													<Span  fontFamily='ubuntu' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
+														{product?.quantity}   
+													</Span>
+												</Flex>
+											))
+											: null
+										}
+									</Grid>
+								</Flex>
+							))}
+						</Grid>
+						:
+						<Grid gap="0"> {/* cart by product */}
 							<Flex justifyContent="space-between" height="auto">
 								<Bold  fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.4"}>
-									Pack {idx + 1} {" "}
+									Product 
 								</Bold>
 								<Bold  fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.4"}>
-									Quantity
+									Amount
 								</Bold>
 							</Flex>
 							<Spacer height="10px"/>
-							<Grid gap="10px">
-								{item?.length > 0? 
-									item?.map((product: any, idx: number) => (
-										<Flex key={idx} justifyContent="space-between" height="auto"  width="auto">
+							{order?.item?.map((item: any, idx: number) => (
+								<Flex key={idx} justifyContent="space-between" height="auto"  width="auto">
+									<Grid gap="10px">
+										<Flex  justifyContent="space-between" height="auto"  width="auto">
 											<div>
 												<Span  fontFamily='ubuntu' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
-													{MakeOnlyFirstLettersCapital(product?.product?.name)}  
+													{MakeOnlyFirstLettersCapital(item?.product?.name)}   ({item?.quantity})
 												</Span>
 											</div>
 											<Span  fontFamily='ubuntu' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
-												{product?.quantity}   
+												{naira} {formatNumber(item?.quantity * item?.product?.amount)}    
 											</Span>
 										</Flex>
-									))
-									: null
-								}
-							</Grid>
-						</Flex>
-					))}
-				</Grid>
+ 
+									</Grid>
+								</Flex>
+							))}
+						</Grid>
+				}
+
+
 			</Total>
 
 
@@ -87,7 +121,7 @@ const BreakdownSummary = ({  order}:any) => {
 
 			<Total height="auto">
 		
-				<Grid gap="10px">
+				{/* <Grid gap="10px">
 					{order?.packs?.map((item: any, idx: number) => (
 						<Flex key={idx} justifyContent="space-between" height="auto"  width="auto">
 							<div>
@@ -106,7 +140,7 @@ const BreakdownSummary = ({  order}:any) => {
 						</Flex>
 					))}
 				</Grid>
-				<Spacer height="40px"/>
+				<Spacer height="40px"/> */}
 				<Grid gap="16px">
 					{Object.values(total).map((item, idx) => (
 						<Flex key={idx} justifyContent="space-between" height="auto" >
@@ -132,6 +166,16 @@ const BreakdownSummary = ({  order}:any) => {
 					{naira}{formatNumber(order?.productPrice + order?.deliveryCharge)}
 				</Bold>
 			</Flex>
+			
+			{
+				new Date(order?.updatedAt) === new Date(order?.createdAt) ? null :
+					<Span  fontFamily='ubuntuLight' weight="700" lineHeight="16" size="14" colour={"Black.60"}>
+						Order updated on 	{" "}
+						{ `${`${formateDate(new Date(order?.updatedAt)).date} ${formateDate(new Date(order?.updatedAt)).shortMonth}`}
+						, ${formateDate(new Date(order?.updatedAt)).year};  ${formatAMPM(new Date(order?.updatedAt))}`  }
+					</Span>
+						
+			}
 		</div>
 	);
 };
