@@ -46,3 +46,5 @@ export interface SetUpStoreTypes {
 	twitterLink?: string;
 	facebookLink?: string;
 }
+
+export   type StatusType =  "PROCESSING" | "DELIVERED" | "CANCELLED" | "ON DELIVERY" | "OPENED" 

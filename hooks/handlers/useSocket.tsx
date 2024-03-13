@@ -36,12 +36,12 @@ export const useSocket = () => {
 	};
 
  
-
+ 
 	
 
 
 	useEffect(() => {
-		orders && setRealTimeOrders(orders?.data || []);
+		orders && setRealTimeOrders(orders || []);
 	}, [orders, storeId]);
 
 

@@ -4,7 +4,7 @@ import React     from "react";
 import {  Bold, Container, Flex,  Span, Table,   } from "../../../../components";
 import {     Main, SearchSection, TableHeadStyle,   } from "./styles";
 import { formatAMPM, formatNumber, formateDate,     } from "../../../../lib";
-import { GenericObjTypes } from "../../../../constants/types";
+import { GenericObjTypes, StatusType } from "../../../../constants/types";
 import { EditIcon, EmptyIcon, LoaderIcon, PasswordEyeIcon, WarningIcon } from "../../../../public/assets/svg";
 import { GeneralCountStyles, GeneralTAnimatingContainer, GeneralTableStyle } from "../../../../components/styles";
 import { HandleScrollTypes } from "devs-react-component-library";
@@ -12,7 +12,6 @@ import Paginator from "../../../../components/Paginator";
 import { useGetetUserRoleModule } from "../../../../hooks/handlers/useRole";
 import { useGetOrders } from "../../../../hooks/useOrders";
 import Oops from "../../../../components/Oops";
-import { StatusType } from "..";
 
 
 

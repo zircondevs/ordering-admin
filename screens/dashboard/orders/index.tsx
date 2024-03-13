@@ -11,7 +11,7 @@ import ChangeModalStatus from "./change-status";
 
 
 
-export type StatusType =  "PROCESSING" | "DELIVERED" | "CANCELLED" | "ON DELIVERY" | "OPENED" 
+
 
 const Overview = () => {
 	

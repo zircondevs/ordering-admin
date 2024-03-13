@@ -72,6 +72,14 @@ export const RecentOrders =  styled(Flex)<{index: number}>`
 	opacity: 0;
 	border: 1px solid ${({ theme }) => theme.palette.Black[20]};
 	animation: ${ SlideIn()} 300ms ${({index}) => index* 110}ms linear forwards;
+	& > * {
+		transition: 200ms linear;
+		opacity: 0.8;
+	}
+	&:hover  > * {
+		transform: translateY(-3px);
+		opacity: 1;
+	}
 `;
  
  
@@ -81,4 +89,19 @@ export const OrderIdStyles =  styled(Bold)`
 	overflow: hidden;
 	text-overflow: ellipsis;
 	width: 100%;
+`;
+ 
+export const OrderIdButton =  styled("button")`
+	display: block; 
+	width: 100%;
+	&:hover {
+		text-decoration: underline;
+	}
+`;
+ 
+export const EditOrderButton =  styled("button")`
+	transition: 200ms linear;
+	&:hover {
+		transform: scale(1.1)
+	}
 `;
