@@ -7,7 +7,7 @@ import OpeningAndClosingHrs from "./open-and-close-hrs";
 import Welcome from "./welcome";
 import SocialHandles from "./social-handles";
 import CartType from "./cart-type";
-import { useGetAdminGeneralSettings } from "../../../../hooks/useSettigs";
+import {  useGetStoreWorkingDaysAndSocialHandles } from "../../../../hooks/useSettigs";
 
 
 
@@ -19,23 +19,24 @@ import { useGetAdminGeneralSettings } from "../../../../hooks/useSettigs";
 
 const StoreSettings = ( ) => {
 
-	const { settings,   mutate } = useGetAdminGeneralSettings();
-
+	
+ 
+	const { workingDays, mutate: mutateSettings, socialHandles } = useGetStoreWorkingDaysAndSocialHandles();
  
 	const tabData = [
 		{
 			head: "Opening & Closing Hours",
-			body:	<OpeningAndClosingHrs  />,
+			body:	<OpeningAndClosingHrs  	{...{workingDays, onDone: mutateSettings}}/>,
 			key: "Account Information"
 		},
 		{
 			head: "Store Welcome Content",
-			body: <Welcome  {...{settings, onDone: mutate}} />,
+			body: <Welcome  />,
 			key: "User Management"
 		},
 		{
 			head: "Social handles",
-			body: <SocialHandles  {...{settings, onDone: mutate}} />,
+			body: <SocialHandles  {...{ socialHandles, onDone: mutateSettings}} />,
 			key: "User"
 		},
 		{

@@ -19,7 +19,7 @@ import { SetUpStoreTypes } from "../../../../../constants/types";
  
 type SocialTypes = "twitterLink" | "instagramLink" | "facebookLink"
 
-const SocialHandles = ({settings, onDone}: {settings: any, onDone: () => void} ) => {
+const SocialHandles = ({socialHandles, onDone}: {socialHandles: any, onDone: () => void} ) => {
 	const { handleSetUpStore, loading} = useSetUpStore();
 
 	const fields = [
@@ -61,9 +61,9 @@ const SocialHandles = ({settings, onDone}: {settings: any, onDone: () => void} )
 				<Formik
 					enableReinitialize
 					initialValues={{
-						twitterLink:  settings.twitterLink ||  "",
-						facebookLink: settings?.facebookLink || "",
-						instagramLink: settings?.instagramLink || ""
+						twitterLink:  socialHandles.twitterLink ||  "",
+						facebookLink: socialHandles?.facebookLink || "",
+						instagramLink: socialHandles?.instagramLink || ""
 					}} 
 					onSubmit={ async (values ) => { 
 						const res = await handleSetUpStore(removeEmptyValuesFromObj(values as SetUpStoreTypes));

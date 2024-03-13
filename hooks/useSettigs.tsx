@@ -25,7 +25,7 @@ export const useGetStorePolicy  = () => {
 };
  
 
-export const useGetWorkingDays  = () => {
+export const useGetStoreWorkingDaysAndSocialHandles  = () => {
 	const { state: { user }} = UseContext();
 	const { data , loading, mutate} = useGetCachedAxiosHandler ({
 		url: `${SETTINGS_URL}/other-settings/${user?.clientId}`,
@@ -33,7 +33,11 @@ export const useGetWorkingDays  = () => {
 		requiredVariable: user?.clientId?.length > 0
 	});
  
-	return {  loading, workingDays: data?.data?.data?.workingDays  ,  mutate };
+	return {  
+		loading, 
+		workingDays: data?.data?.data?.workingDays  ,
+		socialHandles: data?.data?.data,
+		mutate };
 };
  
 

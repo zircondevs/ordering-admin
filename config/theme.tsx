@@ -95,6 +95,7 @@ const palette = {
 const shadows = {
 	small: "0px 8px 4px rgba(0, 0, 0, 0.02)",
 	smaller: "0px 2px 6px rgba(0, 0, 0, 0.2)",
+	large: "0px 0px 6px rgba(0, 0, 0, 0.2)",
 };
 
 const typography = {
@@ -195,7 +196,7 @@ const shape = {
 		64: "64px", //46
 	},
 	padding: {
-		small: "14px 32px",
+		small: "12px 28px",
 		smaller: "8px 16px",
 		smallest: "5px 10px",
 	}

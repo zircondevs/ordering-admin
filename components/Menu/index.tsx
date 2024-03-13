@@ -1,22 +1,24 @@
 
-import {    DrawerMenu,DrawerMenuWrapper,Line,MenuStyles, ProfileCard, ProfileDropdownList,   } from "./styles";
+import {    ActiveStore, DrawerMenu,DrawerMenuWrapper,Line,MenuStyles, ProfileCard, ProfileDropdownList,   } from "./styles";
 import {     Bold, Dropdown, Flex,  Span  } from "..";
 import React  from "react";
 import { UseContext } from "../../state/provider";
 import Image from "next/image";
-import { AvatarIcon, LeftArrowIcon, LogOutIcon, OTHAIcon } from "../../public/assets/svg";
+import {  AvatarIcon, LeftArrowIcon, LogOutIcon, OTHAIcon, StoreIcon } from "../../public/assets/svg";
 import { MakeOnlyFirstLettersCapital, singleSpace } from "../../lib";
 import { useRouter } from "next/router";
 import { useLogout } from "../../hooks/handlers/useLogout";
+import { useGetStores } from "../../hooks/useStores";
 
 type ActionType = "logout" | "profile"
 
 
 
 const Menu = ({ authScreen}: { authScreen?: boolean}) => {
-	const {  state: { user, client}} = UseContext();
+	const {  state: { user, client, storeId }} = UseContext();
 	const { push } = useRouter();
 	const { handleLogout } = useLogout();
+	const { stores } = useGetStores();
 	
 	const actions = {
 		profile: () => push("/dashboard/settings"),
@@ -40,7 +42,7 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 									objectPosition={"left"}
 								/>
 							</DrawerMenu>
-							<Bold  weight="600" fontFamily='quicksandMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
+							<Bold  weight="600" fontFamily='ubuntuMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
 								{MakeOnlyFirstLettersCapital(user?.clientName)}
 							</Bold>
 						</DrawerMenuWrapper>
@@ -48,13 +50,22 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 						<Flex width="auto" height="auto" wrap="nowrap">
 							<OTHAIcon height="30" width="30" colour="Orange.default"/>
 							{singleSpace()}
-							<Bold  weight="600" fontFamily='quicksandMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
+							<Bold  weight="600" fontFamily='ubuntuMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
 								Otha
 							</Bold>
 						</Flex>
 				}
  
- 
+				{
+					stores?.data ?
+						<ActiveStore width="auto" height="auto">
+							<Flex width="auto" height="auto" margin="0 8px 0 0"><StoreIcon width="25" height="25" colour="Black.60" /></Flex>
+							<Bold  weight="600" fontFamily='ubuntuSemiBold' lineHeight="32" size="18" colour={"Black.default"} center>
+								{stores?.data?.find((store: any) => store?._id === storeId)?.name}
+							</Bold>
+						</ActiveStore>
+						: null
+				}
 
 				{
 					authScreen ? null : 

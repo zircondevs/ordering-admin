@@ -10,7 +10,7 @@ import CustomButton from "../../../../../components/Button";
 import {  GeneralLabel,    } from "../../../../../components/styles";
 import { Form, Formik } from "formik";
 import TimePicker from "../../../../../components/TimePicker";
-import { useGetWorkingDays, useSetUpStore } from "../../../../../hooks/useSettigs";
+import {  useSetUpStore } from "../../../../../hooks/useSettigs";
 import { MakeOnlyFirstLettersCapital,   } from "../../../../../lib";
 import { SetUpStoreTypes } from "../../../../../constants/types";
 import { Checkbox } from "../../../../../components/CheckMark";
@@ -20,9 +20,8 @@ const days = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"
 
 
 
-const OpeningAndClosingHrs = ( ) => {
+const OpeningAndClosingHrs = ({workingDays, onDone }: any ) => {
 	const { handleSetUpStore, loading} = useSetUpStore();
-	const { workingDays, mutate } = useGetWorkingDays();
 
 	
 	const WorkingDays = days.map((day, index) => ({ 
@@ -30,6 +29,7 @@ const OpeningAndClosingHrs = ( ) => {
 		openingHours: workingDays?.[index]?.day  ?  workingDays?.[index]?.openingHours : "8:0:0", 
 		closingHours: workingDays?.[index]?.day  ? workingDays?.[index]?.closingHours :  "16:0:0" 
 	}));
+ 
  
  
 	return (
@@ -55,7 +55,7 @@ const OpeningAndClosingHrs = ( ) => {
 					}} 
 					onSubmit={ async (values ) => { 
 						const res = await handleSetUpStore((values as SetUpStoreTypes));
-						res?.data && mutate();
+						res?.data && onDone();
 					}}
 				>
 					{({ values, setFieldValue, dirty}) => {

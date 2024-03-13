@@ -102,3 +102,34 @@ export const ProfileDropdownList =  styled(Flex)`
 		margin-left: 4px;
 	}
 `;
+export const ActiveStore =  styled(Flex)`
+	padding: 5px 10px;
+	box-shadow: ${({ theme }) => theme?.shadows?.large };
+	border-radius: 16px;
+	flex-wrap: nowrap;
+	& > div {
+		position: relative;
+		&:before {
+			position: absolute;
+			bottom: 2px;
+			right: 0;
+			height: 10px;
+			width: 10px;
+			background-color: #0fbc0f;
+			border-radius: 100%;
+			content: ""
+		}	
+	}
+	@media (max-width: 700px) {
+		max-width: 150px;
+	}
+	@media (max-width: 500px) {
+		display: none;	
+	}
+	& > b {
+		width: 100%;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+`;

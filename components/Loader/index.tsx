@@ -45,14 +45,14 @@ export const IconLoader = () => {
 				<Flex width="auto">
 					<OTHAIcon height="30" width="30" colour="Orange.default"/>
 					{singleSpace()}
-					<Bold  weight="600" fontFamily='quicksandMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
+					<Bold  weight="600" fontFamily='ubuntuMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
 						Otha
 					</Bold>
 				</Flex>
 				<Flex width="auto" className="fixed">
 					<OTHAIcon height="30" width="30" colour="Grey.1"/>
 					{singleSpace()}
-					<Bold  weight="600" fontFamily='quicksandMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
+					<Bold  weight="600" fontFamily='ubuntuMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
 						Otha
 					</Bold>
 				</Flex>

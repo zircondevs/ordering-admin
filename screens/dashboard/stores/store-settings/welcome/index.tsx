@@ -11,7 +11,7 @@ import {  GeneralLabel,      } from "../../../../../components/styles";
 import { Form, Formik } from "formik";
 import Image from "next/image";
 import EditorContainer from "../../../../../components/Editor";
-import { useSetUpStore } from "../../../../../hooks/useSettigs";
+import { useGetAdminGeneralSettings, useSetUpStore } from "../../../../../hooks/useSettigs";
 import { removeEmptyValuesFromObj } from "../../../../../lib";
 import { SetUpStoreTypes } from "../../../../../constants/types";
 import { Main } from "../cart-type/styles";
@@ -22,12 +22,12 @@ import { SettingsUpload } from "../../../../../components/Upload";
  
 
 
-const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
+const Welcome = () => {
 	const [visualType, setVisualType] = useState("");
 
 
 	const { handleSetUpStore, loading} = useSetUpStore();
-
+	const { settings,   mutate } = useGetAdminGeneralSettings();
 
 	useEffect(() => {
 		if(settings?.storeImage) {
@@ -74,7 +74,7 @@ const Welcome = ( {settings, onDone}: {settings: any, onDone: () => void}) => {
 										: {} 
 							)
 						});
-						res?.data && onDone();
+						res?.data && mutate();
 					}}
 				>
 					{({ values, setFieldValue,  }) => {

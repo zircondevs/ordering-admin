@@ -526,6 +526,29 @@ export const StoreIcon = (
  
  
  
+export const ActiveIcon = (
+	{ height, width, colour, colour2  }: { height?: string; width?: string; colour?: string, colour2?: string}
+) => (
+	<svg
+		x="0px"
+		y="0px"
+		height={height || "52"}
+		width={width || "52"}
+		viewBox="0 -8 75 60"
+	>
+
+
+		<g id="Group_2" data-name="Group 2" transform="translate(-309.723 -164.741)">
+			<circle id="Ellipse_1" data-name="Ellipse 1" cx="15.049" cy="15.049" r="15.049" transform="translate(347.784 172.134)" fill={  colour2 ? (extractObjectValueFromNestedObject(theme.palette, colour2))?.toString()  : "currentColor" } />
+			<path id="Path_7" data-name="Path 7" d="M362.833,219.487a20.944,20.944,0,0,0,0-41.888H332.167a20.944,20.944,0,1,0,0,41.888Z" fill="none" stroke={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor" }  strokeLinecap="round" strokeMiterlimit="10" strokeWidth="3" opacity="0.15"/>
+			<path id="Path_8" data-name="Path 8" d="M362.833,208.129a20.944,20.944,0,0,0,0-41.888H332.167a20.944,20.944,0,1,0,0,41.888Z" fill="none" stroke={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor" }  strokeMiterlimit="10" strokeWidth="3"/>
+		</g>
+
+	</svg>
+);
+ 
+ 
+ 
 export const MenuIcon = (
 	{ height, width, colour  }: { height?: string; width?: string; colour?: string}
 ) => (
