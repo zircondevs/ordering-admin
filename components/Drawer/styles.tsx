@@ -89,6 +89,7 @@ export const DrawerItem =  styled(Flex)`
 
  
 export const SelectStores =  styled(Flex)`
+	border: 1px solid  ${({theme }) =>   theme?.palette?.Grey["5"]  };
 	background-color: ${({theme }) =>   theme?.palette?.Grey["6"]  };
 	 height: auto;
 	 border-radius: 8px;

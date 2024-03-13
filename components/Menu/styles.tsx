@@ -105,7 +105,7 @@ export const ProfileDropdownList =  styled(Flex)`
 export const ActiveStore =  styled(Flex)`
 	padding: 5px 10px;
 	box-shadow: ${({ theme }) => theme?.shadows?.large };
-	border-radius: 16px;
+	border-radius: 5px;
 	flex-wrap: nowrap;
 	& > div {
 		position: relative;
