@@ -17,9 +17,9 @@ export const Cards =  styled(Grid)`
 	}
 	@media (max-width: 700px) {
 		background-color: #62606014;
-		margin: 0 -30px;
+		margin: 0 -4%;
 		width: auto;
-		padding: 30px;
+		padding: 30px 4%;
 	}
 	
 `;
