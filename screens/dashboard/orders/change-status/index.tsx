@@ -2,10 +2,9 @@
 import React   from "react";
 import {  Container1, Footer, ModalContainer, } from "./styles";
 import {   Dropdown, Flex,        Modal, Span,    } from "../../../../components";
-import {   GenericObjTypes } from "../../../../constants/types";
+import {   GenericObjTypes, StatusType } from "../../../../constants/types";
 import { HandleScrollTypes } from "devs-react-component-library"; 
 import CustomButton from "../../../../components/Button";
-import { StatusType } from "..";
 
 
 
