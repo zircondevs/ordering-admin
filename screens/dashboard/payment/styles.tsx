@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Flex, Grid,  } from "../../../components";
+import { Flex, Grid, Small,  } from "../../../components";
 
 
 
@@ -19,6 +19,10 @@ export const OverviewStyles =  styled(Flex)`
 	@media (max-width: 700px) {
 		padding: 0  4%;
 	}
+`;
+
+export const DescriptionStyle =  styled(Small)`
+	display: inline-block;
 `;
  
  

@@ -1,21 +1,28 @@
 
-import React   from "react";
-import { Bold, Flex,   Span,   Table,      } from "../../../components";
-import { Container1, HeaderSTyles, Main,    } from "./styles";
-import {     formateDate,   } from "../../../lib";
+import React    from "react";
+import { Bold,  Flex,   Span,   Table,      } from "../../../components";
+import { Container1,   HeaderSTyles, Main,    } from "./styles";
+import {     formateDate     } from "../../../lib";
 import { GeneralCountStyles, GeneralTAnimatingContainer, GeneralTableStyle } from "../../../components/styles";
 import { GenericObjTypes } from "../../../constants/types";
 import {  EmptyIcon, LoaderIcon } from "../../../public/assets/svg";
 import Paginator from "../../../components/Paginator";
-import { usegetCustomers } from "../../../hooks/useCustomers";
+import { useGetCustomers } from "../../../hooks/useCustomers";
+import CustomerMetrics from "./metrics";
+ 
+
  
 
 
-
-
-
 const Transactions = () => {
-	const { customers, loading , error, pageInfo, setPageInfo , isValidating} = usegetCustomers();
+
+
+
+	const { customers, loading , error, pageInfo, setPageInfo , isValidating} = useGetCustomers();
+
+
+
+
 	const tableHead = ["Customer Name", "Date Created","Email", "Phone Number",   "Address"];
 	const tableBody = customers?.length > 0 ? customers?.map((user: GenericObjTypes) =>  (
 		{
@@ -27,7 +34,8 @@ const Transactions = () => {
 		}
 	)) : [];
 
-
+ 
+ 
 
 	
 	return (
@@ -36,8 +44,12 @@ const Transactions = () => {
 			<HeaderSTyles height="auto" justifyContent="space-between">
 				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Customers
-				</Bold>
+				</Bold> 
+
+				<CustomerMetrics />
 			</HeaderSTyles>
+
+			
 
 			<Container1>
 				<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
@@ -49,7 +61,7 @@ const Transactions = () => {
 							pageInfo?.count ?
 								<GeneralCountStyles>
 									<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
-										{pageInfo?.count}
+										{pageInfo?.count || 0} 
 									</Bold>
 								</GeneralCountStyles>
 								: null

@@ -1,10 +1,10 @@
 /* eslint-disable max-lines */
 import React from "react";
-import {  Animate, LoaderContainer,   
+import {  Animate, DeskTopLoaderStyles, LoaderContainer,   
 	LoaderContentsContainer, 
 } from "./styles";
-import { Bold, Flex,   } from "..";
-import {   OTHAIcon } from "../../public/assets/svg";
+import { Bold, Flex, Span,   } from "..";
+import {   LoaderIcon, OTHAIcon } from "../../public/assets/svg";
 import { singleSpace } from "../../lib";
  
  
@@ -60,3 +60,18 @@ export const IconLoader = () => {
 		</Animate>
 	);
 };
+
+export const  DesktopLoader = ({ isLoading }: {isLoading: boolean}) => {
+ 
+	return (
+		<DeskTopLoaderStyles isLoading={isLoading}>
+			<Flex>
+				<LoaderIcon height="30" width="30" colour="Blue.dark.default"/>
+				<Span fontFamily='ubuntu' weight="700" lineHeight="21" size="14" colour={"Black.default"}>
+					Loading...
+				</Span>
+			</Flex>
+		</DeskTopLoaderStyles>
+	);
+};
+ 

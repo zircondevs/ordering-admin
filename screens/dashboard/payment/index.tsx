@@ -1,7 +1,7 @@
 
 
 import React  from "react";
-import {  Card, Cards, Icon, Main, OverviewStyles, TabsStyles,       } from "./styles";
+import {  Card, Cards,   Icon, Main, OverviewStyles, TabsStyles,       } from "./styles";
 
 import { useGetDashboardDetails } from "../../../hooks/usedashboard";
 import { GeneralTabStyle } from "../../../components/styles";
@@ -27,7 +27,7 @@ const Overview = () => {
 
 	const {totalPaidOut} =useGetTotalPaidOut();
 
-	console.log(totalPaidOut, "totalPaidOut")
+	console.log(totalPaidOut, "totalPaidOut");
 	
 	const tabData = [
 		{
@@ -51,12 +51,13 @@ const Overview = () => {
 	const data = [
 		{
 			name: "Payout Balance",
-			description: "This is",
+			description: "This is the toal value you are yet to widthdraw from Otha",
 			amount: naira + formatNumber(dashboard?.wallet?.balance),
 			icon: <DataIcon height="20" width="20" colour="common.white"/>
 		},
 		{
 			name: "Total Paid Out",
+			description: "This is the toal value you  have widthdrawn so far on this platform",
 			amount: naira + formatNumber(dashboard?.wallet?.balance),
 			icon: <DataIcon height="20" width="20" colour="common.white"/>
 		},
@@ -75,7 +76,7 @@ const Overview = () => {
 			<Cards columns="  repeat(auto-fit, minmax(180px, 400px))" gap="24px" justifyContent="flex-start">
 				{
 					data.map((item, idx) => (
-						<Card key={item.name} active={idx === 0}>
+						<Card key={item.name} active={idx === 0} wrap="nowrap">
 							<Icon className="icon" margin="0 20px 0 0">{item.icon}</Icon>
 							<div>
 								<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
@@ -85,6 +86,10 @@ const Overview = () => {
 								<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={  "Grey.2"}>
 									{item.name}
 								</Span>
+								{/* <Spacer height="8px"/>
+								<DescriptionStyle fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={  "Grey.1"}>
+									{item.description}
+								</DescriptionStyle> */}
 							</div>
 						</Card>
 					))

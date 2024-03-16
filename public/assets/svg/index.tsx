@@ -549,6 +549,37 @@ export const ActiveIcon = (
  
  
  
+ 
+export const BadgeIcon = (
+	{ height, width, colour,    }: { height?: string; width?: string; colour?: string,  }
+) => (
+	<svg
+		x="0px"
+		y="0px"
+		height={height || "52"}
+		width={width || "52"}
+		viewBox="0 -2.5 85 85" 
+	>
+		<g id="_06-Badge" data-name="06-Badge" transform="translate(-227.5 -232.5)">
+			<g id="Group_107" data-name="Group 107">
+				<g id="Group_104" data-name="Group 104">
+					<path id="Path_119" data-name="Path 119" d="M270,297.5a2.5,2.5,0,0,1-2.165-1.25L261.34,285H248.35a2.5,2.5,0,0,1-2.165-3.75L252.68,270l-6.495-11.249A2.5,2.5,0,0,1,248.35,255h12.99l6.495-11.251a2.5,2.5,0,0,1,4.33,0L278.66,255h12.99a2.5,2.5,0,0,1,2.165,3.75L287.32,270l6.495,11.25A2.5,2.5,0,0,1,291.65,285H278.66l-6.495,11.25A2.5,2.5,0,0,1,270,297.5ZM252.68,280h10.1a2.5,2.5,0,0,1,2.165,1.25L270,290l5.052-8.75a2.5,2.5,0,0,1,2.165-1.25h10.1l-5.051-8.75a2.5,2.5,0,0,1,0-2.5L287.32,260h-10.1a2.5,2.5,0,0,1-2.165-1.25L270,250l-5.052,8.751a2.5,2.5,0,0,1-2.165,1.25h-10.1l5.051,8.749a2.5,2.5,0,0,1,0,2.5Z" fill={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor" }/>
+				</g>
+				<g id="Group_105" data-name="Group 105">
+					<path id="Path_120" data-name="Path 120" d="M270,312.5a2.5,2.5,0,0,1-1.118-.264l-40-20A2.5,2.5,0,0,1,227.5,290V235a2.5,2.5,0,0,1,2.5-2.5h80a2.5,2.5,0,0,1,2.5,2.5v55a2.5,2.5,0,0,1-1.382,2.236l-40,20A2.5,2.5,0,0,1,270,312.5Zm-37.5-24.045L270,307.2l37.5-18.75V237.5h-75Z" fill={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor" }/>
+				</g>
+				<g id="Group_106" data-name="Group 106">
+					<path id="Path_121" data-name="Path 121" d="M270,277.5a7.5,7.5,0,1,1,7.5-7.5A7.508,7.508,0,0,1,270,277.5Zm0-10a2.5,2.5,0,1,0,2.5,2.5A2.5,2.5,0,0,0,270,267.5Z" fill={  colour ? (extractObjectValueFromNestedObject(theme.palette, colour))?.toString()  : "currentColor" }/>
+				</g>
+			</g>
+		</g>
+ 
+
+	</svg>
+);
+ 
+ 
+ 
 export const MenuIcon = (
 	{ height, width, colour  }: { height?: string; width?: string; colour?: string}
 ) => (
@@ -668,6 +699,25 @@ export const LeftArrowIcon = (
 				</g>
 			</g>
 		</g>
+	</svg>
+);
+ 
+ 
+export const DropdownIcon = (
+	{ height, width, colour  }: { height?: string; width?: string; colour?: string}
+) => (
+	<svg
+		height={height || "52"}
+		fill={  colour ? 
+			(extractObjectValueFromNestedObject(theme.palette, colour))?.toString() 
+			: "currentColor"
+		}
+		width={width || "52"}
+		x="0"
+		y="0"
+		viewBox="0 0 256 256"
+	>
+		<path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,48,88H208a8,8,0,0,1,5.66,13.66Z"></path> 
 	</svg>
 );
  

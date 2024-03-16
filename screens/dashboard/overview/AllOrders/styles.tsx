@@ -76,9 +76,15 @@ export const RecentOrders =  styled(Flex)<{index: number}>`
 		transition: 200ms linear;
 		opacity: 0.8;
 	}
-	&:hover  > * {
-		transform: translateY(-3px);
-		opacity: 1;
+	&:hover  {
+		background-color:  ${({ theme }) => theme.palette.Black[5]};
+		& > * {
+			transform: translateY(-3px);
+			opacity: 1;
+		}
+		.EditOrderButton {
+			opacity: 1;
+		}
 	}
 `;
  
@@ -101,6 +107,7 @@ export const OrderIdButton =  styled("button")`
  
 export const EditOrderButton =  styled("button")`
 	transition: 200ms linear;
+	opacity: 0;
 	&:hover {
 		transform: scale(1.1)
 	}

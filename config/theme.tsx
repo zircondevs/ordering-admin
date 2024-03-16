@@ -60,6 +60,7 @@ const palette = {
 	Yellow: {
 		default: "#FCBC30",
 		20: "#fdf0d4",
+		10: "#fbf2e1",
 		5: "#FFFBF3",
 		0: "#FBF4E5"
 	},

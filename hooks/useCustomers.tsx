@@ -10,7 +10,7 @@ import { useCACHE } from "./useCache";
  
 
 
-export const usegetCustomers  = () => {
+export const useGetCustomers  = () => {
 	const {state: { user }} = UseContext();
 	const [pageInfo, setPageInfo] = useState({
 		page: 1,

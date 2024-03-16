@@ -92,6 +92,12 @@ export const CheckIfObjHasSameValues = (obj: any, key = "") => {
 };
 
 
+export  const getYYYYMMDD = (date: Date | string) => new Date(date).toISOString().split("T")[0];
+
+
+
+
+
 /**
  * 
  * @param obj object
@@ -300,6 +306,23 @@ export const alphaColorsRank = {
 	Y: "re#d2cbd7d",
 	Z: "#fdd6d6",
 };
+
+
+
+
+/**
+ * Take the difference between the dates and divide by milliseconds per day.
+ * Round to nearest whole number to deal with DST.
+ */
+export  const dateDiff = (date1: string | Date, date2: string | Date ) =>{
+	const differenceInTime = new Date(date2).getTime() - new Date(date1).getTime();
+	return  differenceInTime / (1000 * 3600 * 24);
+};
+
+ 
+
+
+
 
 
 /**
