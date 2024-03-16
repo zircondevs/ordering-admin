@@ -5,7 +5,7 @@ import React  from "react";
 import { UseContext } from "../../state/provider";
 import Image from "next/image";
 import {  AvatarIcon, LeftArrowIcon, LogOutIcon, OTHAIcon, StoreIcon } from "../../public/assets/svg";
-import { MakeOnlyFirstLettersCapital, singleSpace } from "../../lib";
+import { MakeOnlyFirstLettersCapital,   } from "../../lib";
 import { useRouter } from "next/router";
 import { useLogout } from "../../hooks/handlers/useLogout";
 import { useGetStores } from "../../hooks/useStores";
@@ -47,13 +47,14 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 							</Bold>
 						</DrawerMenuWrapper>
 						:
-						<Flex width="auto" height="auto" wrap="nowrap">
-							<OTHAIcon height="30" width="30" colour="Orange.default"/>
-							{singleSpace()}
+						<DrawerMenuWrapper width="auto" height="auto" wrap="nowrap">
+							<DrawerMenu   justifyContent='flex-start' wrap='nowrap'>
+								<OTHAIcon height="30" width="30" colour="Orange.default"/>
+							</DrawerMenu>
 							<Bold  weight="600" fontFamily='ubuntuMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
 								Otha
 							</Bold>
-						</Flex>
+						</DrawerMenuWrapper>
 				}
  
 				{
