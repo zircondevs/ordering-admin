@@ -15,12 +15,7 @@ export const Cards =  styled(Grid)`
 		grid-template-columns: repeat(auto-fit,  minmax(220px, 1fr));
 		grid-gap: 10px;
 	}
-	@media (max-width: 700px) {
-		background-color: #62606014;
-		margin: 0 -4%;
-		width: auto;
-		padding: 30px 4%;
-	}
+	 
 	
 `;
 
@@ -28,6 +23,7 @@ export const Cards =  styled(Grid)`
  
 export const Card =  styled("div")<{active: boolean}>`
 	 border: 1px solid ${({ theme }) => theme.palette.Black[20]};
+	 background-color:  ${({ theme }) => theme.palette.common["white"]};
 	 border-radius: 16px;
 	padding: 24px;
 	position: relative;
@@ -44,7 +40,6 @@ export const Card =  styled("div")<{active: boolean}>`
 		flex-direction: row;
 		display: flex;
 		padding: 16px;
-		/* border-radius: 6px; */
 		& > div:last-child{
 			flex: 1;
 			& > div {

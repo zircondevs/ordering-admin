@@ -11,7 +11,7 @@ export const Aside =  styled("aside")`
 	flex-basis: 400px;
 	z-index: 1300;
 	border-left: 1px solid ${({ theme }) => theme.palette.Black[20]};
-	background-color:  ${({ theme }) => theme.palette.common["white"]};
+	background-color:  #EEEEEE8A;
 	position:relative;
 	z-index: 100;
 	display: flex;
@@ -70,6 +70,7 @@ export const RecentOrders =  styled(Flex)<{index: number}>`
 	border-radius: 8px;
 	padding: 16px;
 	opacity: 0;
+	background-color: white;
 	border: 1px solid ${({ theme }) => theme.palette.Black[20]};
 	animation: ${ SlideIn()} 300ms ${({index}) => index* 110}ms linear forwards;
 	& > * {

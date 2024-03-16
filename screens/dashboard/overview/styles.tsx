@@ -16,6 +16,7 @@ export const Main =  styled(Flex)`
 export const OverviewStyles =  styled("div")`
 	flex: 1;
 	padding: 0  40px;
+	background-color: #EEE;
 	@media (max-width: 700px) {
 		padding: 0  4%;
 	}

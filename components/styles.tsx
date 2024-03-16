@@ -231,6 +231,7 @@ export const GeneralTableStyle =  styled(Flex)`
 			tbody tr{
 				display: table-row;
 				border-bottom: 1px solid  ${({ theme }) => theme.palette.Grey["6"]};
+				background-color:   ${({ theme }) => theme.palette.Grey["7"]};
 				border-radius: 20px;
 				&:nth-child(2n){
 					background-color:   ${({ theme }) => theme.palette.Grey["8"]};

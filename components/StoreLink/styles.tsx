@@ -22,13 +22,14 @@ export const StoreLinkStyles =  styled(Flex)<{copied: boolean}>`
 		width: 100%;
 	}
 	& > button {
-		background-color:   ${({ theme , copied}) => copied ? theme.palette.Success[20] : theme.palette.Grey[6]};
+		background-color:   ${({ theme , copied}) => copied ? theme.palette.Success[20] : theme.palette.Grey[8]};
 		color:   ${({ theme , copied}) => copied ? theme.palette.Success[80] : theme.palette.Grey[2]};
 		padding: 5px 10px;
 		margin: 0 0 0 10px;
 		border-radius: 16px;
 		white-space: nowrap;
 		min-width: auto;
+		border: 1px solid ${({ theme }) => theme.palette.Black[20]};
 	}
 `;
 

@@ -7,7 +7,6 @@ import {  Main, ModalSpacer, } from "./styles";
 import { Spacer } from "../../../components/Spacer";
 import { GeneralInputWrap, GeneralLabel,     } from "../../../components/styles";
 import CustomButton from "../../../components/Button";
-import { TERTIARY_COLOR, WHITE_COLOR } from "../../../hooks/colors";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { useLogin } from "../../../hooks/useAuth";
@@ -108,9 +107,9 @@ const Login = () => {
 								<Flex>
 									<CustomButton
 										size="14"
-										bgColour={TERTIARY_COLOR[2]}
-										bodColour={TERTIARY_COLOR[2]}
-										txtColour={WHITE_COLOR}
+										activeBgColor="Orange.default"
+										activeBorderColor="Orange.default"
+										activeColor="common.white"
 										fullwidth
 										type="submit"
 										nonActiveBgColor="Black.20"

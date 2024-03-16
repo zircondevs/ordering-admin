@@ -16,7 +16,7 @@ export const useGetCustomers  = () => {
 		page: 1,
 		limit: 10,
 		pages: 1,
-		count: 1
+		count: 0
 	});
 	const { data , loading, error, isValidating} = useGetCachedAxiosHandler ({
 		url: `${AUTH_URL}/users/${user?.clientId}?page=${pageInfo.page}&limit=${pageInfo.limit}`,
