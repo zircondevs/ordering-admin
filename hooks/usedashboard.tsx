@@ -45,3 +45,19 @@ export const useGetCustomerChart  = (filterString?: string) => {
 };
 
  
+
+export const useGetTopPurchasingCustomer  = () => {
+	const  {state: { user }} = UseContext();
+	
+	const { data , loading ,  error    } = useGetCachedAxiosHandler ({
+		url: `${DASHBOARD_URL}/customer/${user?.clientId}`,
+		notify: false,
+		requiredVariable: user?.clientId?.length > 0  
+	});
+
+
+	
+	return {  loading, topPurchasingCustomer: data?.data?.data , error  };
+};
+
+ 

@@ -6,7 +6,8 @@ import Charts from "../../../../components/Charts";
 import { ChartCard, Container2, Customer, CustomerCard, Main } from "./styles";
 import { BadgeIcon } from "../../../../public/assets/svg";
 import { Spacer } from "../../../../components/Spacer";
-import { useGetCustomerChart } from "../../../../hooks/usedashboard";
+import { useGetCustomerChart, useGetTopPurchasingCustomer } from "../../../../hooks/usedashboard";
+import { formatNumber } from "../../../../lib";
  
 
 <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></link>;
@@ -17,6 +18,7 @@ const CustomerMetrics = () => {
 	const [filterBy, setFilterBy] = useState("All Time");
 
 	const { customerChart, loading, error} = useGetCustomerChart(filterBy);
+	const {  topPurchasingCustomer } = useGetTopPurchasingCustomer();
  
 
 	const options = ["All Time",  "This Year", "Last 30 Days", "Last Week", "This Week", "Today"];
@@ -85,37 +87,37 @@ const CustomerMetrics = () => {
 				/>
 			</ChartCard>
 
+			{
+				topPurchasingCustomer?.[0] ?
+					<Customer>
+						<Header3 fontFamily='ubuntuSemiBold'weight="400"lineHeight="21"size="16"colour={"Black.80"}>
+							Top purchasing customer
+						</Header3>
+						<Spacer height="20px"/>
+						<CustomerCard>
+							
+							<Flex height="auto" justifyContent="flex-start" margin=" 0   0 10px 0">
+								<Bold fontFamily='ubuntuSemiBold'weight="400"lineHeight="21"size="16"colour={"common.white"}>
+									{formatNumber(topPurchasingCustomer?.[0]?.purchaseAmount )} purchases
+								</Bold>
+							</Flex>
+							
+							<Flex height="auto" justifyContent="flex-start" alignItems="flex-start" wrap="nowrap">
+								<BadgeIcon colour="Yellow.default"/>
+								<Flex height="auto" justifyContent="flex-start"  width="auto" margin="0 0 0 10px" direction="column" alignItems="flex-start">
+									<Bold fontFamily='ubuntuBold'weight="400"lineHeight="32"size="21"colour={"common.white"}>
+										{topPurchasingCustomer?.[0]?.fullName }
+									</Bold>
+									<Span fontFamily='ubuntuBold'weight="400"lineHeight="14"size="12"colour={"Black.40"}>
+										{topPurchasingCustomer?.[0]?.email }
+									</Span>
 
-			<Customer>
-				<Header3 fontFamily='ubuntuSemiBold'weight="400"lineHeight="21"size="16"colour={"Black.80"}>
-					Top purchasing customer
-				</Header3>
-				<Spacer height="20px"/>
-				<CustomerCard>
-					
-					<Flex height="auto" justifyContent="flex-start" margin=" 0   0 10px 0">
-						<Bold fontFamily='ubuntuSemiBold'weight="400"lineHeight="21"size="16"colour={"common.white"}>
-							34 purchases
-						</Bold>
-					</Flex>
-					
-					<Flex height="auto" justifyContent="flex-start" alignItems="flex-start" wrap="nowrap">
-						<BadgeIcon colour="Yellow.default"/>
-						<Flex height="auto" justifyContent="flex-start"  width="auto" margin="0 0 0 10px" direction="column" alignItems="flex-start">
-							<Bold fontFamily='ubuntuBold'weight="400"lineHeight="32"size="21"colour={"common.white"}>
-								Jogn Shi
-							</Bold>
-							<Span fontFamily='ubuntuBold'weight="400"lineHeight="14"size="12"colour={"Black.40"}>
-								Jognwqe@gmail.com
-							</Span>
-
-						</Flex>
-					</Flex>
-
-
- 
-				</CustomerCard>
-			</Customer>
+								</Flex>
+							</Flex>
+						</CustomerCard>
+					</Customer>
+					: null
+			}
 		</Main>
 
  
