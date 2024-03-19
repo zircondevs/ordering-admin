@@ -30,18 +30,18 @@ const ForgotPassword = () => {
 
 
 					<Flex height="auto"   margin="0 0 24px" direction="column" alignItems="flex-start">
-						<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="40" size="36" colour={"Black.default"}>
+						<Bold fontFamily='medium' weight="400" lineHeight="40" size="36" colour={"Black.default"}>
 						Forgot Password
 						</Bold>
 						<Spacer height="16px"/>
-						<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Grey.2"}>
+						<Span fontFamily='regular' weight="700" lineHeight="19" size="16" colour={"Grey.2"}>
 							Can’t remember your password, we got you covered
 						</Span>
 					</Flex>
 
 
 					<Flex height="auto" justifyContent="flex-start" margin="32px 0 64px">
-						<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="12" colour={"Black.default"}>
+						<Span fontFamily='regular' weight="700" lineHeight="19" size="12" colour={"Black.default"}>
 							REMEMBERED YOUR PASSWORD?
 						</Span>
 						<CustomButton

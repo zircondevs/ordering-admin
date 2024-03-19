@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Flex, Grid,   } from "../../../../components";
+import { Container, Flex, Grid,   } from "../../../../components";
 
 
 
@@ -22,11 +22,12 @@ export const Cards =  styled(Grid)`
  
  
 export const Card =  styled("div")<{active: boolean}>`
-	 border: 1px solid ${({ theme }) => theme.palette.Black[20]};
-	 background-color:  ${({ theme }) => theme.palette.common["white"]};
-	 border-radius: 16px;
+	border: 1px solid ${({ theme }) => theme.palette.Black[20]};
+	background-color:  ${({ theme }) => theme.palette.common["white"]};
+	border-radius: 16px;
 	padding: 24px;
 	position: relative;
+	box-shadow:  ${({ theme }) => theme.shadows.middle};
 	&:nth-child(1) .icon{
 		background-color:  ${({ theme }) => theme.palette.Orange["default"]};
 	}
@@ -46,11 +47,7 @@ export const Card =  styled("div")<{active: boolean}>`
 				height: 4px;
 			}
 		}
-	}
-	@media (max-width: 700px) {
-		box-shadow:  rgba(0,0,0,0.45) 0px 20px 15px -26px;
-		background-color: white;
-	}
+	} 
 `;
 export const Icon =  styled(Flex)`
 	height: 50px;
@@ -63,6 +60,16 @@ export const Icon =  styled(Flex)`
 		height: 30px;
 		width: 30px;
 	} 
+`;
+ 
+export const TbaleContainer =  styled(Container)`
+	padding: 30px;
+	border: 1px solid  ${({ theme }) => theme.palette.Grey[5]};
+	background-color:   ${({ theme }) => theme.palette.Grey[5]};
+	 border-radius: 16px;
+	 @media (max-width: 800px) {
+		padding: 10px;
+	 }
 `;
 
  

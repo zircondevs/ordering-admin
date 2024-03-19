@@ -81,10 +81,10 @@ export function ProtectedRoute({ children }: any ) {
 		<Main>
 			<Flex direction="column">
 				<WarningIcon height="30" width="30" colour="Error.default"/>
-				<Span fontFamily='ubuntu' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
+				<Span fontFamily='regular' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
 					Something went wrong
 				</Span>
-				<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="14" colour={"Grey.3"}>
+				<Span fontFamily='regular' weight="700" lineHeight="19" size="14" colour={"Grey.3"}>
 					Please check your network and try again
 				</Span>
 			</Flex>

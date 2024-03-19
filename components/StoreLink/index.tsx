@@ -25,7 +25,7 @@ const StoreLink = () => {
 		<StoreLinkStyles wrap="nowrap" copied={copied}>
 			<StoreIcon height="16" width="16"  colour={"Blue.default"}/>
 			<a href={`${process.env.PORTL_URL}${client?.companyName?.toLowerCase()}`} 	rel="noopener noreferrer" target="_blank" >
-				<Bold fontFamily='ubuntuMedium' weight="600" lineHeight="19" size="14" colour={"Blue.default"}>
+				<Bold fontFamily='medium' weight="600" lineHeight="19" size="14" colour={"Blue.default"}>
 					{`${process.env.PORTL_URL}${client?.companyName?.toLowerCase()}`}
 				</Bold>
 			</a>

@@ -34,11 +34,11 @@ const Login = () => {
 				<ModalSpacer direction="column" wrap="nowrap" alignItems='stretch'>
 
 					<Flex height="auto"   margin="0 0 24px" direction="column" alignItems="flex-start">
-						<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="40" size="36" colour={"Black.default"}>
+						<Bold fontFamily='medium' weight="400" lineHeight="40" size="36" colour={"Black.default"}>
 							Welcome Back
 						</Bold>
 						<Spacer height="16px"/>
-						<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Grey.2"}>
+						<Span fontFamily='regular' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
 							Please enter your details below to continue
 						</Span>
 					</Flex>
@@ -120,7 +120,7 @@ const Login = () => {
 								</Flex>
 
 								<Flex height="auto"  margin="34px 0 0" width="auto" >  
-									<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
+									<Span fontFamily='regular' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
 										Don&apos;t have an account?
 									</Span>
 									{singleSpace()}

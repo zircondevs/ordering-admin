@@ -102,11 +102,11 @@ const LoayltySettings = ( ) => {
 
 			<div>
 				<Flex height="auto"   margin="40px 0 40px" direction="column" alignItems="flex-start">
-					<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="21" size="16" colour={"Orange.default"}>
+					<Bold fontFamily='medium' weight="400" lineHeight="21" size="16" colour={"Orange.default"}>
 					Loyalty Reward
 					</Bold>
 					<Spacer height="8px"/>
-					<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
+					<Span fontFamily='regular' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
 						Control how you reward users 
 					</Span>
 				</Flex>
@@ -194,7 +194,7 @@ const LoayltySettings = ( ) => {
 																			onClick={() => setFieldValue("loyaltyOptions", option.value)} type="radio"
 																		/>
 																	</Container>
-																	<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
+																	<Span fontFamily='regular' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
 																		{option.name}
 																	</Span>
 																</Flex>
@@ -233,7 +233,7 @@ const LoayltySettings = ( ) => {
 																fieldOptions[values.loyaltyOptions as OptionTypes].info  ?
 																	<>
 																		<Flex height="auto" margin="30px 0 20px">
-																			<Span fontFamily='ubuntuMedium' weight="400" lineHeight="16" size="12" colour={ "common.black"}>
+																			<Span fontFamily='medium' weight="400" lineHeight="16" size="12" colour={ "common.black"}>
 																				{fieldOptions[values.loyaltyOptions as OptionTypes].info }
 																			</Span>
 																		</Flex>

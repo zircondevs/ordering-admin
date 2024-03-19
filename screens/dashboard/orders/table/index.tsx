@@ -78,10 +78,10 @@ const OrdersTable = ({ status,  title, setModal, modalRef,   }: PropTypes ) => {
 							:
 							<>
 								<SearchSection justifyContent="space-between" margin="0 0 24px" height="auto">
-									<Bold fontFamily='ubuntu' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
+									<Bold fontFamily='regular' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 										{title }
 										<GeneralCountStyles>
-											<Span fontFamily='ubuntu' weight="700" lineHeight="14" size="12" colour={"Grey.2"}>
+											<Span fontFamily='regular' weight="700" lineHeight="14" size="12" colour={"Grey.2"}>
 												{  pageInfo.count || 0}
 											</Span>
 										</GeneralCountStyles>
@@ -116,7 +116,7 @@ const OrdersTable = ({ status,  title, setModal, modalRef,   }: PropTypes ) => {
 										: 
 										<Flex margin="50px 0" direction="column">
 											<EmptyIcon />
-											<Span fontFamily='ubuntu' weight="700" lineHeight="14" size="12" colour={"Grey.2"}>
+											<Span fontFamily='regular' weight="700" lineHeight="14" size="12" colour={"Grey.2"}>
 												There is no data here at the moment!
 											</Span>
 										</Flex>

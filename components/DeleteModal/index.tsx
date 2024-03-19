@@ -51,11 +51,11 @@ const DeleteModal = ({	state,modalRef, setState , initial, onSubmit, loading, ti
 				</TrashContainer>
 
 				<Flex height="auto"   margin="40px 0 24px" direction="column" >
-					<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="30" size="24" colour={"Error.default"}>
+					<Bold fontFamily='medium' weight="400" lineHeight="30" size="24" colour={"Error.default"}>
 						{title || "Delete"}
 					</Bold>
 					<Spacer height="16px"/>
-					<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Grey.3"}>
+					<Span fontFamily='regular' weight="700" lineHeight="19" size="16" colour={"Grey.3"}>
 						You are about to perform this action?
 					</Span>
 				</Flex>

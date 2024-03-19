@@ -47,7 +47,7 @@ const AddProduct = ({	open,modalRef, setOpen,onDOne,   categories } : PropType) 
 
 					<GeneralModalHeader>
 						<Flex height="auto"   margin="0 0 0px" direction="column" alignItems="flex-start">
-							<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="40" size="36" colour={"Black.default"}>
+							<Bold fontFamily='medium' weight="400" lineHeight="40" size="36" colour={"Black.default"}>
 								{ open?.type === "addProduct"  ? "Add ": "Update "}  Product
 							</Bold>
 						</Flex>

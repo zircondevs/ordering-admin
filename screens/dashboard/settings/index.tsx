@@ -56,7 +56,7 @@ const Settings = () => {
 
 		
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='64px 0 40px'>
-				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
+				<Bold fontFamily='semiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Settings
 				</Bold>
 

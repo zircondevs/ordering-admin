@@ -46,11 +46,11 @@ const Welcome = () => {
 
 			<div>
 				<Flex height="auto"   margin="0 0 40px" direction="column" alignItems="flex-start">
-					<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
+					<Bold fontFamily='medium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
 						Introductory content
 					</Bold>
 					<Spacer height="8px"/>
-					<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
+					<Span fontFamily='regular' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
 						This appears once a user views your link. 
 					</Span>
 				</Flex>
@@ -83,7 +83,7 @@ const Welcome = () => {
 							<Form>
 								<Grid gap="32px">
 									<div>
-										<Span fontFamily='ubuntuMedium' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
+										<Span fontFamily='medium' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
 											Select a media type to upload
 										</Span>
 										<Spacer height="8px"/>

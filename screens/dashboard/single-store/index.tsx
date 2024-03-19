@@ -77,7 +77,7 @@ const Stores = () => {
 					
 						error ?
 							<Flex justifyContent="flex-start" height="auto" alignItems="flex-start">
-								<Span fontFamily='ubuntu' weight="400" lineHeight="21" size="16" colour={ "Grey.1"}>
+								<Span fontFamily='regular' weight="400" lineHeight="21" size="16" colour={ "Grey.1"}>
 									Store
 								</Span>
 								{singleSpace()}
@@ -87,7 +87,7 @@ const Stores = () => {
 							</Flex>
 							:
 							<>
-								<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
+								<Bold fontFamily='regular' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
 									{store?.name || ""}
 								</Bold>
 
@@ -106,12 +106,12 @@ const Stores = () => {
 											<Container key={idx} justifyContent="space-between" wrap="nowrap">
 												<Flex height="auto" width="auto" justifyContent="flex-start">
 													{detail.icon}
-													<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={ "Grey.3"}>
+													<Span fontFamily='regular' weight="400" lineHeight="16" size="12" colour={ "Grey.3"}>
 														{detail.title}
 													</Span>
 												</Flex>
 												<Spacer height="4px" />
-												<Bold fontFamily='ubuntu' weight="&00" lineHeight="24" size="18" colour={ "Grey.2"}>
+												<Bold fontFamily='regular' weight="&00" lineHeight="24" size="18" colour={ "Grey.2"}>
 													{detail.value}
 												</Bold>
 											</Container>
@@ -131,11 +131,11 @@ const Stores = () => {
 			<Container1 margin="40px 0 0">
 				<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 					<div>
-						<Bold fontFamily='ubuntu' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
+						<Bold fontFamily='regular' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 							Store Activities
 						</Bold>
 						<GeneralCountStyles>
-							<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+							<Bold fontFamily='regular' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								{transactions?.count || 0}
 							</Bold>
 						</GeneralCountStyles>
@@ -166,7 +166,7 @@ const Stores = () => {
 							</GeneralTableStyle>
 							: <Flex margin="40px 0" height="auto" direction="column">
 								<EmptyIcon />
-								<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+								<Span fontFamily='regular' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 									There are no transaction record here yet!.
 								</Span>
 							</Flex>

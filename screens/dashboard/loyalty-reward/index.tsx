@@ -37,7 +37,7 @@ const Loyalty = () => {
 		<Main>
 
 			<HeaderSTyles height="auto" justifyContent="space-between">
-				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
+				<Bold fontFamily='semiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Loyalty Program
 				</Bold>
 			</HeaderSTyles>

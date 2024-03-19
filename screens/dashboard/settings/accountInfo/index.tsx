@@ -58,7 +58,7 @@ const AccountInfo = () => {
 	return (
 		<Main>
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='40px 0 40px'>
-				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
+				<Bold fontFamily='semiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
 					Update Information
 				</Bold>
 			</HeaderSTyles>
@@ -78,7 +78,7 @@ const AccountInfo = () => {
 					{
 						EDIT ? 
 							<SettingsUpload title="Company Logo" onSuccess={(e) =>  setFormData({  ...formData,  companyLogo:  e})}/> 
-							: <Bold fontFamily='ubuntuMedium' weight="400" lineHeight="24" size="18" colour={"Grey.2"}>
+							: <Bold fontFamily='medium' weight="400" lineHeight="24" size="18" colour={"Grey.2"}>
 								Company Logo
 							</Bold>
 					}
@@ -97,7 +97,7 @@ const AccountInfo = () => {
 					}
 					{
 						EDIT ? <SettingsUpload title="Favicon" onSuccess={(e) =>  setFormData({  ...formData,  favicon:  e})}/> 
-							: <Bold fontFamily='ubuntuMedium' weight="400" lineHeight="24" size="18" colour={"Grey.2"}>
+							: <Bold fontFamily='medium' weight="400" lineHeight="24" size="18" colour={"Grey.2"}>
 								Favicon
 							</Bold>
 					}
@@ -137,7 +137,7 @@ const AccountInfo = () => {
 				<Flex  justifyContent="flex-start"> 
 					<GeneralLabel>Choose a primary color</GeneralLabel>
 					<COlorFields>
-						<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.2"}>
+						<Span fontFamily='regular' weight="400" lineHeight="16" size="14" colour={"Grey.2"}>
 							{formData.primaryColor}
 						</Span>
 						<div>
@@ -149,7 +149,7 @@ const AccountInfo = () => {
 				<Flex  justifyContent="flex-start" direction="column" alignItems="flex-start">
 					<GeneralLabel>Choose a secondary color</GeneralLabel>
 					<COlorFields>
-						<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.2"}>
+						<Span fontFamily='regular' weight="400" lineHeight="16" size="14" colour={"Grey.2"}>
 							{formData.secondaryColor}
 						</Span>
 						<div>

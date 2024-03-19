@@ -44,7 +44,7 @@ const UserManagemnt = () => {
 	return (
 		<Main>
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='40px 0 40px'>
-				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
+				<Bold fontFamily='semiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
 					User Information
 				</Bold>
  
@@ -71,7 +71,7 @@ const UserManagemnt = () => {
 						error || staffError ?
 							<Flex>
 								<WarningIcon colour="Error.default" height="20" width="20"/>
-								<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
+								<Span fontFamily='regular' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
 									We are having issues fatching all staff
 								</Span>
 							</Flex>
@@ -104,18 +104,18 @@ const UserManagemnt = () => {
 													<Form>
 														<ControlHead height="auto" justifyContent="space-between" wrap="nowrap">
 															<div>
-																<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
+																<Span fontFamily='regular' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
 																	{staff?.fullname} 	
-																	<Small fontFamily='ubuntu' weight="400" lineHeight="14" size="12" colour={"Grey.3"}>
+																	<Small fontFamily='regular' weight="400" lineHeight="14" size="12" colour={"Grey.3"}>
 																		({staff?.email})
 																	</Small>
 																</Span>
-																<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
+																<Span fontFamily='regular' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
 																	{singleSpace()}| {staff?.position} 
 																</Span>
 															</div>
 															<button type="button" onClick={() => hidden.includes(idx) ? setHidden(hidden.filter(_ => _ !== idx)) : setHidden([...hidden, idx])}>
-																<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Orange.default"}>
+																<Span fontFamily='regular' weight="400" lineHeight="19" size="14" colour={"Orange.default"}>
 																	{ hidden.includes(idx) ? "Open" : "Collapse" }
 																</Span>
 															</button>
@@ -124,7 +124,7 @@ const UserManagemnt = () => {
 															hidden.includes(idx) ? null :
 																<>
 																	<Controls>
-																		<Span fontFamily='ubuntu' weight="400" lineHeight="21" size="14" colour={"Orange.default"}>
+																		<Span fontFamily='regular' weight="400" lineHeight="21" size="14" colour={"Orange.default"}>
 																			Dashboard Controls
 																		</Span>
 
@@ -148,7 +148,7 @@ const UserManagemnt = () => {
 																		{
 																			values.moduleAccessible.map((control, index) => (
 																				<Card2 key={control.name + index} justifyContent="space-between" wrap="nowrap">
-																					<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.2"}>
+																					<Span fontFamily='regular' weight="400" lineHeight="19" size="14" colour={"Grey.2"}>
 																						{
 																							values.moduleAccessible[index].method?.length > 0 ?
 																								<Check2Icon colour="Grey.2" width="12" height="12"/>
@@ -184,7 +184,7 @@ const UserManagemnt = () => {
 								:
 								<Flex height="auto" direction='column'>
 									<UsersIcon colour="Black.80" height="40" width="40"/>
-									<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
+									<Span fontFamily='regular' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
 										You have not added any staff yet!
 									</Span>
 								</Flex>

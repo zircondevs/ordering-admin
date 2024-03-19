@@ -50,7 +50,7 @@ const ChangeModalStatus = ({	setModal, modal ,modalRef,  } : PropType) => {
 				<Flex direction="column" wrap="nowrap" alignItems='stretch'>
  
 
-					<Span as="label" fontFamily='ubuntuMedium' weight="400" lineHeight="21" size="14" colour={"Black.80"}>
+					<Span as="label" fontFamily='medium' weight="400" lineHeight="21" size="14" colour={"Black.80"}>
 						Select Status
 					</Span>
 					<Flex margin="10px 0 50px" justifyContent="flex-start">

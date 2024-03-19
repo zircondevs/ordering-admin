@@ -77,14 +77,14 @@ const AccordionHead = ({visible, progress}: {visible: boolean, progress: progres
 					<SettingsIcon colour="Orange.default" height="20" width="20"/>
 				</Icon>
 				<div>
-					<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={ "Grey.2"}>
+					<Span fontFamily='regular' weight="400" lineHeight="19" size="14" colour={ "Grey.2"}>
 						Finish Up Set Up  {" "}
-						<Bold fontFamily='ubuntu' weight="700" lineHeight="19" size="14" colour={ "Grey.2"}>
+						<Bold fontFamily='regular' weight="700" lineHeight="19" size="14" colour={ "Grey.2"}>
 							{Math.round((progress.filter(item => item.value)?.length)/progress?.length * 100)}% Complete
 						</Bold>
 					</Span>
 					<br />
-					<Span fontFamily='ubuntu' weight="400" lineHeight="14" size="10" colour={ "Grey.3"}>
+					<Span fontFamily='regular' weight="400" lineHeight="14" size="10" colour={ "Grey.3"}>
 						Complete your store set and start making sales
 					</Span>
 				</div>
@@ -106,7 +106,7 @@ const AccordionBody = ({progress}: {progress: progressType}) => {
 					<AccordionBodyStyles key={item.title} justifyContent="space-between">
 						<Flex width="auto">
 							<Checkbox  checked={item.value} type="radio" />
-							<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={ "Grey.3"}>
+							<Span fontFamily='regular' weight="400" lineHeight="19" size="14" colour={ "Grey.3"}>
 								{item.title}
 							</Span>
 						</Flex>
@@ -114,7 +114,7 @@ const AccordionBody = ({progress}: {progress: progressType}) => {
 						<Flex width="max-content" height="auto" className="links" justifyContent="flex-start">
 							<div>
 								<Link href={item.link}>
-									<Bold fontFamily='ubuntu' weight="700" lineHeight="19" size="14" colour={ "Orange.default"}>
+									<Bold fontFamily='regular' weight="700" lineHeight="19" size="14" colour={ "Orange.default"}>
 										{item.linkText}
 									</Bold>
 								</Link>

@@ -32,7 +32,7 @@ const SelectTags = ({options, active, setActive, disable}: PropTypes) => {
 									:setActive([...active, option], option, true);
 						}}
 					>
-						<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={ active.includes(option) ? "Grey.2" :"Grey.3"}>
+						<Span fontFamily='regular' weight="400" lineHeight="19" size="14" colour={ active.includes(option) ? "Grey.2" :"Grey.3"}>
 							{option}
 						</Span>
 						{

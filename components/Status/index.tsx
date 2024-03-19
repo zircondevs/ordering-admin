@@ -17,7 +17,7 @@ const Status = ({status}: { status: string}) => {
 
 	return (
 		<Flex bgColor={ Object.keys(StatusColors)?.includes(status) ? StatusColors?.[status as TransactionStatusType][0] : "Grey.5"} width="max-content" pad="3px 8px" margin="0">
-			<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={ Object.keys(StatusColors)?.includes( status) ?  StatusColors?.[status as TransactionStatusType][1] : "Grey.2"}>
+			<Span fontFamily='regular' weight="400" lineHeight="19" size="12" colour={ Object.keys(StatusColors)?.includes( status) ?  StatusColors?.[status as TransactionStatusType][1] : "Grey.2"}>
 				{ status}
 			</Span>
 		</Flex>

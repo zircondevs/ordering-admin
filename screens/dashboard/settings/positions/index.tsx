@@ -27,7 +27,7 @@ const Positions = () => {
 	return (
 		<Main>
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='40px 0 40px'>
-				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
+				<Bold fontFamily='semiBold' weight="700" lineHeight="24" size="18" colour={"Grey.2"}>
 					Available Roles
 				</Bold>
 			</HeaderSTyles>

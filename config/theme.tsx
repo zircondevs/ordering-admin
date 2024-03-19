@@ -95,17 +95,18 @@ const palette = {
 
 const shadows = {
 	small: "0px 8px 4px rgba(0, 0, 0, 0.02)",
-	smaller: "0px 2px 6px rgba(0, 0, 0, 0.2)",
-	large: "0px 0px 6px rgba(0, 0, 0, 0.2)",
+	smaller: "0px 2px 6px rgba(0, 0, 0, 0.02)",
+	large: "0px 0px 6px rgba(0, 0, 0, 0.02)",
+	middle: " rgba(0,0,0,0.45) 0px 20px 15px -26px"
 };
 
 const typography = {
 	fontFamily: {
-		ubuntu: "UbuntuMono-Regular, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
-		ubuntuLight: "UbuntuMono-Light, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
-		ubuntuBold: "UbuntuMono-Bold, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
-		ubuntuMedium: "UbuntuMono-Medium, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
-		ubuntuSemiBold: "UbuntuMono-SemiBold, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
+		regular: "Outfit-Regular, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
+		light: "Outfit-Light, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
+		bold: "Outfit-Bold, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
+		medium: "Outfit-Medium, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
+		semiBold: "Outfit-SemiBold, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
 	},
 	fontWeight: {
 		300: 300,

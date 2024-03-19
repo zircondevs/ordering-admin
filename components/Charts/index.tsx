@@ -167,7 +167,7 @@ const Charts =  ({
 						<EmptyChart bgColor="Black.10">
 							<WarningIcon height="30" width="30" colour="Error.80"/>
 							<Paragraph 
-								fontFamily='ubuntu'
+								fontFamily='regular'
 								weight="400"
 								lineHeight="19"
 								size="14"
@@ -180,7 +180,7 @@ const Charts =  ({
 						: ![...datasets.map(dataset => (dataset.data))]?.flat()?.length ?
 							<EmptyChart bgColor="Black.10">
 								<Paragraph 
-									fontFamily='ubuntu'
+									fontFamily='regular'
 									weight="400"
 									lineHeight="24"
 									size="14"

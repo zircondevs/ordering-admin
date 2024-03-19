@@ -70,7 +70,8 @@ export const RecentOrders =  styled(Flex)<{index: number}>`
 	border-radius: 8px;
 	padding: 16px;
 	opacity: 0;
-	background-color: white;
+	background-color:  ${({ theme }) => theme.palette.common["white"]};
+	box-shadow:  ${({ theme }) => theme.shadows.small};
 	border: 1px solid ${({ theme }) => theme.palette.Black[20]};
 	animation: ${ SlideIn()} 300ms ${({index}) => index* 110}ms linear forwards;
 	& > * {

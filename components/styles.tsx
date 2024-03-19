@@ -79,7 +79,7 @@ export const GeneralErrorContainer =  styled("small")`
 	position: relative;
 	left: 0;
 	color: ${({ theme }) => theme?.palette?.Error.default };
-	font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };
+	font-family: ${({ theme }) => theme?.typography?.fontFamily["regular"] };
 	font-size: ${({ theme }) => theme?.fontSizes["12"] };
 	font-weight: ${({ theme }) => theme?.typography?.fontWeight["400"] };
 	line-height: ${({ theme }) => theme?.typography?.lineHeight["19"] };
@@ -129,7 +129,7 @@ export const GeneralModalHeader =  styled("div")`
 export const GeneralLabel =  styled("label")<{optional?: boolean}>`
 	text-align: start;
 	color: ${({ theme }) => theme?.palette?.Grey[1] };
-	font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };
+	font-family: ${({ theme }) => theme?.typography?.fontFamily["regular"] };
 	font-size: ${({ theme }) => theme?.fontSizes["14"] };
 	font-weight: ${({ theme }) => theme?.typography?.fontWeight["400"] };
 	line-height: ${({ theme }) => theme?.typography?.lineHeight["19"] };
@@ -182,7 +182,7 @@ export const GeneralInputWrap =  styled(Container)`
 		}
 	}
 	input {
-		font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };
+		font-family: ${({ theme }) => theme?.typography?.fontFamily["regular"] };
 	}
 `; 
  
@@ -206,14 +206,15 @@ export const GeneralTableStyle =  styled(Flex)`
 			background-color: transparent;
 			/* min-width: 700px; */
 			thead tr{
-				border-bottom: 3px solid   ${({ theme }) =>  theme.palette.Orange["default"]};
+				/* border-radius: 10px; */
+				/* border-bottom: 3px solid   ${({ theme }) =>  theme.palette.Orange["default"]}; */
 			}
 			thead th {
 				padding: 16px 0.8rem;
-				font-family: ${({ theme}) => theme.typography.fontFamily.ubuntuSemiBold};
+				font-family: ${({ theme}) => theme.typography.fontFamily.semiBold};
 				font-weight: ${({ theme}) => theme.typography.fontWeight[400]};
 				font-size: 12px;
-				background-color:  ${({ theme }) => theme.palette.Orange[-5]};
+				background-color:  ${({ theme }) =>  theme.palette.Grey["3"]};  
 			}
 			tbody td {
 				padding: 1rem 0.8rem;
@@ -224,6 +225,7 @@ export const GeneralTableStyle =  styled(Flex)`
 			/* avoid mobile splitting */
 			thead{
 				display: revert;
+				
 				th {
 					min-width: unset;
 				}
@@ -289,7 +291,7 @@ export const GeneralTextArea=  styled("textarea")`
 	min-height: 200px;
 	width: 100%;
 	resize: vertical;
-	font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };
+	font-family: ${({ theme }) => theme?.typography?.fontFamily["regular"] };
 	 margin-top: 8px;
 	 &:focus {
 		border: 1px solid ${({ theme }) => theme.palette.Black[40]};

@@ -32,7 +32,7 @@ const Transactions = () => {
 		<Main>
 
 			<HeaderSTyles height="auto" justifyContent="space-between">
-				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
+				<Bold fontFamily='semiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Transactions
 				</Bold>
 			</HeaderSTyles>
@@ -47,11 +47,11 @@ const Transactions = () => {
 						<Container1>
 							<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 								<div>
-									<Bold fontFamily='ubuntu' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
+									<Bold fontFamily='regular' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 										All Transactions
 									</Bold>
 									<GeneralCountStyles>
-										<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+										<Bold fontFamily='regular' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 											{transactions?.count}
 										</Bold>
 									</GeneralCountStyles>
@@ -87,7 +87,7 @@ const Transactions = () => {
 						: 
 						<Flex margin="40px 0" height="auto" direction="column">
 							<EmptyIcon />
-							<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+							<Span fontFamily='regular' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								There are no transaction record here yet!.
 							</Span>
 						</Flex>

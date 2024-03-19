@@ -2,7 +2,7 @@
 
 import React  from "react";
 import { Bold,   Flex,   Span, Table,  } from "../../../../components";
-import {     Card,  Cards,  Icon,          } from "./styles";
+import {     Card,  Cards,  Icon, TbaleContainer,          } from "./styles";
 import { Spacer } from "../../../../components/Spacer";
 import { DataIcon, EmptyIcon, LoaderIcon, RiderIcon, StoreIcon } from "../../../../public/assets/svg";
 import { formatAMPM, formatNumber, formateDate, naira } from "../../../../lib";
@@ -67,7 +67,7 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 		<>
 			<Spacer height="64px"/>
 			<Flex height="auto" justifyContent="space-between">
-				<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
+				<Bold fontFamily='regular' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Overview
 				</Bold>
 
@@ -80,11 +80,11 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 						<Card key={item.name} active={idx === 0}>
 							<Icon className="icon">{item.icon}</Icon>
 							<div>
-								<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
+								<Bold fontFamily='regular' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
 									{(item.amount)}
 								</Bold>
 								<Spacer height="16px"/>
-								<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={  "Grey.2"}>
+								<Span fontFamily='regular' weight="400" lineHeight="19" size="16" colour={  "Grey.2"}>
 									{item.name}
 								</Span>
 							</div>
@@ -102,37 +102,40 @@ const WalletSection = ( {dashboard}: {dashboard: any}) => {
 					:
 					tableBody?.length > 0 ?
 
-						<GeneralTableStyle height="auto" justifyContent="flex-start">
-							<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
-								<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
-									Recent {tableBody?.length} Transactions
-								</Bold>
 
-								<CustomButton
-									size="14"
-									type="button"
-									pad="padding.smallest"
-									activeColor={"Orange.default"}
-									activeBorderColor={"Orange.default"}
-									activeBgColor={"common.white"}
-									text={  "See All"}
-									onClick={() =>  router.push("/dashboard/transactions") }
+						<TbaleContainer height="auto">
+							<GeneralTableStyle height="auto" justifyContent="flex-start">
+								<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
+									<Bold fontFamily='regular' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
+										Recent {tableBody?.length} Transactions
+									</Bold>
+
+									<CustomButton
+										size="14"
+										type="button"
+										pad="padding.smallest"
+										activeColor={"Orange.default"}
+										activeBorderColor={"Orange.default"}
+										activeBgColor={"common.white"}
+										text={  "See All"}
+										onClick={() =>  router.push("/dashboard/transactions") }
+									/>
+								</Flex>
+
+								<Table 
+									gap={"0"}
+									headBgColor="common.transparent"
+									bodyColor="Grey.2"
+									headColor="common.white"
+									tableHead={tableHead}
+									tableBodys={tableBody}
 								/>
-							</Flex>
-
-							<Table 
-								gap={"0"}
-								headBgColor="common.transparent"
-								bodyColor="Grey.2"
-								headColor="Grey.2"
-								tableHead={tableHead}
-								tableBodys={tableBody}
-							/>
-						</GeneralTableStyle>
+							</GeneralTableStyle>
+						</TbaleContainer>
 						:	
 						<Flex margin="40px 0" height="auto" direction="column">
 							<EmptyIcon />
-							<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+							<Span fontFamily='regular' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								There are no transaction record here yet!.
 							</Span>
 						</Flex>

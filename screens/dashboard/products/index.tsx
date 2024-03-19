@@ -50,7 +50,7 @@ const Product = () => {
 			name: (
 				<Flex width="auto" justifyContent="flex-start" wrap="nowrap">
 					<ImageCollection images={product?.productImage}/>
-					<Bold fontFamily='ubuntu' weight="700" lineHeight="19" size="12" colour={"Grey.1"}>
+					<Bold fontFamily='regular' weight="700" lineHeight="19" size="12" colour={"Grey.1"}>
 						{product?.name}
 					</Bold>
 				</Flex>
@@ -93,7 +93,7 @@ const Product = () => {
 
 
 			<HeaderSTyles height="auto" justifyContent="space-between">
-				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
+				<Bold fontFamily='semiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Product
 				</Bold>
 
@@ -112,7 +112,7 @@ const Product = () => {
 									type="showmore"
 									handleSelect={(selected: string) => openModal({type: selected})}
 									icon={(
-										<Span fontFamily='ubuntu' weight="400" lineHeight="24" size="14" colour={ "common.white"}>
+										<Span fontFamily='regular' weight="400" lineHeight="24" size="14" colour={ "common.white"}>
 											Add New
 										</Span>
 									)}
@@ -142,11 +142,11 @@ const Product = () => {
 			<Container1>
 				<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 					<div>
-						<Bold fontFamily='ubuntu' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
+						<Bold fontFamily='regular' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 							All Products
 						</Bold>
 						<GeneralCountStyles>
-							<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+							<Bold fontFamily='regular' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								{product?.count}
 							</Bold>
 						</GeneralCountStyles>
@@ -174,7 +174,7 @@ const Product = () => {
 							</GeneralTAnimatingContainer>
 							:
 							<Flex margin="40px 0">
-								<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+								<Span fontFamily='regular' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 									There is no product records here yet!.
 								</Span>
 							</Flex>

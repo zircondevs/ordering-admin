@@ -68,7 +68,7 @@ const Overview = () => {
 	return (
 		<Main alignItems="stretch">
 			<OverviewStyles height="auto" justifyContent="space-between" margin='64px 0 40px'>
-				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
+				<Bold fontFamily='semiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Payment
 				</Bold>
 			</OverviewStyles>
@@ -79,15 +79,15 @@ const Overview = () => {
 						<Card key={item.name} active={idx === 0} wrap="nowrap">
 							<Icon className="icon" margin="0 20px 0 0">{item.icon}</Icon>
 							<div>
-								<Bold fontFamily='ubuntu' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
+								<Bold fontFamily='regular' weight="700" lineHeight="28" size="24" colour={ "Grey.2"}>
 									{(item.amount)}
 								</Bold>
 								<Spacer height="8px"/>
-								<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={  "Grey.2"}>
+								<Span fontFamily='regular' weight="400" lineHeight="19" size="16" colour={  "Grey.2"}>
 									{item.name}
 								</Span>
 								{/* <Spacer height="8px"/>
-								<DescriptionStyle fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={  "Grey.1"}>
+								<DescriptionStyle fontFamily='regular' weight="400" lineHeight="16" size="12" colour={  "Grey.1"}>
 									{item.description}
 								</DescriptionStyle> */}
 							</div>

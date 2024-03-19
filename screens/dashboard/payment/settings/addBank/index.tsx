@@ -84,11 +84,11 @@ const AddBank = ({	open,modalRef, setOpen,onDOne, banks } : PropType) => {
 				<ModalSpacer direction="column" wrap="nowrap" alignItems='stretch'  margin="64px 0">
 
 					<Flex height="auto"   margin="0 0 70px" direction="column" alignItems="flex-start">
-						<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="32" size="28" colour={"Black.default"}>
+						<Bold fontFamily='medium' weight="400" lineHeight="32" size="28" colour={"Black.default"}>
 							{ open?.type === "editBank" ? "Edit" : "Add"} Account Number
 						</Bold>
 						<Spacer height="16px"/>
-						<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Grey.2"}>
+						<Span fontFamily='regular' weight="700" lineHeight="19" size="16" colour={"Grey.2"}>
 							Set up a bank account for withdrawal
 						</Span>
 					</Flex>
@@ -191,10 +191,10 @@ const AddBank = ({	open,modalRef, setOpen,onDOne, banks } : PropType) => {
 											{
 												accountName ?
 													<AccountDteial>
-														<Span fontFamily='ubuntu' weight="400" lineHeight="24" size="14" colour={"Black.40"}>
+														<Span fontFamily='regular' weight="400" lineHeight="24" size="14" colour={"Black.40"}>
 															Account Name:  
 														</Span>
-														<Bold fontFamily='ubuntuSemiBold' weight="400" lineHeight="28" size="14" colour={"Success.default"}>
+														<Bold fontFamily='semiBold' weight="400" lineHeight="28" size="14" colour={"Success.default"}>
 															{accountName}
 														</Bold>
 													</AccountDteial>

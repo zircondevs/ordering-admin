@@ -45,11 +45,11 @@ const CartType = ( ) => {
 
 			<div>
 				<Flex height="auto"   margin="0 0 40px" direction="column" alignItems="flex-start">
-					<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
+					<Bold fontFamily='medium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
 						Cart Structure
 					</Bold>
 					<Spacer height="8px"/>
-					<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
+					<Span fontFamily='regular' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
 						How do you want your customers to add items to cart?
 					</Span>
 				</Flex>

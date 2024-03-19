@@ -9,7 +9,7 @@ export const ButtonStyle =  styled(Button)<{
 	disabled: boolean;
 	isLoading : boolean;
 }>`
-	font-family: ${({ theme }) => theme?.typography?.fontFamily["ubuntu"] };
+	font-family: ${({ theme }) => theme?.typography?.fontFamily["regular"] };
     background-color: ${({ bgColour, disabled, isLoading  }) =>!disabled && !isLoading && bgColour && bgColour};
     border:   ${({ bodColour, disabled, isLoading }) => !disabled && !isLoading && bodColour &&  "1px solid " + bodColour};
 	font-size: 16px;

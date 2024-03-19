@@ -33,11 +33,11 @@ const CheckMail = () => {
 					</IconStyle>
 
 					<Flex height="auto"   margin="30px 0 24px" direction="column"  >
-						<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="32" size="28" colour={"Black.default"}  center>
+						<Bold fontFamily='medium' weight="400" lineHeight="32" size="28" colour={"Black.default"}  center>
 						You’ve Got Mail
 						</Bold>
 						<Spacer height="16px"/>
-						<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"} center>
+						<Span fontFamily='regular' weight="400" lineHeight="19" size="16" colour={"Grey.2"} center>
 							We sent a mail to <b>{MaskString(query?.email as string)}</b> Kindly open your mail app to continue.
 						</Span>
 					</Flex>

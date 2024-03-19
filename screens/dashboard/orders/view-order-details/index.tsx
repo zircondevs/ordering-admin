@@ -50,7 +50,7 @@ const ViewOrderDetails = ({	setModal, modal ,modalRef,  } : PropType) => {
 
 					<GeneralModalHeader>
 						<Flex height="auto" justifyContent="space-between" margin="0 0">
-							<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="32" size="28" colour={"Black.default"}>
+							<Bold fontFamily='medium' weight="400" lineHeight="32" size="28" colour={"Black.default"}>
 								View Order Details
 							</Bold>
 						</Flex>

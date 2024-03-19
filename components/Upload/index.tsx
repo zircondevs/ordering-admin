@@ -45,16 +45,16 @@ const Upload = ({	onSuccess , } : PropType) => {
 				}
 			</Flex>
 			<div>
-				<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
+				<Span fontFamily='regular' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
 					Upload Images
 				</Span>
 				<br />
-				<Span fontFamily='ubuntu' weight="400" lineHeight="14" size="12" colour={"Grey.2"}>
+				<Span fontFamily='regular' weight="400" lineHeight="14" size="12" colour={"Grey.2"}>
 					You can only upload at most 5 images
 				</Span>
 				
 				<Spacer height="8px"/>
-				<Span fontFamily='ubuntu' weight="400" lineHeight="14" size="10" colour={"Grey.3"}>
+				<Span fontFamily='regular' weight="400" lineHeight="14" size="10" colour={"Grey.3"}>
 					File size must not exceed 2MB. JPG, PNG supported
 				</Span>
 			</div>
@@ -80,11 +80,11 @@ export const SettingsUpload = ({title, size, onSuccess}: PropTypes) => {
 
 	return (
 		<div>
-			<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
+			<Bold fontFamily='semiBold' weight="700" lineHeight="21" size="16" colour={"Grey.2"}>
 				{title || "Upload Image"}
 			</Bold>
 			<Spacer height="4px" />
-			<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
+			<Span fontFamily='regular' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
 				NB. Approved image size is {size || "512x512px"}.<br /> Image should not exceed 900KB
 			</Span>
 			<Spacer height="24px" />
@@ -103,7 +103,7 @@ export const SettingsUpload = ({title, size, onSuccess}: PropTypes) => {
 						}
 					}} 
 				/>
-				<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={"Grey.2"}>
+				<Span fontFamily='regular' weight="400" lineHeight="16" size="14" colour={"Grey.2"}>
 					<UploadIcon height="12" width="12" colour="Grey.3" />	{imgUrl ? "Change" : "Upload"}
 				</Span>
 				{loadingImage  ? <div className="loader"><LoaderIcon height="30" width="30" /></div> : null}

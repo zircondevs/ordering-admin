@@ -45,14 +45,14 @@ export const IconLoader = () => {
 				<Flex width="auto">
 					<OTHAIcon height="30" width="30" colour="Orange.default"/>
 					{singleSpace()}
-					<Bold  weight="600" fontFamily='ubuntuMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
+					<Bold  weight="600" fontFamily='medium' lineHeight="32" size="24" colour={"Grey.1"} center>
 						Otha
 					</Bold>
 				</Flex>
 				<Flex width="auto" className="fixed">
 					<OTHAIcon height="30" width="30" colour="Grey.1"/>
 					{singleSpace()}
-					<Bold  weight="600" fontFamily='ubuntuMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
+					<Bold  weight="600" fontFamily='medium' lineHeight="32" size="24" colour={"Grey.1"} center>
 						Otha
 					</Bold>
 				</Flex>
@@ -67,7 +67,7 @@ export const  DesktopLoader = ({ isLoading }: {isLoading: boolean}) => {
 		<DeskTopLoaderStyles isLoading={isLoading}>
 			<Flex>
 				<LoaderIcon height="30" width="30" colour="Blue.dark.default"/>
-				<Span fontFamily='ubuntu' weight="700" lineHeight="21" size="14" colour={"Black.default"}>
+				<Span fontFamily='regular' weight="700" lineHeight="21" size="14" colour={"Black.default"}>
 					Loading...
 				</Span>
 			</Flex>

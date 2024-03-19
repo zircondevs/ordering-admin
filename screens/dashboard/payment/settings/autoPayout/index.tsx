@@ -62,11 +62,11 @@ const AutomaticPayout = ({	open,modalRef, setOpen,onDOne,  loading } : PropType)
 				<ModalSpacer direction="column" wrap="nowrap" alignItems='stretch'  margin="64px 0">
 
 					<Flex height="auto"   margin="0 0 70px" direction="column" alignItems="flex-start">
-						<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="40" size="36" colour={"Black.default"}>
+						<Bold fontFamily='medium' weight="400" lineHeight="40" size="36" colour={"Black.default"}>
 							Automatic Payout
 						</Bold>
 						<Spacer height="16px"/>
-						<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Grey.2"}>
+						<Span fontFamily='regular' weight="700" lineHeight="19" size="16" colour={"Grey.2"}>
 							Set up automatic payout process
 						</Span>
 					</Flex>

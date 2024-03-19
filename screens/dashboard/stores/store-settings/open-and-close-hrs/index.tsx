@@ -38,11 +38,11 @@ const OpeningAndClosingHrs = ({workingDays, onDone }: any ) => {
 
 			<div>
 				<Flex height="auto"   margin="0 0 40px" direction="column" alignItems="flex-start">
-					<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
+					<Bold fontFamily='medium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
 						Opening & Closing Hours
 					</Bold>
 					<Spacer height="8px"/>
-					<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
+					<Span fontFamily='regular' weight="400" lineHeight="19" size="14" colour={"Grey.3"}>
 						Add the times your store is open to taking orders
 					</Span>
 				</Flex>
@@ -67,7 +67,7 @@ const OpeningAndClosingHrs = ({workingDays, onDone }: any ) => {
 									<ControlsGrid gap="0 16px" columns="1fr">
 
 										<Container3 height="auto" pad="15px 30px" bgColor="Orange.-5" justifyContent="flex-start">
-											<Span  fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>Working Days</Span>
+											<Span  fontFamily='regular' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>Working Days</Span>
 										</Container3>
 
 										{
@@ -86,7 +86,7 @@ const OpeningAndClosingHrs = ({workingDays, onDone }: any ) => {
 																}
 															}}
 														/>
-														<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="14" colour={"Grey.2"}>
+														<Span fontFamily='regular' weight="400" lineHeight="19" size="14" colour={"Grey.2"}>
 															{MakeOnlyFirstLettersCapital(workingDay.day)}
 														</Span>
 													</Container1>

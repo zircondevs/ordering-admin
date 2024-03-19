@@ -62,7 +62,7 @@ export const TableStyle =  styled(Flex)`
 			background-color: transparent;
 			thead th {
 				padding: 10px 0.8rem;
-				font-family: ${({ theme}) => theme.typography.fontFamily.ubuntuSemiBold};
+				font-family: ${({ theme}) => theme.typography.fontFamily.semiBold};
 				font-weight: ${({ theme}) => theme.typography.fontWeight[400]};
 				font-size: 12px;
 				background-color:  ${({ theme }) => theme.palette.Black[10]};

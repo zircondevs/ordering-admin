@@ -49,11 +49,11 @@ const Settings = () => {
 	return (
 		<Main>
 			<HeaderSTyles height="auto" justifyContent="space-between" margin='40px 0 40px'>
-				<Bold fontFamily='ubuntuMeduim' weight="700" lineHeight="24" size="18" colour={"Grey.1"}>
+				<Bold fontFamily='regularMeduim' weight="700" lineHeight="24" size="18" colour={"Grey.1"}>
 					Withdrawal Accounts
 				</Bold>
 				<Spacer height="4px"/>
-				<Span fontFamily='ubuntu' weight="400" lineHeight="24" size="14" colour={"Grey.3"}>
+				<Span fontFamily='regular' weight="400" lineHeight="24" size="14" colour={"Grey.3"}>
 					Setup account to withdraw funds  after sales
 				</Span>
 			</HeaderSTyles>
@@ -67,11 +67,11 @@ const Settings = () => {
 								<BankIcon height="22" width="22"/>
 							</IconStyle>
 							<div>
-								<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
+								<Bold fontFamily='medium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
 									{ client?.companyDepositBank}
 								</Bold>
 								<Spacer height="4px"/>
-								<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
+								<Span fontFamily='regular' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
 									*********{client?.companyDepositAccountNumber.substring(0, 3)}. {client?.companyDepositAccountName}
 								</Span>
 							</div>
@@ -124,7 +124,7 @@ const Settings = () => {
 
 			<Container1 justifyContent="flex-start"   >
 				<div>
-					<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
+					<Bold fontFamily='medium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
 						Payout Structure
 					</Bold>
 				</div>
@@ -154,11 +154,11 @@ const Settings = () => {
 				client?.withdrawalProcessType === "AUTOMATED" ?
 					<Container1  justifyContent="flex-start"  >
 						<div>
-							<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
+							<Span fontFamily='regular' weight="400" lineHeight="16" size="12" colour={"Grey.3"}>
 								Widthdrawal interval:
 							</Span>
 							{singleSpace()}
-							<Bold fontFamily='ubuntu' weight="600" lineHeight="21" size="14" colour={"Orange.default"}>
+							<Bold fontFamily='regular' weight="600" lineHeight="21" size="14" colour={"Orange.default"}>
 								{client?.withdrawalInterval}
 							</Bold>
 						</div>

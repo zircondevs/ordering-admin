@@ -46,7 +46,7 @@ const LoyaltyCustomers = () => {
 											<Flex width="auto" height="auto" as="button"   margin="0 8px 0 0" >
 												<TrashIcon colour="Error.default" height="20" width="20"/>
 											</Flex>
-											<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="12"  colour="Error.default" >
+											<Span fontFamily='regular' weight="400" lineHeight="19" size="12"  colour="Error.default" >
 												Remove
 											</Span>
 										</>
@@ -75,11 +75,11 @@ const LoyaltyCustomers = () => {
 						<Flex>
 							<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 								<div>
-									<Bold fontFamily='ubuntu' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
+									<Bold fontFamily='regular' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 										All Loyal Customers
 									</Bold>
 									<GeneralCountStyles>
-										<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+										<Bold fontFamily='regular' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 											{loyaltyCustomers?.count}
 										</Bold>
 									</GeneralCountStyles>
@@ -114,11 +114,11 @@ const LoyaltyCustomers = () => {
 						<Flex margin="40px 0" height="auto" direction="column">
 							<LoyaltyIcon colour="Grey.4"/>
 							<Spacer height="8px"/>
-							<Bold fontFamily='ubuntu' weight="400" lineHeight="21" size="16" colour={ "Grey.2"}>
+							<Bold fontFamily='regular' weight="400" lineHeight="21" size="16" colour={ "Grey.2"}>
 								No Loyal Customers
 							</Bold>
 							<Spacer height="4px"/>
-							<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+							<Span fontFamily='regular' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								There are no loyalty customer record here yet!.
 							</Span>
 						</Flex>

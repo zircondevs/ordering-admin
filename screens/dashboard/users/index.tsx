@@ -42,7 +42,7 @@ const Transactions = () => {
 		<Main>
 
 			<HeaderSTyles height="auto" justifyContent="space-between">
-				<Bold fontFamily='ubuntuSemiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
+				<Bold fontFamily='semiBold' weight="700" lineHeight="28" size="24" colour={"Grey.2"}>
 					Customers
 				</Bold> 
 
@@ -54,13 +54,13 @@ const Transactions = () => {
 			<Container1>
 				<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 					<div>
-						<Bold fontFamily='ubuntu' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
+						<Bold fontFamily='regular' weight="700" lineHeight="24" size="18" colour={ "Grey.2"}>
 							All customers
 						</Bold>
 						{
 							pageInfo?.count ?
 								<GeneralCountStyles>
-									<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+									<Bold fontFamily='regular' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 										{pageInfo?.count || 0} 
 									</Bold>
 								</GeneralCountStyles>
@@ -75,7 +75,7 @@ const Transactions = () => {
 						:
 						error?
 							<Flex>
-								<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+								<Bold fontFamily='regular' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 									We are having trouble fetching all users
 								</Bold>
 							</Flex>
@@ -102,7 +102,7 @@ const Transactions = () => {
 								:	
 								<Flex margin="40px 0" height="auto" direction="column">
 									<EmptyIcon />
-									<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+									<Span fontFamily='regular' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 										You do not have any customers yet
 									</Span>
 								</Flex>

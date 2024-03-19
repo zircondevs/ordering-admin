@@ -51,11 +51,11 @@ const DeleteStore = ({	open,modalRef, setOpen, onDOne} : PropType) => {
 				</TrashContainer>
 
 				<Flex height="auto"   margin="40px 0 24px" direction="column" >
-					<Bold fontFamily='ubuntuMedium' weight="400" lineHeight="30" size="24" colour={"Error.default"}>
+					<Bold fontFamily='medium' weight="400" lineHeight="30" size="24" colour={"Error.default"}>
 						Delete Store?
 					</Bold>
 					<Spacer height="16px"/>
-					<Span fontFamily='ubuntu' weight="700" lineHeight="19" size="16" colour={"Grey.3"}>
+					<Span fontFamily='regular' weight="700" lineHeight="19" size="16" colour={"Grey.3"}>
 						You are about to remove this store
 					</Span>
 				</Flex>

@@ -20,12 +20,12 @@ const Filter = ({
 		<Container2 height="auto" width="auto" alignItems="flex-start" >
 
 			<Flex justifyContent="flex-start" height="auto" >
-				<Small fontFamily='ubuntu' weight="600" lineHeight="19" size="14" colour={"Black.default"}>Filter </Small>
+				<Small fontFamily='regular' weight="600" lineHeight="19" size="14" colour={"Black.default"}>Filter </Small>
  
 
 				<Container1 justifyContent="flex-start" height="auto" width="auto">
 					<DateStyle justifyContent="space-between"  height="auto" margin="0 0 0 8px">
-						<Bold fontFamily='ubuntu'
+						<Bold fontFamily='regular'
 							weight="400"
 							lineHeight="24"
 							size="14"
@@ -59,7 +59,7 @@ const Filter = ({
 				date ? 
 					<Flex width="auto" height="auto" wrap="nowrap" className="clearFilter" as="button" type="button" onClick={() => setDate("")}>
 						<CancelIcon colour="Error.default" width="10" height="10"/>
-						<Small fontFamily='ubuntu' weight="400" lineHeight="19" size="12" colour={"Error.default"}>Clear Filter </Small>
+						<Small fontFamily='regular' weight="400" lineHeight="19" size="12" colour={"Error.default"}>Clear Filter </Small>
 					</Flex>
 					: null
 			}

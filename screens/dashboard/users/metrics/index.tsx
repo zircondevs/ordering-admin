@@ -29,7 +29,7 @@ const CustomerMetrics = () => {
 		<Main height="auto" alignItems="flex-start">
 			<ChartCard>
 				<Container2 height="auto" justifyContent="space-between">
-					<Header3 fontFamily='ubuntuSemiBold'weight="400"lineHeight="21"size="18"colour={"Black.80"}>
+					<Header3 fontFamily='semiBold'weight="400"lineHeight="21"size="18"colour={"Black.80"}>
 						Customer Count Chart
 					</Header3>
 
@@ -90,14 +90,14 @@ const CustomerMetrics = () => {
 			{
 				topPurchasingCustomer?.[0] ?
 					<Customer>
-						<Header3 fontFamily='ubuntuSemiBold'weight="400"lineHeight="21"size="16"colour={"Black.80"}>
+						<Header3 fontFamily='semiBold'weight="400"lineHeight="21"size="16"colour={"Black.80"}>
 							Top purchasing customer
 						</Header3>
 						<Spacer height="20px"/>
 						<CustomerCard>
 							
 							<Flex height="auto" justifyContent="flex-start" margin=" 0   0 10px 0">
-								<Bold fontFamily='ubuntuSemiBold'weight="400"lineHeight="21"size="16"colour={"common.white"}>
+								<Bold fontFamily='semiBold'weight="400"lineHeight="21"size="16"colour={"common.white"}>
 									{formatNumber(topPurchasingCustomer?.[0]?.purchaseAmount )} purchases
 								</Bold>
 							</Flex>
@@ -105,10 +105,10 @@ const CustomerMetrics = () => {
 							<Flex height="auto" justifyContent="flex-start" alignItems="flex-start" wrap="nowrap">
 								<BadgeIcon colour="Yellow.default"/>
 								<Flex height="auto" justifyContent="flex-start"  width="auto" margin="0 0 0 10px" direction="column" alignItems="flex-start">
-									<Bold fontFamily='ubuntuBold'weight="400"lineHeight="32"size="21"colour={"common.white"}>
+									<Bold fontFamily='bold'weight="400"lineHeight="32"size="21"colour={"common.white"}>
 										{topPurchasingCustomer?.[0]?.fullName }
 									</Bold>
-									<Span fontFamily='ubuntuBold'weight="400"lineHeight="14"size="12"colour={"Black.40"}>
+									<Span fontFamily='bold'weight="400"lineHeight="14"size="12"colour={"Black.40"}>
 										{topPurchasingCustomer?.[0]?.email }
 									</Span>
 

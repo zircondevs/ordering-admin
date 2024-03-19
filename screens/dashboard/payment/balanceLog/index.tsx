@@ -56,11 +56,11 @@ const BalanceLog = ( ) => {
 				<Flex justifyContent="space-between" margin="0 0 24px" height="auto">
 					<div>
 
-						<Bold fontFamily='ubuntu' weight="700" lineHeight="21" size="18" colour={ "Grey.2"}>
+						<Bold fontFamily='regular' weight="700" lineHeight="21" size="18" colour={ "Grey.2"}>
 							Your payment  
 						</Bold>
 						<GeneralCountStyles>
-							<Bold fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+							<Bold fontFamily='regular' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 								{pageInfo?.count || 0}
 							</Bold>
 						</GeneralCountStyles>
@@ -93,7 +93,7 @@ const BalanceLog = ( ) => {
 							:	
 							<Flex margin="40px 0" height="auto" direction="column">
 								<EmptyIcon />
-								<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
+								<Span fontFamily='regular' weight="400" lineHeight="16" size="14" colour={ "Grey.2"}>
 									There are no balance logs here yet!.
 								</Span>
 							</Flex>

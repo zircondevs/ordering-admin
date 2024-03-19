@@ -19,7 +19,7 @@ const ImageCollection = ({images}: {images: string[]}) => {
  
 					<EmptyCard   width="40px" height="40px" index={images.length + 1}>
 						<Span 
-							fontFamily='ubuntu'
+							fontFamily='regular'
 							weight="600"
 							lineHeight="24"
 							size="14"

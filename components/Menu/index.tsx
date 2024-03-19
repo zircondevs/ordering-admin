@@ -42,7 +42,7 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 									objectPosition={"left"}
 								/>
 							</DrawerMenu>
-							<Bold  weight="600" fontFamily='ubuntuMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
+							<Bold  weight="600" fontFamily='medium' lineHeight="32" size="24" colour={"Grey.1"} center>
 								{MakeOnlyFirstLettersCapital(user?.clientName)}
 							</Bold>
 						</DrawerMenuWrapper>
@@ -51,7 +51,7 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 							<DrawerMenu   justifyContent='flex-start' wrap='nowrap'>
 								<OTHAIcon height="30" width="30" colour="Orange.default"/>
 							</DrawerMenu>
-							<Bold  weight="600" fontFamily='ubuntuMedium' lineHeight="32" size="24" colour={"Grey.1"} center>
+							<Bold  weight="600" fontFamily='medium' lineHeight="32" size="24" colour={"Grey.1"} center>
 								Otha
 							</Bold>
 						</DrawerMenuWrapper>
@@ -61,7 +61,7 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 					stores?.data ?
 						<ActiveStore width="auto" height="auto">
 							<Flex width="auto" height="auto" margin="0 8px 0 0"><StoreIcon width="25" height="25" colour="Black.60" /></Flex>
-							<Bold  weight="600" fontFamily='ubuntuSemiBold' lineHeight="32" size="18" colour={"Black.default"} center>
+							<Bold  weight="600" fontFamily='semiBold' lineHeight="32" size="18" colour={"Black.default"} center>
 								{stores?.data?.find((store: any) => store?._id === storeId)?.name}
 							</Bold>
 						</ActiveStore>
@@ -89,7 +89,7 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 											dropdownValue: (
 												<ProfileDropdownList>
 													<LogOutIcon colour={"Error.default"} width="20" height="20"/>
-													<Span  weight="600" fontFamily='ubuntu' lineHeight="16" size="14" colour={"Black.default"} center>
+													<Span  weight="600" fontFamily='regular' lineHeight="16" size="14" colour={"Black.default"} center>
 														Log Out
 													</Span>
 												</ProfileDropdownList>)
@@ -100,7 +100,7 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 											dropdownValue: (
 												<ProfileDropdownList >
 													<AvatarIcon colour={"Grey.3"} width="20" height="20"/>
-													<Span  weight="600" fontFamily='ubuntu' lineHeight="16" size="14" colour={"Black.default"} center>
+													<Span  weight="600" fontFamily='regular' lineHeight="16" size="14" colour={"Black.default"} center>
 														Profile
 													</Span>
 												</ProfileDropdownList>)
@@ -108,7 +108,7 @@ const Menu = ({ authScreen}: { authScreen?: boolean}) => {
 									]}
 									icon={
 										<ProfileCard>
-											<Span  weight="600" fontFamily='ubuntu' lineHeight="19" size="14" colour={"Black.default"} center>
+											<Span  weight="600" fontFamily='regular' lineHeight="19" size="14" colour={"Black.default"} center>
 												{MakeOnlyFirstLettersCapital(user?.email || "")}
 											</Span>
 											<LeftArrowIcon  height="15" width="15"/>

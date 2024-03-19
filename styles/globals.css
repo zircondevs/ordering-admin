@@ -1,56 +1,31 @@
 
+
 @font-face {
-    font-family: "UbuntuMono-Bold";
-    src: url("../public/Open_Sans/static/OpenSans-Bold.ttf")
+    font-family: "Outfit-bold";
+    src: url("../public//Outfit/static/Outfit-Bold.ttf")
       format("truetype");
   }
 @font-face {
-    font-family: "UbuntuMono-Regular";
-    src: url("../public//Open_Sans/static/OpenSans-Regular.ttf")
+    font-family: "Outfit-light";
+    src: url("../public/Outfit/static/Outfit-Light.ttf")
       format("truetype");
   }
 @font-face {
-    font-family: "UbuntuMono-Light";
-    src: url("../public/Open_Sans/static/OpenSans-Light.ttf")
+    font-family: "Outfit-medium";
+    src: url("../public//Outfit/static/Outfit-Medium.ttf")
       format("truetype");
   }
 @font-face {
-    font-family: "UbuntuMono-Medium";
-    src: url("../public/Open_Sans/static/OpenSans-Medium.ttf")
+    font-family: "Outfit-regular";
+    src: url("../public/Outfit/static/Outfit-Regular.ttf")
       format("truetype");
   }
 @font-face {
-    font-family: "UbuntuMono-SemiBold";
-    src: url("../public//Open_Sans/static/OpenSans-SemiBold.ttf")
+    font-family: "Outfit-semibold";
+    src: url("../public//Outfit/static/Outfit-SemiBold.ttf")
     format("truetype");
 }
  
-/* @font-face {
-    font-family: "UbuntuMono-Bold";
-    src: url("../public/Ubuntu_Mono/UbuntuMono-Bold.ttf")
-      format("truetype");
-  }
-@font-face {
-    font-family: "UbuntuMono-Regular";
-    src: url("../public//Ubuntu_Mono/UbuntuMono-Regular.ttf")
-      format("truetype");
-  }
-@font-face {
-    font-family: "UbuntuMono-Regular";
-    src: url("../public//Ubuntu_Mono/UbuntuMono-Regular.ttf")
-      format("truetype");
-  }
-@font-face {
-    font-family: "UbuntuMono-Regular";
-    src: url("../public/Ubuntu_Mono/UbuntuMono-Regular.ttf")
-      format("truetype");
-  }
-@font-face {
-    font-family: "UbuntuMono-Bold";
-    src: url("../public//Ubuntu_Mono/UbuntuMono-Bold.ttf")
-    format("truetype");
-}
-  */
   
 
 

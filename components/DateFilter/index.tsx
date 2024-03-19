@@ -21,7 +21,7 @@ const DateFilter = ({
 		<MainContainer className="MainContainer" height="auto" width="auto" alignItems="flex-start" direction="column">
 
 			<Flex justifyContent="flex-start" height="auto" >
-				<Small fontFamily='ubuntu'
+				<Small fontFamily='regular'
 					weight="600"
 					lineHeight="19"
 					size="12"
@@ -30,7 +30,7 @@ const DateFilter = ({
 
 				<Container1 justifyContent="flex-start" height="auto" width="auto">
 					<DateStyle justifyContent="space-between"  height="auto" margin="0 0 0 8px">
-						<Bold fontFamily='ubuntu'
+						<Bold fontFamily='regular'
 							weight="400"
 							lineHeight="24"
 							size="14"
@@ -57,7 +57,7 @@ const DateFilter = ({
 					</Flex>
 
 					<DateStyle justifyContent="space-between"   height="auto">
-						<Bold fontFamily='ubuntu'
+						<Bold fontFamily='regular'
 							weight="400"
 							lineHeight="24"
 							size="14"

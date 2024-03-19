@@ -90,7 +90,7 @@ const CreateProduct = ({	product, onDone,   categories } : PropType) => {
 							{
 								product?.type === "editProduct" && 
 								<Flex height="auto" justifyContent="flex-start">
-									<Span fontFamily='ubuntu' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
+									<Span fontFamily='regular' weight="400" lineHeight="19" size="16" colour={"Grey.2"}>
 										Is this product still avaliable?
 									</Span>
 									<Container width="auto" height="auto" margin="0 0 0 8px ">
@@ -194,7 +194,7 @@ const CreateProduct = ({	product, onDone,   categories } : PropType) => {
 									placeholder="Enter a number"
 									borderRadius="8px"
 								/>
-								<Span fontFamily='ubuntu' weight="400" lineHeight="16" size="12" colour={"Grey.2"}>
+								<Span fontFamily='regular' weight="400" lineHeight="16" size="12" colour={"Grey.2"}>
 									(Leave this field  empty if its unlimited. This controls the avaliablity of this product by default.)
 								</Span>
 								<GeneralErrorContainer>
