@@ -12,7 +12,7 @@ import { Form, Formik } from "formik";
 import Image from "next/image";
 import EditorContainer from "../../../../../components/Editor";
 import { useGetAdminGeneralSettings, useSetUpStore } from "../../../../../hooks/useSettigs";
-import { removeEmptyValuesFromObj } from "../../../../../lib";
+import { MakeOnlyFirstLettersCapital, removeEmptyValuesFromObj } from "../../../../../lib";
 import { SetUpStoreTypes } from "../../../../../constants/types";
 import { Main } from "../cart-type/styles";
 import { Checkbox } from "../../../../../components/CheckMark";
@@ -105,13 +105,13 @@ const Welcome = () => {
 											<Flex width="auto" margin="0 auto 32px 0" justifyContent="flex-start">
 												{ values?.storeImage ? <LogoStyles> <Image src={values?.storeImage} alt="" layout="fill" objectFit="contain"/> </LogoStyles> : null }
 											
-												<SettingsUpload title="Video Upload " onSuccess={(e) =>  setFieldValue("storeImage" , e) }/>
+												<SettingsUpload title={MakeOnlyFirstLettersCapital(visualType) + "  Upload "} onSuccess={(e) =>  setFieldValue("storeImage" , e) }/>
 											</Flex>
 											: visualType === "video" ? 
 												<Flex width="auto" margin="0 auto 32px 0" justifyContent="flex-start">
 													{ values?.storeVideo ? <LogoStyles> <video src={values?.storeVideo}  autoPlay={false}/> </LogoStyles> : null}
 												
-													<SettingsUpload title="Video Upload " onSuccess={(e) =>  setFieldValue("storeVideo" , e) }/>
+													<SettingsUpload title={MakeOnlyFirstLettersCapital(visualType) + "  Upload "} onSuccess={(e) =>  setFieldValue("storeVideo" , e) }/>
 												</Flex>
 												: null
 									}
