@@ -65,7 +65,7 @@ export const Icon =  styled(Flex)`
 export const TbaleContainer =  styled(Container)`
 	padding: 30px;
 	border: 1px solid  ${({ theme }) => theme.palette.Grey[5]};
-	background-color:   ${({ theme }) => theme.palette.Grey[5]};
+	background-color:   ${({ theme }) => theme.palette.common["white"]};
 	 border-radius: 16px;
 	 @media (max-width: 800px) {
 		padding: 10px;
