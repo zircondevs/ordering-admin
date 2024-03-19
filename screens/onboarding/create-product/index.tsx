@@ -27,7 +27,7 @@ export const AddStoreSchema = Yup.object().shape({
 	name: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("The full name is required"),
 	category: Yup.string().required("category is required"),
 	amount: Yup.number().required("Amount is required"),
-	description: Yup.number().required("Description is required"),
+	description: Yup.string().required("Description is required"),
 	productImage: Yup.array().of(
 		Yup.string().required("Image is required")
 	).required("Image is required"),
