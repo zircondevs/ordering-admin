@@ -6,6 +6,7 @@ import { Flex, Grid } from "../../../../components";
  
 export const Main =  styled("div")`
 	width: 100%;
+	padding-bottom: 20px;
 `;
  
  
@@ -35,7 +36,7 @@ export const FavStyles =  styled("div")`
 
  
 export const Container1 =  styled(Flex)`
-	background-color: ${({ theme }) => theme.palette.Grey[6]};
+	background-color: ${({ theme }) => theme.palette.common["white"]};
 	padding: 20px;
 	border: 1px solid ${({ theme }) => theme.palette.Grey[5]};
 	margin-bottom: 32px;
@@ -50,6 +51,14 @@ export const Container1 =  styled(Flex)`
 export const FormStyles =  styled(Grid)`
 	max-width: 700px;
 	margin-bottom: 40px;
+	padding: 30px;
+	background-color: white;
+	padding: 30px;
+	box-shadow: ${({ theme }) => theme.shadows.small};
+	border-radius: 8px;
+	@media (max-width: 500px) {
+		padding: 15px
+	}
 `;
  
 export const COlorFields =  styled(Flex)`

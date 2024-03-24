@@ -6,6 +6,7 @@ import { Flex, Grid } from "../../../../components";
  
 export const Main =  styled("div")`
 	width: 100%;
+
 `;
  
  
@@ -42,6 +43,7 @@ export const Card =  styled(Flex)`
 	flex-direction: column;
 	align-items: stretch;
 	border-radius: 5px;
+	background-color: white;
 `;
 export const ControlHead =  styled(Flex)`
 	border-left: 3px solid   ${({ theme }) =>  theme.palette.Orange["default"]};

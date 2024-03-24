@@ -32,6 +32,7 @@ export const DescriptionStyle =  styled(Small)`
  
 export const TabsStyles =  styled("div")`
 		width: 100%;
+		/* flex: 1; */
 		& > div > div  > *{
 			padding: 0  40px;
 			@media (max-width: 700px) {
@@ -56,6 +57,12 @@ export const Card =  styled(Flex)<{active: boolean}>`
 	padding: 24px ;
 	justify-content: flex-start;
 	background-color: ${({ theme }) => theme.palette.Grey["8"]};
+	box-shadow: ${({ theme }) => theme.shadows.small};
+	transition: 200ms linear;
+	&:hover {
+		box-shadow: ${({ theme }) => theme.shadows.middle};
+		transform: translateY(-3px) scale(1.02);
+	}
 	@media (max-width: 600px) {
 		padding: 16px;
 	}

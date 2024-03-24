@@ -7,7 +7,7 @@ import React, { useEffect, useState }   from "react";
 import { Bold,  Flex,        Span,   } from "../../../../../components";
 import { Spacer } from "../../../../../components/Spacer";
 import {   GeneralLabel,      } from "../../../../../components/styles";
-import { Main } from "./styles";
+import { FormContainer, Main } from "./styles";
 import { Checkbox } from "../../../../../components/CheckMark";
 import CustomButton from "../../../../../components/Button";
 import { useGetStorePolicy } from "../../../../../hooks/useSettigs";
@@ -43,7 +43,7 @@ const CartType = ( ) => {
 		<div>
 
 
-			<div>
+			<FormContainer>
 				<Flex height="auto"   margin="0 0 40px" direction="column" alignItems="flex-start">
 					<Bold fontFamily='medium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
 						Cart Structure
@@ -88,7 +88,7 @@ const CartType = ( ) => {
 					}}
 				/> 
 
-			</div>
+			</FormContainer>
 		</div>
 	);
 };

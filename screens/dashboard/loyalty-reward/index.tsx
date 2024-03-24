@@ -49,7 +49,7 @@ const Loyalty = () => {
 					{
 						EDIT || DELETE ?
 							<Tabs
-								nonActiveColor="Grey.4"
+								nonActiveColor="Grey.3"
 								activeColor="grey.2"
 								click={() => []}
 								data={tabData}

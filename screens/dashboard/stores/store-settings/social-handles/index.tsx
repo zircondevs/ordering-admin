@@ -9,7 +9,7 @@ import { Spacer } from "../../../../../components/Spacer";
 import CustomButton from "../../../../../components/Button";
 import {  GeneralInputWrap, GeneralLabel,      } from "../../../../../components/styles";
 import { Form, Formik } from "formik";
-import { Main } from "./styles";
+import { FormContainer, Main } from "./styles";
 import { useSetUpStore } from "../../../../../hooks/useSettigs";
 import { removeEmptyValuesFromObj } from "../../../../../lib";
 import { SetUpStoreTypes } from "../../../../../constants/types";
@@ -46,7 +46,7 @@ const SocialHandles = ({socialHandles, onDone}: {socialHandles: any, onDone: () 
 		<div>
 
 
-			<div>
+			<FormContainer>
 				<Flex height="auto"   margin="0 0 40px" direction="column" alignItems="flex-start">
 					<Bold fontFamily='medium' weight="400" lineHeight="21" size="16" colour={"Grey.2"}>
 						Social handles
@@ -113,7 +113,7 @@ const SocialHandles = ({socialHandles, onDone}: {socialHandles: any, onDone: () 
 					}
 				</Formik>
 
-			</div>
+			</FormContainer>
 		</div>
 	);
 };

@@ -67,7 +67,7 @@ const Settings = () => {
 			<TabsStyles>
 				<GeneralTabStyle>
 					<Tabs
-						nonActiveColor="Grey.4"
+						nonActiveColor="Grey.3"
 						activeColor="grey.2"
 						click={() => []}
 						data={tabData.filter((_) => _?.head ) as  { head: any; body: any; key: any;}[]}

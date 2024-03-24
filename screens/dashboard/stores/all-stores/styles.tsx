@@ -17,7 +17,7 @@ export const StoreCards =  styled(Grid)`
 		grid-template-columns: 1fr 1fr 1fr
 	}
 	@media (max-width: 1200px) {
-		grid-template-columns: 1fr   1fr
+		grid-template-columns: 1fr   1fr;
 	}
 	@media (max-width: 900px) {
 		grid-template-columns:     1fr
@@ -38,6 +38,13 @@ export const StoreStyles =  styled(Flex)`
 	border-radius: 16px;
 	padding: 24px;
 	border: 1px solid ${({ theme }) => theme.palette.Black[20]};
+	background-color:  ${({ theme }) => theme.palette.common["white"]};
+	transition: 200ms linear;
+	box-shadow: ${({ theme }) => theme.shadows.small};
+	&:hover {
+		box-shadow: ${({ theme }) => theme.shadows.middle};
+		transform: translateY(-3px) scale(1.02);
+	}
 	@media (max-width: 600px) {
 		padding: 15px;
 	}
@@ -45,14 +52,14 @@ export const StoreStyles =  styled(Flex)`
 
 
 export const IconStyles =  styled(Flex)<{name: string}>`
-background-color:  ${({name}) => alphaColorsRank[name as colorType]};
+	background-color:  ${({name}) => alphaColorsRank[name as colorType]};
 	border-radius: 100%;
 	min-width: auto;
 	min-width: 50px;
 	min-height: 50px;
 `;
 export const DropdownContentStyles =  styled(Flex)`
-	font-weight: ${({ theme}) => theme.typography.fontWeight[700]};
+	font-weight: ${({ theme}) => theme.typography.fontWeight[400]};
 	svg {
 		margin-right: 8px;
 	}

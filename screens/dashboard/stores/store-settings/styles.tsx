@@ -80,12 +80,13 @@ export const TabsStyles =  styled("div")`
 				&.tab-list-active{
 					padding: 8px 17px;
 					color:  ${({ theme }) => theme.palette.Grey["2"]};
+					border: 1px solid  ${({ theme }) => theme.palette.Grey["5"]};
 					border-left: 3px solid  ${({ theme }) => theme.palette.Orange["default"]};
-					background-color:   ${({ theme }) => theme.palette.Grey["6"]};
+					background-color:   ${({ theme }) => theme.palette.common["white"]};
 					@media (max-width: 1000px) {
-						border: none;
 						background-color:   ${({ theme }) => theme.palette.Orange["5"]};
-						 color:   ${({ theme }) => theme.palette.Orange["default"]};
+						color:   ${({ theme }) => theme.palette.Orange["default"]};
+						border: 1px solid  ${({ theme }) => theme.palette.Orange["default"]};
 					}
 				}
 				@media (max-width: 1000px) {

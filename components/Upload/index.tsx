@@ -69,10 +69,11 @@ export default Upload;
 interface PropTypes {
 	title?: string
 	size?: string
-	onSuccess: (e: string) => void
+	onSuccess: (e: string) => void;
+	type?: "image" | "video"
 }
 
-export const SettingsUpload = ({title, size, onSuccess}: PropTypes) => {
+export const SettingsUpload = ({title, size, onSuccess, type = "image" }: PropTypes) => {
  
 	const [imgUrl, setImgUrl] = useState("");
 	const { handleImageUpload,  loading: loadingImage } = useUploadImage();
@@ -94,7 +95,7 @@ export const SettingsUpload = ({title, size, onSuccess}: PropTypes) => {
 						const target = e.target ;
 						if(target.files && target.files[0]) {
 							const form = new FormData();
-							form.append("image", target.files[0] );
+							form.append(type, target.files[0] );
 							const res = await handleImageUpload(form);
 							if(res?.data) {
 								setImgUrl(res?.data);

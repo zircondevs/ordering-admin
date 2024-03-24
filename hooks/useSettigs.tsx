@@ -37,6 +37,7 @@ export const useGetStoreWorkingDaysAndSocialHandles  = () => {
 		loading, 
 		workingDays: data?.data?.data?.workingDays  ,
 		socialHandles: data?.data?.data,
+		settings: data?.data?.data,
 		mutate };
 };
  

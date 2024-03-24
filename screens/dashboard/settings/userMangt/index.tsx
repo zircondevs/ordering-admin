@@ -63,7 +63,7 @@ const UserManagemnt = () => {
 
 
 			
-			<Grid gap="40px">
+			<Grid gap="40px"  >
 				{
 					loadingRoles || loadingStaff ?
 						<Flex><LoaderIcon height="40" width="40"/></Flex>

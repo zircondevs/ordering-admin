@@ -85,11 +85,7 @@ const Overview = () => {
 								<Spacer height="8px"/>
 								<Span fontFamily='regular' weight="400" lineHeight="19" size="16" colour={  "Grey.2"}>
 									{item.name}
-								</Span>
-								{/* <Spacer height="8px"/>
-								<DescriptionStyle fontFamily='regular' weight="400" lineHeight="16" size="12" colour={  "Grey.1"}>
-									{item.description}
-								</DescriptionStyle> */}
+								</Span> 
 							</div>
 						</Card>
 					))
@@ -101,7 +97,7 @@ const Overview = () => {
 			<TabsStyles>
 				<GeneralTabStyle>
 					<Tabs
-						nonActiveColor="Grey.4"
+						nonActiveColor="Grey.3"
 						activeColor="Blue.base.default"
 						click={(e) => console.log(e.key)}
 						data={tabData}

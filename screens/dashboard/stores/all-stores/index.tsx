@@ -69,7 +69,7 @@ const AllStores = ({openModal, stores, loading}: PropTypes) => {
 													{store?.address}
 												</Span>
 												<br />
-												<Bold fontFamily='regular' weight="&00" lineHeight="24" size="16" colour={ "Grey.2"}>
+												<Bold fontFamily='regular' weight="&00" lineHeight="32" size="18" colour={ "Grey.2"}>
 													{store?.name}
 												</Bold>
 											</div>

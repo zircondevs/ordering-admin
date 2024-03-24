@@ -50,7 +50,7 @@ export const GeneralModalStyle = styled("div")`
  
 export const GeneralTabStyle =  styled("div")`
     & > div > ol {
-		/* border: none; */
+		border-bottom:  2px solid ${({ theme }) => theme.palette.Black[20]};
 		scrollbar-width: none;
 		&::-webkit-scrollbar{
 			display: none;
@@ -66,6 +66,9 @@ export const GeneralTabStyle =  styled("div")`
 			line-height: ${({ theme }) => theme?.typography.lineHeight["19"] };
 			&.tab-list-active:before {
 				background-color: ${() =>  PRIMARY_COLOR[0]}
+			}
+			&:not(.tab-list-active) {
+				font-weight: 400;
 			}
 			&.tab-list-active {
 				 color: ${({ theme}) => theme?.palette.Grey["2"] };

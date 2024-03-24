@@ -66,7 +66,7 @@ const Overview = () => {
 			<TabsStyles>
 				<GeneralTabStyle>
 					<Tabs
-						nonActiveColor="Grey.4"
+						nonActiveColor="Grey.3"
 						activeColor="Blue.base.default"
 						click={(e) => console.log(e.key)}
 						data={tabData}

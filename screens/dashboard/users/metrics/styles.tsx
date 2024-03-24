@@ -10,11 +10,15 @@ export const Main =  styled(Flex)`
 	@media (max-width: 1200px) {
 		flex-direction: column-reverse;
 	}
-`;
+	`;
  
  
-
+ 
 export const ChartCard =  styled(Container)`
+	background-color: ${({ theme }) => theme.palette.common["white"]};
+	padding: 30px;
+	box-shadow: ${({ theme }) => theme.shadows.small};
+	border-radius: 16px;
 	flex: 1;
 `;
 

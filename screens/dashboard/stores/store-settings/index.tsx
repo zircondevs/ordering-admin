@@ -51,8 +51,8 @@ const StoreSettings = ( ) => {
 			<Spacer height="40px"/>
 			<TabsStyles>
 				<Tabs
-					nonActiveColor="Grey.4"
-					activeColor="grey.2"
+					nonActiveColor="Grey.3"
+					activeColor="grey.1"
 					click={() => []}
 					data={tabData}
 				/>

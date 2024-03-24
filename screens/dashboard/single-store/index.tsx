@@ -34,7 +34,7 @@ const Stores = () => {
  
  
  
-	const tableHead = ["Date","Time", "Amount", "Status" ];
+	const tableHead = ["Date","Time", "Amount"  ];
 	const tableBody = transactions?.data?.map((transaction: GenericObjTypes) => (
 		{
 			date: `${formateDate(new Date(transaction?.createdAt)).date} ${formateDate(new Date(transaction?.createdAt)).shortMonth}, ${formateDate(new Date(transaction?.createdAt)).year}` ,
@@ -99,7 +99,7 @@ const Stores = () => {
 
 								<Spacer height="32px"/>
 
-
+								
 								<Grid gap="24px" columns="repeat(auto-fit, minmax(200px, 1fr))" >
 									{ 
 										details.map((detail, idx) => (

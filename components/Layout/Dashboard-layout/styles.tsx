@@ -18,6 +18,7 @@ export const Container =  styled("section")`
 	margin: 0 0 0 auto; 
 	min-height: calc(100vh - 0px);
 	width: calc(100vw - 280px);
+	background-color: ${({ theme }) => theme.palette.Black[0]};
 	@media (max-width: 700px){
         width: 100%
     }

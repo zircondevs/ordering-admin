@@ -12,7 +12,7 @@ export const Main =  styled("div")`
 
 export const HeaderSTyles =  styled(Flex)`
 	padding: 64px  40px;
-	border-bottom: 1px solid ${({ theme }) => theme.palette.Black[20]};
+	border-bottom: 2px solid ${({ theme }) => theme.palette.Black[20]};
 	margin-bottom: 40px;
 	@media (max-width: 700px) {
 		padding: 40px  4%;
