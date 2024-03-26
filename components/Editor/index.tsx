@@ -17,10 +17,9 @@ const EditorContainer  = ({ initialValue, handleOnChange }: PropType) => {
 
  
  
- 
 	return (
 		<Wrapper className="editor">
-			<ReactQuill theme="snow" value={initialValue} onChange={handleOnChange} />
+			<ReactQuill theme="snow" placeholder="Enter a message..." value={initialValue} onChange={e => e === "<p><br></p>" ? handleOnChange("") : handleOnChange(e)} />
 		</Wrapper>
 	);
    

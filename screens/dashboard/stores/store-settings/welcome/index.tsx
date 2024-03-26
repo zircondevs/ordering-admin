@@ -157,7 +157,7 @@ const Welcome = () => {
 
 											<Grid gap="16px">
 												<GeneralLabel> Custom Message  </GeneralLabel>
-												<EditorContainer initialValue={values.storeCustomMessage || "<p>Enter message …</p>"}  handleOnChange={(e) => setFieldValue("storeCustomMessage", e)}/>
+												<EditorContainer initialValue={values.storeCustomMessage || ""}  handleOnChange={(e) => setFieldValue("storeCustomMessage", e)}/>
 											</Grid>
 
 											<CustomButton
